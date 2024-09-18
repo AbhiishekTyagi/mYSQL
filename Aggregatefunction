@@ -1,0 +1,585 @@
+Last login: Tue May 16 13:15:11 on ttys000
+(base) abhishektyagi@Abhisheks-MacBook-Air ~ % pwd
+/Users/abhishektyagi
+(base) abhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 21
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show scheams;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'scheams' at line 1
+mysql> select title,pages,released_year  from Books where released_year  Between 2004 An^C
+mysql> show schemas;
++--------------------+
+| Database           |
++--------------------+
+| ABES               |
+| Book_shop          |
+| DBMS               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| RadheKrishna       |
+| Shirt              |
+| sys                |
++--------------------+
+9 rows in set (0.02 sec)
+
+mysql> connect radhekrishna 
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Connection id:    22
+Current database: radhekrishna
+
+mysql> show tables;
++------------------------+
+| Tables_in_radhekrishna |
++------------------------+
+| Airpods                |
+| Cats                   |
+| employee               |
+| Employees              |
+| Grudha                 |
+| LED                    |
+| Mobile                 |
+| pet                    |
+| Pizza                  |
+| Radhe                  |
+| tweets                 |
++------------------------+
+11 rows in set (0.00 sec)
+
+mysql> desc Employee;
++----------------+--------------+------+-----+----------+----------------+
+| Field          | Type         | Null | Key | Default  | Extra          |
++----------------+--------------+------+-----+----------+----------------+
+| id             | int          | NO   | PRI | NULL     | auto_increment |
+| First_Name     | varchar(100) | NO   |     | NULL     |                |
+| Last_name      | varchar(100) | NO   |     | NULL     |                |
+| Middle_name    | varchar(100) | YES  |     | NULL     |                |
+| Age            | int          | YES  |     | NULL     |                |
+| Current_Status | varchar(100) | NO   |     | Employed |                |
++----------------+--------------+------+-----+----------+----------------+
+6 rows in set (0.01 sec)
+
+mysql> desc Pizza;
++-----------------+--------------+------+-----+----------+----------------+
+| Field           | Type         | Null | Key | Default  | Extra          |
++-----------------+--------------+------+-----+----------+----------------+
+| pizza_id        | int          | NO   | PRI | NULL     | auto_increment |
+| Pizza_Name      | varchar(25)  | NO   |     | NULL     |                |
+| Customer_number | bigint       | YES  |     | NULL     |                |
+| Location        | varchar(234) | NO   |     | New York |                |
++-----------------+--------------+------+-----+----------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> desc tweets;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| Username    | varchar(15)  | NO   |     | NULL    |       |
+| Content     | varchar(140) | YES  |     | NULL    |       |
+| Favorites   | int          | YES  |     | NULL    |       |
+| Dateoftweet | datetime     | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from pizza;
++----------+----------------+-----------------+----------+
+| pizza_id | Pizza_Name     | Customer_number | Location |
++----------+----------------+-----------------+----------+
+|        1 | Mario's pizza  |      7302963673 | New York |
+|        2 | Domino's Pizza |      7303074013 | New York |
++----------+----------------+-----------------+----------+
+2 rows in set (0.01 sec)
+
+mysql> select * from employee;
++----+------------+-----------+-------------+------+----------------+
+| id | First_Name | Last_name | Middle_name | Age  | Current_Status |
++----+------------+-----------+-------------+------+----------------+
+|  1 | Sneha      | pandey    | Devi        |   21 | Employed       |
+|  2 | Abhishek   | Tyagi     | Hard Londa  |   22 | Employed       |
+|  3 | Lavish     | Tyagi     | Singh       |   23 | Student        |
++----+------------+-----------+-------------+------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from pet;
++----------------+------+------+
+| name           | age  | Id   |
++----------------+------+------+
+| NULL           | NULL |    2 |
+| Raja           |   12 |    2 |
+| Motii          |   11 |    2 |
+| Kalluu         |    7 |    2 |
+| Marios's Pizza | NULL |    2 |
+| NULL           | NULL |    2 |
+| Rajuu          |   12 |    2 |
++----------------+------+------+
+7 rows in set (0.01 sec)
+
+mysql> select * from cats;
+Empty set (0.00 sec)
+
+mysql> select * from employees;
+Empty set (0.01 sec)
+
+mysql> select * from led;
++----+---------+-------+-------+
+| Id | Name    | Color | Cost  |
++----+---------+-------+-------+
+|  1 | Apple   | Blue  | 13000 |
+|  2 | Samsung | Black | 12000 |
+|  3 | Samsung | Black | 12000 |
+|  4 | Samsung | Black | 12000 |
+|  5 | Samsung | Black | 12000 |
+|  6 | Samsung | Black | 12000 |
+|  7 | Samsung | Black | 12000 |
+|  8 | Samsung | Black | 12000 |
+|  9 | Samsung | Black | 12000 |
++----+---------+-------+-------+
+9 rows in set (0.00 sec)
+
+mysql> select * from radhe;
++----------------+------+-------------+
+| Name           | Age  | Village     |
++----------------+------+-------------+
+| Abhishek Tyagi |   22 | Chhapar     |
+| Ayush Tyagi    |   23 | Bhulandsher |
+| Hanuman        |   23 | Aajan       |
+| Krishna        |   21 | Mathura     |
+| Lakshman       |   24 | Ayodha      |
+| MataSita       |   25 | Mithila     |
+| RadhaRani      |   23 | Bharsana    |
+| Radhikha       |   24 | Vrindavan   |
+| Ram            |   25 | Ayodha      |
+| Sneha Pandey   |   22 | Shamli      |
++----------------+------+-------------+
+10 rows in set (0.00 sec)
+
+mysql> show scheams;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'scheams' at line 1
+mysql> show schemas;;
++--------------------+
+| Database           |
++--------------------+
+| ABES               |
+| Book_shop          |
+| DBMS               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| RadheKrishna       |
+| Shirt              |
+| sys                |
++--------------------+
+9 rows in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+mysql> connect shirt;
+Connection id:    23
+Current database: shirt
+
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> connect DBMS;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Connection id:    24
+Current database: DBMS
+
+mysql> show tables;
++-----------------+
+| Tables_in_dbms  |
++-----------------+
+| Abhishek        |
+| Birth           |
+| child           |
+| college         |
+| Cricket         |
+| employee        |
+| EmployeeDetails |
+| EmployeeSalary  |
+| faculty         |
+| Faculty1        |
+| facultysubject  |
+| Guiders         |
+| Hospital        |
+| Hospital1       |
+| Order_item      |
+| parent          |
+| Person          |
+| school          |
+| student         |
+| student1        |
+| student3        |
+| subject         |
+| time            |
+| timestamp       |
++-----------------+
+24 rows in set (0.00 sec)
+
+mysql> select * from cricket;
+Empty set (0.01 sec)
+
+mysql> select * from college;
++------------+--------------+-------+-------------------+--------------+
+| Student_id | Student_name | Class | Permanent_Address | Father_name  |
++------------+--------------+-------+-------------------+--------------+
+|          1 | Akhil        | MCA   | Uttrakhand        | NULL         |
+|          2 | Ayush        | MCA   | Uttar Pradesh     | Krishna      |
+|          3 | Abhishek     | MCA   | Uttar Pradesh     | Yogesh Tyagi |
+|          4 | Shikha       | MCA   | Bangluru          | NULL         |
++------------+--------------+-------+-------------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from person;
++----+-----------+-----------+------+
+| Id | Firstname | LastName  | Age  |
++----+-----------+-----------+------+
+|  1 | Abhishek  | Tyagi     |   23 |
+|  2 | Sneha     | Pandey    |   23 |
+|  3 | Ajay      | Dhiman    |   24 |
+|  4 | Paras     | KhalKhal  |   24 |
+|  5 | Priya     | Mittal    |   23 |
+|  6 | Shurbhi   | Aggarwal  |   23 |
+|  7 | Kajal     | Chaudhary |   23 |
+|  8 | hritik    | Sharma    |   23 |
+|  9 | Divya     | Jaat      |   23 |
+| 10 | Prince    |  Motwal   |   23 |
+| 11 | Akansha   | Roy       |   23 |
++----+-----------+-----------+------+
+11 rows in set (0.01 sec)
+
+mysql> select count(*)  from person;
++----------+
+| count(*) |
++----------+
+|       11 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select count(*)  from person where age>23;
++----------+
+| count(*) |
++----------+
+|        2 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(Distinct age)  from person;
++---------------------+
+| count(Distinct age) |
++---------------------+
+|                   2 |
++---------------------+
+1 row in set (0.01 sec)
+
+mysql> select count(Distinct LastName) from person;
++--------------------------+
+| count(Distinct LastName) |
++--------------------------+
+|                       11 |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(age) from person;
++----------+
+| sum(age) |
++----------+
+|      255 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select sum(age) from person where age>23;
++----------+
+| sum(age) |
++----------+
+|       48 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select sum(age) from person where age>23 group by LastName;
++----------+
+| sum(age) |
++----------+
+|       24 |
+|       24 |
++----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from person;
++----+-----------+-----------+------+
+| Id | Firstname | LastName  | Age  |
++----+-----------+-----------+------+
+|  1 | Abhishek  | Tyagi     |   23 |
+|  2 | Sneha     | Pandey    |   23 |
+|  3 | Ajay      | Dhiman    |   24 |
+|  4 | Paras     | KhalKhal  |   24 |
+|  5 | Priya     | Mittal    |   23 |
+|  6 | Shurbhi   | Aggarwal  |   23 |
+|  7 | Kajal     | Chaudhary |   23 |
+|  8 | hritik    | Sharma    |   23 |
+|  9 | Divya     | Jaat      |   23 |
+| 10 | Prince    |  Motwal   |   23 |
+| 11 | Akansha   | Roy       |   23 |
++----+-----------+-----------+------+
+11 rows in set (0.00 sec)
+
+mysql> select avg(age) from person;
++----------+
+| avg(age) |
++----------+
+|  23.1818 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_dbms  |
++-----------------+
+| Abhishek        |
+| Birth           |
+| child           |
+| college         |
+| Cricket         |
+| employee        |
+| EmployeeDetails |
+| EmployeeSalary  |
+| faculty         |
+| Faculty1        |
+| facultysubject  |
+| Guiders         |
+| Hospital        |
+| Hospital1       |
+| Order_item      |
+| parent          |
+| Person          |
+| school          |
+| student         |
+| student1        |
+| student3        |
+| subject         |
+| time            |
+| timestamp       |
++-----------------+
+24 rows in set (0.00 sec)
+
+mysql> select * from Hospital;
++----+----------+------------+----------+---------------------+
+| Id | BabyName | DoB        | DOT      | DOBT                |
++----+----------+------------+----------+---------------------+
+|  1 | Abhishek | 2002-06-19 | 10:13:12 | 2002-06-19 10:13:12 |
+|  2 | Lavish   | 2002-06-19 | 10:15:18 | 2002-06-19 10:15:18 |
+|  3 | Sneha    | 2001-12-09 | 11:18:09 | 2001-12-09 11:18:09 |
++----+----------+------------+----------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from Hospital1;
+Empty set (0.00 sec)
+
+mysql> select * from college;
++------------+--------------+-------+-------------------+--------------+
+| Student_id | Student_name | Class | Permanent_Address | Father_name  |
++------------+--------------+-------+-------------------+--------------+
+|          1 | Akhil        | MCA   | Uttrakhand        | NULL         |
+|          2 | Ayush        | MCA   | Uttar Pradesh     | Krishna      |
+|          3 | Abhishek     | MCA   | Uttar Pradesh     | Yogesh Tyagi |
+|          4 | Shikha       | MCA   | Bangluru          | NULL         |
++------------+--------------+-------+-------------------+--------------+
+4 rows in set (0.01 sec)
+
+mysql> select * from faculty1;;
++--------+----------+-----------+
+| fac_id | fac_name | City      |
++--------+----------+-----------+
+|      1 | Shilpa   | Ghaziabad |
+|      2 | Neelam   | Noida     |
+|      3 | Deptti   | Delhi     |
+|      4 | vandhana | Banglore  |
++--------+----------+-----------+
+4 rows in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+mysql> select * from Employeesalary;
++-------+---------+--------+----------+
+| EmpId | Project | Salary | Variable |
++-------+---------+--------+----------+
+|   121 | P1      |   8000 |      500 |
+|   321 | P2      |  10000 |     1000 |
+|   421 | P1      |  12000 |        0 |
++-------+---------+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select count(*) from person;
++----------+
+| count(*) |
++----------+
+|       11 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from EmployeeSalary;;
++----------+
+| count(*) |
++----------+
+|        3 |
++----------+
+1 row in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+mysql> select avg(Salary) from EmployeeSalary;;
++-------------+
+| avg(Salary) |
++-------------+
+|  10000.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+mysql> select avg(Salary) from EmployeeSalary;
++-------------+
+| avg(Salary) |
++-------------+
+|  10000.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select * from employeeSalary;
++-------+---------+--------+----------+
+| EmpId | Project | Salary | Variable |
++-------+---------+--------+----------+
+|   121 | P1      |   8000 |      500 |
+|   321 | P2      |  10000 |     1000 |
+|   421 | P1      |  12000 |        0 |
++-------+---------+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select avg(salary) from employeeSalary;
++-------------+
+| avg(salary) |
++-------------+
+|  10000.0000 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_dbms  |
++-----------------+
+| Abhishek        |
+| Birth           |
+| child           |
+| college         |
+| Cricket         |
+| employee        |
+| EmployeeDetails |
+| EmployeeSalary  |
+| faculty         |
+| Faculty1        |
+| facultysubject  |
+| Guiders         |
+| Hospital        |
+| Hospital1       |
+| Order_item      |
+| parent          |
+| Person          |
+| school          |
+| student         |
+| student1        |
+| student3        |
+| subject         |
+| time            |
+| timestamp       |
++-----------------+
+24 rows in set (0.01 sec)
+
+mysql> select * from Abhishek;
++-----+----------+-------------+-------------+
+| Sid | Name     | father_name | mother_name |
++-----+----------+-------------+-------------+
+|   2 | Prince   | Vinod       | Poonam      |
+|   3 | Abhishek | Krishna     | Rajani      |
+|   4 | lavish   | Ram Ram     | Radha rani  |
+|   5 | Garima   | Rajput      | Radha Rani  |
++-----+----------+-------------+-------------+
+4 rows in set (0.01 sec)
+
+mysql> select * from order_item;
++----------+---------+------+
+| order_no | item_no | qty  |
++----------+---------+------+
+|        1 |     111 |   10 |
+|        1 |     222 |   20 |
+|        1 |     333 |   30 |
+|        2 |     333 |   30 |
+|        2 |     444 |   40 |
+|        3 |     111 |   40 |
++----------+---------+------+
+6 rows in set (0.00 sec)
+
+mysql> select max(qty) from order_item;
++----------+
+| max(qty) |
++----------+
+|       40 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select max(item_no) from order_item;
++--------------+
+| max(item_no) |
++--------------+
+|          444 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from order_item;
++----------+---------+------+
+| order_no | item_no | qty  |
++----------+---------+------+
+|        1 |     111 |   10 |
+|        1 |     222 |   20 |
+|        1 |     333 |   30 |
+|        2 |     333 |   30 |
+|        2 |     444 |   40 |
+|        3 |     111 |   40 |
++----------+---------+------+
+6 rows in set (0.00 sec)
+
+mysql> select min(qty) from order_item;
++----------+
+| min(qty) |
++----------+
+|       10 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select min(item_no) from order_item;
++--------------+
+| min(item_no) |
++--------------+
+|          111 |
++--------------+
+1 row in set (0.01 sec)
+
+mysql> 

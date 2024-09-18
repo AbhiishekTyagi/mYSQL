@@ -1,0 +1,457 @@
+Last login: Thu Sep 22 23:40:59 on ttys000
+(base) abhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| hello              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> connect hello;
+Connection id:    10
+Current database: hello
+
+mysql> create table student(student_Id number(5),Student_name varchar2(13));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'number(5),Student_name varchar2(13))' at line 1
+mysql> create table Student(id int,name varchar(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc Student
+    -> desc Student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc Student' at line 2
+mysql> show tables;
++-----------------+
+| Tables_in_hello |
++-----------------+
+| Student         |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> Desc Student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| name  | varchar(10) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> Alter table Student add primary key(id);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> Desc Student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(10) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> Alter table Student add Subjects char(5);
+Query OK, 0 rows affected (0.00 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | NO   | PRI | NULL    |       |
+| name     | varchar(10) | YES  |     | NULL    |       |
+| Subjects | char(5)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into Student(id,name,Subjects)Values('1','Abhishek','Java');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> desc Student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | NO   | PRI | NULL    |       |
+| name     | varchar(10) | YES  |     | NULL    |       |
+| Subjects | char(5)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from Student;
++----+----------+----------+
+| id | name     | Subjects |
++----+----------+----------+
+|  1 | Abhishek | Java     |
++----+----------+----------+
+1 row in set (0.00 sec)
+
+mysql> select (id,name) from Student;
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> select id ,name from Student;
++----+----------+
+| id | name     |
++----+----------+
+|  1 | Abhishek |
++----+----------+
+1 row in set (0.00 sec)
+
+mysql> insert into Student (id,name,Subjects)values('2','Akhil Pandey','Python');
+ERROR 1406 (22001): Data too long for column 'name' at row 1
+mysql>  insert into Student (id,name,Subjects)values('2','Akhil','Python');
+ERROR 1406 (22001): Data too long for column 'Subjects' at row 1
+mysql>  insert into Student(id,name,Subjects)Values('2','Akhil Pandey','Python');
+ERROR 1406 (22001): Data too long for column 'name' at row 1
+mysql> desc Student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | NO   | PRI | NULL    |       |
+| name     | varchar(10) | YES  |     | NULL    |       |
+| Subjects | char(5)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> Alter table Student modify name varchar(5);
+ERROR 1265 (01000): Data truncated for column 'name' at row 1
+mysql> Alter table Student rename to Employee;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc Student;
+ERROR 1146 (42S02): Table 'hello.student' doesn't exist
+mysql> desc Employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | NO   | PRI | NULL    |       |
+| name     | varchar(10) | YES  |     | NULL    |       |
+| Subjects | char(5)     | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> Alter table Employee modify name char(5);
+ERROR 1406 (22001): Data too long for column 'name' at row 1
+mysql> Alter table Employee drop column Subjects;
+Query OK, 0 rows affected (0.00 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Employee;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(10) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> Alter table Employee add Address varchar(10);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Employee;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int         | NO   | PRI | NULL    |       |
+| name    | varchar(10) | YES  |     | NULL    |       |
+| Address | varchar(10) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into Employee(id,name,Address)Values('1','Ajay','Rampuri');
+ERROR 1062 (23000): Duplicate entry '1' for key 'employee.PRIMARY'
+mysql> insert into Employee(id,name,Address)Values('2','Ajay','Rampuri');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Employee;
++----+----------+---------+
+| id | name     | Address |
++----+----------+---------+
+|  1 | Abhishek | NULL    |
+|  2 | Ajay     | Rampuri |
++----+----------+---------+
+2 rows in set (0.01 sec)
+
+mysql> Update Employee set Address='Chhapar';
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from employee;
++----+----------+---------+
+| id | name     | Address |
++----+----------+---------+
+|  1 | Abhishek | Chhapar |
+|  2 | Ajay     | Chhapar |
++----+----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> Update Employee set Address='Rampuri';where id=1;
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where id=1' at line 1
+mysql> select * from Employee;
++----+----------+---------+
+| id | name     | Address |
++----+----------+---------+
+|  1 | Abhishek | Rampuri |
+|  2 | Ajay     | Rampuri |
++----+----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> Update Employee set Address='Rampuri'where id=1;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select * from Employee;
++----+----------+---------+
+| id | name     | Address |
++----+----------+---------+
+|  1 | Abhishek | Rampuri |
+|  2 | Ajay     | Rampuri |
++----+----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> Update Employee set Address='Rampuri'where id=2;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select * from Employee;
++----+----------+---------+
+| id | name     | Address |
++----+----------+---------+
+|  1 | Abhishek | Rampuri |
+|  2 | Ajay     | Rampuri |
++----+----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> Update Employee set Address='Chhapar'where id=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Employee;
++----+----------+---------+
+| id | name     | Address |
++----+----------+---------+
+|  1 | Abhishek | Chhapar |
+|  2 | Ajay     | Rampuri |
++----+----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> Delete from Employee where id=1;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Employee;
++----+------+---------+
+| id | name | Address |
++----+------+---------+
+|  2 | Ajay | Rampuri |
++----+------+---------+
+1 row in set (0.01 sec)
+
+mysql> Drop table employee;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc Employee;
+ERROR 1146 (42S02): Table 'hello.employee' doesn't exist
+mysql> show Databases;
++--------------------+
+| Database           |
++--------------------+
+| hello              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> connect sys;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Connection id:    11
+Current database: sys
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| hello              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> connect hello;
+Connection id:    12
+Current database: hello
+
+mysql> create table Student(Student_id number(3),Student_Name char(8));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'number(3),Student_Name char(8))' at line 1
+mysql> mysql> create table Student(Student_id number(3),Student_Name char(8));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql> create table Student(Student_id number(3),Student_Name char(8))' at line 1
+mysql> mysql> create table Student(Student_id number(3),Student_Name char(8));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql> create table Student(Student_id number(3),Student_Name char(8))' at line 1
+mysql>  create table Student(Id number(3),Name char(8));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'number(3),Name char(8))' at line 1
+mysql>  create table Student(Student_id int),Student_Name char(8));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',Student_Name char(8))' at line 1
+mysql> create table Student(Id int,name varchar(8),Subjects varchar(10));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc Student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Id       | int         | YES  |     | NULL    |       |
+| name     | varchar(8)  | YES  |     | NULL    |       |
+| Subjects | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table Student add primary key(Id);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Id       | int         | NO   | PRI | NULL    |       |
+| name     | varchar(8)  | YES  |     | NULL    |       |
+| Subjects | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into Student(Id,name,Subjects)Values('1','Abhishek','Java');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Student;
++----+----------+----------+
+| Id | name     | Subjects |
++----+----------+----------+
+|  1 | Abhishek | Java     |
++----+----------+----------+
+1 row in set (0.00 sec)
+
+mysql> insert into Student(Id,name,Subjects)Values('2','Ajay','Rampuri');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from Student;
++----+----------+----------+
+| Id | name     | Subjects |
++----+----------+----------+
+|  1 | Abhishek | Java     |
+|  2 | Ajay     | Rampuri  |
++----+----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> insert into Student(Id,name,subjects)Values('3','Akhil','Udamnagar');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Student;
++----+----------+-----------+
+| Id | name     | Subjects  |
++----+----------+-----------+
+|  1 | Abhishek | Java      |
+|  2 | Ajay     | Rampuri   |
+|  3 | Akhil    | Udamnagar |
++----+----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> insert into Student(id,name,subjects)Values('4','Ayuesh','Ghaziabad');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Student;
++----+----------+-----------+
+| Id | name     | Subjects  |
++----+----------+-----------+
+|  1 | Abhishek | Java      |
+|  2 | Ajay     | Rampuri   |
+|  3 | Akhil    | Udamnagar |
+|  4 | Ayuesh   | Ghaziabad |
++----+----------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> Alter table Student rename Subjects to Address;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to Address' at line 1
+mysql> Alter table Student rename(Subjects) to Address;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(Subjects) to Address' at line 1
+mysql> Alter table Student sujects rename to Address;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sujects rename to Address' at line 1
+mysql> Alter table Student (Subjects
+    -> Alter table Student(Subjects) rename to Address;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(Subjects
+Alter table Student(Subjects) rename to Address' at line 1
+mysql> desc Student;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Id       | int         | NO   | PRI | NULL    |       |
+| name     | varchar(8)  | YES  |     | NULL    |       |
+| Subjects | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> Alter table Student Subjects rename to Address;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Subjects rename to Address' at line 1
+mysql> Alter table Student change column Subjects Address char(10);
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> desc Student;
++---------+------------+------+-----+---------+-------+
+| Field   | Type       | Null | Key | Default | Extra |
++---------+------------+------+-----+---------+-------+
+| Id      | int        | NO   | PRI | NULL    |       |
+| name    | varchar(8) | YES  |     | NULL    |       |
+| Address | char(10)   | YES  |     | NULL    |       |
++---------+------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from Student;
++----+----------+-----------+
+| Id | name     | Address   |
++----+----------+-----------+
+|  1 | Abhishek | Java      |
+|  2 | Ajay     | Rampuri   |
+|  3 | Akhil    | Udamnagar |
+|  4 | Ayuesh   | Ghaziabad |
++----+----------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> Update Student set Address='Chhapar'where id=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++----+----------+-----------+
+| Id | name     | Address   |
++----+----------+-----------+
+|  1 | Abhishek | Chhapar   |
+|  2 | Ajay     | Rampuri   |
+|  3 | Akhil    | Udamnagar |
+|  4 | Ayuesh   | Ghaziabad |
++----+----------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> 

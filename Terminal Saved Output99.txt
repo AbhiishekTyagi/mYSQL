@@ -1,0 +1,418 @@
++mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| DBMS               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> connect dbms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Connection id:    14
+Current database: dbms
+
+mysql> shoe table4s;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'shoe table4s' at line 1
+mysql> shoe tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'shoe tables' at line 1
+mysql> 
+mysql> ^C
+mysql> show tables;
++-----------------+
+| Tables_in_dbms  |
++-----------------+
+| Abhishek        |
+| college         |
+| Cricket         |
+| employee        |
+| EmployeeDetails |
+| EmployeeSalary  |
+| faculty         |
+| Faculty1        |
+| facultysubject  |
+| Instructor      |
+| Order_item      |
+| school          |
+| student         |
+| student1        |
+| subject         |
+| time            |
+| timestamp       |
++-----------------+
+17 rows in set (0.00 sec)
+
+mysql> desc student;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| student_id   | int         | NO   | PRI | NULL    |       |
+| Student_name | varchar(23) | NO   |     | NULL    |       |
+| Class_name   | varchar(12) | NO   |     | MCA     |       |
+| Age          | int         | YES  |     | NULL    |       |
+| Address      | varchar(23) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student;
++------------+--------------+------------+------+---------+
+| student_id | Student_name | Class_name | Age  | Address |
++------------+--------------+------------+------+---------+
+|          1 | Abhishek     | MCA        |   19 | Delhi   |
+|          2 | Akhil        | BCA        |   22 | Delhi   |
+|          3 | priyanka     | MCA        |   21 | Delhi   |
+|          4 | Anuskha      | MCA        |   20 | Delhi   |
+|          5 | Anuradha     | MCA        |   19 | Delhi   |
+|          6 | Lavish       | BCA        |   21 | Delhi   |
++------------+--------------+------------+------+---------+
+6 rows in set (0.00 sec)
+
+mysql> update student set Address="MuzaffarNagar" where student_id=1;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------------+--------------+------------+------+---------------+
+| student_id | Student_name | Class_name | Age  | Address       |
++------------+--------------+------------+------+---------------+
+|          1 | Abhishek     | MCA        |   19 | MuzaffarNagar |
+|          2 | Akhil        | BCA        |   22 | Delhi         |
+|          3 | priyanka     | MCA        |   21 | Delhi         |
+|          4 | Anuskha      | MCA        |   20 | Delhi         |
+|          5 | Anuradha     | MCA        |   19 | Delhi         |
+|          6 | Lavish       | BCA        |   21 | Delhi         |
++------------+--------------+------------+------+---------------+
+6 rows in set (0.00 sec)
+
+mysql> update student set Address="Uttrakhand" where student_id=2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;l
++------------+--------------+------------+------+---------------+
+| student_id | Student_name | Class_name | Age  | Address       |
++------------+--------------+------------+------+---------------+
+|          1 | Abhishek     | MCA        |   19 | MuzaffarNagar |
+|          2 | Akhil        | BCA        |   22 | Uttrakhand    |
+|          3 | priyanka     | MCA        |   21 | Delhi         |
+|          4 | Anuskha      | MCA        |   20 | Delhi         |
+|          5 | Anuradha     | MCA        |   19 | Delhi         |
+|          6 | Lavish       | BCA        |   21 | Delhi         |
++------------+--------------+------------+------+---------------+
+6 rows in set (0.01 sec)
+
+    -> ^C
+mysql> update student set Address="Chennai" where student_id=5;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;l
++------------+--------------+------------+------+---------------+
+| student_id | Student_name | Class_name | Age  | Address       |
++------------+--------------+------------+------+---------------+
+|          1 | Abhishek     | MCA        |   19 | MuzaffarNagar |
+|          2 | Akhil        | BCA        |   22 | Uttrakhand    |
+|          3 | priyanka     | MCA        |   21 | Delhi         |
+|          4 | Anuskha      | MCA        |   20 | Delhi         |
+|          5 | Anuradha     | MCA        |   19 | Chennai       |
+|          6 | Lavish       | BCA        |   21 | Delhi         |
++------------+--------------+------------+------+---------------+
+6 rows in set (0.00 sec)
+
+    -> select * from student;l^C
+mysql> update student set Address="Mumbai" where student_id=4;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;l
++------------+--------------+------------+------+---------------+
+| student_id | Student_name | Class_name | Age  | Address       |
++------------+--------------+------------+------+---------------+
+|          1 | Abhishek     | MCA        |   19 | MuzaffarNagar |
+|          2 | Akhil        | BCA        |   22 | Uttrakhand    |
+|          3 | priyanka     | MCA        |   21 | Delhi         |
+|          4 | Anuskha      | MCA        |   20 | Mumbai        |
+|          5 | Anuradha     | MCA        |   19 | Chennai       |
+|          6 | Lavish       | BCA        |   21 | Delhi         |
++------------+--------------+------------+------+---------------+
+6 rows in set (0.00 sec)
+
+    -> update student set Address="Mathura" where student_id=6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'l
+update student set Address="Mathura" where student_id=6' at line 1
+mysql> l update student set Address="Mathura" where student_id=6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'l update student set Address="Mathura" where student_id=6' at line 1
+mysql> l update student set Address="Mathura" where student_id=6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'l update student set Address="Mathura" where student_id=6' at line 1
+mysql> l update student set Address="Mathura" where student_id=6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'l update student set Address="Mathura" where student_id=6' at line 1
+mysql> update student set Address="Mathura" where student_id=6;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;l
++------------+--------------+------------+------+---------------+
+| student_id | Student_name | Class_name | Age  | Address       |
++------------+--------------+------------+------+---------------+
+|          1 | Abhishek     | MCA        |   19 | MuzaffarNagar |
+|          2 | Akhil        | BCA        |   22 | Uttrakhand    |
+|          3 | priyanka     | MCA        |   21 | Delhi         |
+|          4 | Anuskha      | MCA        |   20 | Mumbai        |
+|          5 | Anuradha     | MCA        |   19 | Chennai       |
+|          6 | Lavish       | BCA        |   21 | Mathura       |
++------------+--------------+------------+------+---------------+
+6 rows in set (0.00 sec)
+
+    -> ^C
+mysql> Alter table student add Father_name varchar2(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar2(20)' at line 1
+mysql> Alter table student add Father_name varchar(20);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe student;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| student_id   | int         | NO   | PRI | NULL    |       |
+| Student_name | varchar(23) | NO   |     | NULL    |       |
+| Class_name   | varchar(12) | NO   |     | MCA     |       |
+| Age          | int         | YES  |     | NULL    |       |
+| Address      | varchar(23) | YES  |     | NULL    |       |
+| Father_name  | varchar(20) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student;
++------------+--------------+------------+------+---------------+-------------+
+| student_id | Student_name | Class_name | Age  | Address       | Father_name |
++------------+--------------+------------+------+---------------+-------------+
+|          1 | Abhishek     | MCA        |   19 | MuzaffarNagar | NULL        |
+|          2 | Akhil        | BCA        |   22 | Uttrakhand    | NULL        |
+|          3 | priyanka     | MCA        |   21 | Delhi         | NULL        |
+|          4 | Anuskha      | MCA        |   20 | Mumbai        | NULL        |
+|          5 | Anuradha     | MCA        |   19 | Chennai       | NULL        |
+|          6 | Lavish       | BCA        |   21 | Mathura       | NULL        |
++------------+--------------+------------+------+---------------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> update student set father_name="Yogesh_Tyagi" where student_id=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++------------+--------------+------------+------+---------------+--------------+
+| student_id | Student_name | Class_name | Age  | Address       | Father_name  |
++------------+--------------+------------+------+---------------+--------------+
+|          1 | Abhishek     | MCA        |   19 | MuzaffarNagar | Yogesh_Tyagi |
+|          2 | Akhil        | BCA        |   22 | Uttrakhand    | NULL         |
+|          3 | priyanka     | MCA        |   21 | Delhi         | NULL         |
+|          4 | Anuskha      | MCA        |   20 | Mumbai        | NULL         |
+|          5 | Anuradha     | MCA        |   19 | Chennai       | NULL         |
+|          6 | Lavish       | BCA        |   21 | Mathura       | NULL         |
++------------+--------------+------------+------+---------------+--------------+
+6 rows in set (0.00 sec)
+
+mysql> update student set father_name="Yogesh_Tyagi";
+Query OK, 5 rows affected (0.00 sec)
+Rows matched: 6  Changed: 5  Warnings: 0
+
+mysql> select * from student;
++------------+--------------+------------+------+---------------+--------------+
+| student_id | Student_name | Class_name | Age  | Address       | Father_name  |
++------------+--------------+------------+------+---------------+--------------+
+|          1 | Abhishek     | MCA        |   19 | MuzaffarNagar | Yogesh_Tyagi |
+|          2 | Akhil        | BCA        |   22 | Uttrakhand    | Yogesh_Tyagi |
+|          3 | priyanka     | MCA        |   21 | Delhi         | Yogesh_Tyagi |
+|          4 | Anuskha      | MCA        |   20 | Mumbai        | Yogesh_Tyagi |
+|          5 | Anuradha     | MCA        |   19 | Chennai       | Yogesh_Tyagi |
+|          6 | Lavish       | BCA        |   21 | Mathura       | Yogesh_Tyagi |
++------------+--------------+------------+------+---------------+--------------+
+6 rows in set (0.00 sec)
+
+mysql> create table Mysql(Name varchar2(20),Roll_no int,City varchar2(20),Mother_name varchar2(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar2(20),Roll_no int,City varchar2(20),Mother_name varchar2(20))' at line 1
+mysql> create table Mysql(Name varchar(20),Roll_no int,City varchar(20),Mother_name varchar(20));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc mysql;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Name        | varchar(20) | YES  |     | NULL    |       |
+| Roll_no     | int         | YES  |     | NULL    |       |
+| City        | varchar(20) | YES  |     | NULL    |       |
+| Mother_name | varchar(20) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> select * from mysql;
+Empty set (0.00 sec)
+
+mysql> insert into mysql values("Abhishek",12,"Mumbai","Rajni"),("Sneha",13,"Shamli","Poonam"),("Aditya",14,"kerala","Rekha"),("Ajay",15,"M.zn","Sonoyi");
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from mysql;
++----------+---------+--------+-------------+
+| Name     | Roll_no | City   | Mother_name |
++----------+---------+--------+-------------+
+| Abhishek |      12 | Mumbai | Rajni       |
+| Sneha    |      13 | Shamli | Poonam      |
+| Aditya   |      14 | kerala | Rekha       |
+| Ajay     |      15 | M.zn   | Sonoyi      |
++----------+---------+--------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> update mysql set Mother_name="Soniya" where name="Ajay";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from mysql;
++----------+---------+--------+-------------+
+| Name     | Roll_no | City   | Mother_name |
++----------+---------+--------+-------------+
+| Abhishek |      12 | Mumbai | Rajni       |
+| Sneha    |      13 | Shamli | Poonam      |
+| Aditya   |      14 | kerala | Rekha       |
+| Ajay     |      15 | M.zn   | Soniya      |
++----------+---------+--------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> drop table mysql;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from mysql;
+ERROR 1146 (42S02): Table 'dbms.mysql' doesn't exist
+mysql> describe mysql;
+ERROR 1146 (42S02): Table 'dbms.mysql' doesn't exist
+mysql> show tables;
++-----------------+
+| Tables_in_dbms  |
++-----------------+
+| Abhishek        |
+| college         |
+| Cricket         |
+| employee        |
+| EmployeeDetails |
+| EmployeeSalary  |
+| faculty         |
+| Faculty1        |
+| facultysubject  |
+| Instructor      |
+| Order_item      |
+| school          |
+| student         |
+| student1        |
+| subject         |
+| time            |
+| timestamp       |
++-----------------+
+17 rows in set (0.01 sec)
+
+mysql> select * from cricket;
++---------+------------+-----------+------------+---------+--------+-------------+
+| cust_id | First_name | last_name | contact    | City    | Amount | mother_name |
++---------+------------+-----------+------------+---------+--------+-------------+
+|    1001 | Virat      | Kohli     | 7302963673 | Delhi   |  60000 | Radha Rani  |
+|    1002 | Rohit      | Sharma    | 9927242922 | Mumbai  |  10000 | Radha Rani  |
+|    1003 | Sachin     | Tendulkar | 7303074013 | Mumbai  |  15000 | Radha Rani  |
+|    1004 | Virendra   | Shewag    | 9027654720 | Delhi   |  25000 | Radha Rani  |
+|    1005 | Surya      | Yadav     | 8859626761 | Kolkata |  12000 | Radha Rani  |
+|    1006 | Dhoni      | Dhoni     | 1232312321 | Patna   |  13000 | Radha Rani  |
++---------+------------+-----------+------------+---------+--------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> truncate table cricket;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> describe cricket;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| cust_id     | int         | NO   | PRI | NULL    |       |
+| First_name  | varchar(10) | YES  |     | NULL    |       |
+| last_name   | varchar(12) | YES  |     | NULL    |       |
+| contact     | bigint      | NO   |     | NULL    |       |
+| City        | char(12)    | YES  |     | NULL    |       |
+| Amount      | bigint      | YES  |     | NULL    |       |
+| mother_name | varchar(30) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from cricket;
+'Empty set (0.00 sec)
+
+mysql> desc Instructor;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| InsID      | int         | YES  |     | NULL    |       |
+| Name       | varchar(20) | YES  |     | NULL    |       |
+| Subject    | varchar(10) | YES  |     | NULL    |       |
+| University | varchar(20) | YES  |     | NULL    |       |
+| Salary     | int         | YES  |     | NULL    |       |
+| City       | varchar(10) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select 
+    -> 8^C
+mysql> select 
+    -> *^C
+mysql> select * from instruictor;
+ERROR 1146 (42S02): Table 'dbms.instruictor' doesn't exist
+mysql> select * from instructor;
++-------+---------+------------+------------+--------+------+
+| InsID | Name    | Subject    | University | Salary | City |
++-------+---------+------------+------------+--------+------+
+|  1201 | Alex    | Java       | Harvard    |   7000 | NULL |
+|  1202 | Sam     | Ruby       | Oxford     |   7500 | NULL |
+|  1201 | Alex    | RDBMS      | Harvard    |   6000 | NULL |
+|  1203 | Mitchel | Networking | Cambridge  |   5000 | NULL |
+|  1202 | Sam     | RDBMS      | Harvard    |   4000 | NULL |
+|  1203 | Mitchel | .Net       | Oxford     |   5000 | NULL |
++-------+---------+------------+------------+--------+------+
+6 rows in set (0.00 sec)
+
+mysql> Alter table instructor rename to Guiders;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select *from Instructor;
+ERROR 1146 (42S02): Table 'dbms.instructor' doesn't exist
+mysql> select *from Guiders;
++-------+---------+------------+------------+--------+------+
+| InsID | Name    | Subject    | University | Salary | City |
++-------+---------+------------+------------+--------+------+
+|  1201 | Alex    | Java       | Harvard    |   7000 | NULL |
+|  1202 | Sam     | Ruby       | Oxford     |   7500 | NULL |
+|  1201 | Alex    | RDBMS      | Harvard    |   6000 | NULL |
+|  1203 | Mitchel | Networking | Cambridge  |   5000 | NULL |
+|  1202 | Sam     | RDBMS      | Harvard    |   4000 | NULL |
+|  1203 | Mitchel | .Net       | Oxford     |   5000 | NULL |
++-------+---------+------------+------------+--------+------+
+6 rows in set (0.01 sec)
+
+mysql> describe Guiders;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| InsID      | int         | YES  |     | NULL    |       |
+| Name       | varchar(20) | YES  |     | NULL    |       |
+| Subject    | varchar(10) | YES  |     | NULL    |       |
+| University | varchar(20) | YES  |     | NULL    |       |
+| Salary     | int         | YES  |     | NULL    |       |
+| City       | varchar(10) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> Alter table Guiders modify City varchar(30);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> 

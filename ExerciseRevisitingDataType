@@ -1,0 +1,1754 @@
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2)
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % clear;           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show schemas;
++----------------------+
+| Database             |
++----------------------+
+| ABES                 |
+| Aggregate            |
+| bankmanagementsystem |
+| Books                |
+| BookShop             |
+| constraints          |
+| DBMS                 |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| Practice             |
+| RadheKrishna         |
+| Shirt                |
+| sys                  |
+| Triggers             |
+| View                 |
++----------------------+
+16 rows in set (0.01 sec)
+
+mysql> use books;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_books |
++-----------------+
+| book            |
+| Developer       |
+| Palin           |
+| User            |
++-----------------+
+4 rows in set (0.00 sec)
+
+mysql> desc Book;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| book_id        | int          | NO   | PRI | NULL    | auto_increment |
+| title          | varchar(100) | YES  |     | NULL    |                |
+| Author_fname   | varchar(100) | YES  |     | NULL    |                |
+| Author_lname   | varchar(100) | YES  |     | NULL    |                |
+| released_year  | int          | YES  |     | NULL    |                |
+| stock_quantity | int          | YES  |     | NULL    |                |
+| pages          | int          | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from book;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | Author_fname | Author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+16 rows in set (0.00 sec)
+
+mysql> select database();
++------------+
+| database() |
++------------+
+| books      |
++------------+
+1 row in set (0.00 sec)
+
+mysql> use Bookshop;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_bookshop |
++--------------------+
+| Abhi               |
+| Accounts           |
+| bankaccount        |
+| books              |
+| Employee           |
+| INstagram          |
+| parents            |
+| salary             |
+| states             |
+| Student            |
++--------------------+
+10 rows in set (0.01 sec)
+
+mysql> desc books;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| book_id        | int          | NO   | PRI | NULL    | auto_increment |
+| title          | varchar(100) | YES  |     | NULL    |                |
+| author_fname   | varchar(100) | YES  |     | NULL    |                |
+| author_lname   | varchar(100) | YES  |     | NULL    |                |
+| released_year  | int          | YES  |     | NULL    |                |
+| stock_quantity | int          | YES  |     | NULL    |                |
+| pages          | int          | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.01 sec)
+
+mysql> select * from books;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
+|      17 | 10% Happier                                         | Dan          | Harris         |          2014 |             29 |   256 |
+|      18 | fake_book                                           | Freida       | Harris         |          2001 |            287 |   428 |
+|      19 | Lincoln In The Bardo                                | George       | Saunders       |          2017 |           1000 |   367 |
+|      21 | Poster                                              | Abhilasha    | Tyagi          |          2024 |             12 |   768 |
+|      23 | Partition                                           | Abhishek     | Tyagi          |          2024 |             12 |   767 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+21 rows in set (0.00 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_bookshop |
++--------------------+
+| Abhi               |
+| Accounts           |
+| bankaccount        |
+| books              |
+| Employee           |
+| INstagram          |
+| parents            |
+| salary             |
+| states             |
+| Student            |
++--------------------+
+10 rows in set (0.01 sec)
+
+mysql> Create table People 
+    -> (
+    -> Name Varchar(24) default 'Radha',
+    -> Birthdate Date,
+    -> Birth Time,
+    -> Birthdate_time datetime not null
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc people;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| Name           | varchar(24) | YES  |     | Radha   |       |
+| Birthdate      | date        | YES  |     | NULL    |       |
+| Birth          | time        | YES  |     | NULL    |       |
+| Birthdate_time | datetime    | NO   |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> Alter table people Rename column Birth to Birthtime;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc people;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| Name           | varchar(24) | YES  |     | Radha   |       |
+| Birthdate      | date        | YES  |     | NULL    |       |
+| Birthtime      | time        | YES  |     | NULL    |       |
+| Birthdate_time | datetime    | NO   |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into people(Name,birthdate,birthtime,birthdate_time) values('Abhishek','2001-01-05','10:08:35','2001-01-05 10:08:35');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from people;
++----------+------------+-----------+---------------------+
+| Name     | Birthdate  | Birthtime | Birthdate_time      |
++----------+------------+-----------+---------------------+
+| Abhishek | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
++----------+------------+-----------+---------------------+
+1 row in set (0.01 sec)
+
+mysql> insert into people(birthdate,birthtime,birthdate_time) values('2001-01-05','10:08:35','2001-01-05 10:08:35');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from people;
++----------+------------+-----------+---------------------+
+| Name     | Birthdate  | Birthtime | Birthdate_time      |
++----------+------------+-----------+---------------------+
+| Abhishek | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
+| Radha    | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
++----------+------------+-----------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into people(Name,birthdate,birthtime,birthdate_time) values('Abhinav','2001-01-05','10:08:35','2002-06-19 01:08:35');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from people;
++----------+------------+-----------+---------------------+
+| Name     | Birthdate  | Birthtime | Birthdate_time      |
++----------+------------+-----------+---------------------+
+| Abhishek | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
+| Radha    | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
+| Abhinav  | 2001-01-05 | 10:08:35  | 2002-06-19 01:08:35 |
++----------+------------+-----------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> update People set 
+    -> Bithdate ='2002-06-19' where Name='Abhinav';
+ERROR 1054 (42S22): Unknown column 'Bithdate' in 'field list'
+mysql> update People set  Birthdate ='2002-06-19' where Name='Abhinav';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from people;
++----------+------------+-----------+---------------------+
+| Name     | Birthdate  | Birthtime | Birthdate_time      |
++----------+------------+-----------+---------------------+
+| Abhishek | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
+| Radha    | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
+| Abhinav  | 2002-06-19 | 10:08:35  | 2002-06-19 01:08:35 |
++----------+------------+-----------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into People(Name,Birthdate,birthtime,birthdate_time) values('Hazel',curdate(),curtime(),current_timestamp());
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from people;
++----------+------------+-----------+---------------------+
+| Name     | Birthdate  | Birthtime | Birthdate_time      |
++----------+------------+-----------+---------------------+
+| Abhishek | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
+| Radha    | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
+| Abhinav  | 2002-06-19 | 10:08:35  | 2002-06-19 01:08:35 |
+| Hazel    | 2024-08-29 | 17:05:18  | 2024-08-29 17:05:18 |
++----------+------------+-----------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> select currenttime();
+ERROR 1305 (42000): FUNCTION bookshop.currenttime does not exist
+mysql> select current_time();
++----------------+
+| current_time() |
++----------------+
+| 17:05:58       |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select current_date();
++----------------+
+| current_date() |
++----------------+
+| 2024-08-29     |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select curdate();
++------------+
+| curdate()  |
++------------+
+| 2024-08-29 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select curtime();
++-----------+
+| curtime() |
++-----------+
+| 17:06:15  |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select year(curdate());
++-----------------+
+| year(curdate()) |
++-----------------+
+|            2024 |
++-----------------+
+1 row in set (0.01 sec)
+
+mysql> select month(curdate());
++------------------+
+| month(curdate()) |
++------------------+
+|                8 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select monthname(curdate());
++----------------------+
+| monthname(curdate()) |
++----------------------+
+| August               |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select monthname(curdate()) as MonthName;
++-----------+
+| MonthName |
++-----------+
+| August    |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select year(curdate());
++-----------------+
+| year(curdate()) |
++-----------------+
+|            2024 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select yearofweek(curdate());
+ERROR 1305 (42000): FUNCTION bookshop.yearofweek does not exist
+mysql> select yearweek(curdate());
++---------------------+
+| yearweek(curdate()) |
++---------------------+
+|              202434 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select time_to_sec(curdate());
++------------------------+
+| time_to_sec(curdate()) |
++------------------------+
+|                      0 |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> select time_to_sec(curtime());
++------------------------+
+| time_to_sec(curtime()) |
++------------------------+
+|                  62235 |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> select 62235/60;
++-----------+
+| 62235/60  |
++-----------+
+| 1037.2500 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select time_to_sec('12:00:00');
++-------------------------+
+| time_to_sec('12:00:00') |
++-------------------------+
+|                   43200 |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select day(curdate());
++----------------+
+| day(curdate()) |
++----------------+
+|             29 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select dayofweek(curdate());
++----------------------+
+| dayofweek(curdate()) |
++----------------------+
+|                    5 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select monthname(curdate());
++----------------------+
+| monthname(curdate()) |
++----------------------+
+| August               |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select week(curdate());
++-----------------+
+| week(curdate()) |
++-----------------+
+|              34 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select dayofyear('2024-12-25);
+    '> ;
+    '> ^C
+mysql> select dayofyear('2024-12-25');
++-------------------------+
+| dayofyear('2024-12-25') |
++-------------------------+
+|                     360 |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> desc people;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| Name           | varchar(24) | YES  |     | Radha   |       |
+| Birthdate      | date        | YES  |     | NULL    |       |
+| Birthtime      | time        | YES  |     | NULL    |       |
+| Birthdate_time | datetime    | NO   |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from people;
++----------+------------+-----------+---------------------+
+| Name     | Birthdate  | Birthtime | Birthdate_time      |
++----------+------------+-----------+---------------------+
+| Abhishek | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
+| Radha    | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
+| Abhinav  | 2002-06-19 | 10:08:35  | 2002-06-19 01:08:35 |
+| Hazel    | 2024-08-29 | 17:05:18  | 2024-08-29 17:05:18 |
++----------+------------+-----------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> select Name,brithtime,hour
+    -> (;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> select Name,birthtime,hour(birthtime());
+ERROR 1054 (42S22): Unknown column 'Name' in 'field list'
+mysql> select Name,birthtime,hour(birthtime);
+ERROR 1054 (42S22): Unknown column 'Name' in 'field list'
+mysql> select Name,birthtime,hour(birthtime) from people;
++----------+-----------+-----------------+
+| Name     | birthtime | hour(birthtime) |
++----------+-----------+-----------------+
+| Abhishek | 10:08:35  |              10 |
+| Radha    | 10:08:35  |              10 |
+| Abhinav  | 10:08:35  |              10 |
+| Hazel    | 17:05:18  |              17 |
++----------+-----------+-----------------+
+4 rows in set (0.00 sec)
+
+mysql> select Name,birthtime,hour(birthtime) from people;
++----------+-----------+-----------------+
+| Name     | birthtime | hour(birthtime) |
++----------+-----------+-----------------+
+| Abhishek | 10:08:35  |              10 |
+| Radha    | 10:08:35  |              10 |
+| Abhinav  | 10:08:35  |              10 |
+| Hazel    | 17:05:18  |              17 |
++----------+-----------+-----------------+
+4 rows in set (0.00 sec)
+
+mysql> desc people;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| Name           | varchar(24) | YES  |     | Radha   |       |
+| Birthdate      | date        | YES  |     | NULL    |       |
+| Birthtime      | time        | YES  |     | NULL    |       |
+| Birthdate_time | datetime    | NO   |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> select birthdate_time,date(birthdate_time) from people;
++---------------------+----------------------+
+| birthdate_time      | date(birthdate_time) |
++---------------------+----------------------+
+| 2001-01-05 10:08:35 | 2001-01-05           |
+| 2001-01-05 10:08:35 | 2001-01-05           |
+| 2002-06-19 01:08:35 | 2002-06-19           |
+| 2024-08-29 17:05:18 | 2024-08-29           |
++---------------------+----------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate_time,date(birthdate_time),time(birthdate_time) from people;
++---------------------+----------------------+----------------------+
+| birthdate_time      | date(birthdate_time) | time(birthdate_time) |
++---------------------+----------------------+----------------------+
+| 2001-01-05 10:08:35 | 2001-01-05           | 10:08:35             |
+| 2001-01-05 10:08:35 | 2001-01-05           | 10:08:35             |
+| 2002-06-19 01:08:35 | 2002-06-19           | 01:08:35             |
+| 2024-08-29 17:05:18 | 2024-08-29           | 17:05:18             |
++---------------------+----------------------+----------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate_time,second(birthdate_time) from people;
++---------------------+------------------------+
+| birthdate_time      | second(birthdate_time) |
++---------------------+------------------------+
+| 2001-01-05 10:08:35 |                     35 |
+| 2001-01-05 10:08:35 |                     35 |
+| 2002-06-19 01:08:35 |                     35 |
+| 2024-08-29 17:05:18 |                     18 |
++---------------------+------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate_time,minutes(birthdate_time) from people;
+ERROR 1305 (42000): FUNCTION bookshop.minutes does not exist
+mysql> select birthdate_time,minute(birthdate_time) from people;
++---------------------+------------------------+
+| birthdate_time      | minute(birthdate_time) |
++---------------------+------------------------+
+| 2001-01-05 10:08:35 |                      8 |
+| 2001-01-05 10:08:35 |                      8 |
+| 2002-06-19 01:08:35 |                      8 |
+| 2024-08-29 17:05:18 |                      5 |
++---------------------+------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate_time,hour(birthdate_time),minute(birthdate_time),second(birthdate_time) from people;
++---------------------+----------------------+------------------------+------------------------+
+| birthdate_time      | hour(birthdate_time) | minute(birthdate_time) | second(birthdate_time) |
++---------------------+----------------------+------------------------+------------------------+
+| 2001-01-05 10:08:35 |                   10 |                      8 |                     35 |
+| 2001-01-05 10:08:35 |                   10 |                      8 |                     35 |
+| 2002-06-19 01:08:35 |                    1 |                      8 |                     35 |
+| 2024-08-29 17:05:18 |                   17 |                      5 |                     18 |
++---------------------+----------------------+------------------------+------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select monthname(birthdate),Day(bithdate),year(birthdate) from people;
+ERROR 1054 (42S22): Unknown column 'bithdate' in 'field list'
+mysql> select monthname(birthdate),Day(birthdate),year(birthdate) from people;
++----------------------+----------------+-----------------+
+| monthname(birthdate) | Day(birthdate) | year(birthdate) |
++----------------------+----------------+-----------------+
+| January              |              5 |            2001 |
+| January              |              5 |            2001 |
+| June                 |             19 |            2002 |
+| August               |             29 |            2024 |
++----------------------+----------------+-----------------+
+4 rows in set (0.00 sec)
+
+mysql> select concat(monthname(birthdate),' ',Day(birthdate),' ',year(birthdate)) from people;
++---------------------------------------------------------------------+
+| concat(monthname(birthdate),' ',Day(birthdate),' ',year(birthdate)) |
++---------------------------------------------------------------------+
+| January 5 2001                                                      |
+| January 5 2001                                                      |
+| June 19 2002                                                        |
+| August 29 2024                                                      |
++---------------------------------------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select concat(monthname(birthdate),'-',Day(birthdate),' ',year(birthdate)) from people;
++---------------------------------------------------------------------+
+| concat(monthname(birthdate),'-',Day(birthdate),' ',year(birthdate)) |
++---------------------------------------------------------------------+
+| January-5 2001                                                      |
+| January-5 2001                                                      |
+| June-19 2002                                                        |
+| August-29 2024                                                      |
++---------------------------------------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select concat(monthname(birthdate),'-',Day(birthdate),'-',year(birthdate)) from people;
++---------------------------------------------------------------------+
+| concat(monthname(birthdate),'-',Day(birthdate),'-',year(birthdate)) |
++---------------------------------------------------------------------+
+| January-5-2001                                                      |
+| January-5-2001                                                      |
+| June-19-2002                                                        |
+| August-29-2024                                                      |
++---------------------------------------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select concat(monthname(birthdate),'-',Day(birthdate),'-',year(birthdate)) from people;
++---------------------------------------------------------------------+
+| concat(monthname(birthdate),'-',Day(birthdate),'-',year(birthdate)) |
++---------------------------------------------------------------------+
+| January-5-2001                                                      |
+| January-5-2001                                                      |
+| June-19-2002                                                        |
+| August-29-2024                                                      |
++---------------------------------------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,date_format(birthdate,'%b %d') from people;
++------------+--------------------------------+
+| birthdate  | date_format(birthdate,'%b %d') |
++------------+--------------------------------+
+| 2001-01-05 | Jan 05                         |
+| 2001-01-05 | Jan 05                         |
+| 2002-06-19 | Jun 19                         |
+| 2024-08-29 | Aug 29                         |
++------------+--------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,date_format(birthdate,'%b %e') from people;
++------------+--------------------------------+
+| birthdate  | date_format(birthdate,'%b %e') |
++------------+--------------------------------+
+| 2001-01-05 | Jan 5                          |
+| 2001-01-05 | Jan 5                          |
+| 2002-06-19 | Jun 19                         |
+| 2024-08-29 | Aug 29                         |
++------------+--------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,date_format(birthdate,'%b %d') from people;
++------------+--------------------------------+
+| birthdate  | date_format(birthdate,'%b %d') |
++------------+--------------------------------+
+| 2001-01-05 | Jan 05                         |
+| 2001-01-05 | Jan 05                         |
+| 2002-06-19 | Jun 19                         |
+| 2024-08-29 | Aug 29                         |
++------------+--------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,date_format(birthdate,'%b %D') from people;
++------------+--------------------------------+
+| birthdate  | date_format(birthdate,'%b %D') |
++------------+--------------------------------+
+| 2001-01-05 | Jan 5th                        |
+| 2001-01-05 | Jan 5th                        |
+| 2002-06-19 | Jun 19th                       |
+| 2024-08-29 | Aug 29th                       |
++------------+--------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,date_format(birthdate,'%b %r %Y') from people;
++------------+-----------------------------------+
+| birthdate  | date_format(birthdate,'%b %r %Y') |
++------------+-----------------------------------+
+| 2001-01-05 | Jan 12:00:00 AM 2001              |
+| 2001-01-05 | Jan 12:00:00 AM 2001              |
+| 2002-06-19 | Jun 12:00:00 AM 2002              |
+| 2024-08-29 | Aug 12:00:00 AM 2024              |
++------------+-----------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,date_format(birthdate,'%b %d %Y') from people;
++------------+-----------------------------------+
+| birthdate  | date_format(birthdate,'%b %d %Y') |
++------------+-----------------------------------+
+| 2001-01-05 | Jan 05 2001                       |
+| 2001-01-05 | Jan 05 2001                       |
+| 2002-06-19 | Jun 19 2002                       |
+| 2024-08-29 | Aug 29 2024                       |
++------------+-----------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> 
+mysql> select birthdate,date_format(birthdate,'%b %D %Y') from people;
++------------+-----------------------------------+
+| birthdate  | date_format(birthdate,'%b %D %Y') |
++------------+-----------------------------------+
+| 2001-01-05 | Jan 5th 2001                      |
+| 2001-01-05 | Jan 5th 2001                      |
+| 2002-06-19 | Jun 19th 2002                     |
+| 2024-08-29 | Aug 29th 2024                     |
++------------+-----------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,date_format(birthdate,'%b %D %y') from people;
++------------+-----------------------------------+
+| birthdate  | date_format(birthdate,'%b %D %y') |
++------------+-----------------------------------+
+| 2001-01-05 | Jan 5th 01                        |
+| 2001-01-05 | Jan 5th 01                        |
+| 2002-06-19 | Jun 19th 02                       |
+| 2024-08-29 | Aug 29th 24                       |
++------------+-----------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,date_format(birthdate,'%b %D %Y') from people;
++------------+-----------------------------------+
+| birthdate  | date_format(birthdate,'%b %D %Y') |
++------------+-----------------------------------+
+| 2001-01-05 | Jan 5th 2001                      |
+| 2001-01-05 | Jan 5th 2001                      |
+| 2002-06-19 | Jun 19th 2002                     |
+| 2024-08-29 | Aug 29th 2024                     |
++------------+-----------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,date_format(birthdate,'%b %d %Y') from people;
++------------+-----------------------------------+
+| birthdate  | date_format(birthdate,'%b %d %Y') |
++------------+-----------------------------------+
+| 2001-01-05 | Jan 05 2001                       |
+| 2001-01-05 | Jan 05 2001                       |
+| 2002-06-19 | Jun 19 2002                       |
+| 2024-08-29 | Aug 29 2024                       |
++------------+-----------------------------------+
+4 rows in set (0.00 sec)
+
+mysql>  
+  [Restored 29 Aug 2024 at 9:52:23 PM]
+Last login: Thu Aug 29 21:52:18 on console
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % pwd
+/Users/abhishektyagi_1
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u rrot -p;
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'rrot'@'localhost' (using password: YES)
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| ABES                 |
+| Aggregate            |
+| bankmanagementsystem |
+| Books                |
+| BookShop             |
+| constraints          |
+| DBMS                 |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| Practice             |
+| RadheKrishna         |
+| Shirt                |
+| sys                  |
+| Triggers             |
+| View                 |
++----------------------+
+16 rows in set (0.01 sec)
+
+mysql> connect Bookshop;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Connection id:    10
+Current database: Bookshop
+
+mysql> show tables;
++--------------------+
+| Tables_in_bookshop |
++--------------------+
+| Abhi               |
+| Accounts           |
+| bankaccount        |
+| books              |
+| Employee           |
+| INstagram          |
+| parents            |
+| people             |
+| salary             |
+| states             |
+| Student            |
++--------------------+
+11 rows in set (0.00 sec)
+
+mysql> Desc people;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| Name           | varchar(24) | YES  |     | Radha   |       |
+| Birthdate      | date        | YES  |     | NULL    |       |
+| Birthtime      | time        | YES  |     | NULL    |       |
+| Birthdate_time | datetime    | NO   |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> select * from people ;
++----------+------------+-----------+---------------------+
+| Name     | Birthdate  | Birthtime | Birthdate_time      |
++----------+------------+-----------+---------------------+
+| Abhishek | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
+| Radha    | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
+| Abhinav  | 2002-06-19 | 10:08:35  | 2002-06-19 01:08:35 |
+| Hazel    | 2024-08-29 | 17:05:18  | 2024-08-29 17:05:18 |
++----------+------------+-----------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate Date_format(birthdate,'Born On: %r) from people;
+    '> ^C
+mysql> select birthdate Date_format(birthdate,'Born On: %r') from people;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(birthdate,'Born On: %r') from people' at line 1
+mysql> select birthdate Date_format(birthdate,'%r') from people;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(birthdate,'%r') from people' at line 1
+mysql> select birthdate, Date_format(birthdate,'Born On: %r') from people;
++------------+--------------------------------------+
+| birthdate  | Date_format(birthdate,'Born On: %r') |
++------------+--------------------------------------+
+| 2001-01-05 | Born On: 12:00:00 AM                 |
+| 2001-01-05 | Born On: 12:00:00 AM                 |
+| 2002-06-19 | Born On: 12:00:00 AM                 |
+| 2024-08-29 | Born On: 12:00:00 AM                 |
++------------+--------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,date_format(birthdate,'%H:
+    '> %i') from people;
++------------+---------------------------------+
+| birthdate  | date_format(birthdate,'%H:
+%i') |
++------------+---------------------------------+
+| 2001-01-05 | 00:
+00                          |
+| 2001-01-05 | 00:
+00                          |
+| 2002-06-19 | 00:
+00                          |
+| 2024-08-29 | 00:
+00                          |
++------------+---------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> 
+mysql> select birthdate,date_format(birthdate,'%r') from people;
++------------+-----------------------------+
+| birthdate  | date_format(birthdate,'%r') |
++------------+-----------------------------+
+| 2001-01-05 | 12:00:00 AM                 |
+| 2001-01-05 | 12:00:00 AM                 |
+| 2002-06-19 | 12:00:00 AM                 |
+| 2024-08-29 | 12:00:00 AM                 |
++------------+-----------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from people;
++----------+------------+-----------+---------------------+
+| Name     | Birthdate  | Birthtime | Birthdate_time      |
++----------+------------+-----------+---------------------+
+| Abhishek | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
+| Radha    | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
+| Abhinav  | 2002-06-19 | 10:08:35  | 2002-06-19 01:08:35 |
+| Hazel    | 2024-08-29 | 17:05:18  | 2024-08-29 17:05:18 |
++----------+------------+-----------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,datediff(curdate(),birthdate) from people;
++------------+-------------------------------+
+| birthdate  | datediff(curdate(),birthdate) |
++------------+-------------------------------+
+| 2001-01-05 |                          8637 |
+| 2001-01-05 |                          8637 |
+| 2002-06-19 |                          8107 |
+| 2024-08-29 |                             0 |
++------------+-------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select 365*23
+    -> ;
++--------+
+| 365*23 |
++--------+
+|   8395 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select 365*25;
++--------+
+| 365*25 |
++--------+
+|   9125 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select 365*100;
++---------+
+| 365*100 |
++---------+
+|   36500 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select birthdate,datediff(birthdate,curdate()) from people;
++------------+-------------------------------+
+| birthdate  | datediff(birthdate,curdate()) |
++------------+-------------------------------+
+| 2001-01-05 |                         -8637 |
+| 2001-01-05 |                         -8637 |
+| 2002-06-19 |                         -8107 |
+| 2024-08-29 |                             0 |
++------------+-------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,datediff(curdate(),brithdate) from people;
+ERROR 1054 (42S22): Unknown column 'brithdate' in 'field list'
+mysql> select birthdate,datediff(curdate(),birthdate) from people;
++------------+-------------------------------+
+| birthdate  | datediff(curdate(),birthdate) |
++------------+-------------------------------+
+| 2001-01-05 |                          8637 |
+| 2001-01-05 |                          8637 |
+| 2002-06-19 |                          8107 |
+| 2024-08-29 |                             0 |
++------------+-------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,datediff(curdate(),birthdate) from people;
++------------+-------------------------------+
+| birthdate  | datediff(curdate(),birthdate) |
++------------+-------------------------------+
+| 2001-01-05 |                          8637 |
+| 2001-01-05 |                          8637 |
+| 2002-06-19 |                          8107 |
+| 2024-08-29 |                             0 |
++------------+-------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from people;
++----------+------------+-----------+---------------------+
+| Name     | Birthdate  | Birthtime | Birthdate_time      |
++----------+------------+-----------+---------------------+
+| Abhishek | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
+| Radha    | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
+| Abhinav  | 2002-06-19 | 10:08:35  | 2002-06-19 01:08:35 |
+| Hazel    | 2024-08-29 | 17:05:18  | 2024-08-29 17:05:18 |
++----------+------------+-----------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> desc people;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| Name           | varchar(24) | YES  |     | Radha   |       |
+| Birthdate      | date        | YES  |     | NULL    |       |
+| Birthtime      | time        | YES  |     | NULL    |       |
+| Birthdate_time | datetime    | NO   |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,datediff(curdate(),birthdate_time) from people;
++------------+------------------------------------+
+| birthdate  | datediff(curdate(),birthdate_time) |
++------------+------------------------------------+
+| 2001-01-05 |                               8637 |
+| 2001-01-05 |                               8637 |
+| 2002-06-19 |                               8107 |
+| 2024-08-29 |                                  0 |
++------------+------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate_time,datediff(curdate(),birthdate_time) from people;
++---------------------+------------------------------------+
+| birthdate_time      | datediff(curdate(),birthdate_time) |
++---------------------+------------------------------------+
+| 2001-01-05 10:08:35 |                               8637 |
+| 2001-01-05 10:08:35 |                               8637 |
+| 2002-06-19 01:08:35 |                               8107 |
+| 2024-08-29 17:05:18 |                                  0 |
++---------------------+------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,date_Add(birthdate,Interval 1 day) from people;
++------------+------------------------------------+
+| birthdate  | date_Add(birthdate,Interval 1 day) |
++------------+------------------------------------+
+| 2001-01-05 | 2001-01-06                         |
+| 2001-01-05 | 2001-01-06                         |
+| 2002-06-19 | 2002-06-20                         |
+| 2024-08-29 | 2024-08-30                         |
++------------+------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,date_Add(birthdate,Interval 1 year) from people;
++------------+-------------------------------------+
+| birthdate  | date_Add(birthdate,Interval 1 year) |
++------------+-------------------------------------+
+| 2001-01-05 | 2002-01-05                          |
+| 2001-01-05 | 2002-01-05                          |
+| 2002-06-19 | 2003-06-19                          |
+| 2024-08-29 | 2025-08-29                          |
++------------+-------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,date_Add(birthdate,Interval 1 year) from people;
++------------+-------------------------------------+
+| birthdate  | date_Add(birthdate,Interval 1 year) |
++------------+-------------------------------------+
+| 2001-01-05 | 2002-01-05                          |
+| 2001-01-05 | 2002-01-05                          |
+| 2002-06-19 | 2003-06-19                          |
+| 2024-08-29 | 2025-08-29                          |
++------------+-------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,date_sub(birthdate,Interval 1 year) from people;
++------------+-------------------------------------+
+| birthdate  | date_sub(birthdate,Interval 1 year) |
++------------+-------------------------------------+
+| 2001-01-05 | 2000-01-05                          |
+| 2001-01-05 | 2000-01-05                          |
+| 2002-06-19 | 2001-06-19                          |
+| 2024-08-29 | 2023-08-29                          |
++------------+-------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select date_add(curdate(),interval 1 year);
++-------------------------------------+
+| date_add(curdate(),interval 1 year) |
++-------------------------------------+
+| 2025-08-29                          |
++-------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_sub(curdate(),interval 1 year);
++-------------------------------------+
+| date_sub(curdate(),interval 1 year) |
++-------------------------------------+
+| 2023-08-29                          |
++-------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_sub(curdate(),interval 1 era);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'era)' at line 1
+mysql> select date_add(curdate(),interval 1 decade );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'decade )' at line 1
+mysql> select date_add(curdate(),interval 1 centuary);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'centuary)' at line 1
+mysql> select date_add(curdate(),interval 1 year);
++-------------------------------------+
+| date_add(curdate(),interval 1 year) |
++-------------------------------------+
+| 2025-08-29                          |
++-------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add(curdate(),interval 1 month);
++--------------------------------------+
+| date_add(curdate(),interval 1 month) |
++--------------------------------------+
+| 2024-09-29                           |
++--------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_add(curdate(),interval 3 month);
++--------------------------------------+
+| date_add(curdate(),interval 3 month) |
++--------------------------------------+
+| 2024-11-29                           |
++--------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select timediff(curtime(),'07:00:00);
+    '> select timediff(curtime(),'07:00:00');
+    '> ^C
+mysql> select timediff(curtime(),'07:00:00');
++--------------------------------+
+| timediff(curtime(),'07:00:00') |
++--------------------------------+
+| -06:59:11                      |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select timediff(curtime(),'08:00:00');
++--------------------------------+
+| timediff(curtime(),'08:00:00') |
++--------------------------------+
+| -07:58:27                      |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select timediff(curtime(),'19:00:00');
++--------------------------------+
+| timediff(curtime(),'19:00:00') |
++--------------------------------+
+| -18:58:18                      |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select now() - iNterval 18 year;
++--------------------------+
+| now() - iNterval 18 year |
++--------------------------+
+| 2006-08-30 00:02:10      |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select curtime()+'07:00:00';
++----------------------+
+| curtime()+'07:00:00' |
++----------------------+
+|                  308 |
++----------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select curtime() +'07:00:00';
++-----------------------+
+| curtime() +'07:00:00' |
++-----------------------+
+|                   321 |
++-----------------------+
+1 row in set, 1 warning (0.01 sec)
+
+mysql> select addtime(curtime() +'07:00:00');
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'addtime'
+mysql> select addtime(curtime()+ '07:00:00');
+ERROR 1582 (42000): Incorrect parameter count in the call to native function 'addtime'
+mysql> select addtime('12:00:00,'07:00:00');
+    '> ^C
+mysql> select addtime('12:00:00','07:00:00');
++--------------------------------+
+| addtime('12:00:00','07:00:00') |
++--------------------------------+
+| 19:00:00                       |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select addtime(curtime(),'07:00:00');
++-------------------------------+
+| addtime(curtime(),'07:00:00') |
++-------------------------------+
+| 07:04:39                      |
++-------------------------------+
+1 row in set (0.00 sec)
+
+mysql> desc people
+    -> ;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| Name           | varchar(24) | YES  |     | Radha   |       |
+| Birthdate      | date        | YES  |     | NULL    |       |
+| Birthtime      | time        | YES  |     | NULL    |       |
+| Birthdate_time | datetime    | NO   |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> select birthtime fro people;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'people' at line 1
+mysql> select birthtime from people;
++-----------+
+| birthtime |
++-----------+
+| 10:08:35  |
+| 10:08:35  |
+| 10:08:35  |
+| 17:05:18  |
++-----------+
+4 rows in set (0.00 sec)
+
+mysql> select birthtime,addtime(birthtime,'07:00:00) from people;
+    '> ^C
+mysql> select birthtime,addtime(birthtime,'07:00:00') from people;
++-----------+-------------------------------+
+| birthtime | addtime(birthtime,'07:00:00') |
++-----------+-------------------------------+
+| 10:08:35  | 17:08:35                      |
+| 10:08:35  | 17:08:35                      |
+| 10:08:35  | 17:08:35                      |
+| 17:05:18  | 24:05:18                      |
++-----------+-------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,addtime(birthdate,Interval 21 years) from people;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'years) from people' at line 1
+mysql> select birthdate,addtime(birthdate,Interval 21 year) from people;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') from people' at line 1
+mysql> select birthdate,addDate (birthdate,Interval 21 year) from people;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') from people' at line 1
+mysql> select birthdate,Dat_add(birthdate,Interval 21 year) from people;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') from people' at line 1
+mysql> select birthdate,Date_add(birthdate,Interval 21 year) from people;
++------------+--------------------------------------+
+| birthdate  | Date_add(birthdate,Interval 21 year) |
++------------+--------------------------------------+
+| 2001-01-05 | 2022-01-05                           |
+| 2001-01-05 | 2022-01-05                           |
+| 2002-06-19 | 2023-06-19                           |
+| 2024-08-29 | 2045-08-29                           |
++------------+--------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,year(Date_add(birthdate,Interval 21 year)) from people;
++------------+--------------------------------------------+
+| birthdate  | year(Date_add(birthdate,Interval 21 year)) |
++------------+--------------------------------------------+
+| 2001-01-05 |                                       2022 |
+| 2001-01-05 |                                       2022 |
+| 2002-06-19 |                                       2023 |
+| 2024-08-29 |                                       2045 |
++------------+--------------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,month(Date_add(birthdate,Interval 21 year)) from people;
++------------+---------------------------------------------+
+| birthdate  | month(Date_add(birthdate,Interval 21 year)) |
++------------+---------------------------------------------+
+| 2001-01-05 |                                           1 |
+| 2001-01-05 |                                           1 |
+| 2002-06-19 |                                           6 |
+| 2024-08-29 |                                           8 |
++------------+---------------------------------------------+
+4 rows in set (0.01 sec)
+
+mysql> select birthdate,dateADD(birthdate,interval 300 year) from people;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') from people' at line 1
+mysql> select birthdate,date_ADD(birthdate,interval 300 year) from people;
++------------+---------------------------------------+
+| birthdate  | date_ADD(birthdate,interval 300 year) |
++------------+---------------------------------------+
+| 2001-01-05 | 2301-01-05                            |
+| 2001-01-05 | 2301-01-05                            |
+| 2002-06-19 | 2302-06-19                            |
+| 2024-08-29 | 2324-08-29                            |
++------------+---------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> datediff(curdate(),birthdate) from people;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'datediff(curdate(),birthdate) from people' at line 1
+mysql>  select datediff(curdate(),birthdate) from people;
++-------------------------------+
+| datediff(curdate(),birthdate) |
++-------------------------------+
+|                          8638 |
+|                          8638 |
+|                          8108 |
+|                             1 |
++-------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthdate,datediff(date_ADD(birthdate,interval 300 year),birthdate) from people;
++------------+-----------------------------------------------------------+
+| birthdate  | datediff(date_ADD(birthdate,interval 300 year),birthdate) |
++------------+-----------------------------------------------------------+
+| 2001-01-05 |                                                    109572 |
+| 2001-01-05 |                                                    109572 |
+| 2002-06-19 |                                                    109572 |
+| 2024-08-29 |                                                    109572 |
++------------+-----------------------------------------------------------+
+4 rows in set (0.01 sec)
+
+mysql> select birthdate,date_ADD(birthdate,interval 300 year) from people;
++------------+---------------------------------------+
+| birthdate  | date_ADD(birthdate,interval 300 year) |
++------------+---------------------------------------+
+| 2001-01-05 | 2301-01-05                            |
+| 2001-01-05 | 2301-01-05                            |
+| 2002-06-19 | 2302-06-19                            |
+| 2024-08-29 | 2324-08-29                            |
++------------+---------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from people;
++----------+------------+-----------+---------------------+
+| Name     | Birthdate  | Birthtime | Birthdate_time      |
++----------+------------+-----------+---------------------+
+| Abhishek | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
+| Radha    | 2001-01-05 | 10:08:35  | 2001-01-05 10:08:35 |
+| Abhinav  | 2002-06-19 | 10:08:35  | 2002-06-19 01:08:35 |
+| Hazel    | 2024-08-29 | 17:05:18  | 2024-08-29 17:05:18 |
++----------+------------+-----------+---------------------+
+4 rows in set (0.00 sec)
+
+mysql> select addtime(birthdate,'01:00:00') from people;
++-------------------------------+
+| addtime(birthdate,'01:00:00') |
++-------------------------------+
+| 2001-01-05 01:00:00           |
+| 2001-01-05 01:00:00           |
+| 2002-06-19 01:00:00           |
+| 2024-08-29 01:00:00           |
++-------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select birthtime,addtime(birthtime,'01:00:00') from people;
++-----------+-------------------------------+
+| birthtime | addtime(birthtime,'01:00:00') |
++-----------+-------------------------------+
+| 10:08:35  | 11:08:35                      |
+| 10:08:35  | 11:08:35                      |
+| 10:08:35  | 11:08:35                      |
+| 17:05:18  | 18:05:18                      |
++-----------+-------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select now();
++---------------------+
+| now()               |
++---------------------+
+| 2024-08-30 11:37:24 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select timestamp(2024-08-30 11:37:24);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '11:37:24)' at line 1
+mysql> select timestamp('2024-08-30 11:37:24');
++----------------------------------+
+| timestamp('2024-08-30 11:37:24') |
++----------------------------------+
+| 2024-08-30 11:37:24              |
++----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select datetime('2024-08-30 11:37:24');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('2024-08-30 11:37:24')' at line 1
+mysql> show tables;
++--------------------+
+| Tables_in_bookshop |
++--------------------+
+| Abhi               |
+| Accounts           |
+| bankaccount        |
+| books              |
+| Employee           |
+| INstagram          |
+| parents            |
+| people             |
+| salary             |
+| states             |
+| Student            |
++--------------------+
+11 rows in set (0.01 sec)
+
+mysql> create table Caption 
+    -> (
+    -> Text varchar(120) not null,
+    -> created_at timestamp default current_timestamp
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc Captions;
+ERROR 1146 (42S02): Table 'bookshop.captions' doesn't exist
+mysql> desc Caption;
++------------+--------------+------+-----+-------------------+-------------------+
+| Field      | Type         | Null | Key | Default           | Extra             |
++------------+--------------+------+-----+-------------------+-------------------+
+| Text       | varchar(120) | NO   |     | NULL              |                   |
+| created_at | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++------------+--------------+------+-----+-------------------+-------------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into Caption(text)values('Meri Pyari mayaa Radha!!!');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Caption(text)values('Meri Pyari mayaa Radha mayaaa!!!!!');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from caption;
++------------------------------------+---------------------+
+| Text                               | created_at          |
++------------------------------------+---------------------+
+| Meri Pyari mayaa Radha!!!          | 2024-08-30 12:47:49 |
+| Meri Pyari mayaa Radha mayaaa!!!!! | 2024-08-30 12:48:06 |
++------------------------------------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> create table caption2
+    -> (
+    -> Text vachar(120) not null unique default 'My pitasiri Krishna',
+    -> Created_at timestamp default current_timestamp,
+    -> Updated_at timestamp on update current_timestamp
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'vachar(120) not null unique default 'My pitasiri Krishna',
+Created_at timestamp ' at line 3
+mysql> create table caption2 ( Text varchar(120) not null unique default 'My pitasiri Krishna',
+ Created_at timestamp default current_timestamp, Updated_at timestamp on update current_timestamp );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into caption2() values();
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from caption2;
++---------------------+---------------------+------------+
+| Text                | Created_at          | Updated_at |
++---------------------+---------------------+------------+
+| My pitasiri Krishna | 2024-08-30 12:53:24 | NULL       |
++---------------------+---------------------+------------+
+1 row in set (0.00 sec)
+
+mysql> update caption2
+    -> set Text='My mayaasiri Radha!!!!';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> set Text='My mayaasiri Radha!!!!';
+ERROR 1193 (HY000): Unknown system variable 'Text'
+mysql> select * from caption2;
++------------------------+---------------------+---------------------+
+| Text                   | Created_at          | Updated_at          |
++------------------------+---------------------+---------------------+
+| My mayaasiri Radha!!!! | 2024-08-30 12:53:24 | 2024-08-30 12:54:07 |
++------------------------+---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> update caption2 set Text='Meri mayaasiri Radha!!!!';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from caption2;
++--------------------------+---------------------+---------------------+
+| Text                     | Created_at          | Updated_at          |
++--------------------------+---------------------+---------------------+
+| Meri mayaasiri Radha!!!! | 2024-08-30 12:53:24 | 2024-08-30 12:54:55 |
++--------------------------+---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select currenttime();
+ERROR 1305 (42000): FUNCTION bookshop.currenttime does not exist
+mysql> select time();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select curdate();
++------------+
+| curdate()  |
++------------+
+| 2024-08-30 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select curtime();
++-----------+
+| curtime() |
++-----------+
+| 12:57:54  |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select curtimestamp();
+ERROR 1305 (42000): FUNCTION bookshop.curtimestamp does not exist
+mysql> select current_timestamp();
++---------------------+
+| current_timestamp() |
++---------------------+
+| 2024-08-30 12:58:17 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now();
++---------------------+
+| now()               |
++---------------------+
+| 2024-08-30 12:58:25 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select year();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select curyear();
+ERROR 1305 (42000): FUNCTION bookshop.curyear does not exist
+mysql> select current_year();
+ERROR 1305 (42000): FUNCTION bookshop.current_year does not exist
+mysql> select current_day();
+ERROR 1305 (42000): FUNCTION bookshop.current_day does not exist
+mysql> select current_date();
++----------------+
+| current_date() |
++----------------+
+| 2024-08-30     |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select current_time();
++----------------+
+| current_time() |
++----------------+
+| 13:07:36       |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select dayname(current_date();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select dayname(current_date());
++-------------------------+
+| dayname(current_date()) |
++-------------------------+
+| Friday                  |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select dayofweek(current_date());
++---------------------------+
+| dayofweek(current_date()) |
++---------------------------+
+|                         6 |
++---------------------------+
+1 row in set (0.00 sec)
+
+mysql> select dayofweek(now());
++------------------+
+| dayofweek(now()) |
++------------------+
+|                6 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format(now(),'%W');
++-------------------------+
+| date_format(now(),'%W') |
++-------------------------+
+| Friday                  |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format(curdate(),'%W');
++-----------------------------+
+| date_format(curdate(),'%W') |
++-----------------------------+
+| Friday                      |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format(curtime(),'%W');
++-----------------------------+
+| date_format(curtime(),'%W') |
++-----------------------------+
+| Friday                      |
++-----------------------------+
+1 row in set (0.01 sec)
+
+mysql> select date_format(curdate(),'%m/%d/%Y);
+    '> ;
+    '> ^C
+mysql> select date_format(curdate(),'%m/%d/%Y');
++-----------------------------------+
+| date_format(curdate(),'%m/%d/%Y') |
++-----------------------------------+
+| 08/30/2024                        |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> -- Create table tweets
+mysql> create table tweets
+    -> (
+    -> Content varchar(100) not null unique
+    -> Username varchar(20) not null,
+    -> Created_at timestamp default now()
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Username varchar(20) not null,
+Created_at timestamp default now()
+)' at line 4
+mysql> create table tweets ( Content varchar(100) not null unique,  Username varchar(20) not null, Created_at timestamp default now() );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc tweets;
++------------+--------------+------+-----+-------------------+-------------------+
+| Field      | Type         | Null | Key | Default           | Extra             |
++------------+--------------+------+-----+-------------------+-------------------+
+| Content    | varchar(100) | NO   | PRI | NULL              |                   |
+| Username   | varchar(20)  | NO   |     | NULL              |                   |
+| Created_at | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++------------+--------------+------+-----+-------------------+-------------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into tweets(Content,Username) values('My Mayaa Radha Maa','Abhishek');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into tweets(Content,Username) values('My Mayaa Radha Mayaa','Abhi');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from tweets;
++----------------------+----------+---------------------+
+| Content              | Username | Created_at          |
++----------------------+----------+---------------------+
+| My Mayaa Radha Maa   | Abhishek | 2024-08-30 13:33:44 |
+| My Mayaa Radha Mayaa | Abhi     | 2024-08-30 13:33:52 |
++----------------------+----------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> desc tweets;
++------------+--------------+------+-----+-------------------+-------------------+
+| Field      | Type         | Null | Key | Default           | Extra             |
++------------+--------------+------+-----+-------------------+-------------------+
+| Content    | varchar(100) | NO   | PRI | NULL              |                   |
+| Username   | varchar(20)  | NO   |     | NULL              |                   |
+| Created_at | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++------------+--------------+------+-----+-------------------+-------------------+
+3 rows in set (0.01 sec)
+
+mysql> alter table tweets add column Update_tweet_on timestamp on Update now();
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desf tweets;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desf tweets' at line 1
+mysql> desc tweets;
++-----------------+--------------+------+-----+-------------------+-----------------------------+
+| Field           | Type         | Null | Key | Default           | Extra                       |
++-----------------+--------------+------+-----+-------------------+-----------------------------+
+| Content         | varchar(100) | NO   | PRI | NULL              |                             |
+| Username        | varchar(20)  | NO   |     | NULL              |                             |
+| Created_at      | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED           |
+| Update_tweet_on | timestamp    | YES  |     | NULL              | on update CURRENT_TIMESTAMP |
++-----------------+--------------+------+-----+-------------------+-----------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * fro tweets;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'fro tweets' at line 1
+mysql> select * from tweets;
++----------------------+----------+---------------------+-----------------+
+| Content              | Username | Created_at          | Update_tweet_on |
++----------------------+----------+---------------------+-----------------+
+| My Mayaa Radha Maa   | Abhishek | 2024-08-30 13:33:44 | NULL            |
+| My Mayaa Radha Mayaa | Abhi     | 2024-08-30 13:33:52 | NULL            |
++----------------------+----------+---------------------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> update tweets set Content='My Radha mayyyaaaa !!!!!' where Usename ='Abhi';
+ERROR 1054 (42S22): Unknown column 'Usename' in 'where clause'
+mysql> update tweets set Content='My Radha mayyyaaaa !!!!!' where Username='Abhi';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from tweets;
++--------------------------+----------+---------------------+---------------------+
+| Content                  | Username | Created_at          | Update_tweet_on     |
++--------------------------+----------+---------------------+---------------------+
+| My Mayaa Radha Maa       | Abhishek | 2024-08-30 13:33:44 | NULL                |
+| My Radha mayyyaaaa !!!!! | Abhi     | 2024-08-30 13:33:52 | 2024-08-30 13:37:15 |
++--------------------------+----------+---------------------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> select nopw();
+ERROR 1305 (42000): FUNCTION bookshop.nopw does not exist
+mysql> select now();
++---------------------+
+| now()               |
++---------------------+
+| 2024-08-30 13:40:38 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now;
+ERROR 1054 (42S22): Unknown column 'now' in 'field list'
+mysql> select currenttimestamp;
+ERROR 1054 (42S22): Unknown column 'currenttimestamp' in 'field list'
+mysql> select current_timestamp;
++---------------------+
+| current_timestamp   |
++---------------------+
+| 2024-08-30 13:41:03 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select current_timestamp();
++---------------------+
+| current_timestamp() |
++---------------------+
+| 2024-08-30 13:41:11 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now;
+ERROR 1054 (42S22): Unknown column 'now' in 'field list'
+mysql> select now();
++---------------------+
+| now()               |
++---------------------+
+| 2024-08-30 13:41:17 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select curdate()'
+    '> ^C
+mysql> select curdate();
++------------+
+| curdate()  |
++------------+
+| 2024-08-30 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select curtime();
++-----------+
+| curtime() |
++-----------+
+| 13:41:33  |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select date_format(curdate(),'%r');
++-----------------------------+
+| date_format(curdate(),'%r') |
++-----------------------------+
+| 12:00:00 AM                 |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> select date_format(curdate(),'%W');
++-----------------------------+
+| date_format(curdate(),'%W') |
++-----------------------------+
+| Friday                      |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> 

@@ -1,0 +1,1524 @@
+Last login: Tue Aug 20 17:03:10 on console
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % pwd
+/Users/abhishektyagi_1
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| ABES                 |
+| Aggregate            |
+| bankmanagementsystem |
+| Books                |
+| BookShop             |
+| constraints          |
+| DBMS                 |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| Practice             |
+| RadheKrishna         |
+| Shirt                |
+| sys                  |
+| Triggers             |
+| View                 |
++----------------------+
+16 rows in set (0.01 sec)
+
+mysql> use bookshop;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_bookshop |
++--------------------+
+| books              |
+| Employee           |
+| Student            |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from books limit 5;
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+| book_id | title                            | author_fname | author_lname | released_year | stock_quantity | pages |
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+|       1 | The Namesake                     | Jhumpa       | Lahiri       |          2003 |             32 |   291 |
+|       2 | Norse Mythology                  | Neil         | Gaiman       |          2016 |             43 |   304 |
+|       3 | American Gods                    | Neil         | Gaiman       |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies          | Jhumpa       | Lahiri       |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel | Dave         | Eggers       |          2012 |            154 |   352 |
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+5 rows in set (0.01 sec)
+
+mysql> select count(*) from books;
++----------+
+| count(*) |
++----------+
+|       19 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> insert into books() valuse();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'valuse()' at line 1
+mysql> insert into books() value();
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select count(*) from books;
++----------+
+| count(*) |
++----------+
+|       20 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select count(auhtor_fname) from books;
+ERROR 1054 (42S22): Unknown column 'auhtor_fname' in 'field list'
+mysql> select count(author_fname) from books;
++---------------------+
+| count(author_fname) |
++---------------------+
+|                  19 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from book;
+ERROR 1146 (42S02): Table 'bookshop.book' doesn't exist
+mysql> select * from books;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
+|      17 | 10% Happier                                         | Dan          | Harris         |          2014 |             29 |   256 |
+|      18 | fake_book                                           | Freida       | Harris         |          2001 |            287 |   428 |
+|      19 | Lincoln In The Bardo                                | George       | Saunders       |          2017 |           1000 |   367 |
+|      20 | NULL                                                | NULL         | NULL           |          NULL |           NULL |  NULL |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+20 rows in set (0.00 sec)
+
+mysql> select * from books limit 5;
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+| book_id | title                            | author_fname | author_lname | released_year | stock_quantity | pages |
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+|       1 | The Namesake                     | Jhumpa       | Lahiri       |          2003 |             32 |   291 |
+|       2 | Norse Mythology                  | Neil         | Gaiman       |          2016 |             43 |   304 |
+|       3 | American Gods                    | Neil         | Gaiman       |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies          | Jhumpa       | Lahiri       |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel | Dave         | Eggers       |          2012 |            154 |   352 |
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select title from books where title like '%the%';
++-------------------------------------------+
+| title                                     |
++-------------------------------------------+
+| The Namesake                              |
+| A Hologram for the King: A Novel          |
+| The Circle                                |
+| The Amazing Adventures of Kavalier & Clay |
+| Consider the Lobster                      |
+| Lincoln In The Bardo                      |
++-------------------------------------------+
+6 rows in set (0.00 sec)
+
+mysql> select count(*) title from books where title like '%the%';
++-------+
+| title |
++-------+
+|     6 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select count(title) title from books where title like '%the%';
++-------+
+| title |
++-------+
+|     6 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select count(title) title as Tilt from books where title like '%the%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as Tilt from books where title like '%the%'' at line 1
+mysql> select count(title) title  from books where title like '%the%';
++-------+
+| title |
++-------+
+|     6 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select title,author_fname from books order by pages desc;
++-----------------------------------------------------+--------------+
+| title                                               | author_fname |
++-----------------------------------------------------+--------------+
+| The Amazing Adventures of Kavalier & Clay           | Michael      |
+| Where I'm Calling From: Selected Stories            | Raymond      |
+| The Circle                                          | Dave         |
+| American Gods                                       | Neil         |
+| A Heartbreaking Work of Staggering Genius           | Dave         |
+| fake_book                                           | Freida       |
+| Lincoln In The Bardo                                | George       |
+| A Hologram for the King: A Novel                    | Dave         |
+| Consider the Lobster                                | David        |
+| Oblivion: Stories                                   | David        |
+| White Noise                                         | Don          |
+| Norse Mythology                                     | Neil         |
+| Just Kids                                           | Patti        |
+| The Namesake                                        | Jhumpa       |
+| 10% Happier                                         | Dan          |
+| Coraline                                            | Neil         |
+| Interpreter of Maladies                             | Jhumpa       |
+| Cannery Row                                         | John         |
+| What We Talk About When We Talk About Love: Stories | Raymond      |
+| NULL                                                | NULL         |
++-----------------------------------------------------+--------------+
+20 rows in set (0.01 sec)
+
+mysql> select title,author_fname,pages from books order by pages desc;
++-----------------------------------------------------+--------------+-------+
+| title                                               | author_fname | pages |
++-----------------------------------------------------+--------------+-------+
+| The Amazing Adventures of Kavalier & Clay           | Michael      |   634 |
+| Where I'm Calling From: Selected Stories            | Raymond      |   526 |
+| The Circle                                          | Dave         |   504 |
+| American Gods                                       | Neil         |   465 |
+| A Heartbreaking Work of Staggering Genius           | Dave         |   437 |
+| fake_book                                           | Freida       |   428 |
+| Lincoln In The Bardo                                | George       |   367 |
+| A Hologram for the King: A Novel                    | Dave         |   352 |
+| Consider the Lobster                                | David        |   343 |
+| Oblivion: Stories                                   | David        |   329 |
+| White Noise                                         | Don          |   320 |
+| Norse Mythology                                     | Neil         |   304 |
+| Just Kids                                           | Patti        |   304 |
+| The Namesake                                        | Jhumpa       |   291 |
+| 10% Happier                                         | Dan          |   256 |
+| Coraline                                            | Neil         |   208 |
+| Interpreter of Maladies                             | Jhumpa       |   198 |
+| Cannery Row                                         | John         |   181 |
+| What We Talk About When We Talk About Love: Stories | Raymond      |   176 |
+| NULL                                                | NULL         |  NULL |
++-----------------------------------------------------+--------------+-------+
+20 rows in set (0.00 sec)
+
+mysql> select * from books limit 5;
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+| book_id | title                            | author_fname | author_lname | released_year | stock_quantity | pages |
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+|       1 | The Namesake                     | Jhumpa       | Lahiri       |          2003 |             32 |   291 |
+|       2 | Norse Mythology                  | Neil         | Gaiman       |          2016 |             43 |   304 |
+|       3 | American Gods                    | Neil         | Gaiman       |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies          | Jhumpa       | Lahiri       |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel | Dave         | Eggers       |          2012 |            154 |   352 |
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> delete from books where book_id=20;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from books limit 19;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
+|      17 | 10% Happier                                         | Dan          | Harris         |          2014 |             29 |   256 |
+|      18 | fake_book                                           | Freida       | Harris         |          2001 |            287 |   428 |
+|      19 | Lincoln In The Bardo                                | George       | Saunders       |          2017 |           1000 |   367 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+19 rows in set (0.00 sec)
+
+mysql> select * from books;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
+|      17 | 10% Happier                                         | Dan          | Harris         |          2014 |             29 |   256 |
+|      18 | fake_book                                           | Freida       | Harris         |          2001 |            287 |   428 |
+|      19 | Lincoln In The Bardo                                | George       | Saunders       |          2017 |           1000 |   367 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+19 rows in set (0.00 sec)
+
+mysql> -- Order by sort your result 
+mysql> select title,author_fname,author_lname from books order by title,author_lname;
++-----------------------------------------------------+--------------+----------------+
+| title                                               | author_fname | author_lname   |
++-----------------------------------------------------+--------------+----------------+
+| 10% Happier                                         | Dan          | Harris         |
+| A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |
+| A Hologram for the King: A Novel                    | Dave         | Eggers         |
+| American Gods                                       | Neil         | Gaiman         |
+| Cannery Row                                         | John         | Steinbeck      |
+| Consider the Lobster                                | David        | Foster Wallace |
+| Coraline                                            | Neil         | Gaiman         |
+| fake_book                                           | Freida       | Harris         |
+| Interpreter of Maladies                             | Jhumpa       | Lahiri         |
+| Just Kids                                           | Patti        | Smith          |
+| Lincoln In The Bardo                                | George       | Saunders       |
+| Norse Mythology                                     | Neil         | Gaiman         |
+| Oblivion: Stories                                   | David        | Foster Wallace |
+| The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |
+| The Circle                                          | Dave         | Eggers         |
+| The Namesake                                        | Jhumpa       | Lahiri         |
+| What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |
+| Where I'm Calling From: Selected Stories            | Raymond      | Carver         |
+| White Noise                                         | Don          | DeLillo        |
++-----------------------------------------------------+--------------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> select title,author_lname from books order by title,author_lname;
++-----------------------------------------------------+----------------+
+| title                                               | author_lname   |
++-----------------------------------------------------+----------------+
+| 10% Happier                                         | Harris         |
+| A Heartbreaking Work of Staggering Genius           | Eggers         |
+| A Hologram for the King: A Novel                    | Eggers         |
+| American Gods                                       | Gaiman         |
+| Cannery Row                                         | Steinbeck      |
+| Consider the Lobster                                | Foster Wallace |
+| Coraline                                            | Gaiman         |
+| fake_book                                           | Harris         |
+| Interpreter of Maladies                             | Lahiri         |
+| Just Kids                                           | Smith          |
+| Lincoln In The Bardo                                | Saunders       |
+| Norse Mythology                                     | Gaiman         |
+| Oblivion: Stories                                   | Foster Wallace |
+| The Amazing Adventures of Kavalier & Clay           | Chabon         |
+| The Circle                                          | Eggers         |
+| The Namesake                                        | Lahiri         |
+| What We Talk About When We Talk About Love: Stories | Carver         |
+| Where I'm Calling From: Selected Stories            | Carver         |
+| White Noise                                         | DeLillo        |
++-----------------------------------------------------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> select title,author_lname from books order by author_lname,title;
++-----------------------------------------------------+----------------+
+| title                                               | author_lname   |
++-----------------------------------------------------+----------------+
+| What We Talk About When We Talk About Love: Stories | Carver         |
+| Where I'm Calling From: Selected Stories            | Carver         |
+| The Amazing Adventures of Kavalier & Clay           | Chabon         |
+| White Noise                                         | DeLillo        |
+| A Heartbreaking Work of Staggering Genius           | Eggers         |
+| A Hologram for the King: A Novel                    | Eggers         |
+| The Circle                                          | Eggers         |
+| Consider the Lobster                                | Foster Wallace |
+| Oblivion: Stories                                   | Foster Wallace |
+| American Gods                                       | Gaiman         |
+| Coraline                                            | Gaiman         |
+| Norse Mythology                                     | Gaiman         |
+| 10% Happier                                         | Harris         |
+| fake_book                                           | Harris         |
+| Interpreter of Maladies                             | Lahiri         |
+| The Namesake                                        | Lahiri         |
+| Lincoln In The Bardo                                | Saunders       |
+| Just Kids                                           | Smith          |
+| Cannery Row                                         | Steinbeck      |
++-----------------------------------------------------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> select title,author_lname from books order bytitle;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'bytitle' at line 1
+mysql> select title,author_lname from books order by title;
++-----------------------------------------------------+----------------+
+| title                                               | author_lname   |
++-----------------------------------------------------+----------------+
+| 10% Happier                                         | Harris         |
+| A Heartbreaking Work of Staggering Genius           | Eggers         |
+| A Hologram for the King: A Novel                    | Eggers         |
+| American Gods                                       | Gaiman         |
+| Cannery Row                                         | Steinbeck      |
+| Consider the Lobster                                | Foster Wallace |
+| Coraline                                            | Gaiman         |
+| fake_book                                           | Harris         |
+| Interpreter of Maladies                             | Lahiri         |
+| Just Kids                                           | Smith          |
+| Lincoln In The Bardo                                | Saunders       |
+| Norse Mythology                                     | Gaiman         |
+| Oblivion: Stories                                   | Foster Wallace |
+| The Amazing Adventures of Kavalier & Clay           | Chabon         |
+| The Circle                                          | Eggers         |
+| The Namesake                                        | Lahiri         |
+| What We Talk About When We Talk About Love: Stories | Carver         |
+| Where I'm Calling From: Selected Stories            | Carver         |
+| White Noise                                         | DeLillo        |
++-----------------------------------------------------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> select title,author_lname from books order by title desc ;
++-----------------------------------------------------+----------------+
+| title                                               | author_lname   |
++-----------------------------------------------------+----------------+
+| White Noise                                         | DeLillo        |
+| Where I'm Calling From: Selected Stories            | Carver         |
+| What We Talk About When We Talk About Love: Stories | Carver         |
+| The Namesake                                        | Lahiri         |
+| The Circle                                          | Eggers         |
+| The Amazing Adventures of Kavalier & Clay           | Chabon         |
+| Oblivion: Stories                                   | Foster Wallace |
+| Norse Mythology                                     | Gaiman         |
+| Lincoln In The Bardo                                | Saunders       |
+| Just Kids                                           | Smith          |
+| Interpreter of Maladies                             | Lahiri         |
+| fake_book                                           | Harris         |
+| Coraline                                            | Gaiman         |
+| Consider the Lobster                                | Foster Wallace |
+| Cannery Row                                         | Steinbeck      |
+| American Gods                                       | Gaiman         |
+| A Hologram for the King: A Novel                    | Eggers         |
+| A Heartbreaking Work of Staggering Genius           | Eggers         |
+| 10% Happier                                         | Harris         |
++-----------------------------------------------------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> slect title from books limit 10;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slect title from books limit 10' at line 1
+mysql> select title from books limit 10;
++-------------------------------------------+
+| title                                     |
++-------------------------------------------+
+| The Namesake                              |
+| Norse Mythology                           |
+| American Gods                             |
+| Interpreter of Maladies                   |
+| A Hologram for the King: A Novel          |
+| The Circle                                |
+| The Amazing Adventures of Kavalier & Clay |
+| Just Kids                                 |
+| A Heartbreaking Work of Staggering Genius |
+| Coraline                                  |
++-------------------------------------------+
+10 rows in set (0.00 sec)
+
+mysql> select title,author_lname from books order by title ;
++-----------------------------------------------------+----------------+
+| title                                               | author_lname   |
++-----------------------------------------------------+----------------+
+| 10% Happier                                         | Harris         |
+| A Heartbreaking Work of Staggering Genius           | Eggers         |
+| A Hologram for the King: A Novel                    | Eggers         |
+| American Gods                                       | Gaiman         |
+| Cannery Row                                         | Steinbeck      |
+| Consider the Lobster                                | Foster Wallace |
+| Coraline                                            | Gaiman         |
+| fake_book                                           | Harris         |
+| Interpreter of Maladies                             | Lahiri         |
+| Just Kids                                           | Smith          |
+| Lincoln In The Bardo                                | Saunders       |
+| Norse Mythology                                     | Gaiman         |
+| Oblivion: Stories                                   | Foster Wallace |
+| The Amazing Adventures of Kavalier & Clay           | Chabon         |
+| The Circle                                          | Eggers         |
+| The Namesake                                        | Lahiri         |
+| What We Talk About When We Talk About Love: Stories | Carver         |
+| Where I'm Calling From: Selected Stories            | Carver         |
+| White Noise                                         | DeLillo        |
++-----------------------------------------------------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> select author_fname from books limit 10;
++--------------+
+| author_fname |
++--------------+
+| Jhumpa       |
+| Neil         |
+| Neil         |
+| Jhumpa       |
+| Dave         |
+| Dave         |
+| Michael      |
+| Patti        |
+| Dave         |
+| Neil         |
++--------------+
+10 rows in set (0.00 sec)
+
+mysql> select count(author_fname) from books limit 10;
++---------------------+
+| count(author_fname) |
++---------------------+
+|                  19 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select count(author_fname) from books;
++---------------------+
+| count(author_fname) |
++---------------------+
+|                  19 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select author_fname from books;
++--------------+
+| author_fname |
++--------------+
+| Jhumpa       |
+| Neil         |
+| Neil         |
+| Jhumpa       |
+| Dave         |
+| Dave         |
+| Michael      |
+| Patti        |
+| Dave         |
+| Neil         |
+| Raymond      |
+| Raymond      |
+| Don          |
+| John         |
+| David        |
+| David        |
+| Dan          |
+| Freida       |
+| George       |
++--------------+
+19 rows in set (0.00 sec)
+
+mysql> select distinct author_fname from books;
++--------------+
+| author_fname |
++--------------+
+| Jhumpa       |
+| Neil         |
+| Dave         |
+| Michael      |
+| Patti        |
+| Raymond      |
+| Don          |
+| John         |
+| David        |
+| Dan          |
+| Freida       |
+| George       |
++--------------+
+12 rows in set (0.00 sec)
+
+mysql> select distinct count(author_fname) from books;
++---------------------+
+| count(author_fname) |
++---------------------+
+|                  19 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select  count(distinct author_fname) from books;
++------------------------------+
+| count(distinct author_fname) |
++------------------------------+
+|                           12 |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select author_lname from books;
++----------------+
+| author_lname   |
++----------------+
+| Lahiri         |
+| Gaiman         |
+| Gaiman         |
+| Lahiri         |
+| Eggers         |
+| Eggers         |
+| Chabon         |
+| Smith          |
+| Eggers         |
+| Gaiman         |
+| Carver         |
+| Carver         |
+| DeLillo        |
+| Steinbeck      |
+| Foster Wallace |
+| Foster Wallace |
+| Harris         |
+| Harris         |
+| Saunders       |
++----------------+
+19 rows in set (0.00 sec)
+
+mysql> select author_lname,Reverse from books;
+ERROR 1054 (42S22): Unknown column 'Reverse' in 'field list'
+mysql> select author_lname,Reverse(author_lname) from books;
++----------------+-----------------------+
+| author_lname   | Reverse(author_lname) |
++----------------+-----------------------+
+| Lahiri         | irihaL                |
+| Gaiman         | namiaG                |
+| Gaiman         | namiaG                |
+| Lahiri         | irihaL                |
+| Eggers         | sreggE                |
+| Eggers         | sreggE                |
+| Chabon         | nobahC                |
+| Smith          | htimS                 |
+| Eggers         | sreggE                |
+| Gaiman         | namiaG                |
+| Carver         | revraC                |
+| Carver         | revraC                |
+| DeLillo        | olliLeD               |
+| Steinbeck      | kcebnietS             |
+| Foster Wallace | ecallaW retsoF        |
+| Foster Wallace | ecallaW retsoF        |
+| Harris         | sirraH                |
+| Harris         | sirraH                |
+| Saunders       | srednuaS              |
++----------------+-----------------------+
+19 rows in set (0.00 sec)
+
+mysql> select concat(author_lname,Reverse(author_lname)) as ReverseName from books;
++------------------------------+
+| ReverseName                  |
++------------------------------+
+| LahiriirihaL                 |
+| GaimannamiaG                 |
+| GaimannamiaG                 |
+| LahiriirihaL                 |
+| EggerssreggE                 |
+| EggerssreggE                 |
+| ChabonnobahC                 |
+| SmithhtimS                   |
+| EggerssreggE                 |
+| GaimannamiaG                 |
+| CarverrevraC                 |
+| CarverrevraC                 |
+| DeLilloolliLeD               |
+| SteinbeckkcebnietS           |
+| Foster WallaceecallaW retsoF |
+| Foster WallaceecallaW retsoF |
+| HarrissirraH                 |
+| HarrissirraH                 |
+| SaunderssrednuaS             |
++------------------------------+
+19 rows in set (0.00 sec)
+
+mysql> select concat(author_lname,' ',Reverse(author_lname)) as ReverseName from books;
++-------------------------------+
+| ReverseName                   |
++-------------------------------+
+| Lahiri irihaL                 |
+| Gaiman namiaG                 |
+| Gaiman namiaG                 |
+| Lahiri irihaL                 |
+| Eggers sreggE                 |
+| Eggers sreggE                 |
+| Chabon nobahC                 |
+| Smith htimS                   |
+| Eggers sreggE                 |
+| Gaiman namiaG                 |
+| Carver revraC                 |
+| Carver revraC                 |
+| DeLillo olliLeD               |
+| Steinbeck kcebnietS           |
+| Foster Wallace ecallaW retsoF |
+| Foster Wallace ecallaW retsoF |
+| Harris sirraH                 |
+| Harris sirraH                 |
+| Saunders srednuaS             |
++-------------------------------+
+19 rows in set (0.00 sec)
+
+mysql> select substring('Abhishek',1,3);
++---------------------------+
+| substring('Abhishek',1,3) |
++---------------------------+
+| Abh                       |
++---------------------------+
+1 row in set (0.00 sec)
+
+mysql> select author_fname,author_lname from books;
++--------------+----------------+
+| author_fname | author_lname   |
++--------------+----------------+
+| Jhumpa       | Lahiri         |
+| Neil         | Gaiman         |
+| Neil         | Gaiman         |
+| Jhumpa       | Lahiri         |
+| Dave         | Eggers         |
+| Dave         | Eggers         |
+| Michael      | Chabon         |
+| Patti        | Smith          |
+| Dave         | Eggers         |
+| Neil         | Gaiman         |
+| Raymond      | Carver         |
+| Raymond      | Carver         |
+| Don          | DeLillo        |
+| John         | Steinbeck      |
+| David        | Foster Wallace |
+| David        | Foster Wallace |
+| Dan          | Harris         |
+| Freida       | Harris         |
+| George       | Saunders       |
++--------------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> select substr(auhtor_fname,1,3) from books;
+ERROR 1054 (42S22): Unknown column 'auhtor_fname' in 'field list'
+mysql> select substr(authtor_fname,1,3) from books;
+ERROR 1054 (42S22): Unknown column 'authtor_fname' in 'field list'
+mysql> select substr(author_fname,1,3) from books;
++--------------------------+
+| substr(author_fname,1,3) |
++--------------------------+
+| Jhu                      |
+| Nei                      |
+| Nei                      |
+| Jhu                      |
+| Dav                      |
+| Dav                      |
+| Mic                      |
+| Pat                      |
+| Dav                      |
+| Nei                      |
+| Ray                      |
+| Ray                      |
+| Don                      |
+| Joh                      |
+| Dav                      |
+| Dav                      |
+| Dan                      |
+| Fre                      |
+| Geo                      |
++--------------------------+
+19 rows in set (0.01 sec)
+
+mysql> select substr(author_fname,1,3) as Abhui from books;
++-------+
+| Abhui |
++-------+
+| Jhu   |
+| Nei   |
+| Nei   |
+| Jhu   |
+| Dav   |
+| Dav   |
+| Mic   |
+| Pat   |
+| Dav   |
+| Nei   |
+| Ray   |
+| Ray   |
+| Don   |
+| Joh   |
+| Dav   |
+| Dav   |
+| Dan   |
+| Fre   |
+| Geo   |
++-------+
+19 rows in set (0.00 sec)
+
+mysql> select repeat('abhishek',12);
++--------------------------------------------------------------------------------------------------+
+| repeat('abhishek',12)                                                                            |
++--------------------------------------------------------------------------------------------------+
+| abhishekabhishekabhishekabhishekabhishekabhishekabhishekabhishekabhishekabhishekabhishekabhishek |
++--------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select repeat('abhishek',12) as Repeat ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Repeat' at line 1
+mysql> select repeat('abhishek',12) ;
++--------------------------------------------------------------------------------------------------+
+| repeat('abhishek',12)                                                                            |
++--------------------------------------------------------------------------------------------------+
+| abhishekabhishekabhishekabhishekabhishekabhishekabhishekabhishekabhishekabhishekabhishekabhishek |
++--------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select title,author_lname from books;
++-----------------------------------------------------+----------------+
+| title                                               | author_lname   |
++-----------------------------------------------------+----------------+
+| The Namesake                                        | Lahiri         |
+| Norse Mythology                                     | Gaiman         |
+| American Gods                                       | Gaiman         |
+| Interpreter of Maladies                             | Lahiri         |
+| A Hologram for the King: A Novel                    | Eggers         |
+| The Circle                                          | Eggers         |
+| The Amazing Adventures of Kavalier & Clay           | Chabon         |
+| Just Kids                                           | Smith          |
+| A Heartbreaking Work of Staggering Genius           | Eggers         |
+| Coraline                                            | Gaiman         |
+| What We Talk About When We Talk About Love: Stories | Carver         |
+| Where I'm Calling From: Selected Stories            | Carver         |
+| White Noise                                         | DeLillo        |
+| Cannery Row                                         | Steinbeck      |
+| Oblivion: Stories                                   | Foster Wallace |
+| Consider the Lobster                                | Foster Wallace |
+| 10% Happier                                         | Harris         |
+| fake_book                                           | Harris         |
+| Lincoln In The Bardo                                | Saunders       |
++-----------------------------------------------------+----------------+
+19 rows in set (0.00 sec)
+
+mysql> select title,author_lname from books group bt author_lanem;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'bt author_lanem' at line 1
+mysql> select title,author_lname from books group bt author_lanme;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'bt author_lanme' at line 1
+mysql> select title,author_lname from books group bt author_lname;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'bt author_lname' at line 1
+mysql> select title,author_lname from books group by author_lname;
+ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'bookshop.books.title' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select author_lname from books group by author_lname;
++----------------+
+| author_lname   |
++----------------+
+| Lahiri         |
+| Gaiman         |
+| Eggers         |
+| Chabon         |
+| Smith          |
+| Carver         |
+| DeLillo        |
+| Steinbeck      |
+| Foster Wallace |
+| Harris         |
+| Saunders       |
++----------------+
+11 rows in set (0.01 sec)
+
+mysql> select distinct author_lname from books;
++----------------+
+| author_lname   |
++----------------+
+| Lahiri         |
+| Gaiman         |
+| Eggers         |
+| Chabon         |
+| Smith          |
+| Carver         |
+| DeLillo        |
+| Steinbeck      |
+| Foster Wallace |
+| Harris         |
+| Saunders       |
++----------------+
+11 rows in set (0.01 sec)
+
+mysql> select author_lname,count(author_lname) from books group by auhtor_lname;
+ERROR 1054 (42S22): Unknown column 'auhtor_lname' in 'group statement'
+mysql> select author_lname,count(author_lname) from books group by author_lname;
++----------------+---------------------+
+| author_lname   | count(author_lname) |
++----------------+---------------------+
+| Lahiri         |                   2 |
+| Gaiman         |                   3 |
+| Eggers         |                   3 |
+| Chabon         |                   1 |
+| Smith          |                   1 |
+| Carver         |                   2 |
+| DeLillo        |                   1 |
+| Steinbeck      |                   1 |
+| Foster Wallace |                   2 |
+| Harris         |                   2 |
+| Saunders       |                   1 |
++----------------+---------------------+
+11 rows in set (0.00 sec)
+
+mysql> select * from books
+    -> ;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
+|      17 | 10% Happier                                         | Dan          | Harris         |          2014 |             29 |   256 |
+|      18 | fake_book                                           | Freida       | Harris         |          2001 |            287 |   428 |
+|      19 | Lincoln In The Bardo                                | George       | Saunders       |          2017 |           1000 |   367 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+19 rows in set (0.00 sec)
+
+mysql> select author_lname,count(author_lname) as Book_Written  from books group by author_lname;
++----------------+--------------+
+| author_lname   | Book_Written |
++----------------+--------------+
+| Lahiri         |            2 |
+| Gaiman         |            3 |
+| Eggers         |            3 |
+| Chabon         |            1 |
+| Smith          |            1 |
+| Carver         |            2 |
+| DeLillo        |            1 |
+| Steinbeck      |            1 |
+| Foster Wallace |            2 |
+| Harris         |            2 |
+| Saunders       |            1 |
++----------------+--------------+
+11 rows in set (0.00 sec)
+
+mysql> select author_lname,count(*)  as Book_written from books group by author_lname order by as Book_written desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as Book_written desc' at line 1
+mysql> select author_lname,count(*)  as Book_written from books group by author_lname order by Book_written desc;
++----------------+--------------+
+| author_lname   | Book_written |
++----------------+--------------+
+| Gaiman         |            3 |
+| Eggers         |            3 |
+| Lahiri         |            2 |
+| Carver         |            2 |
+| Foster Wallace |            2 |
+| Harris         |            2 |
+| Chabon         |            1 |
+| Smith          |            1 |
+| DeLillo        |            1 |
+| Steinbeck      |            1 |
+| Saunders       |            1 |
++----------------+--------------+
+11 rows in set (0.00 sec)
+
+mysql> select released_year from books group by released_year;
++---------------+
+| released_year |
++---------------+
+|          2003 |
+|          2016 |
+|          2001 |
+|          1996 |
+|          2012 |
+|          2013 |
+|          2000 |
+|          2010 |
+|          1981 |
+|          1989 |
+|          1985 |
+|          1945 |
+|          2004 |
+|          2005 |
+|          2014 |
+|          2017 |
++---------------+
+16 rows in set (0.00 sec)
+
+mysql> select released_year,count(released_year) from books group by released_year;
++---------------+----------------------+
+| released_year | count(released_year) |
++---------------+----------------------+
+|          2003 |                    2 |
+|          2016 |                    1 |
+|          2001 |                    3 |
+|          1996 |                    1 |
+|          2012 |                    1 |
+|          2013 |                    1 |
+|          2000 |                    1 |
+|          2010 |                    1 |
+|          1981 |                    1 |
+|          1989 |                    1 |
+|          1985 |                    1 |
+|          1945 |                    1 |
+|          2004 |                    1 |
+|          2005 |                    1 |
+|          2014 |                    1 |
+|          2017 |                    1 |
++---------------+----------------------+
+16 rows in set (0.00 sec)
+
+mysql> select released_year,count(released_year) as Same_Year from books group by released_year;
++---------------+-----------+
+| released_year | Same_Year |
++---------------+-----------+
+|          2003 |         2 |
+|          2016 |         1 |
+|          2001 |         3 |
+|          1996 |         1 |
+|          2012 |         1 |
+|          2013 |         1 |
+|          2000 |         1 |
+|          2010 |         1 |
+|          1981 |         1 |
+|          1989 |         1 |
+|          1985 |         1 |
+|          1945 |         1 |
+|          2004 |         1 |
+|          2005 |         1 |
+|          2014 |         1 |
+|          2017 |         1 |
++---------------+-----------+
+16 rows in set (0.00 sec)
+
+mysql> select released_year,count(released_year) as Same_Year from books group by released_year order by released_year desc;
++---------------+-----------+
+| released_year | Same_Year |
++---------------+-----------+
+|          2017 |         1 |
+|          2016 |         1 |
+|          2014 |         1 |
+|          2013 |         1 |
+|          2012 |         1 |
+|          2010 |         1 |
+|          2005 |         1 |
+|          2004 |         1 |
+|          2003 |         2 |
+|          2001 |         3 |
+|          2000 |         1 |
+|          1996 |         1 |
+|          1989 |         1 |
+|          1985 |         1 |
+|          1981 |         1 |
+|          1945 |         1 |
++---------------+-----------+
+16 rows in set (0.00 sec)
+
+mysql> select released_year,count(released_year) as Same_Year from books group by released_year order by same_year desc;
++---------------+-----------+
+| released_year | Same_Year |
++---------------+-----------+
+|          2001 |         3 |
+|          2003 |         2 |
+|          2016 |         1 |
+|          1996 |         1 |
+|          2012 |         1 |
+|          2013 |         1 |
+|          2000 |         1 |
+|          2010 |         1 |
+|          1981 |         1 |
+|          1989 |         1 |
+|          1985 |         1 |
+|          1945 |         1 |
+|          2004 |         1 |
+|          2005 |         1 |
+|          2014 |         1 |
+|          2017 |         1 |
++---------------+-----------+
+16 rows in set (0.00 sec)
+
+mysql> select author_lname,title from books group by author_lanem;
+ERROR 1054 (42S22): Unknown column 'author_lanem' in 'group statement'
+mysql> select author_lname,title from books group by author_lname;
+ERROR 1055 (42000): Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'bookshop.books.title' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select author_lname from books group by author_lname;
++----------------+
+| author_lname   |
++----------------+
+| Lahiri         |
+| Gaiman         |
+| Eggers         |
+| Chabon         |
+| Smith          |
+| Carver         |
+| DeLillo        |
+| Steinbeck      |
+| Foster Wallace |
+| Harris         |
+| Saunders       |
++----------------+
+11 rows in set (0.00 sec)
+
+mysql> select max(author_lname)from books;
++-------------------+
+| max(author_lname) |
++-------------------+
+| Steinbeck         |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select author_lname from books;
++----------------+
+| author_lname   |
++----------------+
+| Lahiri         |
+| Gaiman         |
+| Gaiman         |
+| Lahiri         |
+| Eggers         |
+| Eggers         |
+| Chabon         |
+| Smith          |
+| Eggers         |
+| Gaiman         |
+| Carver         |
+| Carver         |
+| DeLillo        |
+| Steinbeck      |
+| Foster Wallace |
+| Foster Wallace |
+| Harris         |
+| Harris         |
+| Saunders       |
++----------------+
+19 rows in set (0.00 sec)
+
+mysql> select min(author_lname) from books;
++-------------------+
+| min(author_lname) |
++-------------------+
+| Carver            |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select max(pages) from books;
++------------+
+| max(pages) |
++------------+
+|        634 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select max(pages),title from books;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #2 of SELECT list contains nonaggregated column 'bookshop.books.title'; this is incompatible with sql_mode=only_full_group_by
+mysql> select title from books where max(pages);
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select * from books where pages=634;
++---------+-------------------------------------------+--------------+--------------+---------------+----------------+-------+
+| book_id | title                                     | author_fname | author_lname | released_year | stock_quantity | pages |
++---------+-------------------------------------------+--------------+--------------+---------------+----------------+-------+
+|       7 | The Amazing Adventures of Kavalier & Clay | Michael      | Chabon       |          2000 |             68 |   634 |
++---------+-------------------------------------------+--------------+--------------+---------------+----------------+-------+
+1 row in set (0.01 sec)
+
+mysql> select title from books where pages=634;
++-------------------------------------------+
+| title                                     |
++-------------------------------------------+
+| The Amazing Adventures of Kavalier & Clay |
++-------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select title,pages from books where pages=634;
++-------------------------------------------+-------+
+| title                                     | pages |
++-------------------------------------------+-------+
+| The Amazing Adventures of Kavalier & Clay |   634 |
++-------------------------------------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select title from books;
++-----------------------------------------------------+
+| title                                               |
++-----------------------------------------------------+
+| The Namesake                                        |
+| Norse Mythology                                     |
+| American Gods                                       |
+| Interpreter of Maladies                             |
+| A Hologram for the King: A Novel                    |
+| The Circle                                          |
+| The Amazing Adventures of Kavalier & Clay           |
+| Just Kids                                           |
+| A Heartbreaking Work of Staggering Genius           |
+| Coraline                                            |
+| What We Talk About When We Talk About Love: Stories |
+| Where I'm Calling From: Selected Stories            |
+| White Noise                                         |
+| Cannery Row                                         |
+| Oblivion: Stories                                   |
+| Consider the Lobster                                |
+| 10% Happier                                         |
+| fake_book                                           |
+| Lincoln In The Bardo                                |
++-----------------------------------------------------+
+19 rows in set (0.00 sec)
+
+mysql> select max(title) from books;
++-------------+
+| max(title)  |
++-------------+
+| White Noise |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select min(title) from books;
++-------------+
+| min(title)  |
++-------------+
+| 10% Happier |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select char_length(title) from books;
++--------------------+
+| char_length(title) |
++--------------------+
+|                 12 |
+|                 15 |
+|                 13 |
+|                 23 |
+|                 32 |
+|                 10 |
+|                 41 |
+|                  9 |
+|                 41 |
+|                  8 |
+|                 51 |
+|                 40 |
+|                 11 |
+|                 11 |
+|                 17 |
+|                 20 |
+|                 11 |
+|                  9 |
+|                 20 |
++--------------------+
+19 rows in set (0.00 sec)
+
+mysql> select char_length(title) as Length from books where pages=634;
++--------+
+| Length |
++--------+
+|     41 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select char_length(title),title as Length from books where pages=634;
++--------------------+-------------------------------------------+
+| char_length(title) | Length                                    |
++--------------------+-------------------------------------------+
+|                 41 | The Amazing Adventures of Kavalier & Clay |
++--------------------+-------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> -- When we not know the exactly max page no
+mysql> select title,pages from books order by pages dsc limit 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dsc limit 2' at line 1
+mysql> select title,pages from books order by pages desc limit 2;
++-------------------------------------------+-------+
+| title                                     | pages |
++-------------------------------------------+-------+
+| The Amazing Adventures of Kavalier & Clay |   634 |
+| Where I'm Calling From: Selected Stories  |   526 |
++-------------------------------------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select title,pages from books order by pages desc limit 1;
++-------------------------------------------+-------+
+| title                                     | pages |
++-------------------------------------------+-------+
+| The Amazing Adventures of Kavalier & Clay |   634 |
++-------------------------------------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select title,pages from books where pages=(select max(pages) from books);
++-------------------------------------------+-------+
+| title                                     | pages |
++-------------------------------------------+-------+
+| The Amazing Adventures of Kavalier & Clay |   634 |
++-------------------------------------------+-------+
+1 row in set (0.01 sec)
+
+mysql> select title,pages from books where pages=634;
++-------------------------------------------+-------+
+| title                                     | pages |
++-------------------------------------------+-------+
+| The Amazing Adventures of Kavalier & Clay |   634 |
++-------------------------------------------+-------+
+1 row in set (0.00 sec)
+
+mysql> -- SubQueries query inside query (select max(pages) from books);
+mysql> select title,pages from books where pages=(select min(pages) from books);
++-----------------------------------------------------+-------+
+| title                                               | pages |
++-----------------------------------------------------+-------+
+| What We Talk About When We Talk About Love: Stories |   176 |
++-----------------------------------------------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select min(pages) from books;
++------------+
+| min(pages) |
++------------+
+|        176 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select title,pages from books where pages=176;
++-----------------------------------------------------+-------+
+| title                                               | pages |
++-----------------------------------------------------+-------+
+| What We Talk About When We Talk About Love: Stories |   176 |
++-----------------------------------------------------+-------+
+1 row in set (0.00 sec)
+
+mysql> -- Same Number of Pages 
+mysql> insert into books(title,pages) values('My First Book is',634);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select title,pages from books where pages=634;
++-------------------------------------------+-------+
+| title                                     | pages |
++-------------------------------------------+-------+
+| The Amazing Adventures of Kavalier & Clay |   634 |
+| My First Book is                          |   634 |
++-------------------------------------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select title,pages from books order by pages desc limit 1;
++-------------------------------------------+-------+
+| title                                     | pages |
++-------------------------------------------+-------+
+| The Amazing Adventures of Kavalier & Clay |   634 |
++-------------------------------------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select title,pages from books order by pages desc limit 2;
++-------------------------------------------+-------+
+| title                                     | pages |
++-------------------------------------------+-------+
+| The Amazing Adventures of Kavalier & Clay |   634 |
+| My First Book is                          |   634 |
++-------------------------------------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select title,pages from books where pages=(Select max(pages) from books);
++-------------------------------------------+-------+
+| title                                     | pages |
++-------------------------------------------+-------+
+| The Amazing Adventures of Kavalier & Clay |   634 |
+| My First Book is                          |   634 |
++-------------------------------------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> -- Early 
+mysql> select title,pages,released_year from books  order by released_year desc limit 1;
++----------------------+-------+---------------+
+| title                | pages | released_year |
++----------------------+-------+---------------+
+| Lincoln In The Bardo |   367 |          2017 |
++----------------------+-------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select title,pages,released_year from books  order by released_year  limit 1;
++------------------+-------+---------------+
+| title            | pages | released_year |
++------------------+-------+---------------+
+| My First Book is |   634 |          NULL |
++------------------+-------+---------------+
+1 row in set (0.01 sec)
+
+mysql> select * from books;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
+|      17 | 10% Happier                                         | Dan          | Harris         |          2014 |             29 |   256 |
+|      18 | fake_book                                           | Freida       | Harris         |          2001 |            287 |   428 |
+|      19 | Lincoln In The Bardo                                | George       | Saunders       |          2017 |           1000 |   367 |
+|      21 | My First Book is                                    | NULL         | NULL           |          NULL |           NULL |   634 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+20 rows in set (0.00 sec)
+
+mysql> delete from books where book_id=21;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select title,pages,released_year from books  order by released_year  limit 1;
++-------------+-------+---------------+
+| title       | pages | released_year |
++-------------+-------+---------------+
+| Cannery Row |   181 |          1945 |
++-------------+-------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select title,pages,released_year from books  order by released_year  desc  limit 1;
++----------------------+-------+---------------+
+| title                | pages | released_year |
++----------------------+-------+---------------+
+| Lincoln In The Bardo |   367 |          2017 |
++----------------------+-------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select title,pages,released_year from books where released_year=(select min
+    -> (released_year) from books);
+ERROR 1630 (42000): FUNCTION bookshop.min does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+mysql> select title,pages,released_year from books where released_year=(select min(released_year) from books);
++-------------+-------+---------------+
+| title       | pages | released_year |
++-------------+-------+---------------+
+| Cannery Row |   181 |          1945 |
++-------------+-------+---------------+
+1 row in set (0.01 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_bookshop |
++--------------------+
+| books              |
+| Employee           |
+| Student            |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> show triggers;
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger | Event  | Table    | Statement                                                                                                            | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| ins     | INSERT | Employee | Begin if new.salary>15.43 then  set new.Empname="Radha"; end if; End                                                 | BEFORE | 2024-08-15 14:01:39.76 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| tt      | INSERT | Student  | Begin if new.name="Abhii" then set new.marks=56; elseif new.name="Radhakrishna" then set new.marks=98; end if; End   | BEFORE | 2024-08-14 19:17:53.63 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| tr      | INSERT | Student  | Begin
+if new.marks>89.98
+then set new.name="Radha";
+elseif new.marks<89.98 then 
+set new.name="Krishna";
+end if;
+End | BEFORE | 2024-08-13 13:13:19.04 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+3 rows in set (0.00 sec)
+
+mysql> create table Abhi
+    -> (
+    -> Name varchar(12) not null,
+    -> Age int not null,
+    -> Roll_No int not null
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc Abhi;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Name    | varchar(12) | NO   |     | NULL    |       |
+| Age     | int         | NO   |     | NULL    |       |
+| Roll_No | int         | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into abhi values('Abhishek',22,12),('Lavish
+    '> ',23,6_);
+ERROR 1054 (42S22): Unknown column '6_' in 'field list'
+mysql> insert into abhi values('Abhishek',22,12),('Lavish
+',23,6_);
+    '> insert into abhi values('Abhishek',22,12),('Lavish
+',23,6_);
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Abhishek',22,12),('Lavish' at line 2
+mysql> insert into abhi values('Abhishek',22,12),('Lavish
+',23,6);
+    '> ;
+    '> delimiter ;
+    '> delimiter;
+    '> //;
+    '> ^C
+mysql> insert into abhi values('Abhishek
+    '> ',22,12),('Radha',12,13);
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from abhi;
++-----------+-----+---------+
+| Name      | Age | Roll_No |
++-----------+-----+---------+
+| Abhishek
+ |  22 |      12 |
+| Radha     |  12 |      13 |
++-----------+-----+---------+
+2 rows in set (0.00 sec)
+
+mysql> delete from books where name='abhishek';
+ERROR 1054 (42S22): Unknown column 'name' in 'where clause'
+mysql> delete from abhi where name='abhishek';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from abhi;
++-----------+-----+---------+
+| Name      | Age | Roll_No |
++-----------+-----+---------+
+| Abhishek
+ |  22 |      12 |
+| Radha     |  12 |      13 |
++-----------+-----+---------+
+2 rows in set (0.00 sec)
+
+mysql> truncate abhi;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from abhi;
+Empty set (0.00 sec)
+
+mysql> insert into abhi values('Abhishek',22,12),('Radha',12,13),('Krishna',11,12);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from abhi;
++----------+-----+---------+
+| Name     | Age | Roll_No |
++----------+-----+---------+
+| Abhishek |  22 |      12 |
+| Radha    |  12 |      13 |
+| Krishna  |  11 |      12 |
++----------+-----+---------+
+3 rows in set (0.00 sec)
+
+mysql> 

@@ -1,0 +1,783 @@
+Last login: Wed Apr 12 10:48:16 on ttys000
+(base) abhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+(base) abhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| DBMS               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.04 sec)
+
+mysql> connect DBMS;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Connection id:    10
+Current database: DBMS
+
+mysql> show tables;
++-----------------+
+| Tables_in_dbms  |
++-----------------+
+| college         |
+| customer        |
+| employee        |
+| EmployeeDetails |
+| EmployeeSalary  |
+| faculty         |
+| Faculty1        |
+| facultysubject  |
+| Instructor      |
+| Order_item      |
+| school          |
+| student         |
+| student1        |
+| subject         |
+| time            |
+| timestamp       |
++-----------------+
+16 rows in set (0.00 sec)
+
+mysql> describe college;
++-------------------+-------------+------+-----+---------+-------+
+| Field             | Type        | Null | Key | Default | Extra |
++-------------------+-------------+------+-----+---------+-------+
+| Student_id        | int         | NO   | PRI | NULL    |       |
+| Student_name      | varchar(12) | YES  |     | NULL    |       |
+| Class             | char(13)    | YES  |     | NULL    |       |
+| Permanent_Address | tinytext    | YES  |     | NULL    |       |
++-------------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> drop table student
+    -> ^C
+mysql> describe college;
++-------------------+-------------+------+-----+---------+-------+
+| Field             | Type        | Null | Key | Default | Extra |
++-------------------+-------------+------+-----+---------+-------+
+| Student_id        | int         | NO   | PRI | NULL    |       |
+| Student_name      | varchar(12) | YES  |     | NULL    |       |
+| Class             | char(13)    | YES  |     | NULL    |       |
+| Permanent_Address | tinytext    | YES  |     | NULL    |       |
++-------------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc student1;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| student_id   | int         | NO   |     | NULL    |       |
+| Student_name | varchar(23) | NO   |     | NULL    |       |
+| Class_name   | varchar(12) | NO   |     | MCA     |       |
+| Age          | int         | YES  |     | NULL    |       |
+| Address      | varchar(23) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> select * from student1;
++------------+--------------+------------+------+---------+
+| student_id | Student_name | Class_name | Age  | Address |
++------------+--------------+------------+------+---------+
+|          1 | Abhishek     | MCA        |   19 | Delhi   |
+|          2 | Akhil        | BCA        |   22 | Delhi   |
+|          3 | priyanka     | MCA        |   21 | Delhi   |
+|          4 | Anuskha      | MCA        |   20 | Delhi   |
+|          5 | Anuradha     | MCA        |   19 | Delhi   |
+|          6 | Lavish       | BCA        |   21 | Delhi   |
++------------+--------------+------------+------+---------+
+6 rows in set (0.01 sec)
+
+mysql> create table Prince(ID int,Name varchar(20),address varchar2(30));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar2(30))' at line 1
+mysql> create table Prince(ID int,Name varchar(20),address varchar2(30));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar2(30))' at line 1
+mysql> create table Prince 
+    -> ( Id int,
+    -> ^C
+mysql> create table Prince(Id int,name varchar(10),Roll_no int);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> describe Prince 
+    -> ^C
+mysql> describe Prince;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Id      | int         | YES  |     | NULL    |       |
+| name    | varchar(10) | YES  |     | NULL    |       |
+| Roll_no | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> select * from Prince 
+    -> ^C
+mysql> select * from Prince;
+Empty set (0.00 sec)
+
+mysql> 
+mysql> desc prince 
+    -> ^C
+mysql> desc Prince;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Id      | int         | YES  |     | NULL    |       |
+| name    | varchar(10) | YES  |     | NULL    |       |
+| Roll_no | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into Prince values(1,'Abhishnek',12),(2,'Prince',13);
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from Prince 
+    -> ^C
+mysql> select * from Prince;
++------+-----------+---------+
+| Id   | name      | Roll_no |
++------+-----------+---------+
+|    1 | Abhishnek |      12 |
+|    2 | Prince    |      13 |
++------+-----------+---------+
+2 rows in set (0.01 sec)
+
+mysql> Delete from Prince where id=1;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Prince;
++------+--------+---------+
+| Id   | name   | Roll_no |
++------+--------+---------+
+|    2 | Prince |      13 |
++------+--------+---------+
+1 row in set (0.00 sec)
+
+mysql> describe Prince;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Id      | int         | YES  |     | NULL    |       |
+| name    | varchar(10) | YES  |     | NULL    |       |
+| Roll_no | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> describe prince;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Id      | int         | YES  |     | NULL    |       |
+| name    | varchar(10) | YES  |     | NULL    |       |
+| Roll_no | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into Prince values(3,"Abhishek",12),(4,"lavish",13)
+    -> ^C
+mysql> insert into Prince values(3,"Abhishek",12),(4,"lavish",13);
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from prince;
++------+----------+---------+
+| Id   | name     | Roll_no |
++------+----------+---------+
+|    2 | Prince   |      13 |
+|    3 | Abhishek |      12 |
+|    4 | lavish   |      13 |
++------+----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> Alter table prince rename to Abhishek;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from prince ;
+ERROR 1146 (42S02): Table 'dbms.prince' doesn't exist
+mysql> select * from Abhishek;
++------+----------+---------+
+| Id   | name     | Roll_no |
++------+----------+---------+
+|    2 | Prince   |      13 |
+|    3 | Abhishek |      12 |
+|    4 | lavish   |      13 |
++------+----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> describe Abhishek;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Id      | int         | YES  |     | NULL    |       |
+| name    | varchar(10) | YES  |     | NULL    |       |
+| Roll_no | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> Alter table Abhishek add father
+    -> ^C
+mysql> Alter table Abhishek add father_name varchar(10);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe Abhishek;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Id          | int         | YES  |     | NULL    |       |
+| name        | varchar(10) | YES  |     | NULL    |       |
+| Roll_no     | int         | YES  |     | NULL    |       |
+| father_name | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Abhishek;
++------+----------+---------+-------------+
+| Id   | name     | Roll_no | father_name |
++------+----------+---------+-------------+
+|    2 | Prince   |      13 | NULL        |
+|    3 | Abhishek |      12 | NULL        |
+|    4 | lavish   |      13 | NULL        |
++------+----------+---------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> update table Abhishek set father_name=Yogesh Tyagi where id =2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table Abhishek set father_name=Yogesh Tyagi where id =2' at line 1
+mysql> Update Abhishek set father_name='Yogesh' where Id=2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Abhishek;
++------+----------+---------+-------------+
+| Id   | name     | Roll_no | father_name |
++------+----------+---------+-------------+
+|    2 | Prince   |      13 | Yogesh      |
+|    3 | Abhishek |      12 | NULL        |
+|    4 | lavish   |      13 | NULL        |
++------+----------+---------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> 2 | Prince   |      13 | Yogesh      |
+    -> |    3 | Abhishek |      12 | NULL  ^C
+mysql> Alter table Student rename column SId to Id;
+ERROR 1054 (42S22): Unknown column 'SId' in 'student'
+mysql> Alter table Abhishek rename column Sid to Id;
+ERROR 1054 (42S22): Unknown column 'Sid' in 'abhishek'
+mysql> Alter table Abhishek rename column Id to Sid;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from Abhishek;
++------+----------+---------+-------------+
+| Sid  | name     | Roll_no | father_name |
++------+----------+---------+-------------+
+|    2 | Prince   |      13 | Yogesh      |
+|    3 | Abhishek |      12 | NULL        |
+|    4 | lavish   |      13 | NULL        |
++------+----------+---------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> update Abhishek set father_name='Krishna' where Sid=3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Abhishek;
++------+----------+---------+-------------+
+| Sid  | name     | Roll_no | father_name |
++------+----------+---------+-------------+
+|    2 | Prince   |      13 | Yogesh      |
+|    3 | Abhishek |      12 | Krishna     |
+|    4 | lavish   |      13 | NULL        |
++------+----------+---------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> update Abhishek set father_name='Ram Ram jii" Sid=4;
+    '> ^C
+mysql> 
+mysql> 
+mysql> ^C
+mysql> update Abhishek set father_name='Ram Ram jii" where  Sid=4;
+    '> update Abhishek set father_name='Ram Ram jii" where  Sid=4;
+    "> ^C
+mysql> update Abhishek set father_name='Ram Ram jii' where  Sid=4;
+ERROR 1406 (22001): Data too long for column 'father_name' at row 3
+mysql> update Abhishek set father_name='Ram Ram' where  Sid=4;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Abhishek;
++------+----------+---------+-------------+
+| Sid  | name     | Roll_no | father_name |
++------+----------+---------+-------------+
+|    2 | Prince   |      13 | Yogesh      |
+|    3 | Abhishek |      12 | Krishna     |
+|    4 | lavish   |      13 | Ram Ram     |
++------+----------+---------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> Alter table Abhishek rename column name to Name;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe Abhishek;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Sid         | int         | YES  |     | NULL    |       |
+| Name        | varchar(10) | YES  |     | NULL    |       |
+| Roll_no     | int         | YES  |     | NULL    |       |
+| father_name | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> Alter table Abhishek drop column Roll_no;
+Query OK, 0 rows affected (0.00 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe Abhishek;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Sid         | int         | YES  |     | NULL    |       |
+| Name        | varchar(10) | YES  |     | NULL    |       |
+| father_name | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> select * from Abhishek;
++------+----------+-------------+
+| Sid  | Name     | father_name |
++------+----------+-------------+
+|    2 | Prince   | Yogesh      |
+|    3 | Abhishek | Krishna     |
+|    4 | lavish   | Ram Ram     |
++------+----------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> Alter table Abhishek modify father_name varchar(20);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe Abhishek;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Sid         | int         | YES  |     | NULL    |       |
+| Name        | varchar(10) | YES  |     | NULL    |       |
+| father_name | varchar(20) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> Alter table Abhishek add primary key(Sid);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe Abhishek;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Sid         | int         | NO   | PRI | NULL    |       |
+| Name        | varchar(10) | YES  |     | NULL    |       |
+| father_name | varchar(20) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select Sid,name from abhishek;
++-----+----------+
+| Sid | name     |
++-----+----------+
+|   2 | Prince   |
+|   3 | Abhishek |
+|   4 | lavish   |
++-----+----------+
+3 rows in set (0.00 sec)
+
+mysql> select father_name from Abhishek;
++-------------+
+| father_name |
++-------------+
+| Yogesh      |
+| Krishna     |
+| Ram Ram     |
++-------------+
+3 rows in set (0.00 sec)
+
+mysql> describe Abhishek;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Sid         | int         | NO   | PRI | NULL    |       |
+| Name        | varchar(10) | YES  |     | NULL    |       |
+| father_name | varchar(20) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from Abhishek;
++-----+----------+-------------+
+| Sid | Name     | father_name |
++-----+----------+-------------+
+|   2 | Prince   | Yogesh      |
+|   3 | Abhishek | Krishna     |
+|   4 | lavish   | Ram Ram     |
++-----+----------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into Abhishek values(4,'Garima','Rajput');
+ERROR 1062 (23000): Duplicate entry '4' for key 'abhishek.PRIMARY'
+mysql> insert into Abhishek values(5,'Garima','Rajput');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Abhishek;
++-----+----------+-------------+
+| Sid | Name     | father_name |
++-----+----------+-------------+
+|   2 | Prince   | Yogesh      |
+|   3 | Abhishek | Krishna     |
+|   4 | lavish   | Ram Ram     |
+|   5 | Garima   | Rajput      |
++-----+----------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> Alter table Abhishek add mother_name varchar(20);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe Abhishek;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Sid         | int         | NO   | PRI | NULL    |       |
+| Name        | varchar(10) | YES  |     | NULL    |       |
+| father_name | varchar(20) | YES  |     | NULL    |       |
+| mother_name | varchar(20) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Abhishek;
++-----+----------+-------------+-------------+
+| Sid | Name     | father_name | mother_name |
++-----+----------+-------------+-------------+
+|   2 | Prince   | Yogesh      | NULL        |
+|   3 | Abhishek | Krishna     | NULL        |
+|   4 | lavish   | Ram Ram     | NULL        |
+|   5 | Garima   | Rajput      | NULL        |
++-----+----------+-------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> update Abhishek set mother_name='Rajani' where Sid=2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Abhishek;
++-----+----------+-------------+-------------+
+| Sid | Name     | father_name | mother_name |
++-----+----------+-------------+-------------+
+|   2 | Prince   | Yogesh      | Rajani      |
+|   3 | Abhishek | Krishna     | NULL        |
+|   4 | lavish   | Ram Ram     | NULL        |
+|   5 | Garima   | Rajput      | NULL        |
++-----+----------+-------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> Delete from Abhishek where Sid=2;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Abhishek;
++-----+----------+-------------+-------------+
+| Sid | Name     | father_name | mother_name |
++-----+----------+-------------+-------------+
+|   3 | Abhishek | Krishna     | NULL        |
+|   4 | lavish   | Ram Ram     | NULL        |
+|   5 | Garima   | Rajput      | NULL        |
++-----+----------+-------------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into Abhishek values(2,"Prince","Vinod","Poonam");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Abhishek;
++-----+----------+-------------+-------------+
+| Sid | Name     | father_name | mother_name |
++-----+----------+-------------+-------------+
+|   2 | Prince   | Vinod       | Poonam      |
+|   3 | Abhishek | Krishna     | NULL        |
+|   4 | lavish   | Ram Ram     | NULL        |
+|   5 | Garima   | Rajput      | NULL        |
++-----+----------+-------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> update Abhishek set mother_name='rajani' where sid=3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Abhishek;
++-----+----------+-------------+-------------+
+| Sid | Name     | father_name | mother_name |
++-----+----------+-------------+-------------+
+|   2 | Prince   | Vinod       | Poonam      |
+|   3 | Abhishek | Krishna     | rajani      |
+|   4 | lavish   | Ram Ram     | NULL        |
+|   5 | Garima   | Rajput      | NULL        |
++-----+----------+-------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> update Abhishek set mother_name="Rajani" where sid=3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Abhishek;
++-----+----------+-------------+-------------+
+| Sid | Name     | father_name | mother_name |
++-----+----------+-------------+-------------+
+|   2 | Prince   | Vinod       | Poonam      |
+|   3 | Abhishek | Krishna     | Rajani      |
+|   4 | lavish   | Ram Ram     | NULL        |
+|   5 | Garima   | Rajput      | NULL        |
++-----+----------+-------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> update Abhishek set mother_name="Radha rani" where sid=4;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Abhishek;
++-----+----------+-------------+-------------+
+| Sid | Name     | father_name | mother_name |
++-----+----------+-------------+-------------+
+|   2 | Prince   | Vinod       | Poonam      |
+|   3 | Abhishek | Krishna     | Rajani      |
+|   4 | lavish   | Ram Ram     | Radha rani  |
+|   5 | Garima   | Rajput      | NULL        |
++-----+----------+-------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> update Abhishek set mother_name="Radha Rani" where sid=5;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Abhishek;
++-----+----------+-------------+-------------+
+| Sid | Name     | father_name | mother_name |
++-----+----------+-------------+-------------+
+|   2 | Prince   | Vinod       | Poonam      |
+|   3 | Abhishek | Krishna     | Rajani      |
+|   4 | lavish   | Ram Ram     | Radha rani  |
+|   5 | Garima   | Rajput      | Radha Rani  |
++-----+----------+-------------+-------------+
+4 rows in set (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_dbms  |
++-----------------+
+| Abhishek        |
+| college         |
+| customer        |
+| employee        |
+| EmployeeDetails |
+| EmployeeSalary  |
+| faculty         |
+| Faculty1        |
+| facultysubject  |
+| Instructor      |
+| Order_item      |
+| school          |
+| student         |
+| student1        |
+| subject         |
+| time            |
+| timestamp       |
++-----------------+
+17 rows in set (0.01 sec)
+
+mysql> show create table Abhishek;
++----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table    | Create Table                                                                                                                                                                                                                                                    |
++----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Abhishek | CREATE TABLE `Abhishek` (
+  `Sid` int NOT NULL,
+  `Name` varchar(10) DEFAULT NULL,
+  `father_name` varchar(20) DEFAULT NULL,
+  `mother_name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`Sid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> show create table time;
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                     |
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| time  | CREATE TABLE `time` (
+  `Date_of_joining` date NOT NULL DEFAULT '2022-11-09',
+  `entry` datetime DEFAULT '2024-07-23 09:10:01',
+  `Year_of_joining` year DEFAULT NULL,
+  `Time_zone` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> describe customer;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| cust_id    | int         | NO   | PRI | NULL    |       |
+| First_name | varchar(10) | YES  |     | NULL    |       |
+| last_name  | varchar(12) | YES  |     | NULL    |       |
+| contact    | bigint      | NO   |     | NULL    |       |
+| City       | char(12)    | YES  |     | NULL    |       |
+| Amount     | bigint      | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select * from customer;
++---------+------------+-----------+------------+---------+--------+
+| cust_id | First_name | last_name | contact    | City    | Amount |
++---------+------------+-----------+------------+---------+--------+
+|    1001 | Virat      | Kohli     | 7302963673 | Delhi   |  60000 |
+|    1002 | Rohit      | Sharma    | 9927242922 | Mumbai  |  10000 |
+|    1003 | Sachin     | Tendulkar | 7303074013 | Mumbai  |  15000 |
+|    1004 | Virendra   | Shewag    | 9027654720 | Delhi   |  25000 |
+|    1005 | Surya      | Yadav     | 8859626761 | Kolkata |  12000 |
+|    1006 | Dhoni      | Dhoni     | 1232312321 | Patna   |  13000 |
++---------+------------+-----------+------------+---------+--------+
+6 rows in set (0.00 sec)
+
+mysql> Alter table customer add mother_name varchar(30);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe customer;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| cust_id     | int         | NO   | PRI | NULL    |       |
+| First_name  | varchar(10) | YES  |     | NULL    |       |
+| last_name   | varchar(12) | YES  |     | NULL    |       |
+| contact     | bigint      | NO   |     | NULL    |       |
+| City        | char(12)    | YES  |     | NULL    |       |
+| Amount      | bigint      | YES  |     | NULL    |       |
+| mother_name | varchar(30) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> select * from customer;
++---------+------------+-----------+------------+---------+--------+-------------+
+| cust_id | First_name | last_name | contact    | City    | Amount | mother_name |
++---------+------------+-----------+------------+---------+--------+-------------+
+|    1001 | Virat      | Kohli     | 7302963673 | Delhi   |  60000 | NULL        |
+|    1002 | Rohit      | Sharma    | 9927242922 | Mumbai  |  10000 | NULL        |
+|    1003 | Sachin     | Tendulkar | 7303074013 | Mumbai  |  15000 | NULL        |
+|    1004 | Virendra   | Shewag    | 9027654720 | Delhi   |  25000 | NULL        |
+|    1005 | Surya      | Yadav     | 8859626761 | Kolkata |  12000 | NULL        |
+|    1006 | Dhoni      | Dhoni     | 1232312321 | Patna   |  13000 | NULL        |
++---------+------------+-----------+------------+---------+--------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> update Customer set mother_name="Radha Rani";
+Query OK, 6 rows affected (0.00 sec)
+Rows matched: 6  Changed: 6  Warnings: 0
+
+mysql> select * from customer;
++---------+------------+-----------+------------+---------+--------+-------------+
+| cust_id | First_name | last_name | contact    | City    | Amount | mother_name |
++---------+------------+-----------+------------+---------+--------+-------------+
+|    1001 | Virat      | Kohli     | 7302963673 | Delhi   |  60000 | Radha Rani  |
+|    1002 | Rohit      | Sharma    | 9927242922 | Mumbai  |  10000 | Radha Rani  |
+|    1003 | Sachin     | Tendulkar | 7303074013 | Mumbai  |  15000 | Radha Rani  |
+|    1004 | Virendra   | Shewag    | 9027654720 | Delhi   |  25000 | Radha Rani  |
+|    1005 | Surya      | Yadav     | 8859626761 | Kolkata |  12000 | Radha Rani  |
+|    1006 | Dhoni      | Dhoni     | 1232312321 | Patna   |  13000 | Radha Rani  |
++---------+------------+-----------+------------+---------+--------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> select City,Contact from customer;
++---------+------------+
+| City    | Contact    |
++---------+------------+
+| Delhi   | 7302963673 |
+| Mumbai  | 9927242922 |
+| Mumbai  | 7303074013 |
+| Delhi   | 9027654720 |
+| Kolkata | 8859626761 |
+| Patna   | 1232312321 |
++---------+------------+
+6 rows in set (0.00 sec)
+
+mysql> Alter table Customer rename to Cricket;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show create table cuystomer;
+ERROR 1146 (42S02): Table 'dbms.cuystomer' doesn't exist
+mysql> show create table cricket;
++---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table                                                                                                                                                                                                                                                                                                                                                            |
++---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cricket | CREATE TABLE `cricket` (
+  `cust_id` int NOT NULL,
+  `First_name` varchar(10) DEFAULT NULL,
+  `last_name` varchar(12) DEFAULT NULL,
+  `contact` bigint NOT NULL,
+  `City` char(12) DEFAULT NULL,
+  `Amount` bigint DEFAULT NULL,
+  `mother_name` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`cust_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from cxricket;
+ERROR 1146 (42S02): Table 'dbms.cxricket' doesn't exist
+mysql> select 
+    -> * from^C
+mysql> select * from cricket;
++---------+------------+-----------+------------+---------+--------+-------------+
+| cust_id | First_name | last_name | contact    | City    | Amount | mother_name |
++---------+------------+-----------+------------+---------+--------+-------------+
+|    1001 | Virat      | Kohli     | 7302963673 | Delhi   |  60000 | Radha Rani  |
+|    1002 | Rohit      | Sharma    | 9927242922 | Mumbai  |  10000 | Radha Rani  |
+|    1003 | Sachin     | Tendulkar | 7303074013 | Mumbai  |  15000 | Radha Rani  |
+|    1004 | Virendra   | Shewag    | 9027654720 | Delhi   |  25000 | Radha Rani  |
+|    1005 | Surya      | Yadav     | 8859626761 | Kolkata |  12000 | Radha Rani  |
+|    1006 | Dhoni      | Dhoni     | 1232312321 | Patna   |  13000 | Radha Rani  |
++---------+------------+-----------+------------+---------+--------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> show create table cricket;
++---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table                                                                                                                                                                                                                                                                                                                                                            |
++---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cricket | CREATE TABLE `cricket` (
+  `cust_id` int NOT NULL,
+  `First_name` varchar(10) DEFAULT NULL,
+  `last_name` varchar(12) DEFAULT NULL,
+  `contact` bigint NOT NULL,
+  `City` char(12) DEFAULT NULL,
+  `Amount` bigint DEFAULT NULL,
+  `mother_name` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`cust_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> 

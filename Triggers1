@@ -1,0 +1,291 @@
+Last login: Tue Aug  6 15:27:47 on ttys000
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % pwd
+/Users/abhishektyagi_1
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 19
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show schemas;
++----------------------+
+| Database             |
++----------------------+
+| ABES                 |
+| bankmanagementsystem |
+| Books                |
+| BookShop             |
+| DBMS                 |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| Practice             |
+| RadheKrishna         |
+| Shirt                |
+| sys                  |
+| Triggers             |
+| View                 |
++----------------------+
+14 rows in set (0.00 sec)
+
+mysql> use triggers;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_triggers |
++--------------------+
+| account            |
+| car                |
+| Customer           |
+| jobs               |
+| people             |
+| User               |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> create table Student
+    -> (
+    -> Name varchar(30) not null default "Radha",
+    -> RollNo int primary key,
+    -> Salary float not null
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Name   | varchar(30) | NO   |     | Radha   |       |
+| RollNo | int         | NO   | PRI | NULL    |       |
+| Salary | float       | NO   |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into student values(1,120000.43);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into student(Rollno,Salry) values(1,120000.43);
+ERROR 1054 (42S22): Unknown column 'Salry' in 'field list'
+mysql> insert into student(Rollno,Salary) values(1,120000.43);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;
++-------+--------+--------+
+| Name  | RollNo | Salary |
++-------+--------+--------+
+| Radha |      1 | 120000 |
++-------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> -- create trigger on Student table
+mysql> delimiter //
+mysql> create trigger sal before insert on student for each row 
+    -> BEGIN
+    -> if new.salary<150000 then 
+    -> set new.name="Abhishek";
+    -> elseif new.salary>150000 then 
+    -> set new.name="Krishna";
+    -> end if;
+    -> end;
+    -> //
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show triggers;
+    -> //;
++---------+--------+---------+------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger | Event  | Table   | Statement                                                                                                                    | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++---------+--------+---------+------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| up      | UPDATE | account | BEGIN
+if new.amount<0 then 
+set new.amount=0;
+elseif new.amount<10000 then 
+set new.amount=10000;
+end if;
+End                | BEFORE | 2024-08-06 15:26:10.61 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| upf     | INSERT | car     | set new.occupation="MCA"                                                                                                     | BEFORE | 2024-08-05 22:41:23.14 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| ins     | INSERT | car     | BEGIN
+if New.Occupation="BCA" then set New.name="Abhii";
+end if;
+End                                                         | BEFORE | 2024-08-05 23:06:02.69 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| t       | INSERT | car     | Begin if New.name="Abhishek" then set New.name="Radha"; end if; End                                                          | BEFORE | 2024-08-05 23:13:40.47 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| f       | INSERT | car     | Begin if New.Occupation="MCA" then set new.Occupation="BCA"; end if; END                                                     | BEFORE | 2024-08-05 23:19:20.79 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| bgf     | INSERT | jobs    | set @id=@id+12                                                                                                               | BEFORE | 2024-07-29 21:38:39.27 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| sal     | INSERT | Student | BEGIN
+if new.salary<150000 then 
+set new.name="Abhishek";
+elseif new.salary>150000 then 
+set new.name="Krishna";
+end if;
+end | BEFORE | 2024-08-06 16:10:06.54 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++---------+--------+---------+------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+7 rows in set (0.00 sec)
+
+    -> delimiter;
+    -> //;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ';
+delimiter' at line 1
+    -> ;
+    -> //;
+ERROR 1065 (42000): Query was empty
+    -> //
+ERROR 1065 (42000): Query was empty
+mysql> select * from student;//
++-------+--------+--------+
+| Name  | RollNo | Salary |
++-------+--------+--------+
+| Radha |      1 | 120000 |
++-------+--------+--------+
+1 row in set (0.01 sec)
+
+mysql> insert into student values("Abhi",2,110000);
+    -> //;
+Query OK, 1 row affected (0.00 sec)
+
+    -> //
+ERROR 1065 (42000): Query was empty
+mysql> select * from student;//
++----------+--------+--------+
+| Name     | RollNo | Salary |
++----------+--------+--------+
+| Radha    |      1 | 120000 |
+| Abhishek |      2 | 110000 |
++----------+--------+--------+
+2 rows in set (0.01 sec)
+
+mysql> insert into student values("Lavi",3,160000);//
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student;//
++----------+--------+--------+
+| Name     | RollNo | Salary |
++----------+--------+--------+
+| Radha    |      1 | 120000 |
+| Abhishek |      2 | 110000 |
+| Krishna  |      3 | 160000 |
++----------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> show triggers;//
++---------+--------+---------+------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger | Event  | Table   | Statement                                                                                                                    | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++---------+--------+---------+------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| up      | UPDATE | account | BEGIN
+if new.amount<0 then 
+set new.amount=0;
+elseif new.amount<10000 then 
+set new.amount=10000;
+end if;
+End                | BEFORE | 2024-08-06 15:26:10.61 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| upf     | INSERT | car     | set new.occupation="MCA"                                                                                                     | BEFORE | 2024-08-05 22:41:23.14 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| ins     | INSERT | car     | BEGIN
+if New.Occupation="BCA" then set New.name="Abhii";
+end if;
+End                                                         | BEFORE | 2024-08-05 23:06:02.69 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| t       | INSERT | car     | Begin if New.name="Abhishek" then set New.name="Radha"; end if; End                                                          | BEFORE | 2024-08-05 23:13:40.47 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| f       | INSERT | car     | Begin if New.Occupation="MCA" then set new.Occupation="BCA"; end if; END                                                     | BEFORE | 2024-08-05 23:19:20.79 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| bgf     | INSERT | jobs    | set @id=@id+12                                                                                                               | BEFORE | 2024-07-29 21:38:39.27 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| sal     | INSERT | Student | BEGIN
+if new.salary<150000 then 
+set new.name="Abhishek";
+elseif new.salary>150000 then 
+set new.name="Krishna";
+end if;
+end | BEFORE | 2024-08-06 16:10:06.54 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++---------+--------+---------+------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+7 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger Rk before update on student for each row
+    -> BEGIN
+    -> if new.salary>200000 then 
+    -> set new.name="Radhakrishna";
+    -> end if;
+    -> end;//
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show triggers;
+    -> //;
++---------+--------+---------+------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger | Event  | Table   | Statement                                                                                                                    | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++---------+--------+---------+------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| up      | UPDATE | account | BEGIN
+if new.amount<0 then 
+set new.amount=0;
+elseif new.amount<10000 then 
+set new.amount=10000;
+end if;
+End                | BEFORE | 2024-08-06 15:26:10.61 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| upf     | INSERT | car     | set new.occupation="MCA"                                                                                                     | BEFORE | 2024-08-05 22:41:23.14 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| ins     | INSERT | car     | BEGIN
+if New.Occupation="BCA" then set New.name="Abhii";
+end if;
+End                                                         | BEFORE | 2024-08-05 23:06:02.69 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| t       | INSERT | car     | Begin if New.name="Abhishek" then set New.name="Radha"; end if; End                                                          | BEFORE | 2024-08-05 23:13:40.47 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| f       | INSERT | car     | Begin if New.Occupation="MCA" then set new.Occupation="BCA"; end if; END                                                     | BEFORE | 2024-08-05 23:19:20.79 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| bgf     | INSERT | jobs    | set @id=@id+12                                                                                                               | BEFORE | 2024-07-29 21:38:39.27 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| sal     | INSERT | Student | BEGIN
+if new.salary<150000 then 
+set new.name="Abhishek";
+elseif new.salary>150000 then 
+set new.name="Krishna";
+end if;
+end | BEFORE | 2024-08-06 16:10:06.54 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| Rk      | UPDATE | Student | BEGIN
+if new.salary>200000 then 
+set new.name="Radhakrishna";
+end if;
+end                                                    | BEFORE | 2024-08-06 16:25:14.72 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++---------+--------+---------+------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+8 rows in set (0.00 sec)
+
+    -> //;
+ERROR 1065 (42000): Query was empty
+    -> //
+ERROR 1065 (42000): Query was empty
+mysql> select * from student;//
++----------+--------+--------+
+| Name     | RollNo | Salary |
++----------+--------+--------+
+| Radha    |      1 | 120000 |
+| Abhishek |      2 | 110000 |
+| Krishna  |      3 | 160000 |
++----------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> update student set salary=250000 where Rollno=2;
+    -> //;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+    -> //
+ERROR 1065 (42000): Query was empty
+mysql> //;
+ERROR: 
+No query specified
+
+    -> //
+ERROR 1065 (42000): Query was empty
+mysql> select * from student;//
++--------------+--------+--------+
+| Name         | RollNo | Salary |
++--------------+--------+--------+
+| Radha        |      1 | 120000 |
+| Radhakrishna |      2 | 250000 |
+| Krishna      |      3 | 160000 |
++--------------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> cklear;
+    -> //
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'cklear' at line 1
+mysql> 

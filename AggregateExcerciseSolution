@@ -1,0 +1,621 @@
+Last login: Thu Aug 22 09:31:56 on ttys000
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % pwd
+/Users/abhishektyagi_1
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 18
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> -- Aggregate function exercise 
+mysql> show databases();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '()' at line 1
+mysql> show database();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database()' at line 1
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| ABES                 |
+| Aggregate            |
+| bankmanagementsystem |
+| Books                |
+| BookShop             |
+| constraints          |
+| DBMS                 |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| Practice             |
+| RadheKrishna         |
+| Shirt                |
+| sys                  |
+| Triggers             |
+| View                 |
++----------------------+
+16 rows in set (0.00 sec)
+
+mysql> use bookshop;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_bookshop |
++--------------------+
+| Abhi               |
+| bankaccount        |
+| books              |
+| Employee           |
+| Student            |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> desc books;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| book_id        | int          | NO   | PRI | NULL    | auto_increment |
+| title          | varchar(100) | YES  |     | NULL    |                |
+| author_fname   | varchar(100) | YES  |     | NULL    |                |
+| author_lname   | varchar(100) | YES  |     | NULL    |                |
+| released_year  | int          | YES  |     | NULL    |                |
+| stock_quantity | int          | YES  |     | NULL    |                |
+| pages          | int          | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.01 sec)
+
+mysql> select max(book_id) from books;
++--------------+
+| max(book_id) |
++--------------+
+|           23 |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select max(author_fname) from books;
++-------------------+
+| max(author_fname) |
++-------------------+
+| Raymond           |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from books;
++----------+
+| count(*) |
++----------+
+|       21 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select  * from books;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
+|      17 | 10% Happier                                         | Dan          | Harris         |          2014 |             29 |   256 |
+|      18 | fake_book                                           | Freida       | Harris         |          2001 |            287 |   428 |
+|      19 | Lincoln In The Bardo                                | George       | Saunders       |          2017 |           1000 |   367 |
+|      21 | Poster                                              | Abhilasha    | Tyagi          |          2024 |             12 |   768 |
+|      23 | Partition                                           | Abhishek     | Tyagi          |          2024 |             12 |   767 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+21 rows in set (0.00 sec)
+
+mysql> select count(*) from books;
++----------+
+| count(*) |
++----------+
+|       21 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select released_year,count(*) from books group by released_year;
++---------------+----------+
+| released_year | count(*) |
++---------------+----------+
+|          2003 |        2 |
+|          2016 |        1 |
+|          2001 |        3 |
+|          1996 |        1 |
+|          2012 |        1 |
+|          2013 |        1 |
+|          2000 |        1 |
+|          2010 |        1 |
+|          1981 |        1 |
+|          1989 |        1 |
+|          1985 |        1 |
+|          1945 |        1 |
+|          2004 |        1 |
+|          2005 |        1 |
+|          2014 |        1 |
+|          2017 |        1 |
+|          2024 |        2 |
++---------------+----------+
+17 rows in set (0.00 sec)
+
+mysql> select sum(stock_quantity) from books;
++---------------------+
+| sum(stock_quantity) |
++---------------------+
+|                2474 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select released_year,sum(stock_quantity) from books group by released_year;
++---------------+---------------------+
+| released_year | sum(stock_quantity) |
++---------------+---------------------+
+|          2003 |                 132 |
+|          2016 |                  43 |
+|          2001 |                 403 |
+|          1996 |                  97 |
+|          2012 |                 154 |
+|          2013 |                  26 |
+|          2000 |                  68 |
+|          2010 |                  55 |
+|          1981 |                  23 |
+|          1989 |                  12 |
+|          1985 |                  49 |
+|          1945 |                  95 |
+|          2004 |                 172 |
+|          2005 |                  92 |
+|          2014 |                  29 |
+|          2017 |                1000 |
+|          2024 |                  24 |
++---------------+---------------------+
+17 rows in set (0.00 sec)
+
+mysql> select released_year,sum(stock_quantity),count(*) from books group by released_year;
++---------------+---------------------+----------+
+| released_year | sum(stock_quantity) | count(*) |
++---------------+---------------------+----------+
+|          2003 |                 132 |        2 |
+|          2016 |                  43 |        1 |
+|          2001 |                 403 |        3 |
+|          1996 |                  97 |        1 |
+|          2012 |                 154 |        1 |
+|          2013 |                  26 |        1 |
+|          2000 |                  68 |        1 |
+|          2010 |                  55 |        1 |
+|          1981 |                  23 |        1 |
+|          1989 |                  12 |        1 |
+|          1985 |                  49 |        1 |
+|          1945 |                  95 |        1 |
+|          2004 |                 172 |        1 |
+|          2005 |                  92 |        1 |
+|          2014 |                  29 |        1 |
+|          2017 |                1000 |        1 |
+|          2024 |                  24 |        2 |
++---------------+---------------------+----------+
+17 rows in set (0.00 sec)
+
+mysql> select stock_quantity from books;
++----------------+
+| stock_quantity |
++----------------+
+|             32 |
+|             43 |
+|             12 |
+|             97 |
+|            154 |
+|             26 |
+|             68 |
+|             55 |
+|            104 |
+|            100 |
+|             23 |
+|             12 |
+|             49 |
+|             95 |
+|            172 |
+|             92 |
+|             29 |
+|            287 |
+|           1000 |
+|             12 |
+|             12 |
++----------------+
+21 rows in set (0.00 sec)
+
+mysql> select released_year,stock_quantity from books;
++---------------+----------------+
+| released_year | stock_quantity |
++---------------+----------------+
+|          2003 |             32 |
+|          2016 |             43 |
+|          2001 |             12 |
+|          1996 |             97 |
+|          2012 |            154 |
+|          2013 |             26 |
+|          2000 |             68 |
+|          2010 |             55 |
+|          2001 |            104 |
+|          2003 |            100 |
+|          1981 |             23 |
+|          1989 |             12 |
+|          1985 |             49 |
+|          1945 |             95 |
+|          2004 |            172 |
+|          2005 |             92 |
+|          2014 |             29 |
+|          2001 |            287 |
+|          2017 |           1000 |
+|          2024 |             12 |
+|          2024 |             12 |
++---------------+----------------+
+21 rows in set (0.00 sec)
+
+mysql> select author_fname,avg(released_year) from books group by author_fname;
++--------------+--------------------+
+| author_fname | avg(released_year) |
++--------------+--------------------+
+| Jhumpa       |          1999.5000 |
+| Neil         |          2006.6667 |
+| Dave         |          2008.6667 |
+| Michael      |          2000.0000 |
+| Patti        |          2010.0000 |
+| Raymond      |          1985.0000 |
+| Don          |          1985.0000 |
+| John         |          1945.0000 |
+| David        |          2004.5000 |
+| Dan          |          2014.0000 |
+| Freida       |          2001.0000 |
+| George       |          2017.0000 |
+| Abhilasha    |          2024.0000 |
+| Abhishek     |          2024.0000 |
++--------------+--------------------+
+14 rows in set (0.00 sec)
+
+mysql> select author_fname,avg(released_year),count(*) from books group by author_fname;
++--------------+--------------------+----------+
+| author_fname | avg(released_year) | count(*) |
++--------------+--------------------+----------+
+| Jhumpa       |          1999.5000 |        2 |
+| Neil         |          2006.6667 |        3 |
+| Dave         |          2008.6667 |        3 |
+| Michael      |          2000.0000 |        1 |
+| Patti        |          2010.0000 |        1 |
+| Raymond      |          1985.0000 |        2 |
+| Don          |          1985.0000 |        1 |
+| John         |          1945.0000 |        1 |
+| David        |          2004.5000 |        2 |
+| Dan          |          2014.0000 |        1 |
+| Freida       |          2001.0000 |        1 |
+| George       |          2017.0000 |        1 |
+| Abhilasha    |          2024.0000 |        1 |
+| Abhishek     |          2024.0000 |        1 |
++--------------+--------------------+----------+
+14 rows in set (0.00 sec)
+
+mysql> select author_fname,released_year from  books;
++--------------+---------------+
+| author_fname | released_year |
++--------------+---------------+
+| Jhumpa       |          2003 |
+| Neil         |          2016 |
+| Neil         |          2001 |
+| Jhumpa       |          1996 |
+| Dave         |          2012 |
+| Dave         |          2013 |
+| Michael      |          2000 |
+| Patti        |          2010 |
+| Dave         |          2001 |
+| Neil         |          2003 |
+| Raymond      |          1981 |
+| Raymond      |          1989 |
+| Don          |          1985 |
+| John         |          1945 |
+| David        |          2004 |
+| David        |          2005 |
+| Dan          |          2014 |
+| Freida       |          2001 |
+| George       |          2017 |
+| Abhilasha    |          2024 |
+| Abhishek     |          2024 |
++--------------+---------------+
+21 rows in set (0.00 sec)
+
+mysql> select 1996+2003;
++-----------+
+| 1996+2003 |
++-----------+
+|      3999 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select 3999/2;
++-----------+
+| 3999/2    |
++-----------+
+| 1999.5000 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select max(pages) from books;
++------------+
+| max(pages) |
++------------+
+|        768 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select concat(author_fname,' ',author_lname) as FullName from books where pages=768;
++-----------------+
+| FullName        |
++-----------------+
+| Abhilasha Tyagi |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select concat(author_fname,' ',author_lname) as FullName from books where pages=(select max(pages) from books);
++-----------------+
+| FullName        |
++-----------------+
+| Abhilasha Tyagi |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select released_year as Year,count(*),avg(pages) from books group by released_year;
++------+----------+------------+
+| Year | count(*) | avg(pages) |
++------+----------+------------+
+| 2003 |        2 |   249.5000 |
+| 2016 |        1 |   304.0000 |
+| 2001 |        3 |   443.3333 |
+| 1996 |        1 |   198.0000 |
+| 2012 |        1 |   352.0000 |
+| 2013 |        1 |   504.0000 |
+| 2000 |        1 |   634.0000 |
+| 2010 |        1 |   304.0000 |
+| 1981 |        1 |   176.0000 |
+| 1989 |        1 |   526.0000 |
+| 1985 |        1 |   320.0000 |
+| 1945 |        1 |   181.0000 |
+| 2004 |        1 |   329.0000 |
+| 2005 |        1 |   343.0000 |
+| 2014 |        1 |   256.0000 |
+| 2017 |        1 |   367.0000 |
+| 2024 |        2 |   767.5000 |
++------+----------+------------+
+17 rows in set (0.00 sec)
+
+mysql> select released_year,pages from books;
++---------------+-------+
+| released_year | pages |
++---------------+-------+
+|          2003 |   291 |
+|          2016 |   304 |
+|          2001 |   465 |
+|          1996 |   198 |
+|          2012 |   352 |
+|          2013 |   504 |
+|          2000 |   634 |
+|          2010 |   304 |
+|          2001 |   437 |
+|          2003 |   208 |
+|          1981 |   176 |
+|          1989 |   526 |
+|          1985 |   320 |
+|          1945 |   181 |
+|          2004 |   329 |
+|          2005 |   343 |
+|          2014 |   256 |
+|          2001 |   428 |
+|          2017 |   367 |
+|          2024 |   768 |
+|          2024 |   767 |
++---------------+-------+
+21 rows in set (0.00 sec)
+
+mysql> select 291+208;
++---------+
+| 291+208 |
++---------+
+|     499 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select 499/2;
++----------+
+| 499/2    |
++----------+
+| 249.5000 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select conact(author_fname,author_lname) as FullName from  books order by desc linit 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc linit 2' at line 1
+mysql> select conact(author_fname,author_lname) as FullName from  books order by desc limit 2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc limit 2' at line 1
+mysql> select concat(author_fname,author_lname) as FullName from  books order by pages desc limit 2;
++----------------+
+| FullName       |
++----------------+
+| AbhilashaTyagi |
+| AbhishekTyagi  |
++----------------+
+2 rows in set (0.00 sec)
+
+mysql> select concat(author_fname,author_lname) as FullName from  books order by pages desc limit 1;
++----------------+
+| FullName       |
++----------------+
+| AbhilashaTyagi |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select pages from books order by desc limit 10;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc limit 10' at line 1
+mysql> select pages from books order by pages desc limit 10;
++-------+
+| pages |
++-------+
+|   768 |
+|   767 |
+|   634 |
+|   526 |
+|   504 |
+|   465 |
+|   437 |
+|   428 |
+|   367 |
+|   352 |
++-------+
+10 rows in set (0.00 sec)
+
+mysql> select concat(author_fname,author_lname) as FullName from  books order by pages desc limit 3;
++----------------+
+| FullName       |
++----------------+
+| AbhilashaTyagi |
+| AbhishekTyagi  |
+| MichaelChabon  |
++----------------+
+3 rows in set (0.00 sec)
+
+mysql> select concat(author_fname,author_lname),pages as FullName from  books order by pages desc limit 3;
++-----------------------------------+----------+
+| concat(author_fname,author_lname) | FullName |
++-----------------------------------+----------+
+| AbhilashaTyagi                    |      768 |
+| AbhishekTyagi                     |      767 |
+| MichaelChabon                     |      634 |
++-----------------------------------+----------+
+3 rows in set (0.01 sec)
+
+mysql> select released_year as year,count(*) as #book ,avg(pages) from books group by(released_year);
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select released_year as year,count(*) as #book ,avg(pages) from books group by released_year;
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select released_year as year,count(*) as #book,avg(pages) from books group by released_year;
+    -> //;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '//' at line 2
+mysql> select released_year as year,count(*) as '#book',avg(pages) from books group by released_year;
++------+-------+------------+
+| year | #book | avg(pages) |
++------+-------+------------+
+| 2003 |     2 |   249.5000 |
+| 2016 |     1 |   304.0000 |
+| 2001 |     3 |   443.3333 |
+| 1996 |     1 |   198.0000 |
+| 2012 |     1 |   352.0000 |
+| 2013 |     1 |   504.0000 |
+| 2000 |     1 |   634.0000 |
+| 2010 |     1 |   304.0000 |
+| 1981 |     1 |   176.0000 |
+| 1989 |     1 |   526.0000 |
+| 1985 |     1 |   320.0000 |
+| 1945 |     1 |   181.0000 |
+| 2004 |     1 |   329.0000 |
+| 2005 |     1 |   343.0000 |
+| 2014 |     1 |   256.0000 |
+| 2017 |     1 |   367.0000 |
+| 2024 |     2 |   767.5000 |
++------+-------+------------+
+17 rows in set (0.00 sec)
+
+mysql> select released_year as year,count(*) as '#book',avg(pages) as avg pages  from books group by released_
+year;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'pages  from books group by released_year' at line 1
+mysql> select released_year as year,count(*) as '#book',avg(pages) as 'avg pages'  from books group by released_year;
++------+-------+-----------+
+| year | #book | avg pages |
++------+-------+-----------+
+| 2003 |     2 |  249.5000 |
+| 2016 |     1 |  304.0000 |
+| 2001 |     3 |  443.3333 |
+| 1996 |     1 |  198.0000 |
+| 2012 |     1 |  352.0000 |
+| 2013 |     1 |  504.0000 |
+| 2000 |     1 |  634.0000 |
+| 2010 |     1 |  304.0000 |
+| 1981 |     1 |  176.0000 |
+| 1989 |     1 |  526.0000 |
+| 1985 |     1 |  320.0000 |
+| 1945 |     1 |  181.0000 |
+| 2004 |     1 |  329.0000 |
+| 2005 |     1 |  343.0000 |
+| 2014 |     1 |  256.0000 |
+| 2017 |     1 |  367.0000 |
+| 2024 |     2 |  767.5000 |
++------+-------+-----------+
+17 rows in set (0.00 sec)
+
+mysql> select released_year as year,count(*) as '#book',avg(pages) as 'avg pages'  from books group by released_year order by desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc' at line 1
+mysql> select released_year as year,count(*) as '#book',avg(pages) as 'avg pages'  from books group by released_year order by released_year  desc;
++------+-------+-----------+
+| year | #book | avg pages |
++------+-------+-----------+
+| 2024 |     2 |  767.5000 |
+| 2017 |     1 |  367.0000 |
+| 2016 |     1 |  304.0000 |
+| 2014 |     1 |  256.0000 |
+| 2013 |     1 |  504.0000 |
+| 2012 |     1 |  352.0000 |
+| 2010 |     1 |  304.0000 |
+| 2005 |     1 |  343.0000 |
+| 2004 |     1 |  329.0000 |
+| 2003 |     2 |  249.5000 |
+| 2001 |     3 |  443.3333 |
+| 2000 |     1 |  634.0000 |
+| 1996 |     1 |  198.0000 |
+| 1989 |     1 |  526.0000 |
+| 1985 |     1 |  320.0000 |
+| 1981 |     1 |  176.0000 |
+| 1945 |     1 |  181.0000 |
++------+-------+-----------+
+17 rows in set (0.00 sec)
+
+mysql> select released_year as year,count(*) as '#book',avg(pages) as 'avg pages'  from books group by released_year order by released_year ;
++------+-------+-----------+
+| year | #book | avg pages |
++------+-------+-----------+
+| 1945 |     1 |  181.0000 |
+| 1981 |     1 |  176.0000 |
+| 1985 |     1 |  320.0000 |
+| 1989 |     1 |  526.0000 |
+| 1996 |     1 |  198.0000 |
+| 2000 |     1 |  634.0000 |
+| 2001 |     3 |  443.3333 |
+| 2003 |     2 |  249.5000 |
+| 2004 |     1 |  329.0000 |
+| 2005 |     1 |  343.0000 |
+| 2010 |     1 |  304.0000 |
+| 2012 |     1 |  352.0000 |
+| 2013 |     1 |  504.0000 |
+| 2014 |     1 |  256.0000 |
+| 2016 |     1 |  304.0000 |
+| 2017 |     1 |  367.0000 |
+| 2024 |     2 |  767.5000 |
++------+-------+-----------+
+17 rows in set (0.00 sec)
+
+mysql> 

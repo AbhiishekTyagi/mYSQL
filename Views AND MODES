@@ -1,0 +1,3798 @@
+Last login: Fri Sep 13 12:45:24 on console
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show schemas;
++----------------------+
+| Database             |
++----------------------+
+| ABES                 |
+| Aggregate            |
+| bankmanagementsystem |
+| Books                |
+| BookShop             |
+| constraints          |
+| DBMS                 |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| Practice             |
+| RadheKrishna         |
+| Shirt                |
+| sys                  |
+| Triggers             |
+| Tv_db                |
+| View                 |
++----------------------+
+17 rows in set (0.01 sec)
+
+mysql> use Tv_db;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_tv_db |
++-----------------+
+| reviewers       |
+| reviews         |
+| series          |
++-----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from reviewers;
++----+------------+-----------+
+| id | first_name | last_name |
++----+------------+-----------+
+|  1 | Thomas     | Stoneman  |
+|  2 | Wyatt      | Skaggs    |
+|  3 | Kimbra     | Masters   |
+|  4 | Domingo    | Cortes    |
+|  5 | Colt       | Steele    |
+|  6 | Pinkie     | Petit     |
+|  7 | Marlon     | Crafford  |
++----+------------+-----------+
+7 rows in set (0.01 sec)
+
+mysql> select * from series;
++----+-----------------------+---------------+-----------+
+| id | title                 | released_year | genre     |
++----+-----------------------+---------------+-----------+
+|  1 | Archer                |          2009 | Animation |
+|  2 | Arrested Development  |          2003 | Comedy    |
+|  3 | Bob's Burgers         |          2011 | Animation |
+|  4 | Bojack Horseman       |          2014 | Animation |
+|  5 | Breaking Bad          |          2008 | Drama     |
+|  6 | Curb Your Enthusiasm  |          2000 | Comedy    |
+|  7 | Fargo                 |          2014 | Drama     |
+|  8 | Freaks and Geeks      |          1999 | Comedy    |
+|  9 | General Hospital      |          1963 | Drama     |
+| 10 | Halt and Catch Fire   |          2014 | Drama     |
+| 11 | Malcolm In The Middle |          2000 | Comedy    |
+| 12 | Pushing Daisies       |          2007 | Comedy    |
+| 13 | Seinfeld              |          1989 | Comedy    |
+| 14 | Stranger Things       |          2016 | Drama     |
++----+-----------------------+---------------+-----------+
+14 rows in set (0.01 sec)
+
+mysql> select * from reviews;
++----+--------+-----------+-------------+
+| id | rating | series_id | reviewer_id |
++----+--------+-----------+-------------+
+|  1 |    8.0 |         1 |           1 |
+|  2 |    7.5 |         1 |           2 |
+|  3 |    8.5 |         1 |           3 |
+|  4 |    7.7 |         1 |           4 |
+|  5 |    8.9 |         1 |           5 |
+|  6 |    8.1 |         2 |           1 |
+|  7 |    6.0 |         2 |           4 |
+|  8 |    8.0 |         2 |           3 |
+|  9 |    8.4 |         2 |           6 |
+| 10 |    9.9 |         2 |           5 |
+| 11 |    7.0 |         3 |           1 |
+| 12 |    7.5 |         3 |           6 |
+| 13 |    8.0 |         3 |           4 |
+| 14 |    7.1 |         3 |           3 |
+| 15 |    8.0 |         3 |           5 |
+| 16 |    7.5 |         4 |           1 |
+| 17 |    7.8 |         4 |           3 |
+| 18 |    8.3 |         4 |           4 |
+| 19 |    7.6 |         4 |           2 |
+| 20 |    8.5 |         4 |           5 |
+| 21 |    9.5 |         5 |           1 |
+| 22 |    9.0 |         5 |           3 |
+| 23 |    9.1 |         5 |           4 |
+| 24 |    9.3 |         5 |           2 |
+| 25 |    9.9 |         5 |           5 |
+| 26 |    6.5 |         6 |           2 |
+| 27 |    7.8 |         6 |           3 |
+| 28 |    8.8 |         6 |           4 |
+| 29 |    8.4 |         6 |           2 |
+| 30 |    9.1 |         6 |           5 |
+| 31 |    9.1 |         7 |           2 |
+| 32 |    9.7 |         7 |           5 |
+| 33 |    8.5 |         8 |           4 |
+| 34 |    7.8 |         8 |           2 |
+| 35 |    8.8 |         8 |           6 |
+| 36 |    9.3 |         8 |           5 |
+| 37 |    5.5 |         9 |           2 |
+| 38 |    6.8 |         9 |           3 |
+| 39 |    5.8 |         9 |           4 |
+| 40 |    4.3 |         9 |           6 |
+| 41 |    4.5 |         9 |           5 |
+| 42 |    9.9 |        10 |           5 |
+| 43 |    8.0 |        13 |           3 |
+| 44 |    7.2 |        13 |           4 |
+| 45 |    8.5 |        14 |           2 |
+| 46 |    8.9 |        14 |           3 |
+| 47 |    8.9 |        14 |           4 |
++----+--------+-----------+-------------+
+47 rows in set (0.00 sec)
+
+mysql> select * from reviews limite 2;;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2' at line 1
+ERROR: 
+No query specified
+
+mysql> select * from reviews limit 2;
++----+--------+-----------+-------------+
+| id | rating | series_id | reviewer_id |
++----+--------+-----------+-------------+
+|  1 |    8.0 |         1 |           1 |
+|  2 |    7.5 |         1 |           2 |
++----+--------+-----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from reviews Innner join series on reviews.series_id=series.id;
+ERROR 1054 (42S22): Unknown column 'reviews.series_id' in 'on clause'
+mysql> select * from reviews Innner join series on reviews.series_id=series.id;
+ERROR 1054 (42S22): Unknown column 'reviews.series_id' in 'on clause'
+mysql> select * from sries;
+ERROR 1146 (42S02): Table 'tv_db.sries' doesn't exist
+mysql> select * from series;
++----+-----------------------+---------------+-----------+
+| id | title                 | released_year | genre     |
++----+-----------------------+---------------+-----------+
+|  1 | Archer                |          2009 | Animation |
+|  2 | Arrested Development  |          2003 | Comedy    |
+|  3 | Bob's Burgers         |          2011 | Animation |
+|  4 | Bojack Horseman       |          2014 | Animation |
+|  5 | Breaking Bad          |          2008 | Drama     |
+|  6 | Curb Your Enthusiasm  |          2000 | Comedy    |
+|  7 | Fargo                 |          2014 | Drama     |
+|  8 | Freaks and Geeks      |          1999 | Comedy    |
+|  9 | General Hospital      |          1963 | Drama     |
+| 10 | Halt and Catch Fire   |          2014 | Drama     |
+| 11 | Malcolm In The Middle |          2000 | Comedy    |
+| 12 | Pushing Daisies       |          2007 | Comedy    |
+| 13 | Seinfeld              |          1989 | Comedy    |
+| 14 | Stranger Things       |          2016 | Drama     |
++----+-----------------------+---------------+-----------+
+14 rows in set (0.00 sec)
+
+mysql> select * from reviews Inner join series on reviews.series_id=series.id;
++----+--------+-----------+-------------+----+----------------------+---------------+-----------+
+| id | rating | series_id | reviewer_id | id | title                | released_year | genre     |
++----+--------+-----------+-------------+----+----------------------+---------------+-----------+
+|  1 |    8.0 |         1 |           1 |  1 | Archer               |          2009 | Animation |
+|  2 |    7.5 |         1 |           2 |  1 | Archer               |          2009 | Animation |
+|  3 |    8.5 |         1 |           3 |  1 | Archer               |          2009 | Animation |
+|  4 |    7.7 |         1 |           4 |  1 | Archer               |          2009 | Animation |
+|  5 |    8.9 |         1 |           5 |  1 | Archer               |          2009 | Animation |
+|  6 |    8.1 |         2 |           1 |  2 | Arrested Development |          2003 | Comedy    |
+|  7 |    6.0 |         2 |           4 |  2 | Arrested Development |          2003 | Comedy    |
+|  8 |    8.0 |         2 |           3 |  2 | Arrested Development |          2003 | Comedy    |
+|  9 |    8.4 |         2 |           6 |  2 | Arrested Development |          2003 | Comedy    |
+| 10 |    9.9 |         2 |           5 |  2 | Arrested Development |          2003 | Comedy    |
+| 11 |    7.0 |         3 |           1 |  3 | Bob's Burgers        |          2011 | Animation |
+| 12 |    7.5 |         3 |           6 |  3 | Bob's Burgers        |          2011 | Animation |
+| 13 |    8.0 |         3 |           4 |  3 | Bob's Burgers        |          2011 | Animation |
+| 14 |    7.1 |         3 |           3 |  3 | Bob's Burgers        |          2011 | Animation |
+| 15 |    8.0 |         3 |           5 |  3 | Bob's Burgers        |          2011 | Animation |
+| 16 |    7.5 |         4 |           1 |  4 | Bojack Horseman      |          2014 | Animation |
+| 17 |    7.8 |         4 |           3 |  4 | Bojack Horseman      |          2014 | Animation |
+| 18 |    8.3 |         4 |           4 |  4 | Bojack Horseman      |          2014 | Animation |
+| 19 |    7.6 |         4 |           2 |  4 | Bojack Horseman      |          2014 | Animation |
+| 20 |    8.5 |         4 |           5 |  4 | Bojack Horseman      |          2014 | Animation |
+| 21 |    9.5 |         5 |           1 |  5 | Breaking Bad         |          2008 | Drama     |
+| 22 |    9.0 |         5 |           3 |  5 | Breaking Bad         |          2008 | Drama     |
+| 23 |    9.1 |         5 |           4 |  5 | Breaking Bad         |          2008 | Drama     |
+| 24 |    9.3 |         5 |           2 |  5 | Breaking Bad         |          2008 | Drama     |
+| 25 |    9.9 |         5 |           5 |  5 | Breaking Bad         |          2008 | Drama     |
+| 26 |    6.5 |         6 |           2 |  6 | Curb Your Enthusiasm |          2000 | Comedy    |
+| 27 |    7.8 |         6 |           3 |  6 | Curb Your Enthusiasm |          2000 | Comedy    |
+| 28 |    8.8 |         6 |           4 |  6 | Curb Your Enthusiasm |          2000 | Comedy    |
+| 29 |    8.4 |         6 |           2 |  6 | Curb Your Enthusiasm |          2000 | Comedy    |
+| 30 |    9.1 |         6 |           5 |  6 | Curb Your Enthusiasm |          2000 | Comedy    |
+| 31 |    9.1 |         7 |           2 |  7 | Fargo                |          2014 | Drama     |
+| 32 |    9.7 |         7 |           5 |  7 | Fargo                |          2014 | Drama     |
+| 33 |    8.5 |         8 |           4 |  8 | Freaks and Geeks     |          1999 | Comedy    |
+| 34 |    7.8 |         8 |           2 |  8 | Freaks and Geeks     |          1999 | Comedy    |
+| 35 |    8.8 |         8 |           6 |  8 | Freaks and Geeks     |          1999 | Comedy    |
+| 36 |    9.3 |         8 |           5 |  8 | Freaks and Geeks     |          1999 | Comedy    |
+| 37 |    5.5 |         9 |           2 |  9 | General Hospital     |          1963 | Drama     |
+| 38 |    6.8 |         9 |           3 |  9 | General Hospital     |          1963 | Drama     |
+| 39 |    5.8 |         9 |           4 |  9 | General Hospital     |          1963 | Drama     |
+| 40 |    4.3 |         9 |           6 |  9 | General Hospital     |          1963 | Drama     |
+| 41 |    4.5 |         9 |           5 |  9 | General Hospital     |          1963 | Drama     |
+| 42 |    9.9 |        10 |           5 | 10 | Halt and Catch Fire  |          2014 | Drama     |
+| 43 |    8.0 |        13 |           3 | 13 | Seinfeld             |          1989 | Comedy    |
+| 44 |    7.2 |        13 |           4 | 13 | Seinfeld             |          1989 | Comedy    |
+| 45 |    8.5 |        14 |           2 | 14 | Stranger Things      |          2016 | Drama     |
+| 46 |    8.9 |        14 |           3 | 14 | Stranger Things      |          2016 | Drama     |
+| 47 |    8.9 |        14 |           4 | 14 | Stranger Things      |          2016 | Drama     |
++----+--------+-----------+-------------+----+----------------------+---------------+-----------+
+47 rows in set (0.00 sec)
+
+mysql> select * from series Inner join reviews on series.id=reviews.series_id;
++----+----------------------+---------------+-----------+----+--------+-----------+-------------+
+| id | title                | released_year | genre     | id | rating | series_id | reviewer_id |
++----+----------------------+---------------+-----------+----+--------+-----------+-------------+
+|  1 | Archer               |          2009 | Animation |  1 |    8.0 |         1 |           1 |
+|  1 | Archer               |          2009 | Animation |  2 |    7.5 |         1 |           2 |
+|  1 | Archer               |          2009 | Animation |  3 |    8.5 |         1 |           3 |
+|  1 | Archer               |          2009 | Animation |  4 |    7.7 |         1 |           4 |
+|  1 | Archer               |          2009 | Animation |  5 |    8.9 |         1 |           5 |
+|  2 | Arrested Development |          2003 | Comedy    |  6 |    8.1 |         2 |           1 |
+|  2 | Arrested Development |          2003 | Comedy    |  7 |    6.0 |         2 |           4 |
+|  2 | Arrested Development |          2003 | Comedy    |  8 |    8.0 |         2 |           3 |
+|  2 | Arrested Development |          2003 | Comedy    |  9 |    8.4 |         2 |           6 |
+|  2 | Arrested Development |          2003 | Comedy    | 10 |    9.9 |         2 |           5 |
+|  3 | Bob's Burgers        |          2011 | Animation | 11 |    7.0 |         3 |           1 |
+|  3 | Bob's Burgers        |          2011 | Animation | 12 |    7.5 |         3 |           6 |
+|  3 | Bob's Burgers        |          2011 | Animation | 13 |    8.0 |         3 |           4 |
+|  3 | Bob's Burgers        |          2011 | Animation | 14 |    7.1 |         3 |           3 |
+|  3 | Bob's Burgers        |          2011 | Animation | 15 |    8.0 |         3 |           5 |
+|  4 | Bojack Horseman      |          2014 | Animation | 16 |    7.5 |         4 |           1 |
+|  4 | Bojack Horseman      |          2014 | Animation | 17 |    7.8 |         4 |           3 |
+|  4 | Bojack Horseman      |          2014 | Animation | 18 |    8.3 |         4 |           4 |
+|  4 | Bojack Horseman      |          2014 | Animation | 19 |    7.6 |         4 |           2 |
+|  4 | Bojack Horseman      |          2014 | Animation | 20 |    8.5 |         4 |           5 |
+|  5 | Breaking Bad         |          2008 | Drama     | 21 |    9.5 |         5 |           1 |
+|  5 | Breaking Bad         |          2008 | Drama     | 22 |    9.0 |         5 |           3 |
+|  5 | Breaking Bad         |          2008 | Drama     | 23 |    9.1 |         5 |           4 |
+|  5 | Breaking Bad         |          2008 | Drama     | 24 |    9.3 |         5 |           2 |
+|  5 | Breaking Bad         |          2008 | Drama     | 25 |    9.9 |         5 |           5 |
+|  6 | Curb Your Enthusiasm |          2000 | Comedy    | 26 |    6.5 |         6 |           2 |
+|  6 | Curb Your Enthusiasm |          2000 | Comedy    | 27 |    7.8 |         6 |           3 |
+|  6 | Curb Your Enthusiasm |          2000 | Comedy    | 28 |    8.8 |         6 |           4 |
+|  6 | Curb Your Enthusiasm |          2000 | Comedy    | 29 |    8.4 |         6 |           2 |
+|  6 | Curb Your Enthusiasm |          2000 | Comedy    | 30 |    9.1 |         6 |           5 |
+|  7 | Fargo                |          2014 | Drama     | 31 |    9.1 |         7 |           2 |
+|  7 | Fargo                |          2014 | Drama     | 32 |    9.7 |         7 |           5 |
+|  8 | Freaks and Geeks     |          1999 | Comedy    | 33 |    8.5 |         8 |           4 |
+|  8 | Freaks and Geeks     |          1999 | Comedy    | 34 |    7.8 |         8 |           2 |
+|  8 | Freaks and Geeks     |          1999 | Comedy    | 35 |    8.8 |         8 |           6 |
+|  8 | Freaks and Geeks     |          1999 | Comedy    | 36 |    9.3 |         8 |           5 |
+|  9 | General Hospital     |          1963 | Drama     | 37 |    5.5 |         9 |           2 |
+|  9 | General Hospital     |          1963 | Drama     | 38 |    6.8 |         9 |           3 |
+|  9 | General Hospital     |          1963 | Drama     | 39 |    5.8 |         9 |           4 |
+|  9 | General Hospital     |          1963 | Drama     | 40 |    4.3 |         9 |           6 |
+|  9 | General Hospital     |          1963 | Drama     | 41 |    4.5 |         9 |           5 |
+| 10 | Halt and Catch Fire  |          2014 | Drama     | 42 |    9.9 |        10 |           5 |
+| 13 | Seinfeld             |          1989 | Comedy    | 43 |    8.0 |        13 |           3 |
+| 13 | Seinfeld             |          1989 | Comedy    | 44 |    7.2 |        13 |           4 |
+| 14 | Stranger Things      |          2016 | Drama     | 45 |    8.5 |        14 |           2 |
+| 14 | Stranger Things      |          2016 | Drama     | 46 |    8.9 |        14 |           3 |
+| 14 | Stranger Things      |          2016 | Drama     | 47 |    8.9 |        14 |           4 |
++----+----------------------+---------------+-----------+----+--------+-----------+-------------+
+47 rows in set (0.00 sec)
+
+mysql> select title,Rating from reviews inner join series on 
+    -> reviews.series_id=series.id;
++----------------------+--------+
+| title                | Rating |
++----------------------+--------+
+| Archer               |    8.0 |
+| Archer               |    7.5 |
+| Archer               |    8.5 |
+| Archer               |    7.7 |
+| Archer               |    8.9 |
+| Arrested Development |    8.1 |
+| Arrested Development |    6.0 |
+| Arrested Development |    8.0 |
+| Arrested Development |    8.4 |
+| Arrested Development |    9.9 |
+| Bob's Burgers        |    7.0 |
+| Bob's Burgers        |    7.5 |
+| Bob's Burgers        |    8.0 |
+| Bob's Burgers        |    7.1 |
+| Bob's Burgers        |    8.0 |
+| Bojack Horseman      |    7.5 |
+| Bojack Horseman      |    7.8 |
+| Bojack Horseman      |    8.3 |
+| Bojack Horseman      |    7.6 |
+| Bojack Horseman      |    8.5 |
+| Breaking Bad         |    9.5 |
+| Breaking Bad         |    9.0 |
+| Breaking Bad         |    9.1 |
+| Breaking Bad         |    9.3 |
+| Breaking Bad         |    9.9 |
+| Curb Your Enthusiasm |    6.5 |
+| Curb Your Enthusiasm |    7.8 |
+| Curb Your Enthusiasm |    8.8 |
+| Curb Your Enthusiasm |    8.4 |
+| Curb Your Enthusiasm |    9.1 |
+| Fargo                |    9.1 |
+| Fargo                |    9.7 |
+| Freaks and Geeks     |    8.5 |
+| Freaks and Geeks     |    7.8 |
+| Freaks and Geeks     |    8.8 |
+| Freaks and Geeks     |    9.3 |
+| General Hospital     |    5.5 |
+| General Hospital     |    6.8 |
+| General Hospital     |    5.8 |
+| General Hospital     |    4.3 |
+| General Hospital     |    4.5 |
+| Halt and Catch Fire  |    9.9 |
+| Seinfeld             |    8.0 |
+| Seinfeld             |    7.2 |
+| Stranger Things      |    8.5 |
+| Stranger Things      |    8.9 |
+| Stranger Things      |    8.9 |
++----------------------+--------+
+47 rows in set (0.00 sec)
+
+mysql> select title,Rating from reviews inner join series on  reviews.series_id=series.id;
++----------------------+--------+
+| title                | Rating |
++----------------------+--------+
+| Archer               |    8.0 |
+| Archer               |    7.5 |
+| Archer               |    8.5 |
+| Archer               |    7.7 |
+| Archer               |    8.9 |
+| Arrested Development |    8.1 |
+| Arrested Development |    6.0 |
+| Arrested Development |    8.0 |
+| Arrested Development |    8.4 |
+| Arrested Development |    9.9 |
+| Bob's Burgers        |    7.0 |
+| Bob's Burgers        |    7.5 |
+| Bob's Burgers        |    8.0 |
+| Bob's Burgers        |    7.1 |
+| Bob's Burgers        |    8.0 |
+| Bojack Horseman      |    7.5 |
+| Bojack Horseman      |    7.8 |
+| Bojack Horseman      |    8.3 |
+| Bojack Horseman      |    7.6 |
+| Bojack Horseman      |    8.5 |
+| Breaking Bad         |    9.5 |
+| Breaking Bad         |    9.0 |
+| Breaking Bad         |    9.1 |
+| Breaking Bad         |    9.3 |
+| Breaking Bad         |    9.9 |
+| Curb Your Enthusiasm |    6.5 |
+| Curb Your Enthusiasm |    7.8 |
+| Curb Your Enthusiasm |    8.8 |
+| Curb Your Enthusiasm |    8.4 |
+| Curb Your Enthusiasm |    9.1 |
+| Fargo                |    9.1 |
+| Fargo                |    9.7 |
+| Freaks and Geeks     |    8.5 |
+| Freaks and Geeks     |    7.8 |
+| Freaks and Geeks     |    8.8 |
+| Freaks and Geeks     |    9.3 |
+| General Hospital     |    5.5 |
+| General Hospital     |    6.8 |
+| General Hospital     |    5.8 |
+| General Hospital     |    4.3 |
+| General Hospital     |    4.5 |
+| Halt and Catch Fire  |    9.9 |
+| Seinfeld             |    8.0 |
+| Seinfeld             |    7.2 |
+| Stranger Things      |    8.5 |
+| Stranger Things      |    8.9 |
+| Stranger Things      |    8.9 |
++----------------------+--------+
+47 rows in set (0.00 sec)
+
+mysql> select title,Rating,concat(First_Name,' ',Last_Name) as Reviews from reviews inner join series on reviews.series
+_id=series.id inner join  reviewers on reviews.reviewers_id=Reviewers.id;
+ERROR 1054 (42S22): Unknown column 'reviews.reviewers_id' in 'on clause'
+mysql> select title,Rating,concat(First_Name,' ',Last_Name) as Reviews from reviews inner join series on reviews.series_id=series.id inner join  reviewers on reviews.reviewer_id=Reviewers.id;
++----------------------+--------+-----------------+
+| title                | Rating | Reviews         |
++----------------------+--------+-----------------+
+| Archer               |    8.0 | Thomas Stoneman |
+| Arrested Development |    8.1 | Thomas Stoneman |
+| Bob's Burgers        |    7.0 | Thomas Stoneman |
+| Bojack Horseman      |    7.5 | Thomas Stoneman |
+| Breaking Bad         |    9.5 | Thomas Stoneman |
+| Archer               |    7.5 | Wyatt Skaggs    |
+| Bojack Horseman      |    7.6 | Wyatt Skaggs    |
+| Breaking Bad         |    9.3 | Wyatt Skaggs    |
+| Curb Your Enthusiasm |    6.5 | Wyatt Skaggs    |
+| Curb Your Enthusiasm |    8.4 | Wyatt Skaggs    |
+| Fargo                |    9.1 | Wyatt Skaggs    |
+| Freaks and Geeks     |    7.8 | Wyatt Skaggs    |
+| General Hospital     |    5.5 | Wyatt Skaggs    |
+| Stranger Things      |    8.5 | Wyatt Skaggs    |
+| Archer               |    8.5 | Kimbra Masters  |
+| Arrested Development |    8.0 | Kimbra Masters  |
+| Bob's Burgers        |    7.1 | Kimbra Masters  |
+| Bojack Horseman      |    7.8 | Kimbra Masters  |
+| Breaking Bad         |    9.0 | Kimbra Masters  |
+| Curb Your Enthusiasm |    7.8 | Kimbra Masters  |
+| General Hospital     |    6.8 | Kimbra Masters  |
+| Seinfeld             |    8.0 | Kimbra Masters  |
+| Stranger Things      |    8.9 | Kimbra Masters  |
+| Archer               |    7.7 | Domingo Cortes  |
+| Arrested Development |    6.0 | Domingo Cortes  |
+| Bob's Burgers        |    8.0 | Domingo Cortes  |
+| Bojack Horseman      |    8.3 | Domingo Cortes  |
+| Breaking Bad         |    9.1 | Domingo Cortes  |
+| Curb Your Enthusiasm |    8.8 | Domingo Cortes  |
+| Freaks and Geeks     |    8.5 | Domingo Cortes  |
+| General Hospital     |    5.8 | Domingo Cortes  |
+| Seinfeld             |    7.2 | Domingo Cortes  |
+| Stranger Things      |    8.9 | Domingo Cortes  |
+| Archer               |    8.9 | Colt Steele     |
+| Arrested Development |    9.9 | Colt Steele     |
+| Bob's Burgers        |    8.0 | Colt Steele     |
+| Bojack Horseman      |    8.5 | Colt Steele     |
+| Breaking Bad         |    9.9 | Colt Steele     |
+| Curb Your Enthusiasm |    9.1 | Colt Steele     |
+| Fargo                |    9.7 | Colt Steele     |
+| Freaks and Geeks     |    9.3 | Colt Steele     |
+| General Hospital     |    4.5 | Colt Steele     |
+| Halt and Catch Fire  |    9.9 | Colt Steele     |
+| Arrested Development |    8.4 | Pinkie Petit    |
+| Bob's Burgers        |    7.5 | Pinkie Petit    |
+| Freaks and Geeks     |    8.8 | Pinkie Petit    |
+| General Hospital     |    4.3 | Pinkie Petit    |
++----------------------+--------+-----------------+
+47 rows in set (0.00 sec)
+
+mysql> select title,Rating,concat(First_Name,' ',Last_Name) as Reviews from reviews inner join series on reviews.series_id=series.id inner join  reviewers on reviews.reviewer_id=Reviewers.id limit 12;;
++----------------------+--------+-----------------+
+| title                | Rating | Reviews         |
++----------------------+--------+-----------------+
+| Archer               |    8.0 | Thomas Stoneman |
+| Arrested Development |    8.1 | Thomas Stoneman |
+| Bob's Burgers        |    7.0 | Thomas Stoneman |
+| Bojack Horseman      |    7.5 | Thomas Stoneman |
+| Breaking Bad         |    9.5 | Thomas Stoneman |
+| Archer               |    7.5 | Wyatt Skaggs    |
+| Bojack Horseman      |    7.6 | Wyatt Skaggs    |
+| Breaking Bad         |    9.3 | Wyatt Skaggs    |
+| Curb Your Enthusiasm |    6.5 | Wyatt Skaggs    |
+| Curb Your Enthusiasm |    8.4 | Wyatt Skaggs    |
+| Fargo                |    9.1 | Wyatt Skaggs    |
+| Freaks and Geeks     |    7.8 | Wyatt Skaggs    |
++----------------------+--------+-----------------+
+12 rows in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+mysql> select title,Rating,concat(First_Name,' ',Last_Name) as Reviews from reviews inner join series on reviews.series_id=series.id inner join  reviewers on reviews.reviewer_id=Reviewers.id limit 2;;
++----------------------+--------+-----------------+
+| title                | Rating | Reviews         |
++----------------------+--------+-----------------+
+| Archer               |    8.0 | Thomas Stoneman |
+| Arrested Development |    8.1 | Thomas Stoneman |
++----------------------+--------+-----------------+
+2 rows in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+mysql> SELECT 
+    ->     title,released_year,genre,rating,first_name,last_Name 
+    ->     
+    -> FROM
+    ->     reviews
+    ->         INNER JOIN
+    ->     series ON reviews.series_id = series.id
+    ->         INNER JOIN
+    ->     reviewers on
+    ->      reviewers.id=reviews.reviewer_id;
++----------------------+---------------+-----------+--------+------------+-----------+
+| title                | released_year | genre     | rating | first_name | last_Name |
++----------------------+---------------+-----------+--------+------------+-----------+
+| Archer               |          2009 | Animation |    8.0 | Thomas     | Stoneman  |
+| Arrested Development |          2003 | Comedy    |    8.1 | Thomas     | Stoneman  |
+| Bob's Burgers        |          2011 | Animation |    7.0 | Thomas     | Stoneman  |
+| Bojack Horseman      |          2014 | Animation |    7.5 | Thomas     | Stoneman  |
+| Breaking Bad         |          2008 | Drama     |    9.5 | Thomas     | Stoneman  |
+| Archer               |          2009 | Animation |    7.5 | Wyatt      | Skaggs    |
+| Bojack Horseman      |          2014 | Animation |    7.6 | Wyatt      | Skaggs    |
+| Breaking Bad         |          2008 | Drama     |    9.3 | Wyatt      | Skaggs    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    6.5 | Wyatt      | Skaggs    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    8.4 | Wyatt      | Skaggs    |
+| Fargo                |          2014 | Drama     |    9.1 | Wyatt      | Skaggs    |
+| Freaks and Geeks     |          1999 | Comedy    |    7.8 | Wyatt      | Skaggs    |
+| General Hospital     |          1963 | Drama     |    5.5 | Wyatt      | Skaggs    |
+| Stranger Things      |          2016 | Drama     |    8.5 | Wyatt      | Skaggs    |
+| Archer               |          2009 | Animation |    8.5 | Kimbra     | Masters   |
+| Arrested Development |          2003 | Comedy    |    8.0 | Kimbra     | Masters   |
+| Bob's Burgers        |          2011 | Animation |    7.1 | Kimbra     | Masters   |
+| Bojack Horseman      |          2014 | Animation |    7.8 | Kimbra     | Masters   |
+| Breaking Bad         |          2008 | Drama     |    9.0 | Kimbra     | Masters   |
+| Curb Your Enthusiasm |          2000 | Comedy    |    7.8 | Kimbra     | Masters   |
+| General Hospital     |          1963 | Drama     |    6.8 | Kimbra     | Masters   |
+| Seinfeld             |          1989 | Comedy    |    8.0 | Kimbra     | Masters   |
+| Stranger Things      |          2016 | Drama     |    8.9 | Kimbra     | Masters   |
+| Archer               |          2009 | Animation |    7.7 | Domingo    | Cortes    |
+| Arrested Development |          2003 | Comedy    |    6.0 | Domingo    | Cortes    |
+| Bob's Burgers        |          2011 | Animation |    8.0 | Domingo    | Cortes    |
+| Bojack Horseman      |          2014 | Animation |    8.3 | Domingo    | Cortes    |
+| Breaking Bad         |          2008 | Drama     |    9.1 | Domingo    | Cortes    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    8.8 | Domingo    | Cortes    |
+| Freaks and Geeks     |          1999 | Comedy    |    8.5 | Domingo    | Cortes    |
+| General Hospital     |          1963 | Drama     |    5.8 | Domingo    | Cortes    |
+| Seinfeld             |          1989 | Comedy    |    7.2 | Domingo    | Cortes    |
+| Stranger Things      |          2016 | Drama     |    8.9 | Domingo    | Cortes    |
+| Archer               |          2009 | Animation |    8.9 | Colt       | Steele    |
+| Arrested Development |          2003 | Comedy    |    9.9 | Colt       | Steele    |
+| Bob's Burgers        |          2011 | Animation |    8.0 | Colt       | Steele    |
+| Bojack Horseman      |          2014 | Animation |    8.5 | Colt       | Steele    |
+| Breaking Bad         |          2008 | Drama     |    9.9 | Colt       | Steele    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    9.1 | Colt       | Steele    |
+| Fargo                |          2014 | Drama     |    9.7 | Colt       | Steele    |
+| Freaks and Geeks     |          1999 | Comedy    |    9.3 | Colt       | Steele    |
+| General Hospital     |          1963 | Drama     |    4.5 | Colt       | Steele    |
+| Halt and Catch Fire  |          2014 | Drama     |    9.9 | Colt       | Steele    |
+| Arrested Development |          2003 | Comedy    |    8.4 | Pinkie     | Petit     |
+| Bob's Burgers        |          2011 | Animation |    7.5 | Pinkie     | Petit     |
+| Freaks and Geeks     |          1999 | Comedy    |    8.8 | Pinkie     | Petit     |
+| General Hospital     |          1963 | Drama     |    4.3 | Pinkie     | Petit     |
++----------------------+---------------+-----------+--------+------------+-----------+
+47 rows in set (0.03 sec)
+
+mysql> -- Create view to stored the larger query in one name called virtual table 
+mysql> create  view Full_Review as SELECT 
+    ->     title,released_year,genre,rating,first_name,last_Name 
+    ->     
+    -> FROM
+    ->     reviews
+    ->         INNER JOIN
+    ->     series ON reviews.series_id = series.id
+    ->         INNER JOIN
+    ->     reviewers on
+    ->      reviewers.id=reviews.reviewer_id;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_tv_db |
++-----------------+
+| full_review     |
+| reviewers       |
+| reviews         |
+| series          |
++-----------------+
+4 rows in set (0.00 sec)
+
+mysql> desc full_reviews;
+ERROR 1146 (42S02): Table 'tv_db.full_reviews' doesn't exist
+mysql> desc full_review;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| title         | varchar(100) | YES  |     | NULL    |       |
+| released_year | year         | YES  |     | NULL    |       |
+| genre         | varchar(100) | YES  |     | NULL    |       |
+| rating        | decimal(2,1) | YES  |     | NULL    |       |
+| first_name    | varchar(50)  | NO   |     | NULL    |       |
+| last_Name     | varchar(50)  | NO   |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> select * from full_review;
++----------------------+---------------+-----------+--------+------------+-----------+
+| title                | released_year | genre     | rating | first_name | last_Name |
++----------------------+---------------+-----------+--------+------------+-----------+
+| Archer               |          2009 | Animation |    8.0 | Thomas     | Stoneman  |
+| Arrested Development |          2003 | Comedy    |    8.1 | Thomas     | Stoneman  |
+| Bob's Burgers        |          2011 | Animation |    7.0 | Thomas     | Stoneman  |
+| Bojack Horseman      |          2014 | Animation |    7.5 | Thomas     | Stoneman  |
+| Breaking Bad         |          2008 | Drama     |    9.5 | Thomas     | Stoneman  |
+| Archer               |          2009 | Animation |    7.5 | Wyatt      | Skaggs    |
+| Bojack Horseman      |          2014 | Animation |    7.6 | Wyatt      | Skaggs    |
+| Breaking Bad         |          2008 | Drama     |    9.3 | Wyatt      | Skaggs    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    6.5 | Wyatt      | Skaggs    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    8.4 | Wyatt      | Skaggs    |
+| Fargo                |          2014 | Drama     |    9.1 | Wyatt      | Skaggs    |
+| Freaks and Geeks     |          1999 | Comedy    |    7.8 | Wyatt      | Skaggs    |
+| General Hospital     |          1963 | Drama     |    5.5 | Wyatt      | Skaggs    |
+| Stranger Things      |          2016 | Drama     |    8.5 | Wyatt      | Skaggs    |
+| Archer               |          2009 | Animation |    8.5 | Kimbra     | Masters   |
+| Arrested Development |          2003 | Comedy    |    8.0 | Kimbra     | Masters   |
+| Bob's Burgers        |          2011 | Animation |    7.1 | Kimbra     | Masters   |
+| Bojack Horseman      |          2014 | Animation |    7.8 | Kimbra     | Masters   |
+| Breaking Bad         |          2008 | Drama     |    9.0 | Kimbra     | Masters   |
+| Curb Your Enthusiasm |          2000 | Comedy    |    7.8 | Kimbra     | Masters   |
+| General Hospital     |          1963 | Drama     |    6.8 | Kimbra     | Masters   |
+| Seinfeld             |          1989 | Comedy    |    8.0 | Kimbra     | Masters   |
+| Stranger Things      |          2016 | Drama     |    8.9 | Kimbra     | Masters   |
+| Archer               |          2009 | Animation |    7.7 | Domingo    | Cortes    |
+| Arrested Development |          2003 | Comedy    |    6.0 | Domingo    | Cortes    |
+| Bob's Burgers        |          2011 | Animation |    8.0 | Domingo    | Cortes    |
+| Bojack Horseman      |          2014 | Animation |    8.3 | Domingo    | Cortes    |
+| Breaking Bad         |          2008 | Drama     |    9.1 | Domingo    | Cortes    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    8.8 | Domingo    | Cortes    |
+| Freaks and Geeks     |          1999 | Comedy    |    8.5 | Domingo    | Cortes    |
+| General Hospital     |          1963 | Drama     |    5.8 | Domingo    | Cortes    |
+| Seinfeld             |          1989 | Comedy    |    7.2 | Domingo    | Cortes    |
+| Stranger Things      |          2016 | Drama     |    8.9 | Domingo    | Cortes    |
+| Archer               |          2009 | Animation |    8.9 | Colt       | Steele    |
+| Arrested Development |          2003 | Comedy    |    9.9 | Colt       | Steele    |
+| Bob's Burgers        |          2011 | Animation |    8.0 | Colt       | Steele    |
+| Bojack Horseman      |          2014 | Animation |    8.5 | Colt       | Steele    |
+| Breaking Bad         |          2008 | Drama     |    9.9 | Colt       | Steele    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    9.1 | Colt       | Steele    |
+| Fargo                |          2014 | Drama     |    9.7 | Colt       | Steele    |
+| Freaks and Geeks     |          1999 | Comedy    |    9.3 | Colt       | Steele    |
+| General Hospital     |          1963 | Drama     |    4.5 | Colt       | Steele    |
+| Halt and Catch Fire  |          2014 | Drama     |    9.9 | Colt       | Steele    |
+| Arrested Development |          2003 | Comedy    |    8.4 | Pinkie     | Petit     |
+| Bob's Burgers        |          2011 | Animation |    7.5 | Pinkie     | Petit     |
+| Freaks and Geeks     |          1999 | Comedy    |    8.8 | Pinkie     | Petit     |
+| General Hospital     |          1963 | Drama     |    4.3 | Pinkie     | Petit     |
++----------------------+---------------+-----------+--------+------------+-----------+
+47 rows in set (0.00 sec)
+
+mysql> select * from full_review where genre ='Animation';
++-----------------+---------------+-----------+--------+------------+-----------+
+| title           | released_year | genre     | rating | first_name | last_Name |
++-----------------+---------------+-----------+--------+------------+-----------+
+| Archer          |          2009 | Animation |    8.0 | Thomas     | Stoneman  |
+| Archer          |          2009 | Animation |    7.5 | Wyatt      | Skaggs    |
+| Archer          |          2009 | Animation |    8.5 | Kimbra     | Masters   |
+| Archer          |          2009 | Animation |    7.7 | Domingo    | Cortes    |
+| Archer          |          2009 | Animation |    8.9 | Colt       | Steele    |
+| Bob's Burgers   |          2011 | Animation |    7.0 | Thomas     | Stoneman  |
+| Bob's Burgers   |          2011 | Animation |    7.5 | Pinkie     | Petit     |
+| Bob's Burgers   |          2011 | Animation |    8.0 | Domingo    | Cortes    |
+| Bob's Burgers   |          2011 | Animation |    7.1 | Kimbra     | Masters   |
+| Bob's Burgers   |          2011 | Animation |    8.0 | Colt       | Steele    |
+| Bojack Horseman |          2014 | Animation |    7.5 | Thomas     | Stoneman  |
+| Bojack Horseman |          2014 | Animation |    7.8 | Kimbra     | Masters   |
+| Bojack Horseman |          2014 | Animation |    8.3 | Domingo    | Cortes    |
+| Bojack Horseman |          2014 | Animation |    7.6 | Wyatt      | Skaggs    |
+| Bojack Horseman |          2014 | Animation |    8.5 | Colt       | Steele    |
++-----------------+---------------+-----------+--------+------------+-----------+
+15 rows in set (0.00 sec)
+
+mysql> select * from full_review where genre ='Drama';
++---------------------+---------------+-------+--------+------------+-----------+
+| title               | released_year | genre | rating | first_name | last_Name |
++---------------------+---------------+-------+--------+------------+-----------+
+| Breaking Bad        |          2008 | Drama |    9.5 | Thomas     | Stoneman  |
+| Breaking Bad        |          2008 | Drama |    9.0 | Kimbra     | Masters   |
+| Breaking Bad        |          2008 | Drama |    9.1 | Domingo    | Cortes    |
+| Breaking Bad        |          2008 | Drama |    9.3 | Wyatt      | Skaggs    |
+| Breaking Bad        |          2008 | Drama |    9.9 | Colt       | Steele    |
+| Fargo               |          2014 | Drama |    9.1 | Wyatt      | Skaggs    |
+| Fargo               |          2014 | Drama |    9.7 | Colt       | Steele    |
+| General Hospital    |          1963 | Drama |    5.5 | Wyatt      | Skaggs    |
+| General Hospital    |          1963 | Drama |    6.8 | Kimbra     | Masters   |
+| General Hospital    |          1963 | Drama |    5.8 | Domingo    | Cortes    |
+| General Hospital    |          1963 | Drama |    4.3 | Pinkie     | Petit     |
+| General Hospital    |          1963 | Drama |    4.5 | Colt       | Steele    |
+| Halt and Catch Fire |          2014 | Drama |    9.9 | Colt       | Steele    |
+| Stranger Things     |          2016 | Drama |    8.5 | Wyatt      | Skaggs    |
+| Stranger Things     |          2016 | Drama |    8.9 | Kimbra     | Masters   |
+| Stranger Things     |          2016 | Drama |    8.9 | Domingo    | Cortes    |
++---------------------+---------------+-------+--------+------------+-----------+
+16 rows in set (0.00 sec)
+
+mysql> select genre,count(genre) from full_review group by genre;
++-----------+--------------+
+| genre     | count(genre) |
++-----------+--------------+
+| Animation |           15 |
+| Comedy    |           16 |
+| Drama     |           16 |
++-----------+--------------+
+3 rows in set (0.01 sec)
+
+mysql> select genre,count(*) from full_review group by genre;
++-----------+----------+
+| genre     | count(*) |
++-----------+----------+
+| Animation |       15 |
+| Comedy    |       16 |
+| Drama     |       16 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select rating,AVG(rating) from full_review group by rating;
++--------+-------------+
+| rating | AVG(rating) |
++--------+-------------+
+|    8.0 |     8.00000 |
+|    7.5 |     7.50000 |
+|    8.5 |     8.50000 |
+|    7.7 |     7.70000 |
+|    8.9 |     8.90000 |
+|    8.1 |     8.10000 |
+|    6.0 |     6.00000 |
+|    8.4 |     8.40000 |
+|    9.9 |     9.90000 |
+|    7.0 |     7.00000 |
+|    7.1 |     7.10000 |
+|    7.8 |     7.80000 |
+|    8.3 |     8.30000 |
+|    7.6 |     7.60000 |
+|    9.5 |     9.50000 |
+|    9.0 |     9.00000 |
+|    9.1 |     9.10000 |
+|    9.3 |     9.30000 |
+|    6.5 |     6.50000 |
+|    8.8 |     8.80000 |
+|    9.7 |     9.70000 |
+|    5.5 |     5.50000 |
+|    6.8 |     6.80000 |
+|    5.8 |     5.80000 |
+|    4.3 |     4.30000 |
+|    4.5 |     4.50000 |
+|    7.2 |     7.20000 |
++--------+-------------+
+27 rows in set (0.00 sec)
+
+mysql> select rating,count(rating) from full_review group by rating;
++--------+---------------+
+| rating | count(rating) |
++--------+---------------+
+|    8.0 |             5 |
+|    7.5 |             3 |
+|    8.5 |             4 |
+|    7.7 |             1 |
+|    8.9 |             3 |
+|    8.1 |             1 |
+|    6.0 |             1 |
+|    8.4 |             2 |
+|    9.9 |             3 |
+|    7.0 |             1 |
+|    7.1 |             1 |
+|    7.8 |             3 |
+|    8.3 |             1 |
+|    7.6 |             1 |
+|    9.5 |             1 |
+|    9.0 |             1 |
+|    9.1 |             3 |
+|    9.3 |             2 |
+|    6.5 |             1 |
+|    8.8 |             2 |
+|    9.7 |             1 |
+|    5.5 |             1 |
+|    6.8 |             1 |
+|    5.8 |             1 |
+|    4.3 |             1 |
+|    4.5 |             1 |
+|    7.2 |             1 |
++--------+---------------+
+27 rows in set (0.00 sec)
+
+mysql> select rating,count(rating) from full_review group by rating order by rating  desc;
++--------+---------------+
+| rating | count(rating) |
++--------+---------------+
+|    9.9 |             3 |
+|    9.7 |             1 |
+|    9.5 |             1 |
+|    9.3 |             2 |
+|    9.1 |             3 |
+|    9.0 |             1 |
+|    8.9 |             3 |
+|    8.8 |             2 |
+|    8.5 |             4 |
+|    8.4 |             2 |
+|    8.3 |             1 |
+|    8.1 |             1 |
+|    8.0 |             5 |
+|    7.8 |             3 |
+|    7.7 |             1 |
+|    7.6 |             1 |
+|    7.5 |             3 |
+|    7.2 |             1 |
+|    7.1 |             1 |
+|    7.0 |             1 |
+|    6.8 |             1 |
+|    6.5 |             1 |
+|    6.0 |             1 |
+|    5.8 |             1 |
+|    5.5 |             1 |
+|    4.5 |             1 |
+|    4.3 |             1 |
++--------+---------------+
+27 rows in set (0.00 sec)
+
+mysql> select rating,count(rating) as rated from full_review group by rating order by rated desc;
++--------+-------+
+| rating | rated |
++--------+-------+
+|    8.0 |     5 |
+|    8.5 |     4 |
+|    7.5 |     3 |
+|    9.1 |     3 |
+|    7.8 |     3 |
+|    8.9 |     3 |
+|    9.9 |     3 |
+|    9.3 |     2 |
+|    8.4 |     2 |
+|    8.8 |     2 |
+|    8.1 |     1 |
+|    7.0 |     1 |
+|    9.5 |     1 |
+|    7.6 |     1 |
+|    6.5 |     1 |
+|    5.5 |     1 |
+|    7.1 |     1 |
+|    9.0 |     1 |
+|    6.8 |     1 |
+|    7.7 |     1 |
+|    6.0 |     1 |
+|    8.3 |     1 |
+|    5.8 |     1 |
+|    7.2 |     1 |
+|    9.7 |     1 |
+|    4.5 |     1 |
+|    4.3 |     1 |
++--------+-------+
+27 rows in set (0.00 sec)
+
+mysql> select * from full_review;
++----------------------+---------------+-----------+--------+------------+-----------+
+| title                | released_year | genre     | rating | first_name | last_Name |
++----------------------+---------------+-----------+--------+------------+-----------+
+| Archer               |          2009 | Animation |    8.0 | Thomas     | Stoneman  |
+| Arrested Development |          2003 | Comedy    |    8.1 | Thomas     | Stoneman  |
+| Bob's Burgers        |          2011 | Animation |    7.0 | Thomas     | Stoneman  |
+| Bojack Horseman      |          2014 | Animation |    7.5 | Thomas     | Stoneman  |
+| Breaking Bad         |          2008 | Drama     |    9.5 | Thomas     | Stoneman  |
+| Archer               |          2009 | Animation |    7.5 | Wyatt      | Skaggs    |
+| Bojack Horseman      |          2014 | Animation |    7.6 | Wyatt      | Skaggs    |
+| Breaking Bad         |          2008 | Drama     |    9.3 | Wyatt      | Skaggs    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    6.5 | Wyatt      | Skaggs    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    8.4 | Wyatt      | Skaggs    |
+| Fargo                |          2014 | Drama     |    9.1 | Wyatt      | Skaggs    |
+| Freaks and Geeks     |          1999 | Comedy    |    7.8 | Wyatt      | Skaggs    |
+| General Hospital     |          1963 | Drama     |    5.5 | Wyatt      | Skaggs    |
+| Stranger Things      |          2016 | Drama     |    8.5 | Wyatt      | Skaggs    |
+| Archer               |          2009 | Animation |    8.5 | Kimbra     | Masters   |
+| Arrested Development |          2003 | Comedy    |    8.0 | Kimbra     | Masters   |
+| Bob's Burgers        |          2011 | Animation |    7.1 | Kimbra     | Masters   |
+| Bojack Horseman      |          2014 | Animation |    7.8 | Kimbra     | Masters   |
+| Breaking Bad         |          2008 | Drama     |    9.0 | Kimbra     | Masters   |
+| Curb Your Enthusiasm |          2000 | Comedy    |    7.8 | Kimbra     | Masters   |
+| General Hospital     |          1963 | Drama     |    6.8 | Kimbra     | Masters   |
+| Seinfeld             |          1989 | Comedy    |    8.0 | Kimbra     | Masters   |
+| Stranger Things      |          2016 | Drama     |    8.9 | Kimbra     | Masters   |
+| Archer               |          2009 | Animation |    7.7 | Domingo    | Cortes    |
+| Arrested Development |          2003 | Comedy    |    6.0 | Domingo    | Cortes    |
+| Bob's Burgers        |          2011 | Animation |    8.0 | Domingo    | Cortes    |
+| Bojack Horseman      |          2014 | Animation |    8.3 | Domingo    | Cortes    |
+| Breaking Bad         |          2008 | Drama     |    9.1 | Domingo    | Cortes    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    8.8 | Domingo    | Cortes    |
+| Freaks and Geeks     |          1999 | Comedy    |    8.5 | Domingo    | Cortes    |
+| General Hospital     |          1963 | Drama     |    5.8 | Domingo    | Cortes    |
+| Seinfeld             |          1989 | Comedy    |    7.2 | Domingo    | Cortes    |
+| Stranger Things      |          2016 | Drama     |    8.9 | Domingo    | Cortes    |
+| Archer               |          2009 | Animation |    8.9 | Colt       | Steele    |
+| Arrested Development |          2003 | Comedy    |    9.9 | Colt       | Steele    |
+| Bob's Burgers        |          2011 | Animation |    8.0 | Colt       | Steele    |
+| Bojack Horseman      |          2014 | Animation |    8.5 | Colt       | Steele    |
+| Breaking Bad         |          2008 | Drama     |    9.9 | Colt       | Steele    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    9.1 | Colt       | Steele    |
+| Fargo                |          2014 | Drama     |    9.7 | Colt       | Steele    |
+| Freaks and Geeks     |          1999 | Comedy    |    9.3 | Colt       | Steele    |
+| General Hospital     |          1963 | Drama     |    4.5 | Colt       | Steele    |
+| Halt and Catch Fire  |          2014 | Drama     |    9.9 | Colt       | Steele    |
+| Arrested Development |          2003 | Comedy    |    8.4 | Pinkie     | Petit     |
+| Bob's Burgers        |          2011 | Animation |    7.5 | Pinkie     | Petit     |
+| Freaks and Geeks     |          1999 | Comedy    |    8.8 | Pinkie     | Petit     |
+| General Hospital     |          1963 | Drama     |    4.3 | Pinkie     | Petit     |
++----------------------+---------------+-----------+--------+------------+-----------+
+47 rows in set (0.00 sec)
+
+mysql> select title,released_year from full_review where rating>9.0;
++----------------------+---------------+
+| title                | released_year |
++----------------------+---------------+
+| Arrested Development |          2003 |
+| Breaking Bad         |          2008 |
+| Breaking Bad         |          2008 |
+| Breaking Bad         |          2008 |
+| Breaking Bad         |          2008 |
+| Curb Your Enthusiasm |          2000 |
+| Fargo                |          2014 |
+| Fargo                |          2014 |
+| Freaks and Geeks     |          1999 |
+| Halt and Catch Fire  |          2014 |
++----------------------+---------------+
+10 rows in set (0.00 sec)
+
+mysql> select title,released_year,rating from full_review where rating>9.0;
++----------------------+---------------+--------+
+| title                | released_year | rating |
++----------------------+---------------+--------+
+| Arrested Development |          2003 |    9.9 |
+| Breaking Bad         |          2008 |    9.5 |
+| Breaking Bad         |          2008 |    9.1 |
+| Breaking Bad         |          2008 |    9.3 |
+| Breaking Bad         |          2008 |    9.9 |
+| Curb Your Enthusiasm |          2000 |    9.1 |
+| Fargo                |          2014 |    9.1 |
+| Fargo                |          2014 |    9.7 |
+| Freaks and Geeks     |          1999 |    9.3 |
+| Halt and Catch Fire  |          2014 |    9.9 |
++----------------------+---------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> select title,released_year,rating from full_review where rating>9.5;
++----------------------+---------------+--------+
+| title                | released_year | rating |
++----------------------+---------------+--------+
+| Arrested Development |          2003 |    9.9 |
+| Breaking Bad         |          2008 |    9.9 |
+| Fargo                |          2014 |    9.7 |
+| Halt and Catch Fire  |          2014 |    9.9 |
++----------------------+---------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_tv_db |
++-----------------+
+| full_review     |
+| reviewers       |
+| reviews         |
+| series          |
++-----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from full_review;
++----------------------+---------------+-----------+--------+------------+-----------+
+| title                | released_year | genre     | rating | first_name | last_Name |
++----------------------+---------------+-----------+--------+------------+-----------+
+| Archer               |          2009 | Animation |    8.0 | Thomas     | Stoneman  |
+| Arrested Development |          2003 | Comedy    |    8.1 | Thomas     | Stoneman  |
+| Bob's Burgers        |          2011 | Animation |    7.0 | Thomas     | Stoneman  |
+| Bojack Horseman      |          2014 | Animation |    7.5 | Thomas     | Stoneman  |
+| Breaking Bad         |          2008 | Drama     |    9.5 | Thomas     | Stoneman  |
+| Archer               |          2009 | Animation |    7.5 | Wyatt      | Skaggs    |
+| Bojack Horseman      |          2014 | Animation |    7.6 | Wyatt      | Skaggs    |
+| Breaking Bad         |          2008 | Drama     |    9.3 | Wyatt      | Skaggs    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    6.5 | Wyatt      | Skaggs    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    8.4 | Wyatt      | Skaggs    |
+| Fargo                |          2014 | Drama     |    9.1 | Wyatt      | Skaggs    |
+| Freaks and Geeks     |          1999 | Comedy    |    7.8 | Wyatt      | Skaggs    |
+| General Hospital     |          1963 | Drama     |    5.5 | Wyatt      | Skaggs    |
+| Stranger Things      |          2016 | Drama     |    8.5 | Wyatt      | Skaggs    |
+| Archer               |          2009 | Animation |    8.5 | Kimbra     | Masters   |
+| Arrested Development |          2003 | Comedy    |    8.0 | Kimbra     | Masters   |
+| Bob's Burgers        |          2011 | Animation |    7.1 | Kimbra     | Masters   |
+| Bojack Horseman      |          2014 | Animation |    7.8 | Kimbra     | Masters   |
+| Breaking Bad         |          2008 | Drama     |    9.0 | Kimbra     | Masters   |
+| Curb Your Enthusiasm |          2000 | Comedy    |    7.8 | Kimbra     | Masters   |
+| General Hospital     |          1963 | Drama     |    6.8 | Kimbra     | Masters   |
+| Seinfeld             |          1989 | Comedy    |    8.0 | Kimbra     | Masters   |
+| Stranger Things      |          2016 | Drama     |    8.9 | Kimbra     | Masters   |
+| Archer               |          2009 | Animation |    7.7 | Domingo    | Cortes    |
+| Arrested Development |          2003 | Comedy    |    6.0 | Domingo    | Cortes    |
+| Bob's Burgers        |          2011 | Animation |    8.0 | Domingo    | Cortes    |
+| Bojack Horseman      |          2014 | Animation |    8.3 | Domingo    | Cortes    |
+| Breaking Bad         |          2008 | Drama     |    9.1 | Domingo    | Cortes    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    8.8 | Domingo    | Cortes    |
+| Freaks and Geeks     |          1999 | Comedy    |    8.5 | Domingo    | Cortes    |
+| General Hospital     |          1963 | Drama     |    5.8 | Domingo    | Cortes    |
+| Seinfeld             |          1989 | Comedy    |    7.2 | Domingo    | Cortes    |
+| Stranger Things      |          2016 | Drama     |    8.9 | Domingo    | Cortes    |
+| Archer               |          2009 | Animation |    8.9 | Colt       | Steele    |
+| Arrested Development |          2003 | Comedy    |    9.9 | Colt       | Steele    |
+| Bob's Burgers        |          2011 | Animation |    8.0 | Colt       | Steele    |
+| Bojack Horseman      |          2014 | Animation |    8.5 | Colt       | Steele    |
+| Breaking Bad         |          2008 | Drama     |    9.9 | Colt       | Steele    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    9.1 | Colt       | Steele    |
+| Fargo                |          2014 | Drama     |    9.7 | Colt       | Steele    |
+| Freaks and Geeks     |          1999 | Comedy    |    9.3 | Colt       | Steele    |
+| General Hospital     |          1963 | Drama     |    4.5 | Colt       | Steele    |
+| Halt and Catch Fire  |          2014 | Drama     |    9.9 | Colt       | Steele    |
+| Arrested Development |          2003 | Comedy    |    8.4 | Pinkie     | Petit     |
+| Bob's Burgers        |          2011 | Animation |    7.5 | Pinkie     | Petit     |
+| Freaks and Geeks     |          1999 | Comedy    |    8.8 | Pinkie     | Petit     |
+| General Hospital     |          1963 | Drama     |    4.3 | Pinkie     | Petit     |
++----------------------+---------------+-----------+--------+------------+-----------+
+47 rows in set (0.00 sec)
+
+mysql> select * from full_review limit 5;
++----------------------+---------------+-----------+--------+------------+-----------+
+| title                | released_year | genre     | rating | first_name | last_Name |
++----------------------+---------------+-----------+--------+------------+-----------+
+| Archer               |          2009 | Animation |    8.0 | Thomas     | Stoneman  |
+| Arrested Development |          2003 | Comedy    |    8.1 | Thomas     | Stoneman  |
+| Bob's Burgers        |          2011 | Animation |    7.0 | Thomas     | Stoneman  |
+| Bojack Horseman      |          2014 | Animation |    7.5 | Thomas     | Stoneman  |
+| Breaking Bad         |          2008 | Drama     |    9.5 | Thomas     | Stoneman  |
++----------------------+---------------+-----------+--------+------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select title,released_year,rating from full_reviews where rating >9.0;
+ERROR 1146 (42S02): Table 'tv_db.full_reviews' doesn't exist
+mysql> select title,released_year,rating from full_review where rating >9.0;
++----------------------+---------------+--------+
+| title                | released_year | rating |
++----------------------+---------------+--------+
+| Arrested Development |          2003 |    9.9 |
+| Breaking Bad         |          2008 |    9.5 |
+| Breaking Bad         |          2008 |    9.1 |
+| Breaking Bad         |          2008 |    9.3 |
+| Breaking Bad         |          2008 |    9.9 |
+| Curb Your Enthusiasm |          2000 |    9.1 |
+| Fargo                |          2014 |    9.1 |
+| Fargo                |          2014 |    9.7 |
+| Freaks and Geeks     |          1999 |    9.3 |
+| Halt and Catch Fire  |          2014 |    9.9 |
++----------------------+---------------+--------+
+10 rows in set (0.01 sec)
+
+mysql> select title,released_year,rating from full_review where rating >9.5;
++----------------------+---------------+--------+
+| title                | released_year | rating |
++----------------------+---------------+--------+
+| Arrested Development |          2003 |    9.9 |
+| Breaking Bad         |          2008 |    9.9 |
+| Fargo                |          2014 |    9.7 |
+| Halt and Catch Fire  |          2014 |    9.9 |
++----------------------+---------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select max(rating) as HighestRating from full_review;
++---------------+
+| HighestRating |
++---------------+
+|           9.9 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select max(rating) as HighestRating from full_review;
++---------------+
+| HighestRating |
++---------------+
+|           9.9 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> selecselect title,released_year,Rating from full_review where rating >( select max(rating) as HighestRating from full_review;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selecselect title,released_year,Rating from full_review where rating >( select m' at line 1
+mysql> ) li^C
+mysql> select title,released_year,Rating from full_review where rating >( select max(rating) as HighestRating from full_review;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> 2009
+    -> ^C
+mysql> SELECT 
+    ->     title, released_year, Rating
+    -> FROM
+    ->     full_review
+    -> WHERE
+    ->     rating < (SELECT 
+    ->             MAX(rating) AS HighestRating
+    ->         FROM
+    ->             full_review)
+    -> LIMIT 1;
++--------+---------------+--------+
+| title  | released_year | rating |
++--------+---------------+--------+
+| Archer |          2009 |    8.0 |
++--------+---------------+--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT      title, released_year, Rating FROM     full_review WHERE     rating < (SELECT              MAX(rating) AS HighestRating         FROM             full_review) LIMIT 3;
++--------+---------------+--------+
+| title  | released_year | rating |
++--------+---------------+--------+
+| Archer |          2009 |    8.0 |
+| Archer |          2009 |    7.5 |
+| Archer |          2009 |    8.5 |
++--------+---------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select max(rating) from full_review;
++-------------+
+| max(rating) |
++-------------+
+|         9.9 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select rating from full_review;
++--------+
+| rating |
++--------+
+|    8.0 |
+|    8.1 |
+|    7.0 |
+|    7.5 |
+|    9.5 |
+|    7.5 |
+|    7.6 |
+|    9.3 |
+|    6.5 |
+|    8.4 |
+|    9.1 |
+|    7.8 |
+|    5.5 |
+|    8.5 |
+|    8.5 |
+|    8.0 |
+|    7.1 |
+|    7.8 |
+|    9.0 |
+|    7.8 |
+|    6.8 |
+|    8.0 |
+|    8.9 |
+|    7.7 |
+|    6.0 |
+|    8.0 |
+|    8.3 |
+|    9.1 |
+|    8.8 |
+|    8.5 |
+|    5.8 |
+|    7.2 |
+|    8.9 |
+|    8.9 |
+|    9.9 |
+|    8.0 |
+|    8.5 |
+|    9.9 |
+|    9.1 |
+|    9.7 |
+|    9.3 |
+|    4.5 |
+|    9.9 |
+|    8.4 |
+|    7.5 |
+|    8.8 |
+|    4.3 |
++--------+
+47 rows in set (0.00 sec)
+
+mysql> select rating from full_review order by rating desc;
++--------+
+| rating |
++--------+
+|    9.9 |
+|    9.9 |
+|    9.9 |
+|    9.7 |
+|    9.5 |
+|    9.3 |
+|    9.3 |
+|    9.1 |
+|    9.1 |
+|    9.1 |
+|    9.0 |
+|    8.9 |
+|    8.9 |
+|    8.9 |
+|    8.8 |
+|    8.8 |
+|    8.5 |
+|    8.5 |
+|    8.5 |
+|    8.5 |
+|    8.4 |
+|    8.4 |
+|    8.3 |
+|    8.1 |
+|    8.0 |
+|    8.0 |
+|    8.0 |
+|    8.0 |
+|    8.0 |
+|    7.8 |
+|    7.8 |
+|    7.8 |
+|    7.7 |
+|    7.6 |
+|    7.5 |
+|    7.5 |
+|    7.5 |
+|    7.2 |
+|    7.1 |
+|    7.0 |
+|    6.8 |
+|    6.5 |
+|    6.0 |
+|    5.8 |
+|    5.5 |
+|    4.5 |
+|    4.3 |
++--------+
+47 rows in set (0.01 sec)
+
+mysql> SELECT 
+    ->     title, released_year, Rating
+    -> FROM
+    ->     full_review
+    -> WHERE
+    ->     rating <9.9;
++----------------------+---------------+--------+
+| title                | released_year | rating |
++----------------------+---------------+--------+
+| Archer               |          2009 |    8.0 |
+| Archer               |          2009 |    7.5 |
+| Archer               |          2009 |    8.5 |
+| Archer               |          2009 |    7.7 |
+| Archer               |          2009 |    8.9 |
+| Arrested Development |          2003 |    8.1 |
+| Arrested Development |          2003 |    6.0 |
+| Arrested Development |          2003 |    8.0 |
+| Arrested Development |          2003 |    8.4 |
+| Bob's Burgers        |          2011 |    7.0 |
+| Bob's Burgers        |          2011 |    7.5 |
+| Bob's Burgers        |          2011 |    8.0 |
+| Bob's Burgers        |          2011 |    7.1 |
+| Bob's Burgers        |          2011 |    8.0 |
+| Bojack Horseman      |          2014 |    7.5 |
+| Bojack Horseman      |          2014 |    7.8 |
+| Bojack Horseman      |          2014 |    8.3 |
+| Bojack Horseman      |          2014 |    7.6 |
+| Bojack Horseman      |          2014 |    8.5 |
+| Breaking Bad         |          2008 |    9.5 |
+| Breaking Bad         |          2008 |    9.0 |
+| Breaking Bad         |          2008 |    9.1 |
+| Breaking Bad         |          2008 |    9.3 |
+| Curb Your Enthusiasm |          2000 |    6.5 |
+| Curb Your Enthusiasm |          2000 |    7.8 |
+| Curb Your Enthusiasm |          2000 |    8.8 |
+| Curb Your Enthusiasm |          2000 |    8.4 |
+| Curb Your Enthusiasm |          2000 |    9.1 |
+| Fargo                |          2014 |    9.1 |
+| Fargo                |          2014 |    9.7 |
+| Freaks and Geeks     |          1999 |    8.5 |
+| Freaks and Geeks     |          1999 |    7.8 |
+| Freaks and Geeks     |          1999 |    8.8 |
+| Freaks and Geeks     |          1999 |    9.3 |
+| General Hospital     |          1963 |    5.5 |
+| General Hospital     |          1963 |    6.8 |
+| General Hospital     |          1963 |    5.8 |
+| General Hospital     |          1963 |    4.3 |
+| General Hospital     |          1963 |    4.5 |
+| Seinfeld             |          1989 |    8.0 |
+| Seinfeld             |          1989 |    7.2 |
+| Stranger Things      |          2016 |    8.5 |
+| Stranger Things      |          2016 |    8.9 |
+| Stranger Things      |          2016 |    8.9 |
++----------------------+---------------+--------+
+44 rows in set (0.00 sec)
+
+mysql> SELECT  Rating FROM   full_review  WHERE     rating <9.9 order by rating desc limit 1 ;
++--------+
+| rating |
++--------+
+|    9.7 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT title,released_year,Rating FROM   full_review  WHERE     rating <9.9 order by rating desc limit 1 ;
++-------+---------------+--------+
+| title | released_year | rating |
++-------+---------------+--------+
+| Fargo |          2014 |    9.7 |
++-------+---------------+--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT title,released_year,Rating FROM   full_review  WHERE  rating <(select max(rating) from full_review) ;
++----------------------+---------------+--------+
+| title                | released_year | rating |
++----------------------+---------------+--------+
+| Archer               |          2009 |    8.0 |
+| Archer               |          2009 |    7.5 |
+| Archer               |          2009 |    8.5 |
+| Archer               |          2009 |    7.7 |
+| Archer               |          2009 |    8.9 |
+| Arrested Development |          2003 |    8.1 |
+| Arrested Development |          2003 |    6.0 |
+| Arrested Development |          2003 |    8.0 |
+| Arrested Development |          2003 |    8.4 |
+| Bob's Burgers        |          2011 |    7.0 |
+| Bob's Burgers        |          2011 |    7.5 |
+| Bob's Burgers        |          2011 |    8.0 |
+| Bob's Burgers        |          2011 |    7.1 |
+| Bob's Burgers        |          2011 |    8.0 |
+| Bojack Horseman      |          2014 |    7.5 |
+| Bojack Horseman      |          2014 |    7.8 |
+| Bojack Horseman      |          2014 |    8.3 |
+| Bojack Horseman      |          2014 |    7.6 |
+| Bojack Horseman      |          2014 |    8.5 |
+| Breaking Bad         |          2008 |    9.5 |
+| Breaking Bad         |          2008 |    9.0 |
+| Breaking Bad         |          2008 |    9.1 |
+| Breaking Bad         |          2008 |    9.3 |
+| Curb Your Enthusiasm |          2000 |    6.5 |
+| Curb Your Enthusiasm |          2000 |    7.8 |
+| Curb Your Enthusiasm |          2000 |    8.8 |
+| Curb Your Enthusiasm |          2000 |    8.4 |
+| Curb Your Enthusiasm |          2000 |    9.1 |
+| Fargo                |          2014 |    9.1 |
+| Fargo                |          2014 |    9.7 |
+| Freaks and Geeks     |          1999 |    8.5 |
+| Freaks and Geeks     |          1999 |    7.8 |
+| Freaks and Geeks     |          1999 |    8.8 |
+| Freaks and Geeks     |          1999 |    9.3 |
+| General Hospital     |          1963 |    5.5 |
+| General Hospital     |          1963 |    6.8 |
+| General Hospital     |          1963 |    5.8 |
+| General Hospital     |          1963 |    4.3 |
+| General Hospital     |          1963 |    4.5 |
+| Seinfeld             |          1989 |    8.0 |
+| Seinfeld             |          1989 |    7.2 |
+| Stranger Things      |          2016 |    8.5 |
+| Stranger Things      |          2016 |    8.9 |
+| Stranger Things      |          2016 |    8.9 |
++----------------------+---------------+--------+
+44 rows in set (0.00 sec)
+
+mysql> SELECT title,released_year,Rating FROM   full_review  WHERE  rating <(select max(rating) from full_review) order by Rating desc limit 1 ;
++-------+---------------+--------+
+| title | released_year | rating |
++-------+---------------+--------+
+| Fargo |          2014 |    9.7 |
++-------+---------------+--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT title,released_year,Rating FROM   full_review  WHERE  rating <(select max(rating) from full_review) order by Rating desc limit 2 ;
++--------------+---------------+--------+
+| title        | released_year | rating |
++--------------+---------------+--------+
+| Fargo        |          2014 |    9.7 |
+| Breaking Bad |          2008 |    9.5 |
++--------------+---------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT title,released_year,Rating FROM   full_review  WHERE  rating <(select max(rating) from full_review) order by Rating desc limit 23;
++----------------------+---------------+--------+
+| title                | released_year | rating |
++----------------------+---------------+--------+
+| Fargo                |          2014 |    9.7 |
+| Breaking Bad         |          2008 |    9.5 |
+| Breaking Bad         |          2008 |    9.3 |
+| Freaks and Geeks     |          1999 |    9.3 |
+| Fargo                |          2014 |    9.1 |
+| Curb Your Enthusiasm |          2000 |    9.1 |
+| Breaking Bad         |          2008 |    9.1 |
+| Breaking Bad         |          2008 |    9.0 |
+| Stranger Things      |          2016 |    8.9 |
+| Stranger Things      |          2016 |    8.9 |
+| Archer               |          2009 |    8.9 |
+| Freaks and Geeks     |          1999 |    8.8 |
+| Curb Your Enthusiasm |          2000 |    8.8 |
+| Stranger Things      |          2016 |    8.5 |
+| Freaks and Geeks     |          1999 |    8.5 |
+| Archer               |          2009 |    8.5 |
+| Bojack Horseman      |          2014 |    8.5 |
+| Curb Your Enthusiasm |          2000 |    8.4 |
+| Arrested Development |          2003 |    8.4 |
+| Bojack Horseman      |          2014 |    8.3 |
+| Arrested Development |          2003 |    8.1 |
+| Archer               |          2009 |    8.0 |
+| Arrested Development |          2003 |    8.0 |
++----------------------+---------------+--------+
+23 rows in set (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_tv_db |
++-----------------+
+| full_review     |
+| reviewers       |
+| reviews         |
+| series          |
++-----------------+
+4 rows in set (0.00 sec)
+
+mysql> show create table reviewers;
++-----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table                                                                                                                                                                                                                                     |
++-----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| reviewers | CREATE TABLE `reviewers` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> show create table revies;
+ERROR 1146 (42S02): Table 'tv_db.revies' doesn't exist
+mysql> show create table reviews;
++---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
++---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| reviews | CREATE TABLE `reviews` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `rating` decimal(2,1) DEFAULT NULL,
+  `series_id` int DEFAULT NULL,
+  `reviewer_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `series_id` (`series_id`),
+  KEY `reviewer_id` (`reviewer_id`),
+  CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`series_id`) REFERENCES `series` (`id`),
+  CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`reviewer_id`) REFERENCES `reviewers` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> shoiw schemas;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'shoiw schemas' at line 1
+mysql> show schemas;
++----------------------+
+| Database             |
++----------------------+
+| ABES                 |
+| Aggregate            |
+| bankmanagementsystem |
+| Books                |
+| BookShop             |
+| constraints          |
+| DBMS                 |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| Practice             |
+| RadheKrishna         |
+| Shirt                |
+| sys                  |
+| Triggers             |
+| Tv_db                |
+| View                 |
++----------------------+
+17 rows in set (0.00 sec)
+
+mysql> connect Aggregate;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Connection id:    11
+Current database: Aggregate
+
+mysql> show tables;
++---------------------+
+| Tables_in_aggregate |
++---------------------+
+| Arrange             |
+| captions            |
+| customers           |
+| Employee            |
+| Money               |
+| orders              |
+| papers              |
+| People              |
+| Reviewers           |
+| Reviews             |
+| Series              |
+| Students            |
++---------------------+
+12 rows in set (0.00 sec)
+
+mysql> create database Student;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| ABES                 |
+| Aggregate            |
+| bankmanagementsystem |
+| Books                |
+| BookShop             |
+| constraints          |
+| DBMS                 |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| Practice             |
+| RadheKrishna         |
+| Shirt                |
+| Student              |
+| sys                  |
+| Triggers             |
+| Tv_db                |
+| View                 |
++----------------------+
+18 rows in set (0.00 sec)
+
+mysql> connect student;
+Connection id:    12
+Current database: student
+
+mysql> show tables;
+Empty set (0.01 sec)
+
+mysql> create table Students
+    -> (
+    -> Id tinyint primary key,
+    -> Name Varchar(20) not null,
+    -> Father_Name varchar(12) not null,
+    -> Age tinyint not null
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc Students;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Id          | tinyint     | NO   | PRI | NULL    |       |
+| Name        | varchar(20) | NO   |     | NULL    |       |
+| Father_Name | varchar(12) | NO   |     | NULL    |       |
+| Age         | tinyint     | NO   |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into Stduent values(1,'Abhishek','Yogesh',23);
+ERROR 1146 (42S02): Table 'student.stduent' doesn't exist
+mysql> insert into Stduents values(1,'Abhishek','Yogesh',23);
+ERROR 1146 (42S02): Table 'student.stduents' doesn't exist
+mysql> insert into Students values(1,'Abhishek','Yogesh',23);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from students;
++----+----------+-------------+-----+
+| Id | Name     | Father_Name | Age |
++----+----------+-------------+-----+
+|  1 | Abhishek | Yogesh      |  23 |
++----+----------+-------------+-----+
+1 row in set (0.00 sec)
+
+mysql> insert into Students values(2,'Abhinav','Ramesh',22);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from students;
++----+----------+-------------+-----+
+| Id | Name     | Father_Name | Age |
++----+----------+-------------+-----+
+|  1 | Abhishek | Yogesh      |  23 |
+|  2 | Abhinav  | Ramesh      |  22 |
++----+----------+-------------+-----+
+2 rows in set (0.00 sec)
+
+mysql> desc students;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| Id          | tinyint     | NO   | PRI | NULL    |       |
+| Name        | varchar(20) | NO   |     | NULL    |       |
+| Father_Name | varchar(12) | NO   |     | NULL    |       |
+| Age         | tinyint     | NO   |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger Nam before insert on Student for each row 
+    -> BEGIN
+    -> if new.name='Abhinav' then 
+    -> set new.Father_Name='Ramesh';
+    -> else
+    -> 
+    -> ^C
+mysql> reate trigger Nam before insert on Student for each row 
+    ->     -> BEGIN
+    ->     -> if new.name='Abhinav' then 
+    ->     -> set new.Father_Name='Ramesh';
+    ->     -> end if;
+    ->        end;^C
+mysql> delimiter //
+mysql> create trigger Nam before insert on Students for each row
+    -> BEGIN
+    -> if new.name='Abhinav' then 
+    -> set new.father_name='Ramesh';
+    -> end if;
+    -> END;//
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delimiter ;
+mysql> show triggers;
++---------+--------+----------+-----------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger | Event  | Table    | Statement                                                                   | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++---------+--------+----------+-----------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Nam     | INSERT | Students | BEGIN
+if new.name='Abhinav' then 
+set new.father_name='Ramesh';
+end if;
+END | BEFORE | 2024-09-13 16:04:42.05 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++---------+--------+----------+-----------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from students;
++----+----------+-------------+-----+
+| Id | Name     | Father_Name | Age |
++----+----------+-------------+-----+
+|  1 | Abhishek | Yogesh      |  23 |
+|  2 | Abhinav  | Ramesh      |  22 |
++----+----------+-------------+-----+
+2 rows in set (0.01 sec)
+
+mysql> insert into students values(3,'Abhinav','Sonu',21);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from students;
++----+----------+-------------+-----+
+| Id | Name     | Father_Name | Age |
++----+----------+-------------+-----+
+|  1 | Abhishek | Yogesh      |  23 |
+|  2 | Abhinav  | Ramesh      |  22 |
+|  3 | Abhinav  | Ramesh      |  21 |
++----+----------+-------------+-----+
+3 rows in set (0.00 sec)
+
+mysql> insert into students values(4,'Abhilasha','Sonu',20);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from students;
++----+-----------+-------------+-----+
+| Id | Name      | Father_Name | Age |
++----+-----------+-------------+-----+
+|  1 | Abhishek  | Yogesh      |  23 |
+|  2 | Abhinav   | Ramesh      |  22 |
+|  3 | Abhinav   | Ramesh      |  21 |
+|  4 | Abhilasha | Sonu        |  20 |
++----+-----------+-------------+-----+
+4 rows in set (0.00 sec)
+
+mysql> drop trigger nam;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show triggers;
+Empty set (0.01 sec)
+
+mysql> insert into students values(5,'Abhinav','Sonu',26);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from students;
++----+-----------+-------------+-----+
+| Id | Name      | Father_Name | Age |
++----+-----------+-------------+-----+
+|  1 | Abhishek  | Yogesh      |  23 |
+|  2 | Abhinav   | Ramesh      |  22 |
+|  3 | Abhinav   | Ramesh      |  21 |
+|  4 | Abhilasha | Sonu        |  20 |
+|  5 | Abhinav   | Sonu        |  26 |
++----+-----------+-------------+-----+
+5 rows in set (0.00 sec)
+
+mysql> 
+  [Restored 13 Sep 2024 at 8:49:01 PM]
+Last login: Fri Sep 13 20:48:56 on console
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % 
+  [Restored 13 Sep 2024 at 8:56:57 PM]
+Last login: Fri Sep 13 20:55:50 on console
+Restored session: Fri Sep 13 20:51:11 IST 2024
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| ABES                 |
+| Aggregate            |
+| bankmanagementsystem |
+| Books                |
+| BookShop             |
+| constraints          |
+| DBMS                 |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| Practice             |
+| RadheKrishna         |
+| Shirt                |
+| Student              |
+| sys                  |
+| Triggers             |
+| Tv_db                |
+| View                 |
++----------------------+
+18 rows in set (0.01 sec)
+
+mysql> use view;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++----------------+
+| Tables_in_view |
++----------------+
+| details        |
+| emp            |
+| emp_salary3    |
+| empl_salary3   |
+| employee       |
+| Marks          |
+| record         |
+| Student        |
+| teacher        |
++----------------+
+9 rows in set (0.00 sec)
+
+mysql> use tv_db;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_tv_db |
++-----------------+
+| full_review     |
+| reviewers       |
+| reviews         |
+| series          |
++-----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from full
+    -> 
+    -> _review;
+ERROR 1146 (42S02): Table 'tv_db.full' doesn't exist
+mysql> select * from full _review;
+ERROR 1146 (42S02): Table 'tv_db.full' doesn't exist
+mysql> select * from full_review;
++----------------------+---------------+-----------+--------+------------+-----------+
+| title                | released_year | genre     | rating | first_name | last_Name |
++----------------------+---------------+-----------+--------+------------+-----------+
+| Archer               |          2009 | Animation |    8.0 | Thomas     | Stoneman  |
+| Arrested Development |          2003 | Comedy    |    8.1 | Thomas     | Stoneman  |
+| Bob's Burgers        |          2011 | Animation |    7.0 | Thomas     | Stoneman  |
+| Bojack Horseman      |          2014 | Animation |    7.5 | Thomas     | Stoneman  |
+| Breaking Bad         |          2008 | Drama     |    9.5 | Thomas     | Stoneman  |
+| Archer               |          2009 | Animation |    7.5 | Wyatt      | Skaggs    |
+| Bojack Horseman      |          2014 | Animation |    7.6 | Wyatt      | Skaggs    |
+| Breaking Bad         |          2008 | Drama     |    9.3 | Wyatt      | Skaggs    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    6.5 | Wyatt      | Skaggs    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    8.4 | Wyatt      | Skaggs    |
+| Fargo                |          2014 | Drama     |    9.1 | Wyatt      | Skaggs    |
+| Freaks and Geeks     |          1999 | Comedy    |    7.8 | Wyatt      | Skaggs    |
+| General Hospital     |          1963 | Drama     |    5.5 | Wyatt      | Skaggs    |
+| Stranger Things      |          2016 | Drama     |    8.5 | Wyatt      | Skaggs    |
+| Archer               |          2009 | Animation |    8.5 | Kimbra     | Masters   |
+| Arrested Development |          2003 | Comedy    |    8.0 | Kimbra     | Masters   |
+| Bob's Burgers        |          2011 | Animation |    7.1 | Kimbra     | Masters   |
+| Bojack Horseman      |          2014 | Animation |    7.8 | Kimbra     | Masters   |
+| Breaking Bad         |          2008 | Drama     |    9.0 | Kimbra     | Masters   |
+| Curb Your Enthusiasm |          2000 | Comedy    |    7.8 | Kimbra     | Masters   |
+| General Hospital     |          1963 | Drama     |    6.8 | Kimbra     | Masters   |
+| Seinfeld             |          1989 | Comedy    |    8.0 | Kimbra     | Masters   |
+| Stranger Things      |          2016 | Drama     |    8.9 | Kimbra     | Masters   |
+| Archer               |          2009 | Animation |    7.7 | Domingo    | Cortes    |
+| Arrested Development |          2003 | Comedy    |    6.0 | Domingo    | Cortes    |
+| Bob's Burgers        |          2011 | Animation |    8.0 | Domingo    | Cortes    |
+| Bojack Horseman      |          2014 | Animation |    8.3 | Domingo    | Cortes    |
+| Breaking Bad         |          2008 | Drama     |    9.1 | Domingo    | Cortes    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    8.8 | Domingo    | Cortes    |
+| Freaks and Geeks     |          1999 | Comedy    |    8.5 | Domingo    | Cortes    |
+| General Hospital     |          1963 | Drama     |    5.8 | Domingo    | Cortes    |
+| Seinfeld             |          1989 | Comedy    |    7.2 | Domingo    | Cortes    |
+| Stranger Things      |          2016 | Drama     |    8.9 | Domingo    | Cortes    |
+| Archer               |          2009 | Animation |    8.9 | Colt       | Steele    |
+| Arrested Development |          2003 | Comedy    |    9.9 | Colt       | Steele    |
+| Bob's Burgers        |          2011 | Animation |    8.0 | Colt       | Steele    |
+| Bojack Horseman      |          2014 | Animation |    8.5 | Colt       | Steele    |
+| Breaking Bad         |          2008 | Drama     |    9.9 | Colt       | Steele    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    9.1 | Colt       | Steele    |
+| Fargo                |          2014 | Drama     |    9.7 | Colt       | Steele    |
+| Freaks and Geeks     |          1999 | Comedy    |    9.3 | Colt       | Steele    |
+| General Hospital     |          1963 | Drama     |    4.5 | Colt       | Steele    |
+| Halt and Catch Fire  |          2014 | Drama     |    9.9 | Colt       | Steele    |
+| Arrested Development |          2003 | Comedy    |    8.4 | Pinkie     | Petit     |
+| Bob's Burgers        |          2011 | Animation |    7.5 | Pinkie     | Petit     |
+| Freaks and Geeks     |          1999 | Comedy    |    8.8 | Pinkie     | Petit     |
+| General Hospital     |          1963 | Drama     |    4.3 | Pinkie     | Petit     |
++----------------------+---------------+-----------+--------+------------+-----------+
+47 rows in set (0.00 sec)
+
+mysql> show create view full_review;
++-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+| View        | Create View                                                                                                                                                                                                                                                                                                                                                                                                                                                               | character_set_client | collation_connection |
++-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+| full_review | CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `full_review` AS select `series`.`title` AS `title`,`series`.`released_year` AS `released_year`,`series`.`genre` AS `genre`,`reviews`.`rating` AS `rating`,`reviewers`.`first_name` AS `first_name`,`reviewers`.`last_name` AS `last_Name` from ((`reviews` join `series` on((`reviews`.`series_id` = `series`.`id`))) join `reviewers` on((`reviewers`.`id` = `reviews`.`reviewer_id`))) | utf8mb4              | utf8mb4_0900_ai_ci   |
++-------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from series;
++----+-----------------------+---------------+-----------+
+| id | title                 | released_year | genre     |
++----+-----------------------+---------------+-----------+
+|  1 | Archer                |          2009 | Animation |
+|  2 | Arrested Development  |          2003 | Comedy    |
+|  3 | Bob's Burgers         |          2011 | Animation |
+|  4 | Bojack Horseman       |          2014 | Animation |
+|  5 | Breaking Bad          |          2008 | Drama     |
+|  6 | Curb Your Enthusiasm  |          2000 | Comedy    |
+|  7 | Fargo                 |          2014 | Drama     |
+|  8 | Freaks and Geeks      |          1999 | Comedy    |
+|  9 | General Hospital      |          1963 | Drama     |
+| 10 | Halt and Catch Fire   |          2014 | Drama     |
+| 11 | Malcolm In The Middle |          2000 | Comedy    |
+| 12 | Pushing Daisies       |          2007 | Comedy    |
+| 13 | Seinfeld              |          1989 | Comedy    |
+| 14 | Stranger Things       |          2016 | Drama     |
++----+-----------------------+---------------+-----------+
+14 rows in set (0.00 sec)
+
+mysql> create view Sr as select * from series order by released_year;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show create view sr;
++------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+| View | Create View                                                                                                                                                                                                                                                              | character_set_client | collation_connection |
++------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+| sr   | CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sr` AS select `series`.`id` AS `id`,`series`.`title` AS `title`,`series`.`released_year` AS `released_year`,`series`.`genre` AS `genre` from `series` order by `series`.`released_year` | utf8mb4              | utf8mb4_0900_ai_ci   |
++------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_tv_db |
++-----------------+
+| full_review     |
+| reviewers       |
+| reviews         |
+| series          |
+| sr              |
++-----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from series;
++----+-----------------------+---------------+-----------+
+| id | title                 | released_year | genre     |
++----+-----------------------+---------------+-----------+
+|  1 | Archer                |          2009 | Animation |
+|  2 | Arrested Development  |          2003 | Comedy    |
+|  3 | Bob's Burgers         |          2011 | Animation |
+|  4 | Bojack Horseman       |          2014 | Animation |
+|  5 | Breaking Bad          |          2008 | Drama     |
+|  6 | Curb Your Enthusiasm  |          2000 | Comedy    |
+|  7 | Fargo                 |          2014 | Drama     |
+|  8 | Freaks and Geeks      |          1999 | Comedy    |
+|  9 | General Hospital      |          1963 | Drama     |
+| 10 | Halt and Catch Fire   |          2014 | Drama     |
+| 11 | Malcolm In The Middle |          2000 | Comedy    |
+| 12 | Pushing Daisies       |          2007 | Comedy    |
+| 13 | Seinfeld              |          1989 | Comedy    |
+| 14 | Stranger Things       |          2016 | Drama     |
++----+-----------------------+---------------+-----------+
+14 rows in set (0.00 sec)
+
+mysql> select * from sr;
++----+-----------------------+---------------+-----------+
+| id | title                 | released_year | genre     |
++----+-----------------------+---------------+-----------+
+|  9 | General Hospital      |          1963 | Drama     |
+| 13 | Seinfeld              |          1989 | Comedy    |
+|  8 | Freaks and Geeks      |          1999 | Comedy    |
+|  6 | Curb Your Enthusiasm  |          2000 | Comedy    |
+| 11 | Malcolm In The Middle |          2000 | Comedy    |
+|  2 | Arrested Development  |          2003 | Comedy    |
+| 12 | Pushing Daisies       |          2007 | Comedy    |
+|  5 | Breaking Bad          |          2008 | Drama     |
+|  1 | Archer                |          2009 | Animation |
+|  3 | Bob's Burgers         |          2011 | Animation |
+|  4 | Bojack Horseman       |          2014 | Animation |
+|  7 | Fargo                 |          2014 | Drama     |
+| 10 | Halt and Catch Fire   |          2014 | Drama     |
+| 14 | Stranger Things       |          2016 | Drama     |
++----+-----------------------+---------------+-----------+
+14 rows in set (0.00 sec)
+
+mysql> select * from series order by released_year;
++----+-----------------------+---------------+-----------+
+| id | title                 | released_year | genre     |
++----+-----------------------+---------------+-----------+
+|  9 | General Hospital      |          1963 | Drama     |
+| 13 | Seinfeld              |          1989 | Comedy    |
+|  8 | Freaks and Geeks      |          1999 | Comedy    |
+|  6 | Curb Your Enthusiasm  |          2000 | Comedy    |
+| 11 | Malcolm In The Middle |          2000 | Comedy    |
+|  2 | Arrested Development  |          2003 | Comedy    |
+| 12 | Pushing Daisies       |          2007 | Comedy    |
+|  5 | Breaking Bad          |          2008 | Drama     |
+|  1 | Archer                |          2009 | Animation |
+|  3 | Bob's Burgers         |          2011 | Animation |
+|  4 | Bojack Horseman       |          2014 | Animation |
+|  7 | Fargo                 |          2014 | Drama     |
+| 10 | Halt and Catch Fire   |          2014 | Drama     |
+| 14 | Stranger Things       |          2016 | Drama     |
++----+-----------------------+---------------+-----------+
+14 rows in set (0.00 sec)
+
+mysql> show create view sr;
++------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+| View | Create View                                                                                                                                                                                                                                                              | character_set_client | collation_connection |
++------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+| sr   | CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sr` AS select `series`.`id` AS `id`,`series`.`title` AS `title`,`series`.`released_year` AS `released_year`,`series`.`genre` AS `genre` from `series` order by `series`.`released_year` | utf8mb4              | utf8mb4_0900_ai_ci   |
++------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+1 row in set (0.00 sec)
+
+mysql> show views;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'views' at line 1
+mysql> show tables;;
++-----------------+
+| Tables_in_tv_db |
++-----------------+
+| full_review     |
+| reviewers       |
+| reviews         |
+| series          |
+| sr              |
++-----------------+
+5 rows in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+mysql> show tables;
++-----------------+
+| Tables_in_tv_db |
++-----------------+
+| full_review     |
+| reviewers       |
+| reviews         |
+| series          |
+| sr              |
++-----------------+
+5 rows in set (0.00 sec)
+
+mysql> desc sr;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| id            | int          | NO   |     | 0       |       |
+| title         | varchar(100) | YES  |     | NULL    |       |
+| released_year | year         | YES  |     | NULL    |       |
+| genre         | varchar(100) | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into sr(title,released_year,genre) values('The Great Wall',2024,'Drama');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from sr;
++----+-----------------------+---------------+-----------+
+| id | title                 | released_year | genre     |
++----+-----------------------+---------------+-----------+
+|  9 | General Hospital      |          1963 | Drama     |
+| 13 | Seinfeld              |          1989 | Comedy    |
+|  8 | Freaks and Geeks      |          1999 | Comedy    |
+|  6 | Curb Your Enthusiasm  |          2000 | Comedy    |
+| 11 | Malcolm In The Middle |          2000 | Comedy    |
+|  2 | Arrested Development  |          2003 | Comedy    |
+| 12 | Pushing Daisies       |          2007 | Comedy    |
+|  5 | Breaking Bad          |          2008 | Drama     |
+|  1 | Archer                |          2009 | Animation |
+|  3 | Bob's Burgers         |          2011 | Animation |
+|  4 | Bojack Horseman       |          2014 | Animation |
+|  7 | Fargo                 |          2014 | Drama     |
+| 10 | Halt and Catch Fire   |          2014 | Drama     |
+| 14 | Stranger Things       |          2016 | Drama     |
+| 15 | The Great Wall        |          2024 | Drama     |
++----+-----------------------+---------------+-----------+
+15 rows in set (0.00 sec)
+
+mysql> select * from series;
++----+-----------------------+---------------+-----------+
+| id | title                 | released_year | genre     |
++----+-----------------------+---------------+-----------+
+|  1 | Archer                |          2009 | Animation |
+|  2 | Arrested Development  |          2003 | Comedy    |
+|  3 | Bob's Burgers         |          2011 | Animation |
+|  4 | Bojack Horseman       |          2014 | Animation |
+|  5 | Breaking Bad          |          2008 | Drama     |
+|  6 | Curb Your Enthusiasm  |          2000 | Comedy    |
+|  7 | Fargo                 |          2014 | Drama     |
+|  8 | Freaks and Geeks      |          1999 | Comedy    |
+|  9 | General Hospital      |          1963 | Drama     |
+| 10 | Halt and Catch Fire   |          2014 | Drama     |
+| 11 | Malcolm In The Middle |          2000 | Comedy    |
+| 12 | Pushing Daisies       |          2007 | Comedy    |
+| 13 | Seinfeld              |          1989 | Comedy    |
+| 14 | Stranger Things       |          2016 | Drama     |
+| 15 | The Great Wall        |          2024 | Drama     |
++----+-----------------------+---------------+-----------+
+15 rows in set (0.00 sec)
+
+mysql> -- Updatable View 
+mysql> delete from sr where id=15;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from series;
++----+-----------------------+---------------+-----------+
+| id | title                 | released_year | genre     |
++----+-----------------------+---------------+-----------+
+|  1 | Archer                |          2009 | Animation |
+|  2 | Arrested Development  |          2003 | Comedy    |
+|  3 | Bob's Burgers         |          2011 | Animation |
+|  4 | Bojack Horseman       |          2014 | Animation |
+|  5 | Breaking Bad          |          2008 | Drama     |
+|  6 | Curb Your Enthusiasm  |          2000 | Comedy    |
+|  7 | Fargo                 |          2014 | Drama     |
+|  8 | Freaks and Geeks      |          1999 | Comedy    |
+|  9 | General Hospital      |          1963 | Drama     |
+| 10 | Halt and Catch Fire   |          2014 | Drama     |
+| 11 | Malcolm In The Middle |          2000 | Comedy    |
+| 12 | Pushing Daisies       |          2007 | Comedy    |
+| 13 | Seinfeld              |          1989 | Comedy    |
+| 14 | Stranger Things       |          2016 | Drama     |
++----+-----------------------+---------------+-----------+
+14 rows in set (0.00 sec)
+
+mysql> select * from sr;
++----+-----------------------+---------------+-----------+
+| id | title                 | released_year | genre     |
++----+-----------------------+---------------+-----------+
+|  9 | General Hospital      |          1963 | Drama     |
+| 13 | Seinfeld              |          1989 | Comedy    |
+|  8 | Freaks and Geeks      |          1999 | Comedy    |
+|  6 | Curb Your Enthusiasm  |          2000 | Comedy    |
+| 11 | Malcolm In The Middle |          2000 | Comedy    |
+|  2 | Arrested Development  |          2003 | Comedy    |
+| 12 | Pushing Daisies       |          2007 | Comedy    |
+|  5 | Breaking Bad          |          2008 | Drama     |
+|  1 | Archer                |          2009 | Animation |
+|  3 | Bob's Burgers         |          2011 | Animation |
+|  4 | Bojack Horseman       |          2014 | Animation |
+|  7 | Fargo                 |          2014 | Drama     |
+| 10 | Halt and Catch Fire   |          2014 | Drama     |
+| 14 | Stranger Things       |          2016 | Drama     |
++----+-----------------------+---------------+-----------+
+14 rows in set (0.00 sec)
+
+mysql> select * from full_reviews;
+ERROR 1146 (42S02): Table 'tv_db.full_reviews' doesn't exist
+mysql> select * from full_review;
++----------------------+---------------+-----------+--------+------------+-----------+
+| title                | released_year | genre     | rating | first_name | last_Name |
++----------------------+---------------+-----------+--------+------------+-----------+
+| Archer               |          2009 | Animation |    8.0 | Thomas     | Stoneman  |
+| Arrested Development |          2003 | Comedy    |    8.1 | Thomas     | Stoneman  |
+| Bob's Burgers        |          2011 | Animation |    7.0 | Thomas     | Stoneman  |
+| Bojack Horseman      |          2014 | Animation |    7.5 | Thomas     | Stoneman  |
+| Breaking Bad         |          2008 | Drama     |    9.5 | Thomas     | Stoneman  |
+| Archer               |          2009 | Animation |    7.5 | Wyatt      | Skaggs    |
+| Bojack Horseman      |          2014 | Animation |    7.6 | Wyatt      | Skaggs    |
+| Breaking Bad         |          2008 | Drama     |    9.3 | Wyatt      | Skaggs    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    6.5 | Wyatt      | Skaggs    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    8.4 | Wyatt      | Skaggs    |
+| Fargo                |          2014 | Drama     |    9.1 | Wyatt      | Skaggs    |
+| Freaks and Geeks     |          1999 | Comedy    |    7.8 | Wyatt      | Skaggs    |
+| General Hospital     |          1963 | Drama     |    5.5 | Wyatt      | Skaggs    |
+| Stranger Things      |          2016 | Drama     |    8.5 | Wyatt      | Skaggs    |
+| Archer               |          2009 | Animation |    8.5 | Kimbra     | Masters   |
+| Arrested Development |          2003 | Comedy    |    8.0 | Kimbra     | Masters   |
+| Bob's Burgers        |          2011 | Animation |    7.1 | Kimbra     | Masters   |
+| Bojack Horseman      |          2014 | Animation |    7.8 | Kimbra     | Masters   |
+| Breaking Bad         |          2008 | Drama     |    9.0 | Kimbra     | Masters   |
+| Curb Your Enthusiasm |          2000 | Comedy    |    7.8 | Kimbra     | Masters   |
+| General Hospital     |          1963 | Drama     |    6.8 | Kimbra     | Masters   |
+| Seinfeld             |          1989 | Comedy    |    8.0 | Kimbra     | Masters   |
+| Stranger Things      |          2016 | Drama     |    8.9 | Kimbra     | Masters   |
+| Archer               |          2009 | Animation |    7.7 | Domingo    | Cortes    |
+| Arrested Development |          2003 | Comedy    |    6.0 | Domingo    | Cortes    |
+| Bob's Burgers        |          2011 | Animation |    8.0 | Domingo    | Cortes    |
+| Bojack Horseman      |          2014 | Animation |    8.3 | Domingo    | Cortes    |
+| Breaking Bad         |          2008 | Drama     |    9.1 | Domingo    | Cortes    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    8.8 | Domingo    | Cortes    |
+| Freaks and Geeks     |          1999 | Comedy    |    8.5 | Domingo    | Cortes    |
+| General Hospital     |          1963 | Drama     |    5.8 | Domingo    | Cortes    |
+| Seinfeld             |          1989 | Comedy    |    7.2 | Domingo    | Cortes    |
+| Stranger Things      |          2016 | Drama     |    8.9 | Domingo    | Cortes    |
+| Archer               |          2009 | Animation |    8.9 | Colt       | Steele    |
+| Arrested Development |          2003 | Comedy    |    9.9 | Colt       | Steele    |
+| Bob's Burgers        |          2011 | Animation |    8.0 | Colt       | Steele    |
+| Bojack Horseman      |          2014 | Animation |    8.5 | Colt       | Steele    |
+| Breaking Bad         |          2008 | Drama     |    9.9 | Colt       | Steele    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    9.1 | Colt       | Steele    |
+| Fargo                |          2014 | Drama     |    9.7 | Colt       | Steele    |
+| Freaks and Geeks     |          1999 | Comedy    |    9.3 | Colt       | Steele    |
+| General Hospital     |          1963 | Drama     |    4.5 | Colt       | Steele    |
+| Halt and Catch Fire  |          2014 | Drama     |    9.9 | Colt       | Steele    |
+| Arrested Development |          2003 | Comedy    |    8.4 | Pinkie     | Petit     |
+| Bob's Burgers        |          2011 | Animation |    7.5 | Pinkie     | Petit     |
+| Freaks and Geeks     |          1999 | Comedy    |    8.8 | Pinkie     | Petit     |
+| General Hospital     |          1963 | Drama     |    4.3 | Pinkie     | Petit     |
++----------------------+---------------+-----------+--------+------------+-----------+
+47 rows in set (0.00 sec)
+
+mysql> select * from full_review group by genre;
+ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'tv_db.full_review.title' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select genre from full_review group by genre;
++-----------+
+| genre     |
++-----------+
+| Animation |
+| Comedy    |
+| Drama     |
++-----------+
+3 rows in set (0.00 sec)
+
+mysql> select genre,count(*) from full_review group by genre;
++-----------+----------+
+| genre     | count(*) |
++-----------+----------+
+| Animation |       15 |
+| Comedy    |       16 |
+| Drama     |       16 |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select genre,title from full_review;
++-----------+----------------------+
+| genre     | title                |
++-----------+----------------------+
+| Animation | Archer               |
+| Comedy    | Arrested Development |
+| Animation | Bob's Burgers        |
+| Animation | Bojack Horseman      |
+| Drama     | Breaking Bad         |
+| Animation | Archer               |
+| Animation | Bojack Horseman      |
+| Drama     | Breaking Bad         |
+| Comedy    | Curb Your Enthusiasm |
+| Comedy    | Curb Your Enthusiasm |
+| Drama     | Fargo                |
+| Comedy    | Freaks and Geeks     |
+| Drama     | General Hospital     |
+| Drama     | Stranger Things      |
+| Animation | Archer               |
+| Comedy    | Arrested Development |
+| Animation | Bob's Burgers        |
+| Animation | Bojack Horseman      |
+| Drama     | Breaking Bad         |
+| Comedy    | Curb Your Enthusiasm |
+| Drama     | General Hospital     |
+| Comedy    | Seinfeld             |
+| Drama     | Stranger Things      |
+| Animation | Archer               |
+| Comedy    | Arrested Development |
+| Animation | Bob's Burgers        |
+| Animation | Bojack Horseman      |
+| Drama     | Breaking Bad         |
+| Comedy    | Curb Your Enthusiasm |
+| Comedy    | Freaks and Geeks     |
+| Drama     | General Hospital     |
+| Comedy    | Seinfeld             |
+| Drama     | Stranger Things      |
+| Animation | Archer               |
+| Comedy    | Arrested Development |
+| Animation | Bob's Burgers        |
+| Animation | Bojack Horseman      |
+| Drama     | Breaking Bad         |
+| Comedy    | Curb Your Enthusiasm |
+| Drama     | Fargo                |
+| Comedy    | Freaks and Geeks     |
+| Drama     | General Hospital     |
+| Drama     | Halt and Catch Fire  |
+| Comedy    | Arrested Development |
+| Animation | Bob's Burgers        |
+| Comedy    | Freaks and Geeks     |
+| Drama     | General Hospital     |
++-----------+----------------------+
+47 rows in set (0.00 sec)
+
+mysql> select genre,title from full_review order by genre;
++-----------+----------------------+
+| genre     | title                |
++-----------+----------------------+
+| Animation | Archer               |
+| Animation | Archer               |
+| Animation | Archer               |
+| Animation | Archer               |
+| Animation | Archer               |
+| Animation | Bojack Horseman      |
+| Animation | Bojack Horseman      |
+| Animation | Bojack Horseman      |
+| Animation | Bojack Horseman      |
+| Animation | Bojack Horseman      |
+| Animation | Bob's Burgers        |
+| Animation | Bob's Burgers        |
+| Animation | Bob's Burgers        |
+| Animation | Bob's Burgers        |
+| Animation | Bob's Burgers        |
+| Comedy    | Arrested Development |
+| Comedy    | Arrested Development |
+| Comedy    | Arrested Development |
+| Comedy    | Arrested Development |
+| Comedy    | Arrested Development |
+| Comedy    | Seinfeld             |
+| Comedy    | Seinfeld             |
+| Comedy    | Freaks and Geeks     |
+| Comedy    | Freaks and Geeks     |
+| Comedy    | Freaks and Geeks     |
+| Comedy    | Curb Your Enthusiasm |
+| Comedy    | Curb Your Enthusiasm |
+| Comedy    | Curb Your Enthusiasm |
+| Comedy    | Curb Your Enthusiasm |
+| Comedy    | Curb Your Enthusiasm |
+| Comedy    | Freaks and Geeks     |
+| Drama     | Fargo                |
+| Drama     | Fargo                |
+| Drama     | Breaking Bad         |
+| Drama     | Breaking Bad         |
+| Drama     | Breaking Bad         |
+| Drama     | General Hospital     |
+| Drama     | General Hospital     |
+| Drama     | General Hospital     |
+| Drama     | General Hospital     |
+| Drama     | General Hospital     |
+| Drama     | Halt and Catch Fire  |
+| Drama     | Breaking Bad         |
+| Drama     | Breaking Bad         |
+| Drama     | Stranger Things      |
+| Drama     | Stranger Things      |
+| Drama     | Stranger Things      |
++-----------+----------------------+
+47 rows in set (0.00 sec)
+
+mysql> select genre,title from full_review order by genre,title;
++-----------+----------------------+
+| genre     | title                |
++-----------+----------------------+
+| Animation | Archer               |
+| Animation | Archer               |
+| Animation | Archer               |
+| Animation | Archer               |
+| Animation | Archer               |
+| Animation | Bob's Burgers        |
+| Animation | Bob's Burgers        |
+| Animation | Bob's Burgers        |
+| Animation | Bob's Burgers        |
+| Animation | Bob's Burgers        |
+| Animation | Bojack Horseman      |
+| Animation | Bojack Horseman      |
+| Animation | Bojack Horseman      |
+| Animation | Bojack Horseman      |
+| Animation | Bojack Horseman      |
+| Comedy    | Arrested Development |
+| Comedy    | Arrested Development |
+| Comedy    | Arrested Development |
+| Comedy    | Arrested Development |
+| Comedy    | Arrested Development |
+| Comedy    | Curb Your Enthusiasm |
+| Comedy    | Curb Your Enthusiasm |
+| Comedy    | Curb Your Enthusiasm |
+| Comedy    | Curb Your Enthusiasm |
+| Comedy    | Curb Your Enthusiasm |
+| Comedy    | Freaks and Geeks     |
+| Comedy    | Freaks and Geeks     |
+| Comedy    | Freaks and Geeks     |
+| Comedy    | Freaks and Geeks     |
+| Comedy    | Seinfeld             |
+| Comedy    | Seinfeld             |
+| Drama     | Breaking Bad         |
+| Drama     | Breaking Bad         |
+| Drama     | Breaking Bad         |
+| Drama     | Breaking Bad         |
+| Drama     | Breaking Bad         |
+| Drama     | Fargo                |
+| Drama     | Fargo                |
+| Drama     | General Hospital     |
+| Drama     | General Hospital     |
+| Drama     | General Hospital     |
+| Drama     | General Hospital     |
+| Drama     | General Hospital     |
+| Drama     | Halt and Catch Fire  |
+| Drama     | Stranger Things      |
+| Drama     | Stranger Things      |
+| Drama     | Stranger Things      |
++-----------+----------------------+
+47 rows in set (0.00 sec)
+
+mysql> delete from full_review where genre='Animation';
+ERROR 1395 (HY000): Can not delete from join view 'tv_db.full_review'
+mysql> select * from full_review;
++----------------------+---------------+-----------+--------+------------+-----------+
+| title                | released_year | genre     | rating | first_name | last_Name |
++----------------------+---------------+-----------+--------+------------+-----------+
+| Archer               |          2009 | Animation |    8.0 | Thomas     | Stoneman  |
+| Arrested Development |          2003 | Comedy    |    8.1 | Thomas     | Stoneman  |
+| Bob's Burgers        |          2011 | Animation |    7.0 | Thomas     | Stoneman  |
+| Bojack Horseman      |          2014 | Animation |    7.5 | Thomas     | Stoneman  |
+| Breaking Bad         |          2008 | Drama     |    9.5 | Thomas     | Stoneman  |
+| Archer               |          2009 | Animation |    7.5 | Wyatt      | Skaggs    |
+| Bojack Horseman      |          2014 | Animation |    7.6 | Wyatt      | Skaggs    |
+| Breaking Bad         |          2008 | Drama     |    9.3 | Wyatt      | Skaggs    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    6.5 | Wyatt      | Skaggs    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    8.4 | Wyatt      | Skaggs    |
+| Fargo                |          2014 | Drama     |    9.1 | Wyatt      | Skaggs    |
+| Freaks and Geeks     |          1999 | Comedy    |    7.8 | Wyatt      | Skaggs    |
+| General Hospital     |          1963 | Drama     |    5.5 | Wyatt      | Skaggs    |
+| Stranger Things      |          2016 | Drama     |    8.5 | Wyatt      | Skaggs    |
+| Archer               |          2009 | Animation |    8.5 | Kimbra     | Masters   |
+| Arrested Development |          2003 | Comedy    |    8.0 | Kimbra     | Masters   |
+| Bob's Burgers        |          2011 | Animation |    7.1 | Kimbra     | Masters   |
+| Bojack Horseman      |          2014 | Animation |    7.8 | Kimbra     | Masters   |
+| Breaking Bad         |          2008 | Drama     |    9.0 | Kimbra     | Masters   |
+| Curb Your Enthusiasm |          2000 | Comedy    |    7.8 | Kimbra     | Masters   |
+| General Hospital     |          1963 | Drama     |    6.8 | Kimbra     | Masters   |
+| Seinfeld             |          1989 | Comedy    |    8.0 | Kimbra     | Masters   |
+| Stranger Things      |          2016 | Drama     |    8.9 | Kimbra     | Masters   |
+| Archer               |          2009 | Animation |    7.7 | Domingo    | Cortes    |
+| Arrested Development |          2003 | Comedy    |    6.0 | Domingo    | Cortes    |
+| Bob's Burgers        |          2011 | Animation |    8.0 | Domingo    | Cortes    |
+| Bojack Horseman      |          2014 | Animation |    8.3 | Domingo    | Cortes    |
+| Breaking Bad         |          2008 | Drama     |    9.1 | Domingo    | Cortes    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    8.8 | Domingo    | Cortes    |
+| Freaks and Geeks     |          1999 | Comedy    |    8.5 | Domingo    | Cortes    |
+| General Hospital     |          1963 | Drama     |    5.8 | Domingo    | Cortes    |
+| Seinfeld             |          1989 | Comedy    |    7.2 | Domingo    | Cortes    |
+| Stranger Things      |          2016 | Drama     |    8.9 | Domingo    | Cortes    |
+| Archer               |          2009 | Animation |    8.9 | Colt       | Steele    |
+| Arrested Development |          2003 | Comedy    |    9.9 | Colt       | Steele    |
+| Bob's Burgers        |          2011 | Animation |    8.0 | Colt       | Steele    |
+| Bojack Horseman      |          2014 | Animation |    8.5 | Colt       | Steele    |
+| Breaking Bad         |          2008 | Drama     |    9.9 | Colt       | Steele    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    9.1 | Colt       | Steele    |
+| Fargo                |          2014 | Drama     |    9.7 | Colt       | Steele    |
+| Freaks and Geeks     |          1999 | Comedy    |    9.3 | Colt       | Steele    |
+| General Hospital     |          1963 | Drama     |    4.5 | Colt       | Steele    |
+| Halt and Catch Fire  |          2014 | Drama     |    9.9 | Colt       | Steele    |
+| Arrested Development |          2003 | Comedy    |    8.4 | Pinkie     | Petit     |
+| Bob's Burgers        |          2011 | Animation |    7.5 | Pinkie     | Petit     |
+| Freaks and Geeks     |          1999 | Comedy    |    8.8 | Pinkie     | Petit     |
+| General Hospital     |          1963 | Drama     |    4.3 | Pinkie     | Petit     |
++----------------------+---------------+-----------+--------+------------+-----------+
+47 rows in set (0.00 sec)
+
+mysql> delete from full_review where first_Name='Thomas';
+ERROR 1395 (HY000): Can not delete from join view 'tv_db.full_review'
+mysql> show tables;
++-----------------+
+| Tables_in_tv_db |
++-----------------+
+| full_review     |
+| reviewers       |
+| reviews         |
+| series          |
+| sr              |
++-----------------+
+5 rows in set (0.00 sec)
+
+mysql> show create view sr;
++------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+| View | Create View                                                                                                                                                                                                                                                              | character_set_client | collation_connection |
++------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+| sr   | CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sr` AS select `series`.`id` AS `id`,`series`.`title` AS `title`,`series`.`released_year` AS `released_year`,`series`.`genre` AS `genre` from `series` order by `series`.`released_year` | utf8mb4              | utf8mb4_0900_ai_ci   |
++------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+----------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from sr;
++----+-----------------------+---------------+-----------+
+| id | title                 | released_year | genre     |
++----+-----------------------+---------------+-----------+
+|  9 | General Hospital      |          1963 | Drama     |
+| 13 | Seinfeld              |          1989 | Comedy    |
+|  8 | Freaks and Geeks      |          1999 | Comedy    |
+|  6 | Curb Your Enthusiasm  |          2000 | Comedy    |
+| 11 | Malcolm In The Middle |          2000 | Comedy    |
+|  2 | Arrested Development  |          2003 | Comedy    |
+| 12 | Pushing Daisies       |          2007 | Comedy    |
+|  5 | Breaking Bad          |          2008 | Drama     |
+|  1 | Archer                |          2009 | Animation |
+|  3 | Bob's Burgers         |          2011 | Animation |
+|  4 | Bojack Horseman       |          2014 | Animation |
+|  7 | Fargo                 |          2014 | Drama     |
+| 10 | Halt and Catch Fire   |          2014 | Drama     |
+| 14 | Stranger Things       |          2016 | Drama     |
++----+-----------------------+---------------+-----------+
+14 rows in set (0.00 sec)
+
+mysql> create view sr as
+    -> select * from series order by released_year;
+ERROR 1050 (42S01): Table 'sr' already exists
+mysql> create or replace  view sr as select * from series order by released_year descending;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'descending' at line 1
+mysql> create or replace  view sr as select * from series order by released_year desc;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from sr;
++----+-----------------------+---------------+-----------+
+| id | title                 | released_year | genre     |
++----+-----------------------+---------------+-----------+
+| 14 | Stranger Things       |          2016 | Drama     |
+|  4 | Bojack Horseman       |          2014 | Animation |
+|  7 | Fargo                 |          2014 | Drama     |
+| 10 | Halt and Catch Fire   |          2014 | Drama     |
+|  3 | Bob's Burgers         |          2011 | Animation |
+|  1 | Archer                |          2009 | Animation |
+|  5 | Breaking Bad          |          2008 | Drama     |
+| 12 | Pushing Daisies       |          2007 | Comedy    |
+|  2 | Arrested Development  |          2003 | Comedy    |
+|  6 | Curb Your Enthusiasm  |          2000 | Comedy    |
+| 11 | Malcolm In The Middle |          2000 | Comedy    |
+|  8 | Freaks and Geeks      |          1999 | Comedy    |
+| 13 | Seinfeld              |          1989 | Comedy    |
+|  9 | General Hospital      |          1963 | Drama     |
++----+-----------------------+---------------+-----------+
+14 rows in set (0.00 sec)
+
+mysql> -- Replacing the view with the help of Alter command too
+mysql> Alter view sr as select * from series order by released_year;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from sr;
++----+-----------------------+---------------+-----------+
+| id | title                 | released_year | genre     |
++----+-----------------------+---------------+-----------+
+|  9 | General Hospital      |          1963 | Drama     |
+| 13 | Seinfeld              |          1989 | Comedy    |
+|  8 | Freaks and Geeks      |          1999 | Comedy    |
+|  6 | Curb Your Enthusiasm  |          2000 | Comedy    |
+| 11 | Malcolm In The Middle |          2000 | Comedy    |
+|  2 | Arrested Development  |          2003 | Comedy    |
+| 12 | Pushing Daisies       |          2007 | Comedy    |
+|  5 | Breaking Bad          |          2008 | Drama     |
+|  1 | Archer                |          2009 | Animation |
+|  3 | Bob's Burgers         |          2011 | Animation |
+|  4 | Bojack Horseman       |          2014 | Animation |
+|  7 | Fargo                 |          2014 | Drama     |
+| 10 | Halt and Catch Fire   |          2014 | Drama     |
+| 14 | Stranger Things       |          2016 | Drama     |
++----+-----------------------+---------------+-----------+
+14 rows in set (0.00 sec)
+
+mysql> drop view sr;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_tv_db |
++-----------------+
+| full_review     |
+| reviewers       |
+| reviews         |
+| series          |
++-----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from series;
++----+-----------------------+---------------+-----------+
+| id | title                 | released_year | genre     |
++----+-----------------------+---------------+-----------+
+|  1 | Archer                |          2009 | Animation |
+|  2 | Arrested Development  |          2003 | Comedy    |
+|  3 | Bob's Burgers         |          2011 | Animation |
+|  4 | Bojack Horseman       |          2014 | Animation |
+|  5 | Breaking Bad          |          2008 | Drama     |
+|  6 | Curb Your Enthusiasm  |          2000 | Comedy    |
+|  7 | Fargo                 |          2014 | Drama     |
+|  8 | Freaks and Geeks      |          1999 | Comedy    |
+|  9 | General Hospital      |          1963 | Drama     |
+| 10 | Halt and Catch Fire   |          2014 | Drama     |
+| 11 | Malcolm In The Middle |          2000 | Comedy    |
+| 12 | Pushing Daisies       |          2007 | Comedy    |
+| 13 | Seinfeld              |          1989 | Comedy    |
+| 14 | Stranger Things       |          2016 | Drama     |
++----+-----------------------+---------------+-----------+
+14 rows in set (0.00 sec)
+
+mysql> select title,count(title) from full_review group by title;
++----------------------+--------------+
+| title                | count(title) |
++----------------------+--------------+
+| Archer               |            5 |
+| Arrested Development |            5 |
+| Bob's Burgers        |            5 |
+| Bojack Horseman      |            5 |
+| Breaking Bad         |            5 |
+| Curb Your Enthusiasm |            5 |
+| Fargo                |            2 |
+| Freaks and Geeks     |            4 |
+| General Hospital     |            5 |
+| Halt and Catch Fire  |            1 |
+| Seinfeld             |            2 |
+| Stranger Things      |            3 |
++----------------------+--------------+
+12 rows in set (0.00 sec)
+
+mysql> select title,Avg(rating),count(title) from full_review group by title;
++----------------------+-------------+--------------+
+| title                | Avg(rating) | count(title) |
++----------------------+-------------+--------------+
+| Archer               |     8.12000 |            5 |
+| Arrested Development |     8.08000 |            5 |
+| Bob's Burgers        |     7.52000 |            5 |
+| Bojack Horseman      |     7.94000 |            5 |
+| Breaking Bad         |     9.36000 |            5 |
+| Curb Your Enthusiasm |     8.12000 |            5 |
+| Fargo                |     9.40000 |            2 |
+| Freaks and Geeks     |     8.60000 |            4 |
+| General Hospital     |     5.38000 |            5 |
+| Halt and Catch Fire  |     9.90000 |            1 |
+| Seinfeld             |     7.60000 |            2 |
+| Stranger Things      |     8.76667 |            3 |
++----------------------+-------------+--------------+
+12 rows in set (0.00 sec)
+
+mysql> select title,Avg(rating),count(title) from full_review group by title having count(title)>2;
++----------------------+-------------+--------------+
+| title                | Avg(rating) | count(title) |
++----------------------+-------------+--------------+
+| Archer               |     8.12000 |            5 |
+| Arrested Development |     8.08000 |            5 |
+| Bob's Burgers        |     7.52000 |            5 |
+| Bojack Horseman      |     7.94000 |            5 |
+| Breaking Bad         |     9.36000 |            5 |
+| Curb Your Enthusiasm |     8.12000 |            5 |
+| Freaks and Geeks     |     8.60000 |            4 |
+| General Hospital     |     5.38000 |            5 |
+| Stranger Things      |     8.76667 |            3 |
++----------------------+-------------+--------------+
+9 rows in set (0.00 sec)
+
+mysql> select title,Avg(rating),count(title) from full_review group by title having count(title)>3;
++----------------------+-------------+--------------+
+| title                | Avg(rating) | count(title) |
++----------------------+-------------+--------------+
+| Archer               |     8.12000 |            5 |
+| Arrested Development |     8.08000 |            5 |
+| Bob's Burgers        |     7.52000 |            5 |
+| Bojack Horseman      |     7.94000 |            5 |
+| Breaking Bad         |     9.36000 |            5 |
+| Curb Your Enthusiasm |     8.12000 |            5 |
+| Freaks and Geeks     |     8.60000 |            4 |
+| General Hospital     |     5.38000 |            5 |
++----------------------+-------------+--------------+
+8 rows in set (0.00 sec)
+
+mysql> select title,Avg(rating),count(title) from full_review group by title having count(title)>5;
+Empty set (0.00 sec)
+
+mysql> select title,Avg(rating),count(title) from full_review group by title having count(title)>=5;
++----------------------+-------------+--------------+
+| title                | Avg(rating) | count(title) |
++----------------------+-------------+--------------+
+| Archer               |     8.12000 |            5 |
+| Arrested Development |     8.08000 |            5 |
+| Bob's Burgers        |     7.52000 |            5 |
+| Bojack Horseman      |     7.94000 |            5 |
+| Breaking Bad         |     9.36000 |            5 |
+| Curb Your Enthusiasm |     8.12000 |            5 |
+| General Hospital     |     5.38000 |            5 |
++----------------------+-------------+--------------+
+7 rows in set (0.00 sec)
+
+mysql> select title,Avg(rating),count(title) from full_review group by title having count(title)>=6;
+Empty set (0.01 sec)
+
+mysql> select title,Avg(rating),count(title) from full_review group by title having count(title)>=5;
++----------------------+-------------+--------------+
+| title                | Avg(rating) | count(title) |
++----------------------+-------------+--------------+
+| Archer               |     8.12000 |            5 |
+| Arrested Development |     8.08000 |            5 |
+| Bob's Burgers        |     7.52000 |            5 |
+| Bojack Horseman      |     7.94000 |            5 |
+| Breaking Bad         |     9.36000 |            5 |
+| Curb Your Enthusiasm |     8.12000 |            5 |
+| General Hospital     |     5.38000 |            5 |
++----------------------+-------------+--------------+
+7 rows in set (0.01 sec)
+
+mysql> select title,Avg(rating),count(title) from full_review group by title having count(title)>=5;
++----------------------+-------------+--------------+
+| title                | Avg(rating) | count(title) |
++----------------------+-------------+--------------+
+| Archer               |     8.12000 |            5 |
+| Arrested Development |     8.08000 |            5 |
+| Bob's Burgers        |     7.52000 |            5 |
+| Bojack Horseman      |     7.94000 |            5 |
+| Breaking Bad         |     9.36000 |            5 |
+| Curb Your Enthusiasm |     8.12000 |            5 |
+| General Hospital     |     5.38000 |            5 |
++----------------------+-------------+--------------+
+7 rows in set (0.01 sec)
+
+mysql> select title,AVG(rating) from full_review group by title;
++----------------------+-------------+
+| title                | AVG(rating) |
++----------------------+-------------+
+| Archer               |     8.12000 |
+| Arrested Development |     8.08000 |
+| Bob's Burgers        |     7.52000 |
+| Bojack Horseman      |     7.94000 |
+| Breaking Bad         |     9.36000 |
+| Curb Your Enthusiasm |     8.12000 |
+| Fargo                |     9.40000 |
+| Freaks and Geeks     |     8.60000 |
+| General Hospital     |     5.38000 |
+| Halt and Catch Fire  |     9.90000 |
+| Seinfeld             |     7.60000 |
+| Stranger Things      |     8.76667 |
++----------------------+-------------+
+12 rows in set (0.00 sec)
+
+mysql> select title,AVG(rating) from full_review group by title order by title desc;
++----------------------+-------------+
+| title                | AVG(rating) |
++----------------------+-------------+
+| Stranger Things      |     8.76667 |
+| Seinfeld             |     7.60000 |
+| Halt and Catch Fire  |     9.90000 |
+| General Hospital     |     5.38000 |
+| Freaks and Geeks     |     8.60000 |
+| Fargo                |     9.40000 |
+| Curb Your Enthusiasm |     8.12000 |
+| Breaking Bad         |     9.36000 |
+| Bojack Horseman      |     7.94000 |
+| Bob's Burgers        |     7.52000 |
+| Arrested Development |     8.08000 |
+| Archer               |     8.12000 |
++----------------------+-------------+
+12 rows in set (0.00 sec)
+
+mysql> select title,AVG(rating) from full_review group by title order by title ;
++----------------------+-------------+
+| title                | AVG(rating) |
++----------------------+-------------+
+| Archer               |     8.12000 |
+| Arrested Development |     8.08000 |
+| Bob's Burgers        |     7.52000 |
+| Bojack Horseman      |     7.94000 |
+| Breaking Bad         |     9.36000 |
+| Curb Your Enthusiasm |     8.12000 |
+| Fargo                |     9.40000 |
+| Freaks and Geeks     |     8.60000 |
+| General Hospital     |     5.38000 |
+| Halt and Catch Fire  |     9.90000 |
+| Seinfeld             |     7.60000 |
+| Stranger Things      |     8.76667 |
++----------------------+-------------+
+12 rows in set (0.00 sec)
+
+mysql> select title,AVG(rating) as Rating from full_review group by title order by rating desc ;
++----------------------+---------+
+| title                | Rating  |
++----------------------+---------+
+| Halt and Catch Fire  | 9.90000 |
+| Fargo                | 9.40000 |
+| Breaking Bad         | 9.36000 |
+| Stranger Things      | 8.76667 |
+| Freaks and Geeks     | 8.60000 |
+| Archer               | 8.12000 |
+| Curb Your Enthusiasm | 8.12000 |
+| Arrested Development | 8.08000 |
+| Bojack Horseman      | 7.94000 |
+| Seinfeld             | 7.60000 |
+| Bob's Burgers        | 7.52000 |
+| General Hospital     | 5.38000 |
++----------------------+---------+
+12 rows in set (0.01 sec)
+
+mysql> select title,count(rating) from full_review group by title with roll up;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'with roll up' at line 1
+mysql> select title,count(rating) from full_review group by title with rollup;
++----------------------+---------------+
+| title                | count(rating) |
++----------------------+---------------+
+| Archer               |             5 |
+| Arrested Development |             5 |
+| Bob's Burgers        |             5 |
+| Bojack Horseman      |             5 |
+| Breaking Bad         |             5 |
+| Curb Your Enthusiasm |             5 |
+| Fargo                |             2 |
+| Freaks and Geeks     |             4 |
+| General Hospital     |             5 |
+| Halt and Catch Fire  |             1 |
+| Seinfeld             |             2 |
+| Stranger Things      |             3 |
+| NULL                 |            47 |
++----------------------+---------------+
+13 rows in set (0.00 sec)
+
+mysql> select released_year,count(released_year) from full_review group by released_year with rollup;
++---------------+----------------------+
+| released_year | count(released_year) |
++---------------+----------------------+
+|          1963 |                    5 |
+|          1989 |                    2 |
+|          1999 |                    4 |
+|          2000 |                    5 |
+|          2003 |                    5 |
+|          2008 |                    5 |
+|          2009 |                    5 |
+|          2011 |                    5 |
+|          2014 |                    8 |
+|          2016 |                    3 |
+|          NULL |                   47 |
++---------------+----------------------+
+11 rows in set (0.00 sec)
+
+mysql> select released_year from full_review;
++---------------+
+| released_year |
++---------------+
+|          2009 |
+|          2003 |
+|          2011 |
+|          2014 |
+|          2008 |
+|          2009 |
+|          2014 |
+|          2008 |
+|          2000 |
+|          2000 |
+|          2014 |
+|          1999 |
+|          1963 |
+|          2016 |
+|          2009 |
+|          2003 |
+|          2011 |
+|          2014 |
+|          2008 |
+|          2000 |
+|          1963 |
+|          1989 |
+|          2016 |
+|          2009 |
+|          2003 |
+|          2011 |
+|          2014 |
+|          2008 |
+|          2000 |
+|          1999 |
+|          1963 |
+|          1989 |
+|          2016 |
+|          2009 |
+|          2003 |
+|          2011 |
+|          2014 |
+|          2008 |
+|          2000 |
+|          2014 |
+|          1999 |
+|          1963 |
+|          2014 |
+|          2003 |
+|          2011 |
+|          1999 |
+|          1963 |
++---------------+
+47 rows in set (0.00 sec)
+
+mysql> select released_year,count(released_year) from full_review group by released_year with rollup;
++---------------+----------------------+
+| released_year | count(released_year) |
++---------------+----------------------+
+|          1963 |                    5 |
+|          1989 |                    2 |
+|          1999 |                    4 |
+|          2000 |                    5 |
+|          2003 |                    5 |
+|          2008 |                    5 |
+|          2009 |                    5 |
+|          2011 |                    5 |
+|          2014 |                    8 |
+|          2016 |                    3 |
+|          NULL |                   47 |
++---------------+----------------------+
+11 rows in set (0.00 sec)
+
+mysql> select released_year,count(released_year) from full_review group by  with rollup;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'with rollup' at line 1
+mysql> select * from full_review;
++----------------------+---------------+-----------+--------+------------+-----------+
+| title                | released_year | genre     | rating | first_name | last_Name |
++----------------------+---------------+-----------+--------+------------+-----------+
+| Archer               |          2009 | Animation |    8.0 | Thomas     | Stoneman  |
+| Arrested Development |          2003 | Comedy    |    8.1 | Thomas     | Stoneman  |
+| Bob's Burgers        |          2011 | Animation |    7.0 | Thomas     | Stoneman  |
+| Bojack Horseman      |          2014 | Animation |    7.5 | Thomas     | Stoneman  |
+| Breaking Bad         |          2008 | Drama     |    9.5 | Thomas     | Stoneman  |
+| Archer               |          2009 | Animation |    7.5 | Wyatt      | Skaggs    |
+| Bojack Horseman      |          2014 | Animation |    7.6 | Wyatt      | Skaggs    |
+| Breaking Bad         |          2008 | Drama     |    9.3 | Wyatt      | Skaggs    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    6.5 | Wyatt      | Skaggs    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    8.4 | Wyatt      | Skaggs    |
+| Fargo                |          2014 | Drama     |    9.1 | Wyatt      | Skaggs    |
+| Freaks and Geeks     |          1999 | Comedy    |    7.8 | Wyatt      | Skaggs    |
+| General Hospital     |          1963 | Drama     |    5.5 | Wyatt      | Skaggs    |
+| Stranger Things      |          2016 | Drama     |    8.5 | Wyatt      | Skaggs    |
+| Archer               |          2009 | Animation |    8.5 | Kimbra     | Masters   |
+| Arrested Development |          2003 | Comedy    |    8.0 | Kimbra     | Masters   |
+| Bob's Burgers        |          2011 | Animation |    7.1 | Kimbra     | Masters   |
+| Bojack Horseman      |          2014 | Animation |    7.8 | Kimbra     | Masters   |
+| Breaking Bad         |          2008 | Drama     |    9.0 | Kimbra     | Masters   |
+| Curb Your Enthusiasm |          2000 | Comedy    |    7.8 | Kimbra     | Masters   |
+| General Hospital     |          1963 | Drama     |    6.8 | Kimbra     | Masters   |
+| Seinfeld             |          1989 | Comedy    |    8.0 | Kimbra     | Masters   |
+| Stranger Things      |          2016 | Drama     |    8.9 | Kimbra     | Masters   |
+| Archer               |          2009 | Animation |    7.7 | Domingo    | Cortes    |
+| Arrested Development |          2003 | Comedy    |    6.0 | Domingo    | Cortes    |
+| Bob's Burgers        |          2011 | Animation |    8.0 | Domingo    | Cortes    |
+| Bojack Horseman      |          2014 | Animation |    8.3 | Domingo    | Cortes    |
+| Breaking Bad         |          2008 | Drama     |    9.1 | Domingo    | Cortes    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    8.8 | Domingo    | Cortes    |
+| Freaks and Geeks     |          1999 | Comedy    |    8.5 | Domingo    | Cortes    |
+| General Hospital     |          1963 | Drama     |    5.8 | Domingo    | Cortes    |
+| Seinfeld             |          1989 | Comedy    |    7.2 | Domingo    | Cortes    |
+| Stranger Things      |          2016 | Drama     |    8.9 | Domingo    | Cortes    |
+| Archer               |          2009 | Animation |    8.9 | Colt       | Steele    |
+| Arrested Development |          2003 | Comedy    |    9.9 | Colt       | Steele    |
+| Bob's Burgers        |          2011 | Animation |    8.0 | Colt       | Steele    |
+| Bojack Horseman      |          2014 | Animation |    8.5 | Colt       | Steele    |
+| Breaking Bad         |          2008 | Drama     |    9.9 | Colt       | Steele    |
+| Curb Your Enthusiasm |          2000 | Comedy    |    9.1 | Colt       | Steele    |
+| Fargo                |          2014 | Drama     |    9.7 | Colt       | Steele    |
+| Freaks and Geeks     |          1999 | Comedy    |    9.3 | Colt       | Steele    |
+| General Hospital     |          1963 | Drama     |    4.5 | Colt       | Steele    |
+| Halt and Catch Fire  |          2014 | Drama     |    9.9 | Colt       | Steele    |
+| Arrested Development |          2003 | Comedy    |    8.4 | Pinkie     | Petit     |
+| Bob's Burgers        |          2011 | Animation |    7.5 | Pinkie     | Petit     |
+| Freaks and Geeks     |          1999 | Comedy    |    8.8 | Pinkie     | Petit     |
+| General Hospital     |          1963 | Drama     |    4.3 | Pinkie     | Petit     |
++----------------------+---------------+-----------+--------+------------+-----------+
+47 rows in set (0.00 sec)
+
+mysql> select genre,count(genre) from full_review group by genre ;
++-----------+--------------+
+| genre     | count(genre) |
++-----------+--------------+
+| Animation |           15 |
+| Comedy    |           16 |
+| Drama     |           16 |
++-----------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select genre,count(genre) as Total from full_review group by genre ;
++-----------+-------+
+| genre     | Total |
++-----------+-------+
+| Animation |    15 |
+| Comedy    |    16 |
+| Drama     |    16 |
++-----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select genre,count(genre) as Total from full_review group by genre with rollup; ;
++-----------+-------+
+| genre     | Total |
++-----------+-------+
+| Animation |    15 |
+| Comedy    |    16 |
+| Drama     |    16 |
+| NULL      |    47 |
++-----------+-------+
+4 rows in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+mysql> select genre,count(genre) as Total from full_review group by genre with rollup ;
++-----------+-------+
+| genre     | Total |
++-----------+-------+
+| Animation |    15 |
+| Comedy    |    16 |
+| Drama     |    16 |
+| NULL      |    47 |
++-----------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select released_year,count(released_year) from full_review group by released_year with rollup;
++---------------+----------------------+
+| released_year | count(released_year) |
++---------------+----------------------+
+|          1963 |                    5 |
+|          1989 |                    2 |
+|          1999 |                    4 |
+|          2000 |                    5 |
+|          2003 |                    5 |
+|          2008 |                    5 |
+|          2009 |                    5 |
+|          2011 |                    5 |
+|          2014 |                    8 |
+|          2016 |                    3 |
+|          NULL |                   47 |
++---------------+----------------------+
+11 rows in set (0.00 sec)
+
+mysql> select avg(rating) fro full_review;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'full_review' at line 1
+mysql> select ,ratingavg(rating) from full_review;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',ratingavg(rating) from full_review' at line 1
+mysql> select title,rating,avg(rating) from full_review;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'tv_db.full_review.title'; this is incompatible with sql_mode=only_full_group_by
+mysql> select title,rating,avg(rating) from full_review;
+ERROR 1140 (42000): In aggregated query without GROUP BY, expression #1 of SELECT list contains nonaggregated column 'tv_db.full_review.title'; this is incompatible with sql_mode=only_full_group_by
+mysql> select avg(rating) from full_review;
++-------------+
+| avg(rating) |
++-------------+
+|     8.02553 |
++-------------+
+1 row in set (0.01 sec)
+
+mysql> select Rating,avg(rating) from full_review group by rating ;
++--------+-------------+
+| rating | avg(rating) |
++--------+-------------+
+|    8.0 |     8.00000 |
+|    7.5 |     7.50000 |
+|    8.5 |     8.50000 |
+|    7.7 |     7.70000 |
+|    8.9 |     8.90000 |
+|    8.1 |     8.10000 |
+|    6.0 |     6.00000 |
+|    8.4 |     8.40000 |
+|    9.9 |     9.90000 |
+|    7.0 |     7.00000 |
+|    7.1 |     7.10000 |
+|    7.8 |     7.80000 |
+|    8.3 |     8.30000 |
+|    7.6 |     7.60000 |
+|    9.5 |     9.50000 |
+|    9.0 |     9.00000 |
+|    9.1 |     9.10000 |
+|    9.3 |     9.30000 |
+|    6.5 |     6.50000 |
+|    8.8 |     8.80000 |
+|    9.7 |     9.70000 |
+|    5.5 |     5.50000 |
+|    6.8 |     6.80000 |
+|    5.8 |     5.80000 |
+|    4.3 |     4.30000 |
+|    4.5 |     4.50000 |
+|    7.2 |     7.20000 |
++--------+-------------+
+27 rows in set (0.00 sec)
+
+mysql> select Rating,avg(rating) from full_review group by rating with rollup ;
++--------+-------------+
+| rating | avg(rating) |
++--------+-------------+
+|    4.3 |     4.30000 |
+|    4.5 |     4.50000 |
+|    5.5 |     5.50000 |
+|    5.8 |     5.80000 |
+|    6.0 |     6.00000 |
+|    6.5 |     6.50000 |
+|    6.8 |     6.80000 |
+|    7.0 |     7.00000 |
+|    7.1 |     7.10000 |
+|    7.2 |     7.20000 |
+|    7.5 |     7.50000 |
+|    7.6 |     7.60000 |
+|    7.7 |     7.70000 |
+|    7.8 |     7.80000 |
+|    8.0 |     8.00000 |
+|    8.1 |     8.10000 |
+|    8.3 |     8.30000 |
+|    8.4 |     8.40000 |
+|    8.5 |     8.50000 |
+|    8.8 |     8.80000 |
+|    8.9 |     8.90000 |
+|    9.0 |     9.00000 |
+|    9.1 |     9.10000 |
+|    9.3 |     9.30000 |
+|    9.5 |     9.50000 |
+|    9.7 |     9.70000 |
+|    9.9 |     9.90000 |
+|   NULL |     8.02553 |
++--------+-------------+
+28 rows in set (0.00 sec)
+
+mysql> select released_year,genre,count(*) from full_review
+    -> group by released_year,genre ;
++---------------+-----------+----------+
+| released_year | genre     | count(*) |
++---------------+-----------+----------+
+|          2009 | Animation |        5 |
+|          2003 | Comedy    |        5 |
+|          2011 | Animation |        5 |
+|          2014 | Animation |        5 |
+|          2008 | Drama     |        5 |
+|          2000 | Comedy    |        5 |
+|          2014 | Drama     |        3 |
+|          1999 | Comedy    |        4 |
+|          1963 | Drama     |        5 |
+|          1989 | Comedy    |        2 |
+|          2016 | Drama     |        3 |
++---------------+-----------+----------+
+11 rows in set (0.00 sec)
+
+mysql> select released_year,count(released_year) from full_review group by released_year;
++---------------+----------------------+
+| released_year | count(released_year) |
++---------------+----------------------+
+|          2009 |                    5 |
+|          2003 |                    5 |
+|          2011 |                    5 |
+|          2014 |                    8 |
+|          2008 |                    5 |
+|          2000 |                    5 |
+|          1999 |                    4 |
+|          1963 |                    5 |
+|          1989 |                    2 |
+|          2016 |                    3 |
++---------------+----------------------+
+10 rows in set (0.00 sec)
+
+mysql> select genre,count(genre) from full_review group by genre;
++-----------+--------------+
+| genre     | count(genre) |
++-----------+--------------+
+| Animation |           15 |
+| Comedy    |           16 |
+| Drama     |           16 |
++-----------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select released_year,genre from full_review group by released_year,genre with rollup;
++---------------+-----------+
+| released_year | genre     |
++---------------+-----------+
+|          1963 | Drama     |
+|          1963 | NULL      |
+|          1989 | Comedy    |
+|          1989 | NULL      |
+|          1999 | Comedy    |
+|          1999 | NULL      |
+|          2000 | Comedy    |
+|          2000 | NULL      |
+|          2003 | Comedy    |
+|          2003 | NULL      |
+|          2008 | Drama     |
+|          2008 | NULL      |
+|          2009 | Animation |
+|          2009 | NULL      |
+|          2011 | Animation |
+|          2011 | NULL      |
+|          2014 | Animation |
+|          2014 | Drama     |
+|          2014 | NULL      |
+|          2016 | Drama     |
+|          2016 | NULL      |
+|          NULL | NULL      |
++---------------+-----------+
+22 rows in set (0.00 sec)
+
+mysql> select released_year,genre,count(rating) from full_review group by released_year,genre with rollup;
++---------------+-----------+---------------+
+| released_year | genre     | count(rating) |
++---------------+-----------+---------------+
+|          1963 | Drama     |             5 |
+|          1963 | NULL      |             5 |
+|          1989 | Comedy    |             2 |
+|          1989 | NULL      |             2 |
+|          1999 | Comedy    |             4 |
+|          1999 | NULL      |             4 |
+|          2000 | Comedy    |             5 |
+|          2000 | NULL      |             5 |
+|          2003 | Comedy    |             5 |
+|          2003 | NULL      |             5 |
+|          2008 | Drama     |             5 |
+|          2008 | NULL      |             5 |
+|          2009 | Animation |             5 |
+|          2009 | NULL      |             5 |
+|          2011 | Animation |             5 |
+|          2011 | NULL      |             5 |
+|          2014 | Animation |             5 |
+|          2014 | Drama     |             3 |
+|          2014 | NULL      |             8 |
+|          2016 | Drama     |             3 |
+|          2016 | NULL      |             3 |
+|          NULL | NULL      |            47 |
++---------------+-----------+---------------+
+22 rows in set (0.00 sec)
+
+mysql> select released_year,count(rating) from full_review group by released_year with rollup;
++---------------+---------------+
+| released_year | count(rating) |
++---------------+---------------+
+|          1963 |             5 |
+|          1989 |             2 |
+|          1999 |             4 |
+|          2000 |             5 |
+|          2003 |             5 |
+|          2008 |             5 |
+|          2009 |             5 |
+|          2011 |             5 |
+|          2014 |             8 |
+|          2016 |             3 |
+|          NULL |            47 |
++---------------+---------------+
+11 rows in set (0.00 sec)
+
+mysql> select released_year,genre,Avg(rating) from full_review group by released_year,genre;
++---------------+-----------+-------------+
+| released_year | genre     | Avg(rating) |
++---------------+-----------+-------------+
+|          2009 | Animation |     8.12000 |
+|          2003 | Comedy    |     8.08000 |
+|          2011 | Animation |     7.52000 |
+|          2014 | Animation |     7.94000 |
+|          2008 | Drama     |     9.36000 |
+|          2000 | Comedy    |     8.12000 |
+|          2014 | Drama     |     9.56667 |
+|          1999 | Comedy    |     8.60000 |
+|          1963 | Drama     |     5.38000 |
+|          1989 | Comedy    |     7.60000 |
+|          2016 | Drama     |     8.76667 |
++---------------+-----------+-------------+
+11 rows in set (0.01 sec)
+
+mysql> select genre,count(genre) from full_review group by genre;
++-----------+--------------+
+| genre     | count(genre) |
++-----------+--------------+
+| Animation |           15 |
+| Comedy    |           16 |
+| Drama     |           16 |
++-----------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select released_year,genre,Avg(rating) from full_review group by released_year,genre with rollup;
++---------------+-----------+-------------+
+| released_year | genre     | Avg(rating) |
++---------------+-----------+-------------+
+|          1963 | Drama     |     5.38000 |
+|          1963 | NULL      |     5.38000 |
+|          1989 | Comedy    |     7.60000 |
+|          1989 | NULL      |     7.60000 |
+|          1999 | Comedy    |     8.60000 |
+|          1999 | NULL      |     8.60000 |
+|          2000 | Comedy    |     8.12000 |
+|          2000 | NULL      |     8.12000 |
+|          2003 | Comedy    |     8.08000 |
+|          2003 | NULL      |     8.08000 |
+|          2008 | Drama     |     9.36000 |
+|          2008 | NULL      |     9.36000 |
+|          2009 | Animation |     8.12000 |
+|          2009 | NULL      |     8.12000 |
+|          2011 | Animation |     7.52000 |
+|          2011 | NULL      |     7.52000 |
+|          2014 | Animation |     7.94000 |
+|          2014 | Drama     |     9.56667 |
+|          2014 | NULL      |     8.55000 |
+|          2016 | Drama     |     8.76667 |
+|          2016 | NULL      |     8.76667 |
+|          NULL | NULL      |     8.02553 |
++---------------+-----------+-------------+
+22 rows in set (0.00 sec)
+
+mysql> -- By changing the Behaviour by simply chaging the modes.
+mysql> select @@Global sql_modes;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sql_modes' at line 1
+mysql> select @@Global sql_mode;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sql_mode' at line 1
+mysql> select @@Global.sql_mode;
++-----------------------------------------------------------------------------------------------------------------------+
+| @@Global.sql_mode                                                                                                     |
++-----------------------------------------------------------------------------------------------------------------------+
+| ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION |
++-----------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> select @@session.sql_mode;
++-----------------------------------------------------------------------------------------------------------------------+
+| @@session.sql_mode                                                                                                    |
++-----------------------------------------------------------------------------------------------------------------------+
+| ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION |
++-----------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> -- Set the Global or Session modes too
+mysql> select 3?0;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?0' at line 1
+mysql> select 3/0;
++------+
+| 3/0  |
++------+
+| NULL |
++------+
+1 row in set, 1 warning (0.01 sec)
+
+mysql> show warnings;
++---------+------+---------------+
+| Level   | Code | Message       |
++---------+------+---------------+
+| Warning | 1365 | Division by 0 |
++---------+------+---------------+
+1 row in set (0.00 sec)
+
+mysql> set session sql_mode='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION';
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> select @@session.sql_mode;
++--------------------------------------------------------------------------------------------+
+| @@session.sql_mode                                                                         |
++--------------------------------------------------------------------------------------------+
+| ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION |
++--------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select 2/0;
++------+
+| 2/0  |
++------+
+| NULL |
++------+
+1 row in set (0.00 sec)
+
+mysql> show warnings;
+Empty set (0.00 sec)
+
+mysql> select @@session.sql_mode;
++--------------------------------------------------------------------------------------------+
+| @@session.sql_mode                                                                         |
++--------------------------------------------------------------------------------------------+
+| ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION |
++--------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select @@global.sql_mode;
++-----------------------------------------------------------------------------------------------------------------------+
+| @@global.sql_mode                                                                                                     |
++-----------------------------------------------------------------------------------------------------------------------+
+| ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION |
++-----------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select @@session.sql_mode;
++--------------------------------------------------------------------------------------------+
+| @@session.sql_mode                                                                         |
++--------------------------------------------------------------------------------------------+
+| ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION |
++--------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> set session sql mode='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sql mode='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ER' at line 1
+mysql> set session sql mode='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO, NO_ENGINE_SUBSTITUTION';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sql mode='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ER' at line 1
+mysql> select @@session.sql_mode;
++--------------------------------------------------------------------------------------------+
+| @@session.sql_mode                                                                         |
++--------------------------------------------------------------------------------------------+
+| ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION |
++--------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> set session sql_mode='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select @@session.sql_mode;
++-----------------------------------------------------------------------------------------------------------------------+
+| @@session.sql_mode                                                                                                    |
++-----------------------------------------------------------------------------------------------------------------------+
+| ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION |
++-----------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select 5/0;
++------+
+| 5/0  |
++------+
+| NULL |
++------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> show warnings;
++---------+------+---------------+
+| Level   | Code | Message       |
++---------+------+---------------+
+| Warning | 1365 | Division by 0 |
++---------+------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select @@session.sql_mode;
++-----------------------------------------------------------------------------------------------------------------------+
+| @@session.sql_mode                                                                                                    |
++-----------------------------------------------------------------------------------------------------------------------+
+| ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION |
++-----------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> set sesssion sql_mode='';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sql_mode=''' at line 1
+mysql> set session sql_mode='';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select 3/0;
++------+
+| 3/0  |
++------+
+| NULL |
++------+
+1 row in set (0.00 sec)
+
+mysql> show warnings;
+Empty set (0.00 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_tv_db |
++-----------------+
+| full_review     |
+| reviewers       |
+| reviews         |
+| series          |
++-----------------+
+4 rows in set (0.00 sec)
+
+mysql> desc reviews;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int          | NO   | PRI | NULL    | auto_increment |
+| rating      | decimal(2,1) | YES  |     | NULL    |                |
+| series_id   | int          | YES  | MUL | NULL    |                |
+| reviewer_id | int          | YES  | MUL | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> select * from reviews limit 5;
++----+--------+-----------+-------------+
+| id | rating | series_id | reviewer_id |
++----+--------+-----------+-------------+
+|  1 |    8.0 |         1 |           1 |
+|  2 |    7.5 |         1 |           2 |
+|  3 |    8.5 |         1 |           3 |
+|  4 |    7.7 |         1 |           4 |
+|  5 |    8.9 |         1 |           5 |
++----+--------+-----------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into reviews(Rating)value('Hii');
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+mysql> insert into reviews value('Hii');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into reviews(Rating) value('Hii');
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> select * from reviews;
++----+--------+-----------+-------------+
+| id | rating | series_id | reviewer_id |
++----+--------+-----------+-------------+
+|  1 |    8.0 |         1 |           1 |
+|  2 |    7.5 |         1 |           2 |
+|  3 |    8.5 |         1 |           3 |
+|  4 |    7.7 |         1 |           4 |
+|  5 |    8.9 |         1 |           5 |
+|  6 |    8.1 |         2 |           1 |
+|  7 |    6.0 |         2 |           4 |
+|  8 |    8.0 |         2 |           3 |
+|  9 |    8.4 |         2 |           6 |
+| 10 |    9.9 |         2 |           5 |
+| 11 |    7.0 |         3 |           1 |
+| 12 |    7.5 |         3 |           6 |
+| 13 |    8.0 |         3 |           4 |
+| 14 |    7.1 |         3 |           3 |
+| 15 |    8.0 |         3 |           5 |
+| 16 |    7.5 |         4 |           1 |
+| 17 |    7.8 |         4 |           3 |
+| 18 |    8.3 |         4 |           4 |
+| 19 |    7.6 |         4 |           2 |
+| 20 |    8.5 |         4 |           5 |
+| 21 |    9.5 |         5 |           1 |
+| 22 |    9.0 |         5 |           3 |
+| 23 |    9.1 |         5 |           4 |
+| 24 |    9.3 |         5 |           2 |
+| 25 |    9.9 |         5 |           5 |
+| 26 |    6.5 |         6 |           2 |
+| 27 |    7.8 |         6 |           3 |
+| 28 |    8.8 |         6 |           4 |
+| 29 |    8.4 |         6 |           2 |
+| 30 |    9.1 |         6 |           5 |
+| 31 |    9.1 |         7 |           2 |
+| 32 |    9.7 |         7 |           5 |
+| 33 |    8.5 |         8 |           4 |
+| 34 |    7.8 |         8 |           2 |
+| 35 |    8.8 |         8 |           6 |
+| 36 |    9.3 |         8 |           5 |
+| 37 |    5.5 |         9 |           2 |
+| 38 |    6.8 |         9 |           3 |
+| 39 |    5.8 |         9 |           4 |
+| 40 |    4.3 |         9 |           6 |
+| 41 |    4.5 |         9 |           5 |
+| 42 |    9.9 |        10 |           5 |
+| 43 |    8.0 |        13 |           3 |
+| 44 |    7.2 |        13 |           4 |
+| 45 |    8.5 |        14 |           2 |
+| 46 |    8.9 |        14 |           3 |
+| 47 |    8.9 |        14 |           4 |
+| 48 |    0.0 |      NULL |        NULL |
+| 49 |    0.0 |      NULL |        NULL |
++----+--------+-----------+-------------+
+49 rows in set (0.00 sec)
+
+mysql> select @@session.sql_mode;
++--------------------+
+| @@session.sql_mode |
++--------------------+
+|                    |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> set session sql_mode='';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select @@global.sql_mode;
++-----------------------------------------------------------------------------------------------------------------------+
+| @@global.sql_mode                                                                                                     |
++-----------------------------------------------------------------------------------------------------------------------+
+| ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION |
++-----------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> set session sql_mode='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select @@session.sql_mode;
++-----------------------------------------------------------------------------------------------------------------------+
+| @@session.sql_mode                                                                                                    |
++-----------------------------------------------------------------------------------------------------------------------+
+| ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION |
++-----------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into reviews(Rating) value('Hii');
+ERROR 1366 (HY000): Incorrect decimal value: 'Hii' for column 'rating' at row 1
+mysql> select @@global.sql_mode;
++-----------------------------------------------------------------------------------------------------------------------+
+| @@global.sql_mode                                                                                                     |
++-----------------------------------------------------------------------------------------------------------------------+
+| ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION |
++-----------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select @@session.sql_modes;
+ERROR 1193 (HY000): Unknown system variable 'sql_modes'
+mysql> select @@session.sql_mode;
++-----------------------------------------------------------------------------------------------------------------------+
+| @@session.sql_mode                                                                                                    |
++-----------------------------------------------------------------------------------------------------------------------+
+| ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION |
++-----------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select title,rating from full_review;
++----------------------+--------+
+| title                | rating |
++----------------------+--------+
+| Archer               |    8.0 |
+| Arrested Development |    8.1 |
+| Bob's Burgers        |    7.0 |
+| Bojack Horseman      |    7.5 |
+| Breaking Bad         |    9.5 |
+| Archer               |    7.5 |
+| Bojack Horseman      |    7.6 |
+| Breaking Bad         |    9.3 |
+| Curb Your Enthusiasm |    6.5 |
+| Curb Your Enthusiasm |    8.4 |
+| Fargo                |    9.1 |
+| Freaks and Geeks     |    7.8 |
+| General Hospital     |    5.5 |
+| Stranger Things      |    8.5 |
+| Archer               |    8.5 |
+| Arrested Development |    8.0 |
+| Bob's Burgers        |    7.1 |
+| Bojack Horseman      |    7.8 |
+| Breaking Bad         |    9.0 |
+| Curb Your Enthusiasm |    7.8 |
+| General Hospital     |    6.8 |
+| Seinfeld             |    8.0 |
+| Stranger Things      |    8.9 |
+| Archer               |    7.7 |
+| Arrested Development |    6.0 |
+| Bob's Burgers        |    8.0 |
+| Bojack Horseman      |    8.3 |
+| Breaking Bad         |    9.1 |
+| Curb Your Enthusiasm |    8.8 |
+| Freaks and Geeks     |    8.5 |
+| General Hospital     |    5.8 |
+| Seinfeld             |    7.2 |
+| Stranger Things      |    8.9 |
+| Archer               |    8.9 |
+| Arrested Development |    9.9 |
+| Bob's Burgers        |    8.0 |
+| Bojack Horseman      |    8.5 |
+| Breaking Bad         |    9.9 |
+| Curb Your Enthusiasm |    9.1 |
+| Fargo                |    9.7 |
+| Freaks and Geeks     |    9.3 |
+| General Hospital     |    4.5 |
+| Halt and Catch Fire  |    9.9 |
+| Arrested Development |    8.4 |
+| Bob's Burgers        |    7.5 |
+| Freaks and Geeks     |    8.8 |
+| General Hospital     |    4.3 |
++----------------------+--------+
+47 rows in set (0.00 sec)
+
+mysql> select title,rating from full_review group by title;
+ERROR 1055 (42000): Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'tv_db.full_review.rating' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select title,count(*)from full_review group by title;
++----------------------+----------+
+| title                | count(*) |
++----------------------+----------+
+| Archer               |        5 |
+| Arrested Development |        5 |
+| Bob's Burgers        |        5 |
+| Bojack Horseman      |        5 |
+| Breaking Bad         |        5 |
+| Curb Your Enthusiasm |        5 |
+| Fargo                |        2 |
+| Freaks and Geeks     |        4 |
+| General Hospital     |        5 |
+| Stranger Things      |        3 |
+| Seinfeld             |        2 |
+| Halt and Catch Fire  |        1 |
++----------------------+----------+
+12 rows in set (0.00 sec)
+
+mysql> select title,rating from full_review group by title;
+ERROR 1055 (42000): Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'tv_db.full_review.rating' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select title,count(rating) from full_review group by title;
++----------------------+---------------+
+| title                | count(rating) |
++----------------------+---------------+
+| Archer               |             5 |
+| Arrested Development |             5 |
+| Bob's Burgers        |             5 |
+| Bojack Horseman      |             5 |
+| Breaking Bad         |             5 |
+| Curb Your Enthusiasm |             5 |
+| Fargo                |             2 |
+| Freaks and Geeks     |             4 |
+| General Hospital     |             5 |
+| Stranger Things      |             3 |
+| Seinfeld             |             2 |
+| Halt and Catch Fire  |             1 |
++----------------------+---------------+
+12 rows in set (0.00 sec)
+
+mysql> set session sql_mode='';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select title,rating from full_review group by title;
++----------------------+--------+
+| title                | rating |
++----------------------+--------+
+| Archer               |    8.0 |
+| Arrested Development |    8.1 |
+| Bob's Burgers        |    7.0 |
+| Bojack Horseman      |    7.5 |
+| Breaking Bad         |    9.5 |
+| Curb Your Enthusiasm |    6.5 |
+| Fargo                |    9.1 |
+| Freaks and Geeks     |    7.8 |
+| General Hospital     |    5.5 |
+| Stranger Things      |    8.5 |
+| Seinfeld             |    8.0 |
+| Halt and Catch Fire  |    9.9 |
++----------------------+--------+
+12 rows in set (0.00 sec)
+
+mysql> select title,avg(rating) from full_review group by title;
++----------------------+-------------+
+| title                | avg(rating) |
++----------------------+-------------+
+| Archer               |     8.12000 |
+| Arrested Development |     8.08000 |
+| Bob's Burgers        |     7.52000 |
+| Bojack Horseman      |     7.94000 |
+| Breaking Bad         |     9.36000 |
+| Curb Your Enthusiasm |     8.12000 |
+| Fargo                |     9.40000 |
+| Freaks and Geeks     |     8.60000 |
+| General Hospital     |     5.38000 |
+| Stranger Things      |     8.76667 |
+| Seinfeld             |     7.60000 |
+| Halt and Catch Fire  |     9.90000 |
++----------------------+-------------+
+12 rows in set (0.00 sec)
+
+mysql> select * from full_review where title='Archer';
++--------+---------------+-----------+--------+------------+-----------+
+| title  | released_year | genre     | rating | first_name | last_Name |
++--------+---------------+-----------+--------+------------+-----------+
+| Archer |          2009 | Animation |    8.0 | Thomas     | Stoneman  |
+| Archer |          2009 | Animation |    7.5 | Wyatt      | Skaggs    |
+| Archer |          2009 | Animation |    8.5 | Kimbra     | Masters   |
+| Archer |          2009 | Animation |    7.7 | Domingo    | Cortes    |
+| Archer |          2009 | Animation |    8.9 | Colt       | Steele    |
++--------+---------------+-----------+--------+------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> select * from full_review where title='Arrested Development';
++----------------------+---------------+--------+--------+------------+-----------+
+| title                | released_year | genre  | rating | first_name | last_Name |
++----------------------+---------------+--------+--------+------------+-----------+
+| Arrested Development |          2003 | Comedy |    8.1 | Thomas     | Stoneman  |
+| Arrested Development |          2003 | Comedy |    6.0 | Domingo    | Cortes    |
+| Arrested Development |          2003 | Comedy |    8.0 | Kimbra     | Masters   |
+| Arrested Development |          2003 | Comedy |    8.4 | Pinkie     | Petit     |
+| Arrested Development |          2003 | Comedy |    9.9 | Colt       | Steele    |
++----------------------+---------------+--------+--------+------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> set sesssion sql_mode='Only_Full_Group_by';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sql_mode='Only_Full_Group_by'' at line 1
+mysql> set sesssion sql_mode='ONLY_FULL_GROUP_BY';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sql_mode='ONLY_FULL_GROUP_BY'' at line 1
+mysql> select @@global.sql_mode;
++-----------------------------------------------------------------------------------------------------------------------+
+| @@global.sql_mode                                                                                                     |
++-----------------------------------------------------------------------------------------------------------------------+
+| ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION |
++-----------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> set session sql_mode='ONLY_FULL_GROUP_BY';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> set sesssion sql_mode='ONLY_FULL_GROUP_By';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sql_mode='ONLY_FULL_GROUP_By'' at line 1
+mysql> set sesssion sql_mode='ONLY_FULL_GROUP_BY';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sql_mode='ONLY_FULL_GROUP_BY'' at line 1
+mysql> set session sql_mode='ONLY_FULL_GROUP_BY';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> set session sql_mode='oNLY_fULL_GROUP_BY';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select title,rating from full_review group by title;
+ERROR 1055 (42000): Expression #2 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'tv_db.full_review.rating' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+mysql> select @@session. sql _mode;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'sql _mode' at line 1
+mysql> select @@session.sql_mode;
++--------------------+
+| @@session.sql_mode |
++--------------------+
+| ONLY_FULL_GROUP_BY |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> create table Dat
+    -> (
+    -> Dta date
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc dat;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| Dta   | date | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into dat(dta) values('2024-00-09');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show warnings;
+Empty set (0.00 sec)
+
+mysql> select dat;
+ERROR 1054 (42S22): Unknown column 'dat' in 'field list'
+mysql> select * from dat;
++------------+
+| Dta        |
++------------+
+| 2024-00-09 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select @@session.sql_mode;
++--------------------+
+| @@session.sql_mode |
++--------------------+
+| ONLY_FULL_GROUP_BY |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> set session sql_mode='No_Zero_In_DATE';
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> insert into dat(dta) values('2024-00-09');
+Query OK, 1 row affected, 1 warning (0.00 sec)
+
+mysql> select * from dta;
+ERROR 1146 (42S02): Table 'tv_db.dta' doesn't exist
+mysql> select * from daa;
+ERROR 1146 (42S02): Table 'tv_db.daa' doesn't exist
+mysql> select * from dat;
++------------+
+| Dta        |
++------------+
+| 2024-00-09 |
+| 0000-00-00 |
++------------+
+2 rows in set (0.00 sec)
+
+mysql> show warnings;
+Empty set (0.00 sec)
+
+mysql> insert into dat(dta) values('2024-00-09');
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+mysql> show warnings;
++---------+------+----------------------------------------------+
+| Level   | Code | Message                                      |
++---------+------+----------------------------------------------+
+| Warning | 1264 | Out of range value for column 'Dta' at row 1 |
++---------+------+----------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select @@global.sql_mode;
++-----------------------------------------------------------------------------------------------------------------------+
+| @@global.sql_mode                                                                                                     |
++-----------------------------------------------------------------------------------------------------------------------+
+| ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION |
++-----------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select @@sesssion.sql_mode;
+ERROR 1193 (HY000): Unknown system variable 'sesssion.sql_mode'
+mysql> select @@session.sql_mode;
++--------------------+
+| @@session.sql_mode |
++--------------------+
+| NO_ZERO_IN_DATE    |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SET session sql_mode='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select @@session.sql_mode;
++-----------------------------------------------------------------------------------------------------------------------+
+| @@session.sql_mode                                                                                                    |
++-----------------------------------------------------------------------------------------------------------------------+
+| ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION |
++-----------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into dat(dta) values('2024-00-09');
+ERROR 1292 (22007): Incorrect date value: '2024-00-09' for column 'Dta' at row 1
+mysql> select * from dat;
++------------+
+| Dta        |
++------------+
+| 2024-00-09 |
+| 0000-00-00 |
+| 0000-00-00 |
++------------+
+3 rows in set (0.00 sec)
+
+mysql> show mysql --version;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql --version' at line 1
+mysql> 

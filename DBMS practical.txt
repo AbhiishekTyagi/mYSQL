@@ -1,0 +1,907 @@
+Last login: Mon May 15 22:12:13 on ttys000
+(base) abhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 20
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| ABES               |
+| Book_shop          |
+| DBMS               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| RadheKrishna       |
+| Shirt              |
+| sys                |
++--------------------+
+9 rows in set (0.01 sec)
+
+mysql> use Book_shop;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_book_shop |
++---------------------+
+| books               |
++---------------------+
+1 row in set (0.01 sec)
+
+mysql> desc Books;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| book_id        | int          | NO   | PRI | NULL    | auto_increment |
+| title          | varchar(100) | YES  |     | NULL    |                |
+| author_fname   | varchar(100) | YES  |     | NULL    |                |
+| author_lname   | varchar(100) | YES  |     | NULL    |                |
+| released_year  | int          | YES  |     | NULL    |                |
+| stock_quantity | int          | YES  |     | NULL    |                |
+| pages          | int          | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.01 sec)
+
+mysql> select * from books;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+16 rows in set (0.00 sec)
+
+mysql> --Not Equal operator !=
+    -> select * from Books where year!=2017;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--Not Equal operator !=
+select * from Books where year!=2017' at line 1
+mysql> desc Books;'
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| book_id        | int          | NO   | PRI | NULL    | auto_increment |
+| title          | varchar(100) | YES  |     | NULL    |                |
+| author_fname   | varchar(100) | YES  |     | NULL    |                |
+| author_lname   | varchar(100) | YES  |     | NULL    |                |
+| released_year  | int          | YES  |     | NULL    |                |
+| stock_quantity | int          | YES  |     | NULL    |                |
+| pages          | int          | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+    '> ^C
+mysql> select * from Books where released_year!=2017;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+16 rows in set (0.00 sec)
+
+mysql> --Not Equal Operator(!=)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--Not Equal Operator(!=)' at line 1
+mysql> --Not Equal Operator(!=);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--Not Equal Operator(!=)' at line 1
+mysql> --Not Equal Operator(!=)
+    -> select * from Books where released_year !=2017;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--Not Equal Operator(!=)
+select * from Books where released_year !=2017' at line 1
+mysql> --Not Equal Operator(!=) select * from Books where released_year !=2017;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--Not Equal Operator(!=) select * from Books where released_year !=2017' at line 1
+mysql> select * from Books where released_year !=2017;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+16 rows in set (0.00 sec)
+
+mysql> --Not Equal Operator(!=) select * from Books where released_year !=2017;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--Not Equal Operator(!=) select * from Books where released_year !=2017' at line 1
+mysql> select * from books where title Not Like '% %';
++---------+----------+--------------+--------------+---------------+----------------+-------+
+| book_id | title    | author_fname | author_lname | released_year | stock_quantity | pages |
++---------+----------+--------------+--------------+---------------+----------------+-------+
+|      10 | Coraline | Neil         | Gaiman       |          2003 |            100 |   208 |
++---------+----------+--------------+--------------+---------------+----------------+-------+
+1 row in set (0.01 sec)
+
+mysql> select * from books where title Like '% %';
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+15 rows in set (0.00 sec)
+
+mysql> select title from books where title Not like '% %';
++----------+
+| title    |
++----------+
+| Coraline |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select title from books where title like '% %';
++-----------------------------------------------------+
+| title                                               |
++-----------------------------------------------------+
+| The Namesake                                        |
+| Norse Mythology                                     |
+| American Gods                                       |
+| Interpreter of Maladies                             |
+| A Hologram for the King: A Novel                    |
+| The Circle                                          |
+| The Amazing Adventures of Kavalier & Clay           |
+| Just Kids                                           |
+| A Heartbreaking Work of Staggering Genius           |
+| What We Talk About When We Talk About Love: Stories |
+| Where I'm Calling From: Selected Stories            |
+| White Noise                                         |
+| Cannery Row                                         |
+| Oblivion: Stories                                   |
+| Consider the Lobster                                |
++-----------------------------------------------------+
+15 rows in set (0.00 sec)
+
+mysql> select * from books where title Like 'da %';
+Empty set (0.01 sec)
+
+mysql> select * from books where title Like 'da%';
+Empty set (0.01 sec)
+
+mysql> select * from books where author_fname  Like 'da%';
++---------+-------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                     | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       5 | A Hologram for the King: A Novel          | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                | Dave         | Eggers         |          2013 |             26 |   504 |
+|       9 | A Heartbreaking Work of Staggering Genius | Dave         | Eggers         |          2001 |            104 |   437 |
+|      15 | Oblivion: Stories                         | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                      | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-------------------------------------------+--------------+----------------+---------------+----------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from books where author_fname Not Like 'da%';
++---------+-----------------------------------------------------+--------------+--------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+--------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri       |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman       |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman       |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri       |          1996 |             97 |   198 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon       |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith        |          2010 |             55 |   304 |
+|      10 | Coraline                                            | Neil         | Gaiman       |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver       |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver       |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo      |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck    |          1945 |             95 |   181 |
++---------+-----------------------------------------------------+--------------+--------------+---------------+----------------+-------+
+11 rows in set (0.00 sec)
+
+mysql> select title  from books where title Not Like 'W%';
++-------------------------------------------+
+| title                                     |
++-------------------------------------------+
+| The Namesake                              |
+| Norse Mythology                           |
+| American Gods                             |
+| Interpreter of Maladies                   |
+| A Hologram for the King: A Novel          |
+| The Circle                                |
+| The Amazing Adventures of Kavalier & Clay |
+| Just Kids                                 |
+| A Heartbreaking Work of Staggering Genius |
+| Coraline                                  |
+| Cannery Row                               |
+| Oblivion: Stories                         |
+| Consider the Lobster                      |
++-------------------------------------------+
+13 rows in set (0.00 sec)
+
+mysql> select title  from books where title Like 'W%';
++-----------------------------------------------------+
+| title                                               |
++-----------------------------------------------------+
+| What We Talk About When We Talk About Love: Stories |
+| Where I'm Calling From: Selected Stories            |
+| White Noise                                         |
++-----------------------------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> select title from books where title not like '%e%';
++-----------+
+| title     |
++-----------+
+| Just Kids |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select title from books where title like '%e%';
++-----------------------------------------------------+
+| title                                               |
++-----------------------------------------------------+
+| The Namesake                                        |
+| Norse Mythology                                     |
+| American Gods                                       |
+| Interpreter of Maladies                             |
+| A Hologram for the King: A Novel                    |
+| The Circle                                          |
+| The Amazing Adventures of Kavalier & Clay           |
+| A Heartbreaking Work of Staggering Genius           |
+| Coraline                                            |
+| What We Talk About When We Talk About Love: Stories |
+| Where I'm Calling From: Selected Stories            |
+| White Noise                                         |
+| Cannery Row                                         |
+| Oblivion: Stories                                   |
+| Consider the Lobster                                |
++-----------------------------------------------------+
+15 rows in set (0.00 sec)
+
+mysql> select * from books;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+16 rows in set (0.00 sec)
+
+mysql> select * from books where pages>500;
++---------+-------------------------------------------+--------------+--------------+---------------+----------------+-------+
+| book_id | title                                     | author_fname | author_lname | released_year | stock_quantity | pages |
++---------+-------------------------------------------+--------------+--------------+---------------+----------------+-------+
+|       6 | The Circle                                | Dave         | Eggers       |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay | Michael      | Chabon       |          2000 |             68 |   634 |
+|      12 | Where I'm Calling From: Selected Stories  | Raymond      | Carver       |          1989 |             12 |   526 |
++---------+-------------------------------------------+--------------+--------------+---------------+----------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from books where pages<500;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+13 rows in set (0.00 sec)
+
+mysql> select * from books where released_year > 2000;
++---------+-------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                     | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                              | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                           | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                             | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       5 | A Hologram for the King: A Novel          | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                | Dave         | Eggers         |          2013 |             26 |   504 |
+|       8 | Just Kids                                 | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                  | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      15 | Oblivion: Stories                         | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                      | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-------------------------------------------+--------------+----------------+---------------+----------------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select * from books where released_year < 2000;
++---------+-----------------------------------------------------+--------------+--------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+--------------+---------------+----------------+-------+
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri       |          1996 |             97 |   198 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver       |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver       |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo      |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck    |          1945 |             95 |   181 |
++---------+-----------------------------------------------------+--------------+--------------+---------------+----------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from books where released_year < 2008;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+12 rows in set (0.00 sec)
+
+mysql> select 80>1;
++------+
+| 80>1 |
++------+
+|    1 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select 80<1;
++------+
+| 80<1 |
++------+
+|    0 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select 1>20;
++------+
+| 1>20 |
++------+
+|    0 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select 1<20;
++------+
+| 1<20 |
++------+
+|    1 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select * from books where released_year >2005;
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+| book_id | title                            | author_fname | author_lname | released_year | stock_quantity | pages |
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+|       2 | Norse Mythology                  | Neil         | Gaiman       |          2016 |             43 |   304 |
+|       5 | A Hologram for the King: A Novel | Dave         | Eggers       |          2012 |            154 |   352 |
+|       6 | The Circle                       | Dave         | Eggers       |          2013 |             26 |   504 |
+|       8 | Just Kids                        | Patti        | Smith        |          2010 |             55 |   304 |
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+4 rows in set (0.01 sec)
+
+mysql> select * from books where released_year >=2005;
++---------+----------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                            | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+----------------------------------+--------------+----------------+---------------+----------------+-------+
+|       2 | Norse Mythology                  | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       5 | A Hologram for the King: A Novel | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                       | Dave         | Eggers         |          2013 |             26 |   504 |
+|       8 | Just Kids                        | Patti        | Smith          |          2010 |             55 |   304 |
+|      16 | Consider the Lobster             | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+----------------------------------+--------------+----------------+---------------+----------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from books where released_year <=2005;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+12 rows in set (0.00 sec)
+
+mysql> select * from books where released_year <=2005 order by realeased_year;
+ERROR 1054 (42S22): Unknown column 'realeased_year' in 'order clause'
+mysql> select * from books where released_year <=2005 order by released_year;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+12 rows in set (0.00 sec)
+
+mysql> select 67>12;
++-------+
+| 67>12 |
++-------+
+|     1 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select 23>12 And 45>23;
++-----------------+
+| 23>12 And 45>23 |
++-----------------+
+|               1 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select 23>12 And 15>23;
++-----------------+
+| 23>12 And 15>23 |
++-----------------+
+|               0 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> released_year >2010 And author_name='Eggers';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'released_year >2010 And author_name='Eggers'' at line 1
+mysql> released_year >2010 And author_fname='Eggers';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'released_year >2010 And author_fname='Eggers'' at line 1
+mysql> released_year >2010 And author_lname='Eggers';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'released_year >2010 And author_lname='Eggers'' at line 1
+mysql>  select released_year >2010 And author_lname='Eggers';
+ERROR 1054 (42S22): Unknown column 'released_year' in 'field list'
+mysql>  select released_year >2010 And author_lname='Eggers';
+ERROR 1054 (42S22): Unknown column 'released_year' in 'field list'
+mysql> desc Books;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| book_id        | int          | NO   | PRI | NULL    | auto_increment |
+| title          | varchar(100) | YES  |     | NULL    |                |
+| author_fname   | varchar(100) | YES  |     | NULL    |                |
+| author_lname   | varchar(100) | YES  |     | NULL    |                |
+| released_year  | int          | YES  |     | NULL    |                |
+| stock_quantity | int          | YES  |     | NULL    |                |
+| pages          | int          | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> select  released_year >2010 And author_lname='Eggers';
+ERROR 1054 (42S22): Unknown column 'released_year' in 'field list'
+mysql> select  released_year >2010 And author_lname='Eggers';
+ERROR 1054 (42S22): Unknown column 'released_year' in 'field list'
+mysql> released_year >2010 And author_lname='Eggers';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'released_year >2010 And author_lname='Eggers'' at line 1
+mysql>  select released_year >2010 And author_lname='Eggers';
+ERROR 1054 (42S22): Unknown column 'released_year' in 'field list'
+mysql> select * from Books;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+16 rows in set (0.00 sec)
+
+mysql> select released_year >2010 And author_lname='Eggers';
+ERROR 1054 (42S22): Unknown column 'released_year' in 'field list'
+mysql> select * from books where author_lname='Eggers' And released_year>2010;
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+| book_id | title                            | author_fname | author_lname | released_year | stock_quantity | pages |
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+|       5 | A Hologram for the King: A Novel | Dave         | Eggers       |          2012 |            154 |   352 |
+|       6 | The Circle                       | Dave         | Eggers       |          2013 |             26 |   504 |
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from books where author_lname='Eggers' And released_year>2010 And title like '%novel%';
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+| book_id | title                            | author_fname | author_lname | released_year | stock_quantity | pages |
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+|       5 | A Hologram for the King: A Novel | Dave         | Eggers       |          2012 |            154 |   352 |
++---------+----------------------------------+--------------+--------------+---------------+----------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select * from Books where title like '% %';
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+15 rows in set (0.01 sec)
+
+mysql> select * from Books where title like '%%';
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+16 rows in set (0.00 sec)
+
+mysql> select * from Books where title Not  like '% %';
++---------+----------+--------------+--------------+---------------+----------------+-------+
+| book_id | title    | author_fname | author_lname | released_year | stock_quantity | pages |
++---------+----------+--------------+--------------+---------------+----------------+-------+
+|      10 | Coraline | Neil         | Gaiman       |          2003 |            100 |   208 |
++---------+----------+--------------+--------------+---------------+----------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select char_length(title);
+ERROR 1054 (42S22): Unknown column 'title' in 'field list'
+mysql> select char_length(title) from Books;
++--------------------+
+| char_length(title) |
++--------------------+
+|                 12 |
+|                 15 |
+|                 13 |
+|                 23 |
+|                 32 |
+|                 10 |
+|                 41 |
+|                  9 |
+|                 41 |
+|                  8 |
+|                 51 |
+|                 40 |
+|                 11 |
+|                 11 |
+|                 17 |
+|                 20 |
++--------------------+
+16 rows in set (0.00 sec)
+
+mysql> select title,pages from books where char_length(title)>30
+    -> And pages>500;
++-------------------------------------------+-------+
+| title                                     | pages |
++-------------------------------------------+-------+
+| The Amazing Adventures of Kavalier & Clay |   634 |
+| Where I'm Calling From: Selected Stories  |   526 |
++-------------------------------------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select title,pages from books where char_length(title)>30 And pages>200;
++-------------------------------------------+-------+
+| title                                     | pages |
++-------------------------------------------+-------+
+| A Hologram for the King: A Novel          |   352 |
+| The Amazing Adventures of Kavalier & Clay |   634 |
+| A Heartbreaking Work of Staggering Genius |   437 |
+| Where I'm Calling From: Selected Stories  |   526 |
++-------------------------------------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select title,pages from books where char_length(title)>30 And pages>100;
++-----------------------------------------------------+-------+
+| title                                               | pages |
++-----------------------------------------------------+-------+
+| A Hologram for the King: A Novel                    |   352 |
+| The Amazing Adventures of Kavalier & Clay           |   634 |
+| A Heartbreaking Work of Staggering Genius           |   437 |
+| What We Talk About When We Talk About Love: Stories |   176 |
+| Where I'm Calling From: Selected Stories            |   526 |
++-----------------------------------------------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select title,pages from books where char_length(title)>30 And pages>10;
++-----------------------------------------------------+-------+
+| title                                               | pages |
++-----------------------------------------------------+-------+
+| A Hologram for the King: A Novel                    |   352 |
+| The Amazing Adventures of Kavalier & Clay           |   634 |
+| A Heartbreaking Work of Staggering Genius           |   437 |
+| What We Talk About When We Talk About Love: Stories |   176 |
+| Where I'm Calling From: Selected Stories            |   526 |
++-----------------------------------------------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select title,pages from books where pages<200 or title like '%stories%';
++-----------------------------------------------------+-------+
+| title                                               | pages |
++-----------------------------------------------------+-------+
+| Interpreter of Maladies                             |   198 |
+| What We Talk About When We Talk About Love: Stories |   176 |
+| Where I'm Calling From: Selected Stories            |   526 |
+| Cannery Row                                         |   181 |
+| Oblivion: Stories                                   |   329 |
++-----------------------------------------------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select title,pages from books where pages<200 And  title like '%stories%';
++-----------------------------------------------------+-------+
+| title                                               | pages |
++-----------------------------------------------------+-------+
+| What We Talk About When We Talk About Love: Stories |   176 |
++-----------------------------------------------------+-------+
+1 row in set (0.00 sec)
+
+mysql> select title,pages from books where pages>200 And  title like '%stories%';
++------------------------------------------+-------+
+| title                                    | pages |
++------------------------------------------+-------+
+| Where I'm Calling From: Selected Stories |   526 |
+| Oblivion: Stories                        |   329 |
++------------------------------------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select title,pages from books where pages>200 or  title like '%stories%';
++-----------------------------------------------------+-------+
+| title                                               | pages |
++-----------------------------------------------------+-------+
+| The Namesake                                        |   291 |
+| Norse Mythology                                     |   304 |
+| American Gods                                       |   465 |
+| A Hologram for the King: A Novel                    |   352 |
+| The Circle                                          |   504 |
+| The Amazing Adventures of Kavalier & Clay           |   634 |
+| Just Kids                                           |   304 |
+| A Heartbreaking Work of Staggering Genius           |   437 |
+| Coraline                                            |   208 |
+| What We Talk About When We Talk About Love: Stories |   176 |
+| Where I'm Calling From: Selected Stories            |   526 |
+| White Noise                                         |   320 |
+| Oblivion: Stories                                   |   329 |
+| Consider the Lobster                                |   343 |
++-----------------------------------------------------+-------+
+14 rows in set (0.01 sec)
+
+mysql> select title,pages from books where pages>200 or  title like 'stories%';
++-------------------------------------------+-------+
+| title                                     | pages |
++-------------------------------------------+-------+
+| The Namesake                              |   291 |
+| Norse Mythology                           |   304 |
+| American Gods                             |   465 |
+| A Hologram for the King: A Novel          |   352 |
+| The Circle                                |   504 |
+| The Amazing Adventures of Kavalier & Clay |   634 |
+| Just Kids                                 |   304 |
+| A Heartbreaking Work of Staggering Genius |   437 |
+| Coraline                                  |   208 |
+| Where I'm Calling From: Selected Stories  |   526 |
+| White Noise                               |   320 |
+| Oblivion: Stories                         |   329 |
+| Consider the Lobster                      |   343 |
++-------------------------------------------+-------+
+13 rows in set (0.00 sec)
+
+mysql> select title,pages from books where pages>200 And   title like 'stories%';
+Empty set (0.00 sec)
+
+mysql> select title,pages from books where pages>200 or title like '%stories';
++-----------------------------------------------------+-------+
+| title                                               | pages |
++-----------------------------------------------------+-------+
+| The Namesake                                        |   291 |
+| Norse Mythology                                     |   304 |
+| American Gods                                       |   465 |
+| A Hologram for the King: A Novel                    |   352 |
+| The Circle                                          |   504 |
+| The Amazing Adventures of Kavalier & Clay           |   634 |
+| Just Kids                                           |   304 |
+| A Heartbreaking Work of Staggering Genius           |   437 |
+| Coraline                                            |   208 |
+| What We Talk About When We Talk About Love: Stories |   176 |
+| Where I'm Calling From: Selected Stories            |   526 |
+| White Noise                                         |   320 |
+| Oblivion: Stories                                   |   329 |
+| Consider the Lobster                                |   343 |
++-----------------------------------------------------+-------+
+14 rows in set (0.00 sec)
+
+mysql> select title,pages,released_year from Books  between 2004 And 2014;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'between 2004 And 2014' at line 1
+mysql> select title,pages,released_year from Book  between 2004 And 2014;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'between 2004 And 2014' at line 1
+mysql> desc Books;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| book_id        | int          | NO   | PRI | NULL    | auto_increment |
+| title          | varchar(100) | YES  |     | NULL    |                |
+| author_fname   | varchar(100) | YES  |     | NULL    |                |
+| author_lname   | varchar(100) | YES  |     | NULL    |                |
+| released_year  | int          | YES  |     | NULL    |                |
+| stock_quantity | int          | YES  |     | NULL    |                |
+| pages          | int          | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.01 sec)
+
+mysql> select title,pages,released_year from Books Between 2004 And 2014;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Between 2004 And 2014' at line 1
+mysql> select title,pages from Books where released_year  Between 2004 And 2014;
++----------------------------------+-------+
+| title                            | pages |
++----------------------------------+-------+
+| A Hologram for the King: A Novel |   352 |
+| The Circle                       |   504 |
+| Just Kids                        |   304 |
+| Oblivion: Stories                |   329 |
+| Consider the Lobster             |   343 |
++----------------------------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select title,pages,released_year  from Books where released_year  Between 2004 And 2014;
++----------------------------------+-------+---------------+
+| title                            | pages | released_year |
++----------------------------------+-------+---------------+
+| A Hologram for the King: A Novel |   352 |          2012 |
+| The Circle                       |   504 |          2013 |
+| Just Kids                        |   304 |          2010 |
+| Oblivion: Stories                |   329 |          2004 |
+| Consider the Lobster             |   343 |          2005 |
++----------------------------------+-------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> select title,pages,released_year  from Books where released_year  Between 2004 And 2015;
++----------------------------------+-------+---------------+
+| title                            | pages | released_year |
++----------------------------------+-------+---------------+
+| A Hologram for the King: A Novel |   352 |          2012 |
+| The Circle                       |   504 |          2013 |
+| Just Kids                        |   304 |          2010 |
+| Oblivion: Stories                |   329 |          2004 |
+| Consider the Lobster             |   343 |          2005 |
++----------------------------------+-------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> select title,pages,released_year  from Books where released_year  Between 2004 And 2013;
++----------------------------------+-------+---------------+
+| title                            | pages | released_year |
++----------------------------------+-------+---------------+
+| A Hologram for the King: A Novel |   352 |          2012 |
+| The Circle                       |   504 |          2013 |
+| Just Kids                        |   304 |          2010 |
+| Oblivion: Stories                |   329 |          2004 |
+| Consider the Lobster             |   343 |          2005 |
++----------------------------------+-------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> select title,pages,released_year from books where released_year>=2004 And released_year<=2013;
++----------------------------------+-------+---------------+
+| title                            | pages | released_year |
++----------------------------------+-------+---------------+
+| A Hologram for the King: A Novel |   352 |          2012 |
+| The Circle                       |   504 |          2013 |
+| Just Kids                        |   304 |          2010 |
+| Oblivion: Stories                |   329 |          2004 |
+| Consider the Lobster             |   343 |          2005 |
++----------------------------------+-------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> 

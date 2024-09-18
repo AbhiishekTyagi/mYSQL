@@ -1,0 +1,742 @@
+mysql> select databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databases' at line 1
+mysql> select database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select database();
++--------------+
+| database()   |
++--------------+
+| radhekrishna |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| DBMS               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| RadheKrishna       |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> create databases pet_shop;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databases pet_shop' at line 1
+mysql> create database pet_shop;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| DBMS               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| pet_shop           |
+| RadheKrishna       |
+| sys                |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> select database();
++--------------+
+| database()   |
++--------------+
+| radhekrishna |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> use pet_shop;
+Database changed
+mysql> select database();
++------------+
+| database() |
++------------+
+| pet_shop   |
++------------+
+1 row in set (0.00 sec)
+
+mysql> connect RadheKrishna;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Connection id:    73
+Current database: RadheKrishna
+
+mysql> select database();
++--------------+
+| database()   |
++--------------+
+| radhekrishna |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| DBMS               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| pet_shop           |
+| RadheKrishna       |
+| sys                |
++--------------------+
+7 rows in set (0.01 sec)
+
+mysql> drop database pet_shop;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| DBMS               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| RadheKrishna       |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> create database Raja;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| DBMS               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| RadheKrishna       |
+| Raja               |
+| sys                |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> connect Raja;
+Connection id:    74
+Current database: Raja
+
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> drop database Raja;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show Databases;
++--------------------+
+| Database           |
++--------------------+
+| DBMS               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| RadheKrishna       |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> pqd
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'pqd' at line 1
+mysql> pwd;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'pwd' at line 1
+mysql> pwd
+    -> pwd;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'pwd
+pwd' at line 1
+mysql> exit;
+Bye
+(base) abhishektyagi@Abhisheks-MacBook-Air ~ % pwd
+/Users/abhishektyagi
+(base) abhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 75
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| DBMS               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| RadheKrishna       |
+| sys                |
++--------------------+
+6 rows in set (0.01 sec)
+
+mysql> connect radheKrishna;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Connection id:    76
+Current database: radheKrishna
+
+mysql> show tables;
++------------------------+
+| Tables_in_radhekrishna |
++------------------------+
+| Radhe                  |
++------------------------+
+1 row in set (0.01 sec)
+
+mysql> select * from Radhe;
++----------------+------+-------------+
+| Name           | Age  | Village     |
++----------------+------+-------------+
+| Abhishek Tyagi |   22 | Chhapar     |
+| Ayush Tyagi    |   23 | Bhulandsher |
+| Sneha Pandey   |   22 | Shamli      |
++----------------+------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> create table Tweets(Username varchar(15),Content varchar(140),Favorites int,Dateoftweet DateTime);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> describe radhe;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Name    | varchar(20) | NO   | PRI | NULL    |       |
+| Age     | int         | YES  |     | NULL    |       |
+| Village | varchar(25) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> describe Tweets;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| Username    | varchar(15)  | YES  |     | NULL    |       |
+| Content     | varchar(140) | YES  |     | NULL    |       |
+| Favorites   | int          | YES  |     | NULL    |       |
+| Dateoftweet | datetime     | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> Alter table tweets add Primary key(Usename);
+ERROR 1072 (42000): Key column 'Usename' doesn't exist in table
+mysql> Alter table tweets add Primary key(Username);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe Tweets;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| Username    | varchar(15)  | NO   | PRI | NULL    |       |
+| Content     | varchar(140) | YES  |     | NULL    |       |
+| Favorites   | int          | YES  |     | NULL    |       |
+| Dateoftweet | datetime     | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into Tweets(Usename,Content,Favorites,dateOftweet) values("Abhishek","This Is my first Tweet okay!",1200,'2023-28-04 01:55:09');'
+ERROR 1054 (42S22): Unknown column 'Usename' in 'field list'
+    '> insert into Tweets(Usename,Content,Favorites,dateOftweet) values("Abhishek","This Is my first Tweet okay!",1200,'2023-28-04 01:55:09');'
+    -> ^C
+mysql> insert into Tweets(Username,Content,Favorites,dateOftweet) values("Abhishek","This Is my first Tweet okay!",1200,'2023-28-04 01:55:09');
+ERROR 1292 (22007): Incorrect datetime value: '2023-28-04 01:55:09' for column 'Dateoftweet' at row 1
+mysql> insert into Tweets(Username,Content,Favorites,dateOftweet) values("Abhishek","This Is my first Tweet okay!",1200,'2023-28-04' '01:55:09');
+ERROR 1292 (22007): Incorrect datetime value: '2023-28-0401:55:09' for column 'Dateoftweet' at row 1
+mysql> insert into Tweets(Username,Content,Favorites,dateOftweet) values("Abhishek","This Is my first Tweet okay!",1200,'2023-28-04 01:55:09');
+ERROR 1292 (22007): Incorrect datetime value: '2023-28-04 01:55:09' for column 'Dateoftweet' at row 1
+mysql> insert into Tweets(Username,Content,Favorites,dateOftweet) values("Abhishek","This Is my first Tweet okay!",1200,curdatetime());
+ERROR 1305 (42000): FUNCTION radhekrishna.curdatetime does not exist
+mysql> insert into Tweets(Username,Content,Favorites,dateOftweet) values("Abhishek","This Is my first Tweet okay!",1200,'2022-19-o8 10:07:12');
+ERROR 1292 (22007): Incorrect datetime value: '2022-19-o8 10:07:12' for column 'Dateoftweet' at row 1
+mysql> ^C
+mysql> insert into Tweets(Username,Content,Favorites,dateOftweet) values("Abhishek","This Is my first Tweet okay!",1200,'2022-19-08 10:07:12');
+ERROR 1292 (22007): Incorrect datetime value: '2022-19-08 10:07:12' for column 'Dateoftweet' at row 1
+mysql> insert into Tweets(Username,Content,Favorites,dateOftweet) values("Abhishek","This Is my first Tweet okay!",1200,'2022-09-08 10:07:12');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Tweets;
++----------+------------------------------+-----------+---------------------+
+| Username | Content                      | Favorites | Dateoftweet         |
++----------+------------------------------+-----------+---------------------+
+| Abhishek | This Is my first Tweet okay! |      1200 | 2022-09-08 10:07:12 |
++----------+------------------------------+-----------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into tweets(Username,Content,Favorites,dateoftweet) values("Ajay","Hii Abhishek Tyagi what's up Buddy",1130,'2023-04-28 05:45:56'),("Paras","Hii Ajay what's up",1254,'2023-04-28 02:23:60');
+ERROR 1292 (22007): Incorrect datetime value: '2023-04-28 02:23:60' for column 'Dateoftweet' at row 2
+mysql> insert into tweets(Username,Content,Favorites,dateoftweet) values("Ajay","Hii Abhishek Tyagi what's up Buddy",1130,'2023-04-28 05:45:56'),("Paras","Hii Ajay what's up",1254,'2023-04-28 02:23:50');
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from Tweets;
++----------+------------------------------------+-----------+---------------------+
+| Username | Content                            | Favorites | Dateoftweet         |
++----------+------------------------------------+-----------+---------------------+
+| Abhishek | This Is my first Tweet okay!       |      1200 | 2022-09-08 10:07:12 |
+| Ajay     | Hii Abhishek Tyagi what's up Buddy |      1130 | 2023-04-28 05:45:56 |
+| Paras    | Hii Ajay what's up                 |      1254 | 2023-04-28 02:23:50 |
++----------+------------------------------------+-----------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> show column from tweets;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column from tweets' at line 1
+mysql> show columns from tweets;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| Username    | varchar(15)  | NO   | PRI | NULL    |       |
+| Content     | varchar(140) | YES  |     | NULL    |       |
+| Favorites   | int          | YES  |     | NULL    |       |
+| Dateoftweet | datetime     | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> show columns from Radhe;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Name    | varchar(20) | NO   | PRI | NULL    |       |
+| Age     | int         | YES  |     | NULL    |       |
+| Village | varchar(25) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc Radhe;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Name    | varchar(20) | NO   | PRI | NULL    |       |
+| Age     | int         | YES  |     | NULL    |       |
+| Village | varchar(25) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> show columns from tweets;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| Username    | varchar(15)  | NO   | PRI | NULL    |       |
+| Content     | varchar(140) | YES  |     | NULL    |       |
+| Favorites   | int          | YES  |     | NULL    |       |
+| Dateoftweet | datetime     | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> create table Pastries(Name char(50),Quantity int);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show columns from Pastries;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| Name     | char(50) | YES  |     | NULL    |       |
+| Quantity | int      | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> drop table pastries;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc pastries;
+ERROR 1146 (42S02): Table 'radhekrishna.pastries' doesn't exist
+mysql> /* To list all the tables in the database
+   /*> show tables;
+   /*> */
+mysql> show tables;
++------------------------+
+| Tables_in_radhekrishna |
++------------------------+
+| Radhe                  |
+| tweets                 |
++------------------------+
+2 rows in set (0.00 sec)
+
+mysql> -- To list all  the tables in databases
+mysql> show tables;
++------------------------+
+| Tables_in_radhekrishna |
++------------------------+
+| Radhe                  |
+| tweets                 |
++------------------------+
+2 rows in set (0.00 sec)
+
+mysql> -- List out all the databases in the server
+mysql> show schemas;
++--------------------+
+| Database           |
++--------------------+
+| DBMS               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| RadheKrishna       |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> -- List out current database using 
+mysql> select database();
++--------------+
+| database()   |
++--------------+
+| radhekrishna |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> /* My name is Abhishek tyagi*/
+mysql> select * from radhe;
++----------------+------+-------------+
+| Name           | Age  | Village     |
++----------------+------+-------------+
+| Abhishek Tyagi |   22 | Chhapar     |
+| Ayush Tyagi    |   23 | Bhulandsher |
+| Sneha Pandey   |   22 | Shamli      |
++----------------+------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into radhe(Age,name,village) values(24,"Radhikha","Vrindavan"),(23,"RadhaRani","Bharsana"),(21,"Krishna","Mathura"),(25,"MataSita","Mithila"),(25,"Ram","Ayodha"),(24,"Lakshman","Ayodha"),(23,"Hanuman","Aajan");
+Query OK, 7 rows affected (0.00 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from radhe;
++----------------+------+-------------+
+| Name           | Age  | Village     |
++----------------+------+-------------+
+| Abhishek Tyagi |   22 | Chhapar     |
+| Ayush Tyagi    |   23 | Bhulandsher |
+| Hanuman        |   23 | Aajan       |
+| Krishna        |   21 | Mathura     |
+| Lakshman       |   24 | Ayodha      |
+| MataSita       |   25 | Mithila     |
+| RadhaRani      |   23 | Bharsana    |
+| Radhikha       |   24 | Vrindavan   |
+| Ram            |   25 | Ayodha      |
+| Sneha Pandey   |   22 | Shamli      |
++----------------+------+-------------+
+10 rows in set (0.00 sec)
+
+mysql> create table People(First_Name char(20),Last_Name Varchar(20),age int);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc people;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| First_Name | char(20)    | YES  |     | NULL    |       |
+| Last_Name  | varchar(20) | YES  |     | NULL    |       |
+| age        | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into People(First_name,last_name,age) values("Tina","Belcher",40),("Bob","frond",34),("phillips","Fischoeders",32);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from People;
++------------+-------------+------+
+| First_Name | Last_Name   | age  |
++------------+-------------+------+
+| Tina       | Belcher     |   40 |
+| Bob        | frond       |   34 |
+| phillips   | Fischoeders |   32 |
++------------+-------------+------+
+3 rows in set (0.01 sec)
+
+mysql> create table Grudha
+    -> (Name Varchar(20),
+    -> age int 
+    -> ^C
+mysql> Create table Grudha(
+    -> Name Varchar(20) Not Null,
+    -> Age int Not null
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc grudha;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| Name  | varchar(20) | NO   |     | NULL    |       |
+| Age   | int         | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> insert into Grudha(Name,age) Values();
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into Grudha() Values();
+ERROR 1364 (HY000): Field 'Name' doesn't have a default value
+mysql> insert into Radhe() Values();
+ERROR 1364 (HY000): Field 'Name' doesn't have a default value
+mysql> desc radhe;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Name    | varchar(20) | NO   | PRI | NULL    |       |
+| Age     | int         | YES  |     | NULL    |       |
+| Village | varchar(25) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> desc tweets;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| Username    | varchar(15)  | NO   | PRI | NULL    |       |
+| Content     | varchar(140) | YES  |     | NULL    |       |
+| Favorites   | int          | YES  |     | NULL    |       |
+| Dateoftweet | datetime     | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> Alter table tweets drop primary key;
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> desc tweets;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| Username    | varchar(15)  | NO   |     | NULL    |       |
+| Content     | varchar(140) | YES  |     | NULL    |       |
+| Favorites   | int          | YES  |     | NULL    |       |
+| Dateoftweet | datetime     | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> Create table pet(name Char(20),age int);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc pets;
+ERROR 1146 (42S02): Table 'radhekrishna.pets' doesn't exist
+mysql> desc pet;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| name  | char(20) | YES  |     | NULL    |       |
+| age   | int      | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into pets() Values();
+ERROR 1146 (42S02): Table 'radhekrishna.pets' doesn't exist
+mysql> insert into pet() Values();
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from pet;
++------+------+
+| name | age  |
++------+------+
+| NULL | NULL |
++------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into (Name,age) Values("Raja",12),("Motii",11),("Kalluu",7);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(Name,age) Values("Raja",12),("Motii",11),("Kalluu",7)' at line 1
+mysql> insert into pet(Name,age) Values("Raja",12),("Motii",11),("Kalluu",7);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select  * from pet;
++--------+------+
+| name   | age  |
++--------+------+
+| NULL   | NULL |
+| Raja   |   12 |
+| Motii  |   11 |
+| Kalluu |    7 |
++--------+------+
+4 rows in set (0.00 sec)
+
+mysql> insert into pet(name) values('Marios's Pizza');
+    '> Abhishek');'
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 's Pizza');
+Abhishek')' at line 1
+    '> ^C
+mysql> insert into pet(name) values('Marios\'s Pizza');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from pet;
++----------------+------+
+| name           | age  |
++----------------+------+
+| NULL           | NULL |
+| Raja           |   12 |
+| Motii          |   11 |
+| Kalluu         |    7 |
+| Marios's Pizza | NULL |
++----------------+------+
+5 rows in set (0.00 sec)
+
+mysql> update pet set name="Rajuu" where age=Null;
+Query OK, 0 rows affected (0.01 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select 8 from pet;
++---+
+| 8 |
++---+
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
++---+
+5 rows in set (0.00 sec)
+
+mysql> select * from pet;
++----------------+------+
+| name           | age  |
++----------------+------+
+| NULL           | NULL |
+| Raja           |   12 |
+| Motii          |   11 |
+| Kalluu         |    7 |
+| Marios's Pizza | NULL |
++----------------+------+
+5 rows in set (0.00 sec)
+
+mysql> Alter table pet add column Id int;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc pet;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| name  | char(20) | YES  |     | NULL    |       |
+| age   | int      | YES  |     | NULL    |       |
+| Id    | int      | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into pet(id) values(1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from  pet;
++----------------+------+------+
+| name           | age  | Id   |
++----------------+------+------+
+| NULL           | NULL | NULL |
+| Raja           |   12 | NULL |
+| Motii          |   11 | NULL |
+| Kalluu         |    7 | NULL |
+| Marios's Pizza | NULL | NULL |
+| NULL           | NULL |    1 |
++----------------+------+------+
+6 rows in set (0.00 sec)
+
+mysql> insert into pet(id,name,age) values(2,"Rajuu",12);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select 8 from pet;
++---+
+| 8 |
++---+
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
++---+
+7 rows in set (0.00 sec)
+
+mysql> select * from pet;
++----------------+------+------+
+| name           | age  | Id   |
++----------------+------+------+
+| NULL           | NULL | NULL |
+| Raja           |   12 | NULL |
+| Motii          |   11 | NULL |
+| Kalluu         |    7 | NULL |
+| Marios's Pizza | NULL | NULL |
+| NULL           | NULL |    1 |
+| Rajuu          |   12 |    2 |
++----------------+------+------+
+7 rows in set (0.00 sec)
+
+mysql> update pet set id=2;
+Query OK, 6 rows affected (0.00 sec)
+Rows matched: 7  Changed: 6  Warnings: 0
+
+mysql> select * from pet;
++----------------+------+------+
+| name           | age  | Id   |
++----------------+------+------+
+| NULL           | NULL |    2 |
+| Raja           |   12 |    2 |
+| Motii          |   11 |    2 |
+| Kalluu         |    7 |    2 |
+| Marios's Pizza | NULL |    2 |
+| NULL           | NULL |    2 |
+| Rajuu          |   12 |    2 |
++----------------+------+------+
+7 rows in set (0.00 sec)
+
+mysql> create table Mobile(
+    -> Name varchar(20) not null Defalt 'Apple',
+    -> Cost tinyint Not null default 12000
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Defalt 'Apple',
+Cost tinyint Not null default 12000
+)' at line 2
+mysql> create table Mobile( Name varchar(20) not null Default 'Apple', Cost tinyint Not null default 12000 );
+ERROR 1067 (42000): Invalid default value for 'Cost'
+mysql> create table Mobile( Name varchar(20) not null Default 'Apple', Cost smallint Not null default
+12000 );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc Mobile;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| Name  | varchar(20) | NO   |     | Apple   |       |
+| Cost  | smallint    | NO   |     | 12000   |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into Mobile(Name,cost) values();
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into Mobile(Name,cost) values("Realme",18000),("Redmi",13000),("Samsung",12000),("Oppo",11000);
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from mobile;
++---------+-------+
+| Name    | Cost  |
++---------+-------+
+| Realme  | 18000 |
+| Redmi   | 13000 |
+| Samsung | 12000 |
+| Oppo    | 11000 |
++---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> Alter table Mobile alter name,cost drop Not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',cost drop Not null' at line 1
+mysql> Alter table Mobile alter name drop Not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Not null' at line 1
+mysql> Alter table pet add Constraints not null for age;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null for age' at line 1
+mysql> Alter table pet add Constraints notnull for age;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'notnull for age' at line 1
+mysql> Alter table pet add Constraints notnull for age;

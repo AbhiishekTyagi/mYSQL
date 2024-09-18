@@ -1,0 +1,414 @@
+fLast login: Tue Aug  6 15:22:35 on ttys000
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % pwd
+/Users/abhishektyagi_1
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 17
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| ABES                 |
+| bankmanagementsystem |
+| Books                |
+| BookShop             |
+| DBMS                 |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| Practice             |
+| RadheKrishna         |
+| Shirt                |
+| sys                  |
+| Triggers             |
+| View                 |
++----------------------+
+14 rows in set (0.00 sec)
+
+mysql> connect triggers;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Connection id:    18
+Current database: triggers
+
+mysql> show tables;
++--------------------+
+| Tables_in_triggers |
++--------------------+
+| account            |
+| car                |
+| Customer           |
+| jobs               |
+| people             |
+| User               |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> desc account;
++--------+------+------+-----+---------+-------+
+| Field  | Type | Null | Key | Default | Extra |
++--------+------+------+-----+---------+-------+
+| Ano    | int  | YES  |     | NULL    |       |
+| Amount | int  | NO   |     | NULL    |       |
++--------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from account.triggers;
+ERROR 1049 (42000): Unknown database 'account'
+mysql> select * from triggers.triggers;
+ERROR 1146 (42S02): Table 'triggers.triggers' doesn't exist
+mysql> select * from triggers.tables;
+ERROR 1146 (42S02): Table 'triggers.tables' doesn't exist
+mysql> select * from triggers.tables
+    -> ;
+ERROR 1146 (42S02): Table 'triggers.tables' doesn't exist
+mysql> select * from triggers;
+ERROR 1146 (42S02): Table 'triggers.triggers' doesn't exist
+mysql> select database();
++------------+
+| database() |
++------------+
+| triggers   |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select * from account.trigger;
+ERROR 1049 (42000): Unknown database 'account'
+mysql> select * from triggers.trigger;
+ERROR 1146 (42S02): Table 'triggers.trigger' doesn't exist
+mysql> show tables;
++--------------------+
+| Tables_in_triggers |
++--------------------+
+| account            |
+| car                |
+| Customer           |
+| jobs               |
+| people             |
+| User               |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> show triggers;
++---------+--------+---------+---------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger | Event  | Table   | Statement                                                                                                     | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++---------+--------+---------+---------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| up      | UPDATE | account | BEGIN
+if new.amount<0 then 
+set new.amount=0;
+elseif new.amount<10000 then 
+set new.amount=10000;
+end if;
+End | BEFORE | 2024-08-06 15:26:10.61 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| upf     | INSERT | car     | set new.occupation="MCA"                                                                                      | BEFORE | 2024-08-05 22:41:23.14 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| ins     | INSERT | car     | BEGIN
+if New.Occupation="BCA" then set New.name="Abhii";
+end if;
+End                                          | BEFORE | 2024-08-05 23:06:02.69 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| t       | INSERT | car     | Begin if New.name="Abhishek" then set New.name="Radha"; end if; End                                           | BEFORE | 2024-08-05 23:13:40.47 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| f       | INSERT | car     | Begin if New.Occupation="MCA" then set new.Occupation="BCA"; end if; END                                      | BEFORE | 2024-08-05 23:19:20.79 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| bgf     | INSERT | jobs    | set @id=@id+12                                                                                                | BEFORE | 2024-07-29 21:38:39.27 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++---------+--------+---------+---------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+6 rows in set (0.01 sec)
+
+mysql> show triggers on account;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on account' at line 1
+mysql> show trigger on account;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'trigger on account' at line 1
+mysql> show trigger up;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'trigger up' at line 1
+mysql> desc account;
++--------+------+------+-----+---------+-------+
+| Field  | Type | Null | Key | Default | Extra |
++--------+------+------+-----+---------+-------+
+| Ano    | int  | YES  |     | NULL    |       |
+| Amount | int  | NO   |     | NULL    |       |
++--------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into account values(1,0);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from account;
++------+--------+
+| Ano  | Amount |
++------+--------+
+|    1 |      0 |
++------+--------+
+1 row in set (0.00 sec)
+
+mysql> insert into account values(2,20);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from account;
++------+--------+
+| Ano  | Amount |
++------+--------+
+|    1 |      0 |
+|    2 |     20 |
++------+--------+
+2 rows in set (0.00 sec)
+
+mysql> insert into account values(3,-20);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from account;
++------+--------+
+| Ano  | Amount |
++------+--------+
+|    1 |      0 |
+|    2 |     20 |
+|    3 |    -20 |
++------+--------+
+3 rows in set (0.00 sec)
+
+mysql> show triggers;
++---------+--------+---------+---------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger | Event  | Table   | Statement                                                                                                     | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++---------+--------+---------+---------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| up      | UPDATE | account | BEGIN
+if new.amount<0 then 
+set new.amount=0;
+elseif new.amount<10000 then 
+set new.amount=10000;
+end if;
+End | BEFORE | 2024-08-06 15:26:10.61 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| upf     | INSERT | car     | set new.occupation="MCA"                                                                                      | BEFORE | 2024-08-05 22:41:23.14 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| ins     | INSERT | car     | BEGIN
+if New.Occupation="BCA" then set New.name="Abhii";
+end if;
+End                                          | BEFORE | 2024-08-05 23:06:02.69 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| t       | INSERT | car     | Begin if New.name="Abhishek" then set New.name="Radha"; end if; End                                           | BEFORE | 2024-08-05 23:13:40.47 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| f       | INSERT | car     | Begin if New.Occupation="MCA" then set new.Occupation="BCA"; end if; END                                      | BEFORE | 2024-08-05 23:19:20.79 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| bgf     | INSERT | jobs    | set @id=@id+12                                                                                                | BEFORE | 2024-07-29 21:38:39.27 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++---------+--------+---------+---------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from account;
++------+--------+
+| Ano  | Amount |
++------+--------+
+|    1 |      0 |
+|    2 |     20 |
+|    3 |    -20 |
++------+--------+
+3 rows in set (0.00 sec)
+
+mysql> update account set amount=120 where ano=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from account;
++------+--------+
+| Ano  | Amount |
++------+--------+
+|    1 |  10000 |
+|    2 |     20 |
+|    3 |    -20 |
++------+--------+
+3 rows in set (0.00 sec)
+
+mysql> update account set amount=-120 where ano=3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from account;
++------+--------+
+| Ano  | Amount |
++------+--------+
+|    1 |  10000 |
+|    2 |     20 |
+|    3 |      0 |
++------+--------+
+3 rows in set (0.00 sec)
+
+mysql> update account set amount=12000 where ano=2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from account;
++------+--------+
+| Ano  | Amount |
++------+--------+
+|    1 |  10000 |
+|    2 |  12000 |
+|    3 |      0 |
++------+--------+
+3 rows in set (0.00 sec)
+
+mysql> update account set amount=2000 where ano=2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from account;
++------+--------+
+| Ano  | Amount |
++------+--------+
+|    1 |  10000 |
+|    2 |  10000 |
+|    3 |      0 |
++------+--------+
+3 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger up1 before update on account for each row precedes
+    -> BEGIN
+    -> if new.amount<10000 then 
+    -> set new.amount=100000;
+    -> elseif new.amount>10000 then 
+    -> set new.amount=1000000;
+    -> end if;
+    -> end;//
+ERROR 3011 (HY000): Referenced trigger 'BEGIN' for the given action time and event type does not exist.
+mysql> create trigger up1 before update on account for each row precedes up  BEGIN if new.amount<10000 then  s
+et new.amount=100000; elseif new.amount>10000 then  set new.amount=1000000; end if; end;//
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show triggers;
+    -> ;//
++---------+--------+---------+--------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger | Event  | Table   | Statement                                                                                                                | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++---------+--------+---------+--------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| up1     | UPDATE | account | BEGIN if new.amount<10000 then  set new.amount=100000; elseif new.amount>10000 then  set new.amount=1000000; end if; end | BEFORE | 2024-08-06 15:55:22.47 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| up      | UPDATE | account | BEGIN
+if new.amount<0 then 
+set new.amount=0;
+elseif new.amount<10000 then 
+set new.amount=10000;
+end if;
+End            | BEFORE | 2024-08-06 15:26:10.61 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| upf     | INSERT | car     | set new.occupation="MCA"                                                                                                 | BEFORE | 2024-08-05 22:41:23.14 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| ins     | INSERT | car     | BEGIN
+if New.Occupation="BCA" then set New.name="Abhii";
+end if;
+End                                                     | BEFORE | 2024-08-05 23:06:02.69 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| t       | INSERT | car     | Begin if New.name="Abhishek" then set New.name="Radha"; end if; End                                                      | BEFORE | 2024-08-05 23:13:40.47 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| f       | INSERT | car     | Begin if New.Occupation="MCA" then set new.Occupation="BCA"; end if; END                                                 | BEFORE | 2024-08-05 23:19:20.79 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| bgf     | INSERT | jobs    | set @id=@id+12                                                                                                           | BEFORE | 2024-07-29 21:38:39.27 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++---------+--------+---------+--------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+7 rows in set (0.00 sec)
+
+mysql> ;
+    -> //;
+ERROR 1065 (42000): Query was empty
+    -> //
+ERROR 1065 (42000): Query was empty
+mysql> select * from account;
+    -> ;
+    -> //
++------+--------+
+| Ano  | Amount |
++------+--------+
+|    1 |  10000 |
+|    2 |  10000 |
+|    3 |      0 |
++------+--------+
+3 rows in set (0.00 sec)
+
+mysql> k
+    -> ;
+    -> //;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'k' at line 1
+    -> //
+ERROR 1065 (42000): Query was empty
+mysql> //
+ERROR: 
+No query specified
+
+mysql> //
+ERROR: 
+No query specified
+
+mysql> d
+    -> delimter;
+    -> delimiter;
+    -> //
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'd
+delimter;
+delimiter' at line 1
+mysql> select * from account;
+    -> ;
+    -> //
++------+--------+
+| Ano  | Amount |
++------+--------+
+|    1 |  10000 |
+|    2 |  10000 |
+|    3 |      0 |
++------+--------+
+3 rows in set (0.00 sec)
+
+mysql> update account set amount=12000;
+    -> //
+Query OK, 3 rows affected (0.00 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> select * from account;
+    -> //
++------+---------+
+| Ano  | Amount  |
++------+---------+
+|    1 | 1000000 |
+|    2 | 1000000 |
+|    3 | 1000000 |
++------+---------+
+3 rows in set (0.00 sec)
+
+mysql> drop trigger up1;
+    -> //;
+Query OK, 0 rows affected (0.00 sec)
+
+    -> //
+ERROR 1065 (42000): Query was empty
+mysql> show triggers;//
++---------+--------+---------+---------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger | Event  | Table   | Statement                                                                                                     | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++---------+--------+---------+---------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| up      | UPDATE | account | BEGIN
+if new.amount<0 then 
+set new.amount=0;
+elseif new.amount<10000 then 
+set new.amount=10000;
+end if;
+End | BEFORE | 2024-08-06 15:26:10.61 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| upf     | INSERT | car     | set new.occupation="MCA"                                                                                      | BEFORE | 2024-08-05 22:41:23.14 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| ins     | INSERT | car     | BEGIN
+if New.Occupation="BCA" then set New.name="Abhii";
+end if;
+End                                          | BEFORE | 2024-08-05 23:06:02.69 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| t       | INSERT | car     | Begin if New.name="Abhishek" then set New.name="Radha"; end if; End                                           | BEFORE | 2024-08-05 23:13:40.47 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| f       | INSERT | car     | Begin if New.Occupation="MCA" then set new.Occupation="BCA"; end if; END                                      | BEFORE | 2024-08-05 23:19:20.79 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| bgf     | INSERT | jobs    | set @id=@id+12                                                                                                | BEFORE | 2024-07-29 21:38:39.27 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++---------+--------+---------+---------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+6 rows in set (0.00 sec)
+
+mysql> update account set amount=10000;
+    -> //;
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+    -> //
+ERROR 1065 (42000): Query was empty
+mysql> select * from account;//
++------+--------+
+| Ano  | Amount |
++------+--------+
+|    1 |  10000 |
+|    2 |  10000 |
+|    3 |  10000 |
++------+--------+
+3 rows in set (0.01 sec)
+
+mysql> 

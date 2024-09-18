@@ -1,0 +1,345 @@
+Last login: Wed Apr 19 14:59:10 on ttys008
+(base) abhishektyagi@Abhisheks-MacBook-Air ~ % pwe
+zsh: command not found: pwe
+(base) abhishektyagi@Abhisheks-MacBook-Air ~ % pwd
+/Users/abhishektyagi
+(base) abhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 57
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show schemas;
++--------------------+
+| Database           |
++--------------------+
+| DBMS               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.02 sec)
+
+mysql> connect dbms;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Connection id:    58
+Current database: dbms
+
+mysql> show tables;
++-----------------+
+| Tables_in_dbms  |
++-----------------+
+| Abhishek        |
+| Birth           |
+| college         |
+| Cricket         |
+| employee        |
+| EmployeeDetails |
+| EmployeeSalary  |
+| faculty         |
+| Faculty1        |
+| facultysubject  |
+| Guiders         |
+| Hospital        |
+| Hospital1       |
+| Order_item      |
+| school          |
+| student         |
+| student1        |
+| subject         |
+| time            |
+| timestamp       |
++-----------------+
+20 rows in set (0.00 sec)
+
+mysql> describe birth;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Babyname | varchar(20) | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| dot      | time        | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> select * from Birth ;
++----------+------------+----------+
+| Babyname | dob        | dot      |
++----------+------------+----------+
+| Abhishek | 2023-04-14 | 13:40:02 |
+| Lavish   | 2023-04-14 | 13:42:07 |
+| Lavish   | 2023-04-14 | 13:42:56 |
+| Sneha    | 2023-04-14 | 13:42:56 |
+| Tom      | 2023-04-14 | 13:42:56 |
++----------+------------+----------+
+5 rows in set (0.00 sec)
+
+mysql> Alter table Birth add primary key(Babyname);
+ERROR 1062 (23000): Duplicate entry 'Lavish' for key 'birth.PRIMARY'
+mysql> delete from birth where babyname="Lavish";
+Query OK, 2 rows affected (0.01 sec)
+
+mysql> select * from birth;
++----------+------------+----------+
+| Babyname | dob        | dot      |
++----------+------------+----------+
+| Abhishek | 2023-04-14 | 13:40:02 |
+| Sneha    | 2023-04-14 | 13:42:56 |
+| Tom      | 2023-04-14 | 13:42:56 |
++----------+------------+----------+
+3 rows in set (0.00 sec)
+
+mysql> Alter table Birth add primary key(Babyname);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe birth;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| Babyname | varchar(20) | NO   | PRI | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| dot      | time        | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> create table Student3(Roll_no int,Name varchar(20),Course varchar(10),Phone int,Address varchar,Department Varchar(5),Section varchar(2));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',Department Varchar(5),Section varchar(2))' at line 1
+mysql> create table Student3(Roll_no int,Name varchar(20),Course varchar(10),Phone int,Address varchar,Department Varchar(5),Section varchar(2));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',Department Varchar(5),Section varchar(2))' at line 1
+mysql> create table Student3(Roll_no int,Name varchar(20),Course varchar(10),Phone int,Address varchar(50),Department varchar(5),Section varchar(2));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> describe Student3;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| Roll_no    | int         | YES  |     | NULL    |       |
+| Name       | varchar(20) | YES  |     | NULL    |       |
+| Course     | varchar(10) | YES  |     | NULL    |       |
+| Phone      | int         | YES  |     | NULL    |       |
+| Address    | varchar(50) | YES  |     | NULL    |       |
+| Department | varchar(5)  | YES  |     | NULL    |       |
+| Section    | varchar(2)  | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> insert into Student3 values(1,"Abhishek Tyagi","MCA",7302963673,"Chhapar","MCA","A"),(2,"Adarsh","MCA",9927242922,"Aligarh","MCA","B");
+ERROR 1264 (22003): Out of range value for column 'Phone' at row 1
+mysql> insert into Student3 values(1,"Abhishek Tyagi","MCA","7302963673","Chhapar","MCA","A"),(2,"Adarsh","MCA","9927242922","Aligarh","MCA","B");
+ERROR 1264 (22003): Out of range value for column 'Phone' at row 1
+mysql> insert into Student3 values(1,"Abhishek Tyagi","MCA","7302963673","Chhapar","MCA","A"),(2,"Adarsh","MCA","9927242922","Aligarh","MCA","B");
+ERROR 1264 (22003): Out of range value for column 'Phone' at row 1
+mysql> desc cricket;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| cust_id     | int         | NO   | PRI | NULL    |       |
+| First_name  | varchar(10) | YES  |     | NULL    |       |
+| last_name   | varchar(12) | YES  |     | NULL    |       |
+| contact     | bigint      | NO   |     | NULL    |       |
+| City        | char(12)    | YES  |     | NULL    |       |
+| Amount      | bigint      | YES  |     | NULL    |       |
+| mother_name | varchar(30) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> Alter table Student3 modify Phone bigint;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe Student3;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| Roll_no    | int         | YES  |     | NULL    |       |
+| Name       | varchar(20) | YES  |     | NULL    |       |
+| Course     | varchar(10) | YES  |     | NULL    |       |
+| Phone      | bigint      | YES  |     | NULL    |       |
+| Address    | varchar(50) | YES  |     | NULL    |       |
+| Department | varchar(5)  | YES  |     | NULL    |       |
+| Section    | varchar(2)  | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> insert into Student3 values(1,"Abhishek Tyagi","MCA","7302963673","Chhapar","MCA","A"),(2,"Adarsh","MCA","9927242922","Aligarh","MCA","B");
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from Student3;
++---------+----------------+--------+------------+---------+------------+---------+
+| Roll_no | Name           | Course | Phone      | Address | Department | Section |
++---------+----------------+--------+------------+---------+------------+---------+
+|       1 | Abhishek Tyagi | MCA    | 7302963673 | Chhapar | MCA        | A       |
+|       2 | Adarsh         | MCA    | 9927242922 | Aligarh | MCA        | B       |
++---------+----------------+--------+------------+---------+------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> insert into Student3 values(3,"Ajay kumar","MCA",7302963673,"M.zn","MCA","A"),(4,"Paras Upadhya",9557058964,"Deoband","MCA","A"),(5,"Rahul Sharma","B.tech",7304567482,"Delhi","M.sc","B");
+ERROR 1136 (21S01): Column count doesn't match value count at row 2
+mysql> insert into Student3 values(3,"Ajay kumar","MCA",7302963673,"M.zn","MCA","A"),(4,"Paras Upadhya","MCA",9557058964,"Deoband","MCA","A"),(5,"Rahul Sharma","B.tech",7304567482,"Delhi","M.sc","B");
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * student3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student3' at line 1
+mysql> select * from  student3;
++---------+----------------+--------+------------+---------+------------+---------+
+| Roll_no | Name           | Course | Phone      | Address | Department | Section |
++---------+----------------+--------+------------+---------+------------+---------+
+|       1 | Abhishek Tyagi | MCA    | 7302963673 | Chhapar | MCA        | A       |
+|       2 | Adarsh         | MCA    | 9927242922 | Aligarh | MCA        | B       |
+|       3 | Ajay kumar     | MCA    | 7302963673 | M.zn    | MCA        | A       |
+|       4 | Paras Upadhya  | MCA    | 9557058964 | Deoband | MCA        | A       |
+|       5 | Rahul Sharma   | B.tech | 7304567482 | Delhi   | M.sc       | B       |
++---------+----------------+--------+------------+---------+------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> insert into Student3 values(6,"Sneha Pandey","M.sc",9927342992,"Shamli","M.sc","A"),(7,"Ritik Tyagi","B.tech","MCA",7302963645,"Deoband","B.tech","A"),(8,"Akshay Sharma",9927345634,"M.ZN","C"),(9,"Ujjwal Bhardwaj","B.tech",8745638756,"Moradabad","A");
+ERROR 1136 (21S01): Column count doesn't match value count at row 2
+mysql> insert into Student3 values(6,"Sneha Pandey","M.sc",9927342992,"Shamli","M.sc","A"),(7,"Ritik Tyagi","B.tech","MCA",7302963645,"Deoband","B.tech","A"),(8,"Akshay Sharma",9927345634,"B.tech","M.ZN","C"),(9,"Ujjwal Bhardwaj","B.tech",8745638756,"Moradabad","A");
+ERROR 1136 (21S01): Column count doesn't match value count at row 2
+mysql> insert into Student3 values(6,"Sneha Pandey","M.sc",9927342992,"Shamli","M.sc","A"),(7,"Ritik Tyagi","B.tech","MCA",7302963645,"Deoband","B.tech","A"),(8,"Akshay Sharma","B.tech",9927345634,"M.ZN","C"),(9,"Ujjwal Bhardwaj","B.tech",8745638756,"Moradabad","A");
+ERROR 1136 (21S01): Column count doesn't match value count at row 2
+mysql> insert into Student3 values(6,"Sneha Pandey","M.sc",9927342992,"Shamli","M.sc","A"),(7,"Ritik Tyagi","B.tech",7302963645,"Deoband","B.tech","A"),(8,"Akshay Sharma","B.tech",9927345634,"M.ZN","C"),(9,"Ujjwal Bhardwaj","B.tech",8745638756,"Moradabad","A");
+ERROR 1136 (21S01): Column count doesn't match value count at row 3
+mysql> insert into Student3 values(6,"Sneha Pandey","M.sc",9927342992,"Shamli","M.sc","A"),(7,"Ritik Tyagi","B.tech",7302963645,"Deoband","B.tech","A"),(8,"Akshay Sharma","B.tech",9927345634,"M.ZN","B.tech","C"),(9,"Ujjwal Bhardwaj","B.tech",8745638756,"Moradabad","A");
+ERROR 1136 (21S01): Column count doesn't match value count at row 4
+mysql> insert into Student3 values(6,"Sneha Pandey","M.sc",9927342992,"Shamli","M.sc","A"),(7,"Ritik Tyagi","B.tech",7302963645,"Deoband","B.tech","A"),(8,"Akshay Sharma","B.tech",9927345634,"M.ZN","B.tech","C"),(9,"Ujjwal Bhardwaj","B.tech",8745638756,"Moradabad","B.tech","A");
+ERROR 1406 (22001): Data too long for column 'Department' at row 2
+mysql> insert into Student3 values(6,"Sneha Pandey","M.sc",9927342992,"Shamli","M.sc","A"),(7,"Ritik Tyagi","B.tech",7302963645,"Deoband","B.tech","A"),(8,"Akshay Sharma","B.tech",9927345634,"M.ZN","B.tech","C"),(9,"Ujjwal Bhardwaj","B.tech",8745638756,"Moradabad","B.tech","A");
+ERROR 1406 (22001): Data too long for column 'Department' at row 2
+mysql> describe student3;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| Roll_no    | int         | YES  |     | NULL    |       |
+| Name       | varchar(20) | YES  |     | NULL    |       |
+| Course     | varchar(10) | YES  |     | NULL    |       |
+| Phone      | bigint      | YES  |     | NULL    |       |
+| Address    | varchar(50) | YES  |     | NULL    |       |
+| Department | varchar(5)  | YES  |     | NULL    |       |
+| Section    | varchar(2)  | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> Alter table Student3 modify Deapartment varchar(9);
+ERROR 1054 (42S22): Unknown column 'Deapartment' in 'student3'
+mysql> Alter table Student3 modify Department varchar(9);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into Student3 values(6,"Sneha Pandey","M.sc",9927342992,"Shamli","M.sc","A"),(7,"Ritik Tyagi","B.tech",7302963645,"Deoband","B.tech","A"),(8,"Akshay Sharma","B.tech",9927345634,"M.ZN","B.tech","C"),(9,"Ujjwal Bhardwaj","B.tech",8745638756,"Moradabad","B.tech","A");
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from Student3;
++---------+-----------------+--------+------------+-----------+------------+---------+
+| Roll_no | Name            | Course | Phone      | Address   | Department | Section |
++---------+-----------------+--------+------------+-----------+------------+---------+
+|       1 | Abhishek Tyagi  | MCA    | 7302963673 | Chhapar   | MCA        | A       |
+|       2 | Adarsh          | MCA    | 9927242922 | Aligarh   | MCA        | B       |
+|       3 | Ajay kumar      | MCA    | 7302963673 | M.zn      | MCA        | A       |
+|       4 | Paras Upadhya   | MCA    | 9557058964 | Deoband   | MCA        | A       |
+|       5 | Rahul Sharma    | B.tech | 7304567482 | Delhi     | M.sc       | B       |
+|       6 | Sneha Pandey    | M.sc   | 9927342992 | Shamli    | M.sc       | A       |
+|       7 | Ritik Tyagi     | B.tech | 7302963645 | Deoband   | B.tech     | A       |
+|       8 | Akshay Sharma   | B.tech | 9927345634 | M.ZN      | B.tech     | C       |
+|       9 | Ujjwal Bhardwaj | B.tech | 8745638756 | Moradabad | B.tech     | A       |
++---------+-----------------+--------+------------+-----------+------------+---------+
+9 rows in set (0.00 sec)
+
+mysql> insert into Student3 values(10,"Akansha Bhardwahj,"B.LLB",9925363849,"M.zn","B.LLB","A");
+    "> ^C
+mysql> insert into Student3 values(10,"Akansha Bhardwahj","B.LLB",9925363849,"M.zn","B.LLB","A");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Student3;
++---------+-------------------+--------+------------+-----------+------------+---------+
+| Roll_no | Name              | Course | Phone      | Address   | Department | Section |
++---------+-------------------+--------+------------+-----------+------------+---------+
+|       1 | Abhishek Tyagi    | MCA    | 7302963673 | Chhapar   | MCA        | A       |
+|       2 | Adarsh            | MCA    | 9927242922 | Aligarh   | MCA        | B       |
+|       3 | Ajay kumar        | MCA    | 7302963673 | M.zn      | MCA        | A       |
+|       4 | Paras Upadhya     | MCA    | 9557058964 | Deoband   | MCA        | A       |
+|       5 | Rahul Sharma      | B.tech | 7304567482 | Delhi     | M.sc       | B       |
+|       6 | Sneha Pandey      | M.sc   | 9927342992 | Shamli    | M.sc       | A       |
+|       7 | Ritik Tyagi       | B.tech | 7302963645 | Deoband   | B.tech     | A       |
+|       8 | Akshay Sharma     | B.tech | 9927345634 | M.ZN      | B.tech     | C       |
+|       9 | Ujjwal Bhardwaj   | B.tech | 8745638756 | Moradabad | B.tech     | A       |
+|      10 | Akansha Bhardwahj | B.LLB  | 9925363849 | M.zn      | B.LLB      | A       |
++---------+-------------------+--------+------------+-----------+------------+---------+
+10 rows in set (0.00 sec)
+
+mysql> update Student3 set name="Akansha Bhardwaj" where Roll_no=10;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Student3;
++---------+------------------+--------+------------+-----------+------------+---------+
+| Roll_no | Name             | Course | Phone      | Address   | Department | Section |
++---------+------------------+--------+------------+-----------+------------+---------+
+|       1 | Abhishek Tyagi   | MCA    | 7302963673 | Chhapar   | MCA        | A       |
+|       2 | Adarsh           | MCA    | 9927242922 | Aligarh   | MCA        | B       |
+|       3 | Ajay kumar       | MCA    | 7302963673 | M.zn      | MCA        | A       |
+|       4 | Paras Upadhya    | MCA    | 9557058964 | Deoband   | MCA        | A       |
+|       5 | Rahul Sharma     | B.tech | 7304567482 | Delhi     | M.sc       | B       |
+|       6 | Sneha Pandey     | M.sc   | 9927342992 | Shamli    | M.sc       | A       |
+|       7 | Ritik Tyagi      | B.tech | 7302963645 | Deoband   | B.tech     | A       |
+|       8 | Akshay Sharma    | B.tech | 9927345634 | M.ZN      | B.tech     | C       |
+|       9 | Ujjwal Bhardwaj  | B.tech | 8745638756 | Moradabad | B.tech     | A       |
+|      10 | Akansha Bhardwaj | B.LLB  | 9925363849 | M.zn      | B.LLB      | A       |
++---------+------------------+--------+------------+-----------+------------+---------+
+10 rows in set (0.00 sec)
+
+mysql> Alter table student3 Add primary key(Roll_no);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe Student3;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| Roll_no    | int         | NO   | PRI | NULL    |       |
+| Name       | varchar(20) | YES  |     | NULL    |       |
+| Course     | varchar(10) | YES  |     | NULL    |       |
+| Phone      | bigint      | YES  |     | NULL    |       |
+| Address    | varchar(50) | YES  |     | NULL    |       |
+| Department | varchar(9)  | YES  |     | NULL    |       |
+| Section    | varchar(2)  | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> update Student3 set name="Adarsh Bhardwaj" where Roll_no=2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Student3;
++---------+------------------+--------+------------+-----------+------------+---------+
+| Roll_no | Name             | Course | Phone      | Address   | Department | Section |
++---------+------------------+--------+------------+-----------+------------+---------+
+|       1 | Abhishek Tyagi   | MCA    | 7302963673 | Chhapar   | MCA        | A       |
+|       2 | Adarsh Bhardwaj  | MCA    | 9927242922 | Aligarh   | MCA        | B       |
+|       3 | Ajay kumar       | MCA    | 7302963673 | M.zn      | MCA        | A       |
+|       4 | Paras Upadhya    | MCA    | 9557058964 | Deoband   | MCA        | A       |
+|       5 | Rahul Sharma     | B.tech | 7304567482 | Delhi     | M.sc       | B       |
+|       6 | Sneha Pandey     | M.sc   | 9927342992 | Shamli    | M.sc       | A       |
+|       7 | Ritik Tyagi      | B.tech | 7302963645 | Deoband   | B.tech     | A       |
+|       8 | Akshay Sharma    | B.tech | 9927345634 | M.ZN      | B.tech     | C       |
+|       9 | Ujjwal Bhardwaj  | B.tech | 8745638756 | Moradabad | B.tech     | A       |
+|      10 | Akansha Bhardwaj | B.LLB  | 9925363849 | M.zn      | B.LLB      | A       |
++---------+------------------+--------+------------+-----------+------------+---------+
+10 rows in set (0.00 sec)
+
+mysql> select * from 

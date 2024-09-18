@@ -1,0 +1,836 @@
+(base) abhishektyagi@Abhisheks-MacBook-Air JavaREsources % pwd
+/Users/abhishektyagi/Desktop/JavaREsources
+(base) abhishektyagi@Abhisheks-MacBook-Air JavaREsources % cd ~
+(base) abhishektyagi@Abhisheks-MacBook-Air ~ % pwd
+/Users/abhishektyagi
+(base) abhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show schemas;
++--------------------+
+| Database           |
++--------------------+
+| ABES               |
+| DBMS               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| RadheKrishna       |
+| sys                |
++--------------------+
+7 rows in set (0.03 sec)
+
+mysql> connect radhekrishna;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Connection id:    9
+Current database: radhekrishna
+
+mysql> show tables;
++------------------------+
+| Tables_in_radhekrishna |
++------------------------+
+| Airpods                |
+| employee               |
+| Grudha                 |
+| LED                    |
+| Mobile                 |
+| People                 |
+| pet                    |
+| Radhe                  |
+| tweets                 |
++------------------------+
+9 rows in set (0.01 sec)
+
+mysql> describe Employee;
++----------------+--------------+------+-----+----------+----------------+
+| Field          | Type         | Null | Key | Default  | Extra          |
++----------------+--------------+------+-----+----------+----------------+
+| id             | int          | NO   | PRI | NULL     | auto_increment |
+| First_Name     | varchar(100) | NO   |     | NULL     |                |
+| Last_name      | varchar(100) | NO   |     | NULL     |                |
+| Middle_name    | varchar(100) | YES  |     | NULL     |                |
+| Age            | int          | YES  |     | NULL     |                |
+| Current_Status | varchar(100) | NO   |     | Employed |                |
++----------------+--------------+------+-----+----------+----------------+
+6 rows in set (0.01 sec)
+
+mysql> select * from employee;
++----+------------+-----------+-------------+------+----------------+
+| id | First_Name | Last_name | Middle_name | Age  | Current_Status |
++----+------------+-----------+-------------+------+----------------+
+|  1 | Sneha      | pandey    | Devi        |   21 | Employed       |
+|  2 | Abhishek   | Tyagi     | Hard Londa  |   22 | Employed       |
+|  3 | Lavish     | Tyagi     | Singh       |   23 | Student        |
++----+------------+-----------+-------------+------+----------------+
+3 rows in set (0.01 sec)
+
+mysql> create table Employees(
+    -> id int Auto_Increment,
+    -> First_Name varchar(23) not Null
+    -> Middle_Name varchar(24),
+    -> Last_Name varchar(30) not null,
+    -> age int not null,
+    -> current_Status varchar(30) not null default 'Student',
+    -> primary key(id)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Middle_Name varchar(24),
+Last_Name varchar(30) not null,
+age int not null,
+curre' at line 4
+mysql> create table Employees(  id int Auto_Increment, First_Name varchar(23) not Null, Middle_Name varchar(24), Last_Name varchar(30) not null, age int not null, current_Status varchar(30) not null default 'Student', primary key(id) );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> describe Emplyees;
+ERROR 1146 (42S02): Table 'radhekrishna.emplyees' doesn't exist
+mysql> describe Employees;
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| id             | int         | NO   | PRI | NULL    | auto_increment |
+| First_Name     | varchar(23) | NO   |     | NULL    |                |
+| Middle_Name    | varchar(24) | YES  |     | NULL    |                |
+| Last_Name      | varchar(30) | NO   |     | NULL    |                |
+| age            | int         | NO   |     | NULL    |                |
+| current_Status | varchar(30) | NO   |     | Student |                |
++----------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> create table Employees;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create table Employees;all_cons_columns;
+ERROR 4028 (HY000): A table must have at least one visible column.
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'all_cons_columns' at line 1
+mysql> all_cons_columns
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'all_cons_columns' at line 1
+mysql> all_constraints;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'all_constraints' at line 1
+mysql> SHOW CONSTRAINTS FROM employees;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CONSTRAINTS FROM employees' at line 1
+mysql> show constraints;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'constraints' at line 1
+mysql> show create table Employees;
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table                                                                                                                                                                                                                                                                                                                                               |
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Employees | CREATE TABLE `Employees` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `First_Name` varchar(23) NOT NULL,
+  `Middle_Name` varchar(24) DEFAULT NULL,
+  `Last_Name` varchar(30) NOT NULL,
+  `age` int NOT NULL,
+  `current_Status` varchar(30) NOT NULL DEFAULT 'Student',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> create table Cats(
+    -> cat_id int Auto_increment,
+    -> Name varchar(30) not null,
+    -> Breed varchar(12) not null,
+    -> Age int,
+    -> primary key(Cat_id)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> describe Cats;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| cat_id | int         | NO   | PRI | NULL    | auto_increment |
+| Name   | varchar(30) | NO   |     | NULL    |                |
+| Breed  | varchar(12) | NO   |     | NULL    |                |
+| Age    | int         | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> insert into Cats(Cat_id,Name,Breed,Age)Values(1,'Ringo','Tabby',4),(2,'Cindy','Mainecoon',10),(3,'dumbledore','MaineCoon',11);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from Cats;
++--------+------------+-----------+------+
+| cat_id | Name       | Breed     | Age  |
++--------+------------+-----------+------+
+|      1 | Ringo      | Tabby     |    4 |
+|      2 | Cindy      | Mainecoon |   10 |
+|      3 | dumbledore | MaineCoon |   11 |
++--------+------------+-----------+------+
+3 rows in set (0.00 sec)
+
+mysql> select name,breed,name from Cats;
++------------+-----------+------------+
+| name       | breed     | name       |
++------------+-----------+------------+
+| Ringo      | Tabby     | Ringo      |
+| Cindy      | Mainecoon | Cindy      |
+| dumbledore | MaineCoon | dumbledore |
++------------+-----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select age from where age=4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where age=4' at line 1
+mysql> select age from cats  where age=4;
++------+
+| age  |
++------+
+|    4 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select * from Cats where age>4;
++--------+------------+-----------+------+
+| cat_id | Name       | Breed     | Age  |
++--------+------------+-----------+------+
+|      2 | Cindy      | Mainecoon |   10 |
+|      3 | dumbledore | MaineCoon |   11 |
++--------+------------+-----------+------+
+2 rows in set (0.00 sec)
+
+mysql> select * from Cats;
++--------+------------+-----------+------+
+| cat_id | Name       | Breed     | Age  |
++--------+------------+-----------+------+
+|      1 | Ringo      | Tabby     |    4 |
+|      2 | Cindy      | Mainecoon |   10 |
+|      3 | dumbledore | MaineCoon |   11 |
++--------+------------+-----------+------+
+3 rows in set (0.00 sec)
+
+mysql> insert into Cats values('Egg','Persian',4),('Misty','Tabby',13),('Jackson','Sphynz',7);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into Cats(name,Breed,age) values('Egg','Persian',4),('Misty','Tabby',13),('Jackson','Sphynz',7);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select *from Cats;
++--------+------------+-----------+------+
+| cat_id | Name       | Breed     | Age  |
++--------+------------+-----------+------+
+|      1 | Ringo      | Tabby     |    4 |
+|      2 | Cindy      | Mainecoon |   10 |
+|      3 | dumbledore | MaineCoon |   11 |
+|      4 | Egg        | Persian   |    4 |
+|      5 | Misty      | Tabby     |   13 |
+|      6 | Jackson    | Sphynz    |    7 |
++--------+------------+-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> select  cat_id from cats;
++--------+
+| cat_id |
++--------+
+|      1 |
+|      2 |
+|      3 |
+|      4 |
+|      5 |
+|      6 |
++--------+
+6 rows in set (0.00 sec)
+
+mysql> --Answer Number 2
+    -> select name,breed from Cats;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--Answer Number 2
+select name,breed from Cats' at line 1
+mysql>  select name,breed from Cats;
++------------+-----------+
+| name       | breed     |
++------------+-----------+
+| Ringo      | Tabby     |
+| Cindy      | Mainecoon |
+| dumbledore | MaineCoon |
+| Egg        | Persian   |
+| Misty      | Tabby     |
+| Jackson    | Sphynz    |
++------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> --Mysql is using sql language to talk with the Database.
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '--Mysql is using sql language to talk with the Database.' at line 1
+mysql> -- My name is Abhishek tyagi 
+mysql> -- Answer number-2;
+mysql> select name,breed from Cats;
++------------+-----------+
+| name       | breed     |
++------------+-----------+
+| Ringo      | Tabby     |
+| Cindy      | Mainecoon |
+| dumbledore | MaineCoon |
+| Egg        | Persian   |
+| Misty      | Tabby     |
+| Jackson    | Sphynz    |
++------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> select name,age where breed='tabby';
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> -- Answer number-3;
+mysql> select name,age from Cats where breed='Tabby';
++-------+------+
+| name  | age  |
++-------+------+
+| Ringo |    4 |
+| Misty |   13 |
++-------+------+
+2 rows in set (0.00 sec)
+
+mysql> -- Answer number=4;
+mysql> select cat_id,age from  cats where cat_id=age;
++--------+------+
+| cat_id | age  |
++--------+------+
+|      4 |    4 |
++--------+------+
+1 row in set (0.01 sec)
+
+mysql> select cat_id from cats;
++--------+
+| cat_id |
++--------+
+|      1 |
+|      2 |
+|      3 |
+|      4 |
+|      5 |
+|      6 |
++--------+
+6 rows in set (0.01 sec)
+
+mysql> select cat_id as id from cats;
++----+
+| id |
++----+
+|  1 |
+|  2 |
+|  3 |
+|  4 |
+|  5 |
+|  6 |
++----+
+6 rows in set (0.00 sec)
+
+mysql> select cat_id as name from cats;
++------+
+| name |
++------+
+|    1 |
+|    2 |
+|    3 |
+|    4 |
+|    5 |
+|    6 |
++------+
+6 rows in set (0.00 sec)
+
+mysql> select name as Kittyname form cats;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'form cats' at line 1
+mysql> select name as Kittyname from cats;
++------------+
+| Kittyname  |
++------------+
+| Ringo      |
+| Cindy      |
+| dumbledore |
+| Egg        |
+| Misty      |
+| Jackson    |
++------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from Cats;
++--------+------------+-----------+------+
+| cat_id | Name       | Breed     | Age  |
++--------+------------+-----------+------+
+|      1 | Ringo      | Tabby     |    4 |
+|      2 | Cindy      | Mainecoon |   10 |
+|      3 | dumbledore | MaineCoon |   11 |
+|      4 | Egg        | Persian   |    4 |
+|      5 | Misty      | Tabby     |   13 |
+|      6 | Jackson    | Sphynz    |    7 |
++--------+------------+-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> select breed as nasal from Cats;
++-----------+
+| nasal     |
++-----------+
+| Tabby     |
+| Mainecoon |
+| MaineCoon |
+| Persian   |
+| Tabby     |
+| Sphynz    |
++-----------+
+6 rows in set (0.00 sec)
+
+mysql> describe Cats;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| cat_id | int         | NO   | PRI | NULL    | auto_increment |
+| Name   | varchar(30) | NO   |     | NULL    |                |
+| Breed  | varchar(12) | NO   |     | NULL    |                |
+| Age    | int         | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> select * from cats;
++--------+------------+-----------+------+
+| cat_id | Name       | Breed     | Age  |
++--------+------------+-----------+------+
+|      1 | Ringo      | Tabby     |    4 |
+|      2 | Cindy      | Mainecoon |   10 |
+|      3 | dumbledore | MaineCoon |   11 |
+|      4 | Egg        | Persian   |    4 |
+|      5 | Misty      | Tabby     |   13 |
+|      6 | Jackson    | Sphynz    |    7 |
++--------+------------+-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> select database();
++--------------+
+| database()   |
++--------------+
+| radhekrishna |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> show schemas;
++--------------------+
+| Database           |
++--------------------+
+| ABES               |
+| DBMS               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| RadheKrishna       |
+| sys                |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> select database();
++--------------+
+| database()   |
++--------------+
+| radhekrishna |
++--------------+
+1 row in set (0.00 sec)
+
+mysql> select 8 from Catsl
+    -> ;
+ERROR 1146 (42S02): Table 'radhekrishna.catsl' doesn't exist
+mysql> select 8 from Cats;
++---+
+| 8 |
++---+
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
++---+
+6 rows in set (0.00 sec)
+
+mysql> select * from Cats;
++--------+------------+-----------+------+
+| cat_id | Name       | Breed     | Age  |
++--------+------------+-----------+------+
+|      1 | Ringo      | Tabby     |    4 |
+|      2 | Cindy      | Mainecoon |   10 |
+|      3 | dumbledore | MaineCoon |   11 |
+|      4 | Egg        | Persian   |    4 |
+|      5 | Misty      | Tabby     |   13 |
+|      6 | Jackson    | Sphynz    |    7 |
++--------+------------+-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> select (8+9) from cats;
++-------+
+| (8+9) |
++-------+
+|    17 |
+|    17 |
+|    17 |
+|    17 |
+|    17 |
+|    17 |
++-------+
+6 rows in set (0.00 sec)
+
+mysql> update cats set age=14 where cat_id=5;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from cats;
++--------+------------+-----------+------+
+| cat_id | Name       | Breed     | Age  |
++--------+------------+-----------+------+
+|      1 | Ringo      | Tabby     |    4 |
+|      2 | Cindy      | Mainecoon |   10 |
+|      3 | dumbledore | MaineCoon |   11 |
+|      4 | Egg        | Persian   |    4 |
+|      5 | Misty      | Tabby     |   14 |
+|      6 | Jackson    | Sphynz    |    7 |
++--------+------------+-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> update cats set name='Suzi',breed='Tabby' where cat_id=6;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from cats;
++--------+------------+-----------+------+
+| cat_id | Name       | Breed     | Age  |
++--------+------------+-----------+------+
+|      1 | Ringo      | Tabby     |    4 |
+|      2 | Cindy      | Mainecoon |   10 |
+|      3 | dumbledore | MaineCoon |   11 |
+|      4 | Egg        | Persian   |    4 |
+|      5 | Misty      | Tabby     |   14 |
+|      6 | Suzi       | Tabby     |    7 |
++--------+------------+-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> update cats age=12 where cat_id=6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=12 where cat_id=6' at line 1
+mysql> update cats set  age=12,breed='Persian' where cat_id=6;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from cats;
++--------+------------+-----------+------+
+| cat_id | Name       | Breed     | Age  |
++--------+------------+-----------+------+
+|      1 | Ringo      | Tabby     |    4 |
+|      2 | Cindy      | Mainecoon |   10 |
+|      3 | dumbledore | MaineCoon |   11 |
+|      4 | Egg        | Persian   |    4 |
+|      5 | Misty      | Tabby     |   14 |
+|      6 | Suzi       | Persian   |   12 |
++--------+------------+-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> select cat_id as cat_number from cats;
++------------+
+| cat_number |
++------------+
+|          1 |
+|          2 |
+|          3 |
+|          4 |
+|          5 |
+|          6 |
++------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from cats;
++--------+------------+-----------+------+
+| cat_id | Name       | Breed     | Age  |
++--------+------------+-----------+------+
+|      1 | Ringo      | Tabby     |    4 |
+|      2 | Cindy      | Mainecoon |   10 |
+|      3 | dumbledore | MaineCoon |   11 |
+|      4 | Egg        | Persian   |    4 |
+|      5 | Misty      | Tabby     |   14 |
+|      6 | Suzi       | Persian   |   12 |
++--------+------------+-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> update cats set age=12 where breed='mainecoon';
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select *from cats;
++--------+------------+-----------+------+
+| cat_id | Name       | Breed     | Age  |
++--------+------------+-----------+------+
+|      1 | Ringo      | Tabby     |    4 |
+|      2 | Cindy      | Mainecoon |   12 |
+|      3 | dumbledore | MaineCoon |   12 |
+|      4 | Egg        | Persian   |    4 |
+|      5 | Misty      | Tabby     |   14 |
+|      6 | Suzi       | Persian   |   12 |
++--------+------------+-----------+------+
+6 rows in set (0.00 sec)
+
+mysql> delete from cats where age=4;
+Query OK, 2 rows affected (0.01 sec)
+
+mysql> select * from cats
+    -> ;
++--------+------------+-----------+------+
+| cat_id | Name       | Breed     | Age  |
++--------+------------+-----------+------+
+|      2 | Cindy      | Mainecoon |   12 |
+|      3 | dumbledore | MaineCoon |   12 |
+|      5 | Misty      | Tabby     |   14 |
+|      6 | Suzi       | Persian   |   12 |
++--------+------------+-----------+------+
+4 rows in set (0.00 sec)
+
+mysql> update cats set age=6 where cat_id=6;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from cats;
++--------+------------+-----------+------+
+| cat_id | Name       | Breed     | Age  |
++--------+------------+-----------+------+
+|      2 | Cindy      | Mainecoon |   12 |
+|      3 | dumbledore | MaineCoon |   12 |
+|      5 | Misty      | Tabby     |   14 |
+|      6 | Suzi       | Persian   |    6 |
++--------+------------+-----------+------+
+4 rows in set (0.00 sec)
+
+mysql> delete from cats where cat_id=age;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from cats;
++--------+------------+-----------+------+
+| cat_id | Name       | Breed     | Age  |
++--------+------------+-----------+------+
+|      2 | Cindy      | Mainecoon |   12 |
+|      3 | dumbledore | MaineCoon |   12 |
+|      5 | Misty      | Tabby     |   14 |
++--------+------------+-----------+------+
+3 rows in set (0.00 sec)
+
+mysql> delete  from cats;
+Query OK, 3 rows affected (0.01 sec)
+
+mysql> select * from cats;
+Empty set (0.01 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_radhekrishna |
++------------------------+
+| Airpods                |
+| Cats                   |
+| employee               |
+| Employees              |
+| Grudha                 |
+| LED                    |
+| Mobile                 |
+| People                 |
+| pet                    |
+| Radhe                  |
+| tweets                 |
++------------------------+
+11 rows in set (0.00 sec)
+
+mysql> desc Airpods;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| Name  | varchar(20) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | 23      |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select 8 from Airpods;
++---+
+| 8 |
++---+
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
+| 8 |
++---+
+7 rows in set (0.01 sec)
+
+mysql> select * from Airpods;
++----+-----------+------+
+| id | Name      | age  |
++----+-----------+------+
+|  1 | Apple     |   45 |
+|  2 | boat      |   21 |
+|  3 | FireBoult |   25 |
+|  4 | Samsung   |   23 |
+|  5 | Bose      |   23 |
+|  6 | Hyundai   |   23 |
+|  7 | Pods      |   23 |
++----+-----------+------+
+7 rows in set (0.00 sec)
+
+mysql> turncate table Airpods;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'turncate table Airpods' at line 1
+mysql> truncate table Airpods;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from Airpods
+    -> ;
+Empty set (0.00 sec)
+
+mysql> desc Airpods;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| Name  | varchar(20) | YES  |     | NULL    |       |
+| age   | int         | YES  |     | 23      |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> show tables;
++------------------------+
+| Tables_in_radhekrishna |
++------------------------+
+| Airpods                |
+| Cats                   |
+| employee               |
+| Employees              |
+| Grudha                 |
+| LED                    |
+| Mobile                 |
+| People                 |
+| pet                    |
+| Radhe                  |
+| tweets                 |
++------------------------+
+11 rows in set (0.00 sec)
+
+mysql> select * from people;
++------------+-------------+------+
+| First_Name | Last_Name   | age  |
++------------+-------------+------+
+| Tina       | Belcher     |   40 |
+| Bob        | frond       |   34 |
+| phillips   | Fischoeders |   32 |
++------------+-------------+------+
+3 rows in set (0.00 sec)
+
+mysql> drop table people;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select 
+    -> * from people;
+ERROR 1146 (42S02): Table 'radhekrishna.people' doesn't exist
+mysql> select  * from people;
+ERROR 1146 (42S02): Table 'radhekrishna.people' doesn't exist
+mysql> desc people;
+ERROR 1146 (42S02): Table 'radhekrishna.people' doesn't exist
+mysql> create table Pizza(
+    -> pizza_id int primary key auto_increment,
+    -> Pizza_Name varchar(25) not null,
+    -> Customer_number int not null,
+    -> Location varchar(234) not null default 'New York'
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc pizza;
++-----------------+--------------+------+-----+----------+----------------+
+| Field           | Type         | Null | Key | Default  | Extra          |
++-----------------+--------------+------+-----+----------+----------------+
+| pizza_id        | int          | NO   | PRI | NULL     | auto_increment |
+| Pizza_Name      | varchar(25)  | NO   |     | NULL     |                |
+| Customer_number | int          | NO   |     | NULL     |                |
+| Location        | varchar(234) | NO   |     | New York |                |
++-----------------+--------------+------+-----+----------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into(pizza_id,Pizza_name,Customer_number,Location)values(1,'mario,s pizza',7302963673,'California');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(pizza_id,Pizza_name,Customer_number,Location)values(1,'mario,s pizza',730296367' at line 1
+mysql> insert into pizza(pizza_id,Pizza_name,Customer_number,Location)values(1,'mario,s pizza',7302963673,'California');
+ERROR 1264 (22003): Out of range value for column 'Customer_number' at row 1
+mysql> Alter table Pizza modify Customer_number bigint;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Pizza;
++-----------------+--------------+------+-----+----------+----------------+
+| Field           | Type         | Null | Key | Default  | Extra          |
++-----------------+--------------+------+-----+----------+----------------+
+| pizza_id        | int          | NO   | PRI | NULL     | auto_increment |
+| Pizza_Name      | varchar(25)  | NO   |     | NULL     |                |
+| Customer_number | bigint       | YES  |     | NULL     |                |
+| Location        | varchar(234) | NO   |     | New York |                |
++-----------------+--------------+------+-----+----------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into pizza(Pizza_name,customer_number)values('Mario's Pizza',7302963673);
+    '> ^C
+mysql> insert into pizza(Pizza_name,customer_number)values('Mario's Pizza',7302963673);
+    '> ;
+    '> ;
+    '> ;
+    '> ;
+    '> ;
+    '> 
+    '> ;
+    '> ;^C
+mysql> insert into pizza(Pizza_name,customer_number)values('Marios Pizza',7302963673);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Pizza;
++----------+--------------+-----------------+----------+
+| pizza_id | Pizza_Name   | Customer_number | Location |
++----------+--------------+-----------------+----------+
+|        1 | Marios Pizza |      7302963673 | New York |
++----------+--------------+-----------------+----------+
+1 row in set (0.00 sec)
+
+mysql> insert into pizza(Pizza_name,customer_number)values('Domino\'s Pizza',7303074013);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Pizza;
++----------+----------------+-----------------+----------+
+| pizza_id | Pizza_Name     | Customer_number | Location |
++----------+----------------+-----------------+----------+
+|        1 | Marios Pizza   |      7302963673 | New York |
+|        2 | Domino's Pizza |      7303074013 | New York |
++----------+----------------+-----------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> update pizza set Pizza_name='Mario's pizza where pizza_id=1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 's pizza where pizza_id=1' at line 1
+mysql> update pizza set Pizza_name='Mario's pizza' where pizza_id=1;
+    '> ;
+    '> ;
+    '> '
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 's pizza' where pizza_id=1;
+;
+;
+'' at line 1
+mysql> update pizza set Pizza_name='Mario's pizza' where pizza_id=1;
+;
+;
+';^C
+mysql> update pizza set Pizza_name='Mario\'s pizza' where pizza_id=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from pizza;
++----------+----------------+-----------------+----------+
+| pizza_id | Pizza_Name     | Customer_number | Location |
++----------+----------------+-----------------+----------+
+|        1 | Mario's pizza  |      7302963673 | New York |
+|        2 | Domino's Pizza |      7303074013 | New York |
++----------+----------------+-----------------+----------+
+2 rows in set (0.00 sec)
+
+mysql> 

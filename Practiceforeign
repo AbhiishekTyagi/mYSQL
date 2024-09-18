@@ -1,0 +1,292 @@
+mysql> -- Create the table with foreign key constraints
+mysql> show tables;
++--------------------+
+| Tables_in_bookshop |
++--------------------+
+| Abhi               |
+| Accounts           |
+| bankaccount        |
+| books              |
+| Caption            |
+| caption2           |
+| Employee           |
+| INstagram          |
+| parents            |
+| people             |
+| salary             |
+| states             |
+| Student            |
+| tweets             |
++--------------------+
+14 rows in set (0.00 sec)
+
+mysql> create tabvle Foreign 
+    -> (
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'tabvle Foreign 
+(' at line 1
+mysql> system clear;
+
+mysql> create table Foreign  (;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Foreign  (' at line 1
+mysql> create table Foreign
+    -> (
+    -> ; 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Foreign
+(' at line 1
+mysql> create table prim
+    -> (
+    -> Cust_id tinyint,
+    -> Name varchar(20) not null,
+    -> Age tinyint not null,
+    -> primary key(Cust_id)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc Prim;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Cust_id | tinyint     | NO   | PRI | NULL    |       |
+| Name    | varchar(20) | NO   |     | NULL    |       |
+| Age     | tinyint     | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into prim values(1,'Abhishek',23),(2,'Aastha',24),(3,'Vishu',25);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from prim;
++---------+----------+-----+
+| Cust_id | Name     | Age |
++---------+----------+-----+
+|       1 | Abhishek |  23 |
+|       2 | Aastha   |  24 |
+|       3 | Vishu    |  25 |
++---------+----------+-----+
+3 rows in set (0.00 sec)
+
+mysql> -- Create table foreign 
+mysql> create table foreign
+    -> (
+    -> FullName varchar(12)not null,
+    -> Id tinyint primary key,
+    -> Fathername varchar(15) not null,
+    -> cust_id tinyint foreign key(cust_id) references prim(cust_id)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign
+(
+FullName varchar(12)not null,
+Id tinyint primary key,
+Fathername varch' at line 1
+mysql> create table foreign ( FullName varchar(12)not null, Id tinyint primary key, Fathername
+varchar(15) not null, cust_id tinyint, foreign key(cust_id) references prim(cust_id) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign ( FullName varchar(12)not null, Id tinyint primary key, Fathername varch' at line 1
+mysql> create table foreign (FullName varchar(12) not null,Id tinyint primary key, Fathername varchar(15) not null,cust_id tinyint,foreign key(cust_id) references prim(cust_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign (FullName varchar(12) not null,Id tinyint primary key, Fathername varcha' at line 1
+mysql> create table foreign (FullName varchar(12) not null,Id tinyint primary key, Fathername varchar(15) not null,cust_id tinyint,foreign key(cust_id) references prim(cust_id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign (FullName varchar(12) not null,Id tinyint primary key, Fathername varcha' at line 1
+mysql> desc prim;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Cust_id | tinyint     | NO   | PRI | NULL    |       |
+| Name    | varchar(20) | NO   |     | NULL    |       |
+| Age     | tinyint     | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> select * from prim;
++---------+----------+-----+
+| Cust_id | Name     | Age |
++---------+----------+-----+
+|       1 | Abhishek |  23 |
+|       2 | Aastha   |  24 |
+|       3 | Vishu    |  25 |
++---------+----------+-----+
+3 rows in set (0.00 sec)
+
+mysql> create table fore (FullName varchar(12) not null,Id tinyint primary key, Fathername varchar(15) not null,cust_id tinyint,foreign key(cust_id) references prim(cust_id));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_bookshop |
++--------------------+
+| Abhi               |
+| Accounts           |
+| bankaccount        |
+| books              |
+| Caption            |
+| caption2           |
+| Employee           |
+| fore               |
+| fore2              |
+| INstagram          |
+| parents            |
+| people             |
+| prim               |
+| salary             |
+| states             |
+| Student            |
+| tweets             |
++--------------------+
+17 rows in set (0.00 sec)
+
+mysql> select * from prim;
++---------+----------+-----+
+| Cust_id | Name     | Age |
++---------+----------+-----+
+|       1 | Abhishek |  23 |
+|       2 | Aastha   |  24 |
+|       3 | Vishu    |  25 |
++---------+----------+-----+
+3 rows in set (0.00 sec)
+
+mysql> desc fore;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| FullName   | varchar(12) | NO   |     | NULL    |       |
+| Id         | tinyint     | NO   | PRI | NULL    |       |
+| Fathername | varchar(15) | NO   |     | NULL    |       |
+| cust_id    | tinyint     | YES  | MUL | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into fore(Fullname,Id,Fathername,cust_id) values('Abhishek',1,'Yogesh',1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into fore(Fullname,Id,Fathername,cust_id) values('Abhinav',2,'Shrikant',4);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`bookshop`.`fore`, CONSTRAINT `fore_ibfk_1` FOREIGN KEY (`cust_id`) REFERENCES `prim` (`Cust_id`))
+mysql> insert into fore(Fullname,Id,Fathername,cust_id) values('Abhinav',2,'Shrikant',4);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`bookshop`.`fore`, CONSTRAINT `fore_ibfk_1` FOREIGN KEY (`cust_id`) REFERENCES `prim` (`Cust_id`))
+mysql> insert into prim values(4,'Ayuesh',24);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into fore(Fullname,Id,Fathername,cust_id) values('Abhinav',2,'Shrikant',4);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from fore;
++----------+----+------------+---------+
+| FullName | Id | Fathername | cust_id |
++----------+----+------------+---------+
+| Abhishek |  1 | Yogesh     |       1 |
+| Abhinav  |  2 | Shrikant   |       4 |
++----------+----+------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> insert into fore(Fullname,Id,Fathername,cust_id) values('Abhilasha',3,'Shriman',3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from fore;
++-----------+----+------------+---------+
+| FullName  | Id | Fathername | cust_id |
++-----------+----+------------+---------+
+| Abhishek  |  1 | Yogesh     |       1 |
+| Abhinav   |  2 | Shrikant   |       4 |
+| Abhilasha |  3 | Shriman    |       3 |
++-----------+----+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> create table Price
+    -> (
+    -> Id tinyint not null.
+    -> Salpri float not null unique
+    -> purpr float not null,
+    -> constraint ch check(salpri>purpr)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.
+Salpri float not null unique
+purpr float not null,
+constraint ch check(salpri>' at line 3
+mysql> create table Price ( Id tinyint not null, Salpri float not null unique purpr float not null,constraint ch check(salpri > purpr) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'purpr float not null,constraint ch check(salpri > purpr) )' at line 1
+mysql> create table Price ( Id tinyint not null, Salpri float not null unique, purpr float not
+null,constraint ch check(salpri>=purpr) );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into price values(1,1200,1300);
+ERROR 3819 (HY000): Check constraint 'ch' is violated.
+mysql> insert into price values(1,1200,1100);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from price;
++----+--------+-------+
+| Id | Salpri | purpr |
++----+--------+-------+
+|  1 |   1200 |  1100 |
++----+--------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into price values(1,1300,1200);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into price values(1,1300,1400);
+ERROR 3819 (HY000): Check constraint 'ch' is violated.
+mysql> select * from price;
++----+--------+-------+
+| Id | Salpri | purpr |
++----+--------+-------+
+|  1 |   1200 |  1100 |
+|  1 |   1300 |  1200 |
++----+--------+-------+
+2 rows in set (0.00 sec)
+
+mysql> Alter table price drop constraints ch;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ch' at line 1
+mysql> Alter table price drop constraint ch;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into price values(1,1300,1400);
+ERROR 1062 (23000): Duplicate entry '1300' for key 'price.Salpri'
+mysql> insert into price values(4,1300,1400);
+ERROR 1062 (23000): Duplicate entry '1300' for key 'price.Salpri'
+mysql> insert into price values(4,1500,1400);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into price values(4,1600,1700);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from price ;
++----+--------+-------+
+| Id | Salpri | purpr |
++----+--------+-------+
+|  1 |   1200 |  1100 |
+|  1 |   1300 |  1200 |
+|  4 |   1500 |  1400 |
+|  4 |   1600 |  1700 |
++----+--------+-------+
+4 rows in set (0.00 sec)
+
+mysql> show constraints;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'constraints' at line 1
+mysql> show constraint;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'constraint' at line 1
+mysql> show create table price;
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                             |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| price | CREATE TABLE `price` (
+  `Id` tinyint NOT NULL,
+  `Salpri` float NOT NULL,
+  `purpr` float NOT NULL,
+  UNIQUE KEY `Salpri` (`Salpri`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> desc fore;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| FullName   | varchar(12) | NO   |     | NULL    |       |
+| Id         | tinyint     | NO   | PRI | NULL    |       |
+| Fathername | varchar(15) | NO   |     | NULL    |       |
+| cust_id    | tinyint     | YES  | MUL | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> 

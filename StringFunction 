@@ -1,0 +1,2815 @@
+Last login: Thu Aug 15 09:34:16 on ttys000
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % pwd
+/Users/abhishektyagi_1
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show scheams;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'scheams' at line 1
+mysql> show schemas;
++----------------------+
+| Database             |
++----------------------+
+| ABES                 |
+| Aggregate            |
+| bankmanagementsystem |
+| Books                |
+| BookShop             |
+| constraints          |
+| DBMS                 |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| Practice             |
+| RadheKrishna         |
+| Shirt                |
+| sys                  |
+| Triggers             |
+| View                 |
++----------------------+
+16 rows in set (0.00 sec)
+
+mysql> use Bookshop;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_bookshop |
++--------------------+
+| books              |
+| Employee           |
+| Student            |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> desc Employee;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| EmpId   | varchar(10) | NO   | PRI | NULL    |       |
+| EmpName | varchar(20) | NO   | UNI | NULL    |       |
+| Salary  | float       | NO   |     | NULL    |       |
+| Age     | varchar(3)  | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> select * from Employee;
++-------+----------+--------+------+
+| EmpId | EmpName  | Salary | Age  |
++-------+----------+--------+------+
+| 1     | Abhishek |  12.89 | 22   |
+| 2     | Aastha   |  12.76 | 22   |
+| 3     | Krishna  |  13.43 | 23   |
++-------+----------+--------+------+
+3 rows in set (0.01 sec)
+
+mysql> Delimiter //
+mysql> Select * from Student//
++----------+--------+-------+
+| Name     | RollNo | Marks |
++----------+--------+-------+
+| Abhishek |     12 | 56.65 |
+| Radha    |     13 | 90.87 |
+| Krishna  |     14 | 70.87 |
+| Krishna  |     15 |    56 |
++----------+--------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Books;
+    -> //
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+16 rows in set (0.00 sec)
+
+mysql> delimiter ;
+mysql> select * from  book;
+ERROR 1146 (42S02): Table 'bookshop.book' doesn't exist
+mysql> select * from  books;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+16 rows in set (0.00 sec)
+
+mysql> 
+  [Restored 15 Aug 2024 at 12:09:52 PM]
+Last login: Thu Aug 15 12:05:56 on ttys000
+/Users/abhishektyagi_1/.zsh_sessions/98E5AC76-361D-4F86-BDDC-FB1BEB4418D3.session:1: command not found: ^[]7
+/Users/abhishektyagi_1/.zsh_sessions/98E5AC76-361D-4F86-BDDC-FB1BEB4418D3.session:1: no such file or directory: file://Abhisheks-MacBook-Air.local/Users/abhishektyagi_1^G
+/Users/abhishektyagi_1/.zsh_sessions/98E5AC76-361D-4F86-BDDC-FB1BEB4418D3.session:2: command not found: Saving
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % 
+  [Restored 15 Aug 2024 at 12:11:15 PM]
+Last login: Thu Aug 15 12:11:12 on console
+Restored session: Thu Aug 15 12:09:59 IST 2024
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| ABES                 |
+| Aggregate            |
+| bankmanagementsystem |
+| Books                |
+| BookShop             |
+| constraints          |
+| DBMS                 |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| Practice             |
+| RadheKrishna         |
+| Shirt                |
+| sys                  |
+| Triggers             |
+| View                 |
++----------------------+
+16 rows in set (0.01 sec)
+
+mysql> use Bookshop;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_bookshop |
++--------------------+
+| books              |
+| Employee           |
+| Student            |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from books;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+16 rows in set (0.00 sec)
+
+mysql> select * from Employee;;
++-------+----------+--------+------+
+| EmpId | EmpName  | Salary | Age  |
++-------+----------+--------+------+
+| 1     | Abhishek |  12.89 | 22   |
+| 2     | Aastha   |  12.76 | 22   |
+| 3     | Krishna  |  13.43 | 23   |
++-------+----------+--------+------+
+3 rows in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+mysql> delimiter $$
+mysql> slect * from student$$
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slect * from student' at line 1
+mysql> select * from student $$
++----------+--------+-------+
+| Name     | RollNo | Marks |
++----------+--------+-------+
+| Abhishek |     12 | 56.65 |
+| Radha    |     13 | 90.87 |
+| Krishna  |     14 | 70.87 |
+| Krishna  |     15 |    56 |
++----------+--------+-------+
+4 rows in set (0.01 sec)
+
+mysql> desc student$$
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Name   | varchar(20) | NO   |     | NULL    |       |
+| RollNo | int         | NO   | PRI | NULL    |       |
+| Marks  | float       | YES  | UNI | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> show triggers$$
++---------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger | Event  | Table    | Statement                                                                                                                         | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++---------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| tp      | INSERT | Employee | Begin
+ if New.Salary>13.50
+ then set new.Empname="Radha";
+ elseif New.Salary<13.50
+ then set new.empName="Krishna";
+ End if;
+ End | BEFORE | 2024-08-15 11:35:12.81 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| tt      | INSERT | Student  | Begin if new.name="Abhii" then set new.marks=56; elseif new.name="Radhakrishna" then set new.marks=98; end if; End                | BEFORE | 2024-08-14 19:17:53.63 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| tr      | INSERT | Student  | Begin
+if new.marks>89.98
+then set new.name="Radha";
+elseif new.marks<89.98 then 
+set new.name="Krishna";
+end if;
+End              | BEFORE | 2024-08-13 13:13:19.04 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++---------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+3 rows in set (0.01 sec)
+
+mysql> desc employee$$
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| EmpId   | varchar(10) | NO   | PRI | NULL    |       |
+| EmpName | varchar(20) | NO   | UNI | NULL    |       |
+| Salary  | float       | NO   |     | NULL    |       |
+| Age     | varchar(3)  | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> select * from employee$$
++-------+----------+--------+------+
+| EmpId | EmpName  | Salary | Age  |
++-------+----------+--------+------+
+| 1     | Abhishek |  12.89 | 22   |
+| 2     | Aastha   |  12.76 | 22   |
+| 3     | Krishna  |  13.43 | 23   |
++-------+----------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> insert into employee values(4,"Bobby",15.43,23)$$
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee$$
++-------+----------+--------+------+
+| EmpId | EmpName  | Salary | Age  |
++-------+----------+--------+------+
+| 1     | Abhishek |  12.89 | 22   |
+| 2     | Aastha   |  12.76 | 22   |
+| 3     | Krishna  |  13.43 | 23   |
+| 4     | Radha    |  15.43 | 23   |
++-------+----------+--------+------+
+4 rows in set (0.00 sec)
+
+mysql> insert into employee values(5,"Bobby",12.43,23)$$
+ERROR 1062 (23000): Duplicate entry 'Krishna' for key 'employee.EmpName'
+mysql> insert into employee values(5,"Bobbyf",12.43,23)$$
+ERROR 1062 (23000): Duplicate entry 'Krishna' for key 'employee.EmpName'
+mysql> desc emplyee$$
+ERROR 1146 (42S02): Table 'bookshop.emplyee' doesn't exist
+mysql> desc employee$$
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| EmpId   | varchar(10) | NO   | PRI | NULL    |       |
+| EmpName | varchar(20) | NO   | UNI | NULL    |       |
+| Salary  | float       | NO   |     | NULL    |       |
+| Age     | varchar(3)  | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> Alter table employee modify Empname varchar(20) not null$$
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee$$
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| EmpId   | varchar(10) | NO   | PRI | NULL    |       |
+| Empname | varchar(20) | NO   | UNI | NULL    |       |
+| Salary  | float       | NO   |     | NULL    |       |
+| Age     | varchar(3)  | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> show trriggers$$
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'trriggers' at line 1
+mysql> show trriggers$$
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'trriggers' at line 1
+mysql> show triggers$$
++---------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger | Event  | Table    | Statement                                                                                                                         | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++---------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| tp      | INSERT | employee | Begin
+ if New.Salary>13.50
+ then set new.Empname="Radha";
+ elseif New.Salary<13.50
+ then set new.empName="Krishna";
+ End if;
+ End | BEFORE | 2024-08-15 11:35:12.81 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| tt      | INSERT | Student  | Begin if new.name="Abhii" then set new.marks=56; elseif new.name="Radhakrishna" then set new.marks=98; end if; End                | BEFORE | 2024-08-14 19:17:53.63 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| tr      | INSERT | Student  | Begin
+if new.marks>89.98
+then set new.name="Radha";
+elseif new.marks<89.98 then 
+set new.name="Krishna";
+end if;
+End              | BEFORE | 2024-08-13 13:13:19.04 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++---------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+3 rows in set (0.00 sec)
+
+mysql> drop trigger tp$$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show triggers$$
++---------+--------+---------+----------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger | Event  | Table   | Statement                                                                                                            | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++---------+--------+---------+----------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| tt      | INSERT | Student | Begin if new.name="Abhii" then set new.marks=56; elseif new.name="Radhakrishna" then set new.marks=98; end if; End   | BEFORE | 2024-08-14 19:17:53.63 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| tr      | INSERT | Student | Begin
+if new.marks>89.98
+then set new.name="Radha";
+elseif new.marks<89.98 then 
+set new.name="Krishna";
+end if;
+End | BEFORE | 2024-08-13 13:13:19.04 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++---------+--------+---------+----------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> delimiter $$
+mysql> select * from student;
+    -> $$
++----------+--------+-------+
+| Name     | RollNo | Marks |
++----------+--------+-------+
+| Abhishek |     12 | 56.65 |
+| Radha    |     13 | 90.87 |
+| Krishna  |     14 | 70.87 |
+| Krishna  |     15 |    56 |
++----------+--------+-------+
+4 rows in set (0.00 sec)
+
+mysql> delimiter ;
+mysql> select * from student;
++----------+--------+-------+
+| Name     | RollNo | Marks |
++----------+--------+-------+
+| Abhishek |     12 | 56.65 |
+| Radha    |     13 | 90.87 |
+| Krishna  |     14 | 70.87 |
+| Krishna  |     15 |    56 |
++----------+--------+-------+
+4 rows in set (0.00 sec)
+
+mysql> show triggers on employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on employee' at line 1
+mysql> show triggers;
++---------+--------+---------+----------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger | Event  | Table   | Statement                                                                                                            | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++---------+--------+---------+----------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| tt      | INSERT | Student | Begin if new.name="Abhii" then set new.marks=56; elseif new.name="Radhakrishna" then set new.marks=98; end if; End   | BEFORE | 2024-08-14 19:17:53.63 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| tr      | INSERT | Student | Begin
+if new.marks>89.98
+then set new.name="Radha";
+elseif new.marks<89.98 then 
+set new.name="Krishna";
+end if;
+End | BEFORE | 2024-08-13 13:13:19.04 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++---------+--------+---------+----------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger  ins before insert on Employee for each row 
+    -> Begin
+    -> if new.//
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
+mysql> delimiter ;
+mysql> select * from employee;
++-------+----------+--------+------+
+| EmpId | Empname  | Salary | Age  |
++-------+----------+--------+------+
+| 1     | Abhishek |  12.89 | 22   |
+| 2     | Aastha   |  12.76 | 22   |
+| 3     | Krishna  |  13.43 | 23   |
+| 4     | Radha    |  15.43 | 23   |
++-------+----------+--------+------+
+4 rows in set (0.01 sec)
+
+mysql> drop table employee;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_bookshop |
++--------------------+
+| books              |
+| Student            |
++--------------------+
+2 rows in set (0.00 sec)
+
+mysql> create table Employee
+    -> (
+    -> Id int primary key,
+    -> EmpName varchar(12) not null,
+    -> Salary float not null
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc Employee;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Id      | int         | NO   | PRI | NULL    |       |
+| EmpName | varchar(12) | NO   |     | NULL    |       |
+| Salary  | float       | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into employee values(1,"Abhishek",12.3200),(2,"Krishna",12.322200);
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++----+----------+---------+
+| Id | EmpName  | Salary  |
++----+----------+---------+
+|  1 | Abhishek |   12.32 |
+|  2 | Krishna  | 12.3222 |
++----+----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> delimiter //
+mysql> create trigger ins before insert on employee for each row 
+    -> Begin
+    -> if new.salary>15.43 then 
+    -> set new.name="Radha";
+    -> end if;
+    -> End//
+ERROR 1054 (42S22): Unknown column 'name' in 'NEW'
+mysql> create trigger ins before insert on employee for each row  Begin if new.salary>15.43 then  set
+new.Empname="Radha"; end if; End//
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delimiter;
+    -> delimiter ;
+    -> ^C
+mysql> show triggers;
+    -> //
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| Trigger | Event  | Table    | Statement                                                                                                            | Timing | Created                | sql_mode                                                                                                              | Definer        | character_set_client | collation_connection | Database Collation |
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+| ins     | INSERT | Employee | Begin if new.salary>15.43 then  set new.Empname="Radha"; end if; End                                                 | BEFORE | 2024-08-15 14:01:39.76 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| tt      | INSERT | Student  | Begin if new.name="Abhii" then set new.marks=56; elseif new.name="Radhakrishna" then set new.marks=98; end if; End   | BEFORE | 2024-08-14 19:17:53.63 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
+| tr      | INSERT | Student  | Begin
+if new.marks>89.98
+then set new.name="Radha";
+elseif new.marks<89.98 then 
+set new.name="Krishna";
+end if;
+End | BEFORE | 2024-08-13 13:13:19.04 | ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION | root@localhost | utf8mb4              | utf8mb4_0900_ai_ci   | utf8mb4_0900_ai_ci |
++---------+--------+----------+----------------------------------------------------------------------------------------------------------------------+--------+------------------------+-----------------------------------------------------------------------------------------------------------------------+----------------+----------------------+----------------------+--------------------+
+3 rows in set (0.00 sec)
+
+mysql> delimiter ;
+mysql> select * from employee;
++----+----------+---------+
+| Id | EmpName  | Salary  |
++----+----------+---------+
+|  1 | Abhishek |   12.32 |
+|  2 | Krishna  | 12.3222 |
++----+----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> insert into employee values(3,"Abhi",16.54);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++----+----------+---------+
+| Id | EmpName  | Salary  |
++----+----------+---------+
+|  1 | Abhishek |   12.32 |
+|  2 | Krishna  | 12.3222 |
+|  3 | Radha    |   16.54 |
++----+----------+---------+
+3 rows in set (0.01 sec)
+
+mysql> show scheams;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'scheams' at line 1
+mysql> show schemas;
++----------------------+
+| Database             |
++----------------------+
+| ABES                 |
+| Aggregate            |
+| bankmanagementsystem |
+| Books                |
+| BookShop             |
+| constraints          |
+| DBMS                 |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| Practice             |
+| RadheKrishna         |
+| Shirt                |
+| sys                  |
+| Triggers             |
+| View                 |
++----------------------+
+16 rows in set (0.00 sec)
+
+mysql> use bookshop;
+Database changed
+mysql> select database();
++------------+
+| database() |
++------------+
+| bookshop   |
++------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_bookshop |
++--------------------+
+| books              |
+| Employee           |
+| Student            |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> desc books;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| book_id        | int          | NO   | PRI | NULL    | auto_increment |
+| title          | varchar(100) | YES  |     | NULL    |                |
+| author_fname   | varchar(100) | YES  |     | NULL    |                |
+| author_lname   | varchar(100) | YES  |     | NULL    |                |
+| released_year  | int          | YES  |     | NULL    |                |
+| stock_quantity | int          | YES  |     | NULL    |                |
+| pages          | int          | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from books;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+16 rows in set (0.00 sec)
+
+mysql> desc employee;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Id      | int         | NO   | PRI | NULL    |       |
+| EmpName | varchar(12) | NO   |     | NULL    |       |
+| Salary  | float       | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> desc boks;
+ERROR 1146 (42S02): Table 'bookshop.boks' doesn't exist
+mysql> desc books;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| book_id        | int          | NO   | PRI | NULL    | auto_increment |
+| title          | varchar(100) | YES  |     | NULL    |                |
+| author_fname   | varchar(100) | YES  |     | NULL    |                |
+| author_lname   | varchar(100) | YES  |     | NULL    |                |
+| released_year  | int          | YES  |     | NULL    |                |
+| stock_quantity | int          | YES  |     | NULL    |                |
+| pages          | int          | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> select concat(author_fname,author_lname) as Full_name from books
+    -> ;
++---------------------+
+| Full_name           |
++---------------------+
+| JhumpaLahiri        |
+| NeilGaiman          |
+| NeilGaiman          |
+| JhumpaLahiri        |
+| DaveEggers          |
+| DaveEggers          |
+| MichaelChabon       |
+| PattiSmith          |
+| DaveEggers          |
+| NeilGaiman          |
+| RaymondCarver       |
+| RaymondCarver       |
+| DonDeLillo          |
+| JohnSteinbeck       |
+| DavidFoster Wallace |
+| DavidFoster Wallace |
++---------------------+
+16 rows in set (0.00 sec)
+
+mysql> select concat_ws('_',author_fname,author_lname) as Full_name from books
+    -> ;
++----------------------+
+| Full_name            |
++----------------------+
+| Jhumpa_Lahiri        |
+| Neil_Gaiman          |
+| Neil_Gaiman          |
+| Jhumpa_Lahiri        |
+| Dave_Eggers          |
+| Dave_Eggers          |
+| Michael_Chabon       |
+| Patti_Smith          |
+| Dave_Eggers          |
+| Neil_Gaiman          |
+| Raymond_Carver       |
+| Raymond_Carver       |
+| Don_DeLillo          |
+| John_Steinbeck       |
+| David_Foster Wallace |
+| David_Foster Wallace |
++----------------------+
+16 rows in set (0.00 sec)
+
+mysql> select concat_ws(author_fname,'!',author_lname) as Full_name from books
+    -> ;
++----------------------+
+| Full_name            |
++----------------------+
+| !JhumpaLahiri        |
+| !NeilGaiman          |
+| !NeilGaiman          |
+| !JhumpaLahiri        |
+| !DaveEggers          |
+| !DaveEggers          |
+| !MichaelChabon       |
+| !PattiSmith          |
+| !DaveEggers          |
+| !NeilGaiman          |
+| !RaymondCarver       |
+| !RaymondCarver       |
+| !DonDeLillo          |
+| !JohnSteinbeck       |
+| !DavidFoster Wallace |
+| !DavidFoster Wallace |
++----------------------+
+16 rows in set (0.00 sec)
+
+mysql> select concat(author_fname,'!',author_lname) as Full_name from books;
++----------------------+
+| Full_name            |
++----------------------+
+| Jhumpa!Lahiri        |
+| Neil!Gaiman          |
+| Neil!Gaiman          |
+| Jhumpa!Lahiri        |
+| Dave!Eggers          |
+| Dave!Eggers          |
+| Michael!Chabon       |
+| Patti!Smith          |
+| Dave!Eggers          |
+| Neil!Gaiman          |
+| Raymond!Carver       |
+| Raymond!Carver       |
+| Don!DeLillo          |
+| John!Steinbeck       |
+| David!Foster Wallace |
+| David!Foster Wallace |
++----------------------+
+16 rows in set (0.00 sec)
+
+mysql> select author_fname from books;
++--------------+
+| author_fname |
++--------------+
+| Jhumpa       |
+| Neil         |
+| Neil         |
+| Jhumpa       |
+| Dave         |
+| Dave         |
+| Michael      |
+| Patti        |
+| Dave         |
+| Neil         |
+| Raymond      |
+| Raymond      |
+| Don          |
+| John         |
+| David        |
+| David        |
++--------------+
+16 rows in set (0.00 sec)
+
+mysql> select substr(author_fname,-4);
+ERROR 1054 (42S22): Unknown column 'author_fname' in 'field list'
+mysql> select substr(author_fname,-4) from books;
++-------------------------+
+| substr(author_fname,-4) |
++-------------------------+
+| umpa                    |
+| Neil                    |
+| Neil                    |
+| umpa                    |
+| Dave                    |
+| Dave                    |
+| hael                    |
+| atti                    |
+| Dave                    |
+| Neil                    |
+| mond                    |
+| mond                    |
+|                         |
+| John                    |
+| avid                    |
+| avid                    |
++-------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select substr(author_fname,-4) as NameLast  from books;
++----------+
+| NameLast |
++----------+
+| umpa     |
+| Neil     |
+| Neil     |
+| umpa     |
+| Dave     |
+| Dave     |
+| hael     |
+| atti     |
+| Dave     |
+| Neil     |
+| mond     |
+| mond     |
+|          |
+| John     |
+| avid     |
+| avid     |
++----------+
+16 rows in set (0.00 sec)
+
+mysql> select concat(substr(author_fname,1,1),'.',substr(author_lname,1,1),'.') as Lastr from books;
++-------+
+| Lastr |
++-------+
+| J.L.  |
+| N.G.  |
+| N.G.  |
+| J.L.  |
+| D.E.  |
+| D.E.  |
+| M.C.  |
+| P.S.  |
+| D.E.  |
+| N.G.  |
+| R.C.  |
+| R.C.  |
+| D.D.  |
+| J.S.  |
+| D.F.  |
+| D.F.  |
++-------+
+16 rows in set (0.00 sec)
+
+mysql> -- Combining String function
+mysql> select replace('Cheese bread coffee milk',' ',' and ');
++-------------------------------------------------+
+| replace('Cheese bread coffee milk',' ',' and ') |
++-------------------------------------------------+
+| Cheese and bread and coffee and milk            |
++-------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select replace('Cheese bread coffee milk',' ','and');
++-----------------------------------------------+
+| replace('Cheese bread coffee milk',' ','and') |
++-----------------------------------------------+
+| Cheeseandbreadandcoffeeandmilk                |
++-----------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select replace('Cheese bread coffee milk',' ',' and');
++------------------------------------------------+
+| replace('Cheese bread coffee milk',' ',' and') |
++------------------------------------------------+
+| Cheese andbread andcoffee andmilk              |
++------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select replace('Cheese bread coffee milk',' ',' and ');
++-------------------------------------------------+
+| replace('Cheese bread coffee milk',' ',' and ') |
++-------------------------------------------------+
+| Cheese and bread and coffee and milk            |
++-------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select replace('Abhishek','a','Lavi');
++--------------------------------+
+| replace('Abhishek','a','Lavi') |
++--------------------------------+
+| Abhishek                       |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select replace('Abhishek','A','Lavi');
++--------------------------------+
+| replace('Abhishek','A','Lavi') |
++--------------------------------+
+| Lavibhishek                    |
++--------------------------------+
+1 row in set (0.01 sec)
+
+mysql> -- Replace() function is case sensitive 
+mysql> select * from books;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+16 rows in set (0.00 sec)
+
+mysql> select title from books;
++-----------------------------------------------------+
+| title                                               |
++-----------------------------------------------------+
+| The Namesake                                        |
+| Norse Mythology                                     |
+| American Gods                                       |
+| Interpreter of Maladies                             |
+| A Hologram for the King: A Novel                    |
+| The Circle                                          |
+| The Amazing Adventures of Kavalier & Clay           |
+| Just Kids                                           |
+| A Heartbreaking Work of Staggering Genius           |
+| Coraline                                            |
+| What We Talk About When We Talk About Love: Stories |
+| Where I'm Calling From: Selected Stories            |
+| White Noise                                         |
+| Cannery Row                                         |
+| Oblivion: Stories                                   |
+| Consider the Lobster                                |
++-----------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select replace(title,' ','-') as Title from books;
++-----------------------------------------------------+
+| Title                                               |
++-----------------------------------------------------+
+| The-Namesake                                        |
+| Norse-Mythology                                     |
+| American-Gods                                       |
+| Interpreter-of-Maladies                             |
+| A-Hologram-for-the-King:-A-Novel                    |
+| The-Circle                                          |
+| The-Amazing-Adventures-of-Kavalier-&-Clay           |
+| Just-Kids                                           |
+| A-Heartbreaking-Work-of-Staggering-Genius           |
+| Coraline                                            |
+| What-We-Talk-About-When-We-Talk-About-Love:-Stories |
+| Where-I'm-Calling-From:-Selected-Stories            |
+| White-Noise                                         |
+| Cannery-Row                                         |
+| Oblivion:-Stories                                   |
+| Consider-the-Lobster                                |
++-----------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select Replace('hello world','o','0');
++--------------------------------+
+| Replace('hello world','o','0') |
++--------------------------------+
+| hell0 w0rld                    |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select Replace('hello world','o','0') as Title ;
++-------------+
+| Title       |
++-------------+
+| hell0 w0rld |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select Replace(title,'e','3') as Tilre from books;
++-----------------------------------------------------+
+| Tilre                                               |
++-----------------------------------------------------+
+| Th3 Nam3sak3                                        |
+| Nors3 Mythology                                     |
+| Am3rican Gods                                       |
+| Int3rpr3t3r of Maladi3s                             |
+| A Hologram for th3 King: A Nov3l                    |
+| Th3 Circl3                                          |
+| Th3 Amazing Adv3ntur3s of Kavali3r & Clay           |
+| Just Kids                                           |
+| A H3artbr3aking Work of Stagg3ring G3nius           |
+| Coralin3                                            |
+| What W3 Talk About Wh3n W3 Talk About Lov3: Stori3s |
+| Wh3r3 I'm Calling From: S3l3ct3d Stori3s            |
+| Whit3 Nois3                                         |
+| Cann3ry Row                                         |
+| Oblivion: Stori3s                                   |
+| Consid3r th3 Lobst3r                                |
++-----------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select title from books;
++-----------------------------------------------------+
+| title                                               |
++-----------------------------------------------------+
+| The Namesake                                        |
+| Norse Mythology                                     |
+| American Gods                                       |
+| Interpreter of Maladies                             |
+| A Hologram for the King: A Novel                    |
+| The Circle                                          |
+| The Amazing Adventures of Kavalier & Clay           |
+| Just Kids                                           |
+| A Heartbreaking Work of Staggering Genius           |
+| Coraline                                            |
+| What We Talk About When We Talk About Love: Stories |
+| Where I'm Calling From: Selected Stories            |
+| White Noise                                         |
+| Cannery Row                                         |
+| Oblivion: Stories                                   |
+| Consider the Lobster                                |
++-----------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> slect author_fname from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slect author_fname from books' at line 1
+mysql> select author_fname from books;
++--------------+
+| author_fname |
++--------------+
+| Jhumpa       |
+| Neil         |
+| Neil         |
+| Jhumpa       |
+| Dave         |
+| Dave         |
+| Michael      |
+| Patti        |
+| Dave         |
+| Neil         |
+| Raymond      |
+| Raymond      |
+| Don          |
+| John         |
+| David        |
+| David        |
++--------------+
+16 rows in set (0.00 sec)
+
+mysql> select concat(author_fname,reverse(author_fname)) as Rev from books;
++----------------+
+| Rev            |
++----------------+
+| JhumpaapmuhJ   |
+| NeillieN       |
+| NeillieN       |
+| JhumpaapmuhJ   |
+| DaveevaD       |
+| DaveevaD       |
+| MichaelleahciM |
+| PattiittaP     |
+| DaveevaD       |
+| NeillieN       |
+| RaymonddnomyaR |
+| RaymonddnomyaR |
+| DonnoD         |
+| JohnnhoJ       |
+| DaviddivaD     |
+| DaviddivaD     |
++----------------+
+16 rows in set (0.00 sec)
+
+mysql> select concat("woof",reverse(woof));
+ERROR 1054 (42S22): Unknown column 'woof' in 'field list'
+mysql> select concat('woof',reverse(woof));
+ERROR 1054 (42S22): Unknown column 'woof' in 'field list'
+mysql> select concat('woof',reverse(woof)) as fg;
+ERROR 1054 (42S22): Unknown column 'woof' in 'field list'
+mysql> select concat('woof',reverse('woof')) as fg;
++----------+
+| fg       |
++----------+
+| wooffoow |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select reverse('abhishek');
++---------------------+
+| reverse('abhishek') |
++---------------------+
+| kehsihba            |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select reverse(author_fname) from books;
++-----------------------+
+| reverse(author_fname) |
++-----------------------+
+| apmuhJ                |
+| lieN                  |
+| lieN                  |
+| apmuhJ                |
+| evaD                  |
+| evaD                  |
+| leahciM               |
+| ittaP                 |
+| evaD                  |
+| lieN                  |
+| dnomyaR               |
+| dnomyaR               |
+| noD                   |
+| nhoJ                  |
+| divaD                 |
+| divaD                 |
++-----------------------+
+16 rows in set (0.00 sec)
+
+mysql> select reverse(author_fname)as RevName from books;
++---------+
+| RevName |
++---------+
+| apmuhJ  |
+| lieN    |
+| lieN    |
+| apmuhJ  |
+| evaD    |
+| evaD    |
+| leahciM |
+| ittaP   |
+| evaD    |
+| lieN    |
+| dnomyaR |
+| dnomyaR |
+| noD     |
+| nhoJ    |
+| divaD   |
+| divaD   |
++---------+
+16 rows in set (0.00 sec)
+
+mysql> select count(*) from books;
++----------+
+| count(*) |
++----------+
+|       16 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select count(author_fname) from books;
++---------------------+
+| count(author_fname) |
++---------------------+
+|                  16 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(author_fname) from books;
++-------------------+
+| sum(author_fname) |
++-------------------+
+|                 0 |
++-------------------+
+1 row in set, 9 warnings (0.00 sec)
+
+mysql> desc books;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| book_id        | int          | NO   | PRI | NULL    | auto_increment |
+| title          | varchar(100) | YES  |     | NULL    |                |
+| author_fname   | varchar(100) | YES  |     | NULL    |                |
+| author_lname   | varchar(100) | YES  |     | NULL    |                |
+| released_year  | int          | YES  |     | NULL    |                |
+| stock_quantity | int          | YES  |     | NULL    |                |
+| pages          | int          | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> select max(book_id) as Max from books;
++------+
+| Max  |
++------+
+|   16 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select * from books;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+16 rows in set (0.00 sec)
+
+mysql> select min(book_id) as Max from books;
++------+
+| Max  |
++------+
+|    1 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select sum(book_id) as Max from books;
++------+
+| Max  |
++------+
+|  136 |
++------+
+1 row in set (0.00 sec)
+
+mysql> select avg(book_id) as Avg from books;
++--------+
+| Avg    |
++--------+
+| 8.5000 |
++--------+
+1 row in set (0.00 sec)
+
+mysql> -- Aggregate function in mysql 
+mysql> -- Avg();
+mysql> -- Sum();
+mysql> -- Min();
+mysql> -- Max();
+mysql> -- Count();
+mysql> select char_Length(title),title from books;
++--------------------+-----------------------------------------------------+
+| char_Length(title) | title                                               |
++--------------------+-----------------------------------------------------+
+|                 12 | The Namesake                                        |
+|                 15 | Norse Mythology                                     |
+|                 13 | American Gods                                       |
+|                 23 | Interpreter of Maladies                             |
+|                 32 | A Hologram for the King: A Novel                    |
+|                 10 | The Circle                                          |
+|                 41 | The Amazing Adventures of Kavalier & Clay           |
+|                  9 | Just Kids                                           |
+|                 41 | A Heartbreaking Work of Staggering Genius           |
+|                  8 | Coraline                                            |
+|                 51 | What We Talk About When We Talk About Love: Stories |
+|                 40 | Where I'm Calling From: Selected Stories            |
+|                 11 | White Noise                                         |
+|                 11 | Cannery Row                                         |
+|                 17 | Oblivion: Stories                                   |
+|                 20 | Consider the Lobster                                |
++--------------------+-----------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select length('Hello');
++-----------------+
+| length('Hello') |
++-----------------+
+|               5 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select char_length('Hello');
++----------------------+
+| char_length('Hello') |
++----------------------+
+|                    5 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select char_length('Hell5');
++----------------------+
+| char_length('Hell5') |
++----------------------+
+|                    5 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select char_length('Hell5.34');
++-------------------------+
+| char_length('Hell5.34') |
++-------------------------+
+|                       8 |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select char_length('Hell5.3');
++------------------------+
+| char_length('Hell5.3') |
++------------------------+
+|                      7 |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> select author_lname,char_langth(author_lname) as length from books;
+ERROR 1305 (42000): FUNCTION bookshop.char_langth does not exist
+mysql> select char_langth(author_lname),auhtor_lname as length from books;
+ERROR 1305 (42000): FUNCTION bookshop.char_langth does not exist
+mysql> select char_length(author_lname),author_lname as length from books;
++---------------------------+----------------+
+| char_length(author_lname) | length         |
++---------------------------+----------------+
+|                         6 | Lahiri         |
+|                         6 | Gaiman         |
+|                         6 | Gaiman         |
+|                         6 | Lahiri         |
+|                         6 | Eggers         |
+|                         6 | Eggers         |
+|                         6 | Chabon         |
+|                         5 | Smith          |
+|                         6 | Eggers         |
+|                         6 | Gaiman         |
+|                         6 | Carver         |
+|                         6 | Carver         |
+|                         7 | DeLillo        |
+|                         9 | Steinbeck      |
+|                        14 | Foster Wallace |
+|                        14 | Foster Wallace |
++---------------------------+----------------+
+16 rows in set (0.00 sec)
+
+mysql> select author_lname, char_length(author_lname) as length from books;
++----------------+--------+
+| author_lname   | length |
++----------------+--------+
+| Lahiri         |      6 |
+| Gaiman         |      6 |
+| Gaiman         |      6 |
+| Lahiri         |      6 |
+| Eggers         |      6 |
+| Eggers         |      6 |
+| Chabon         |      6 |
+| Smith          |      5 |
+| Eggers         |      6 |
+| Gaiman         |      6 |
+| Carver         |      6 |
+| Carver         |      6 |
+| DeLillo        |      7 |
+| Steinbeck      |      9 |
+| Foster Wallace |     14 |
+| Foster Wallace |     14 |
++----------------+--------+
+16 rows in set (0.00 sec)
+
+mysql> select author_fname,author_lname concat(char_length(author_lname),char_length(author_lanem)) as length from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(char_length(author_lname),char_length(author_lanem)) as length from books' at line 1
+mysql> select author_fname,author_lname, concat(char_length(author_lname),char_length(author_lanem)) as length from books;
+ERROR 1054 (42S22): Unknown column 'author_lanem' in 'field list'
+mysql> select author_fname,author_lname, concat(char_length(author_lname),char_length(author_laame)) a
+s length from books;
+ERROR 1054 (42S22): Unknown column 'author_laame' in 'field list'
+mysql> select author_fname,author_lname, concat(char_length(author_lname),char_length(author_lname)) as length from books;
++--------------+----------------+--------+
+| author_fname | author_lname   | length |
++--------------+----------------+--------+
+| Jhumpa       | Lahiri         | 66     |
+| Neil         | Gaiman         | 66     |
+| Neil         | Gaiman         | 66     |
+| Jhumpa       | Lahiri         | 66     |
+| Dave         | Eggers         | 66     |
+| Dave         | Eggers         | 66     |
+| Michael      | Chabon         | 66     |
+| Patti        | Smith          | 55     |
+| Dave         | Eggers         | 66     |
+| Neil         | Gaiman         | 66     |
+| Raymond      | Carver         | 66     |
+| Raymond      | Carver         | 66     |
+| Don          | DeLillo        | 77     |
+| John         | Steinbeck      | 99     |
+| David        | Foster Wallace | 1414   |
+| David        | Foster Wallace | 1414   |
++--------------+----------------+--------+
+16 rows in set (0.00 sec)
+
+mysql> select author_fname,author_lname, concat(char_length(author_lname),'-',char_length(author_lname)) 
++--------------+----------------+--------+
+| author_fname | author_lname   | length |
++--------------+----------------+--------+
+| Jhumpa       | Lahiri         | 6-6    |
+| Neil         | Gaiman         | 6-6    |
+| Neil         | Gaiman         | 6-6    |
+| Jhumpa       | Lahiri         | 6-6    |
+| Dave         | Eggers         | 6-6    |
+| Dave         | Eggers         | 6-6    |
+| Michael      | Chabon         | 6-6    |
+| Patti        | Smith          | 5-5    |
+| Dave         | Eggers         | 6-6    |
+| Neil         | Gaiman         | 6-6    |
+| Raymond      | Carver         | 6-6    |
+| Raymond      | Carver         | 6-6    |
+| Don          | DeLillo        | 7-7    |
+| John         | Steinbeck      | 9-9    |
+| David        | Foster Wallace | 14-14  |
+| David        | Foster Wallace | 14-14  |
++--------------+----------------+--------+
+16 rows in set (0.00 sec)
+
+mysql> select author_fname,author_lname, concat(char_length(author_fname),'-',char_length(author_lname)) as length from books;
++--------------+----------------+--------+
+| author_fname | author_lname   | length |
++--------------+----------------+--------+
+| Jhumpa       | Lahiri         | 6-6    |
+| Neil         | Gaiman         | 4-6    |
+| Neil         | Gaiman         | 4-6    |
+| Jhumpa       | Lahiri         | 6-6    |
+| Dave         | Eggers         | 4-6    |
+| Dave         | Eggers         | 4-6    |
+| Michael      | Chabon         | 7-6    |
+| Patti        | Smith          | 5-5    |
+| Dave         | Eggers         | 4-6    |
+| Neil         | Gaiman         | 4-6    |
+| Raymond      | Carver         | 7-6    |
+| Raymond      | Carver         | 7-6    |
+| Don          | DeLillo        | 3-7    |
+| John         | Steinbeck      | 4-9    |
+| David        | Foster Wallace | 5-14   |
+| David        | Foster Wallace | 5-14   |
++--------------+----------------+--------+
+16 rows in set (0.00 sec)
+
+mysql> select concat(author_lname,'is',char_length(author_lname),'character long') from books;
++----------------------------------------------------------------------+
+| concat(author_lname,'is',char_length(author_lname),'character long') |
++----------------------------------------------------------------------+
+| Lahiriis6character long                                              |
+| Gaimanis6character long                                              |
+| Gaimanis6character long                                              |
+| Lahiriis6character long                                              |
+| Eggersis6character long                                              |
+| Eggersis6character long                                              |
+| Chabonis6character long                                              |
+| Smithis5character long                                               |
+| Eggersis6character long                                              |
+| Gaimanis6character long                                              |
+| Carveris6character long                                              |
+| Carveris6character long                                              |
+| DeLillois7character long                                             |
+| Steinbeckis9character long                                           |
+| Foster Wallaceis14character long                                     |
+| Foster Wallaceis14character long                                     |
++----------------------------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select Upper('Abhishek'(;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(' at line 1
+mysql> select Upper('Abhishek');
++-------------------+
+| Upper('Abhishek') |
++-------------------+
+| ABHISHEK          |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select Lower('Abhishek');
++-------------------+
+| Lower('Abhishek') |
++-------------------+
+| abhishek          |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select ucase('Abhishek');
++-------------------+
+| ucase('Abhishek') |
++-------------------+
+| ABHISHEK          |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select lcase('Abhishek');
++-------------------+
+| lcase('Abhishek') |
++-------------------+
+| abhishek          |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select title from books;
++-----------------------------------------------------+
+| title                                               |
++-----------------------------------------------------+
+| The Namesake                                        |
+| Norse Mythology                                     |
+| American Gods                                       |
+| Interpreter of Maladies                             |
+| A Hologram for the King: A Novel                    |
+| The Circle                                          |
+| The Amazing Adventures of Kavalier & Clay           |
+| Just Kids                                           |
+| A Heartbreaking Work of Staggering Genius           |
+| Coraline                                            |
+| What We Talk About When We Talk About Love: Stories |
+| Where I'm Calling From: Selected Stories            |
+| White Noise                                         |
+| Cannery Row                                         |
+| Oblivion: Stories                                   |
+| Consider the Lobster                                |
++-----------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select concat('I LOVE',ucase(title),'!!!') from books;
++--------------------------------------------------------------+
+| concat('I LOVE',ucase(title),'!!!')                          |
++--------------------------------------------------------------+
+| I LOVETHE NAMESAKE!!!                                        |
+| I LOVENORSE MYTHOLOGY!!!                                     |
+| I LOVEAMERICAN GODS!!!                                       |
+| I LOVEINTERPRETER OF MALADIES!!!                             |
+| I LOVEA HOLOGRAM FOR THE KING: A NOVEL!!!                    |
+| I LOVETHE CIRCLE!!!                                          |
+| I LOVETHE AMAZING ADVENTURES OF KAVALIER & CLAY!!!           |
+| I LOVEJUST KIDS!!!                                           |
+| I LOVEA HEARTBREAKING WORK OF STAGGERING GENIUS!!!           |
+| I LOVECORALINE!!!                                            |
+| I LOVEWHAT WE TALK ABOUT WHEN WE TALK ABOUT LOVE: STORIES!!! |
+| I LOVEWHERE I'M CALLING FROM: SELECTED STORIES!!!            |
+| I LOVEWHITE NOISE!!!                                         |
+| I LOVECANNERY ROW!!!                                         |
+| I LOVEOBLIVION: STORIES!!!                                   |
+| I LOVECONSIDER THE LOBSTER!!!                                |
++--------------------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select concat('I LOVE',' ',ucase(title),'!!!') from books;
++---------------------------------------------------------------+
+| concat('I LOVE',' ',ucase(title),'!!!')                       |
++---------------------------------------------------------------+
+| I LOVE THE NAMESAKE!!!                                        |
+| I LOVE NORSE MYTHOLOGY!!!                                     |
+| I LOVE AMERICAN GODS!!!                                       |
+| I LOVE INTERPRETER OF MALADIES!!!                             |
+| I LOVE A HOLOGRAM FOR THE KING: A NOVEL!!!                    |
+| I LOVE THE CIRCLE!!!                                          |
+| I LOVE THE AMAZING ADVENTURES OF KAVALIER & CLAY!!!           |
+| I LOVE JUST KIDS!!!                                           |
+| I LOVE A HEARTBREAKING WORK OF STAGGERING GENIUS!!!           |
+| I LOVE CORALINE!!!                                            |
+| I LOVE WHAT WE TALK ABOUT WHEN WE TALK ABOUT LOVE: STORIES!!! |
+| I LOVE WHERE I'M CALLING FROM: SELECTED STORIES!!!            |
+| I LOVE WHITE NOISE!!!                                         |
+| I LOVE CANNERY ROW!!!                                         |
+| I LOVE OBLIVION: STORIES!!!                                   |
+| I LOVE CONSIDER THE LOBSTER!!!                                |
++---------------------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select * from books;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+16 rows in set (0.00 sec)
+
+mysql> select  Lcase(author_fname) from books;
++---------------------+
+| Lcase(author_fname) |
++---------------------+
+| jhumpa              |
+| neil                |
+| neil                |
+| jhumpa              |
+| dave                |
+| dave                |
+| michael             |
+| patti               |
+| dave                |
+| neil                |
+| raymond             |
+| raymond             |
+| don                 |
+| john                |
+| david               |
+| david               |
++---------------------+
+16 rows in set (0.00 sec)
+
+mysql> select  Ucase(author_fname) from books;
++---------------------+
+| Ucase(author_fname) |
++---------------------+
+| JHUMPA              |
+| NEIL                |
+| NEIL                |
+| JHUMPA              |
+| DAVE                |
+| DAVE                |
+| MICHAEL             |
+| PATTI               |
+| DAVE                |
+| NEIL                |
+| RAYMOND             |
+| RAYMOND             |
+| DON                 |
+| JOHN                |
+| DAVID               |
+| DAVID               |
++---------------------+
+16 rows in set (0.00 sec)
+
+mysql> select  Ucase(author_Lname) from books;
++---------------------+
+| Ucase(author_Lname) |
++---------------------+
+| LAHIRI              |
+| GAIMAN              |
+| GAIMAN              |
+| LAHIRI              |
+| EGGERS              |
+| EGGERS              |
+| CHABON              |
+| SMITH               |
+| EGGERS              |
+| GAIMAN              |
+| CARVER              |
+| CARVER              |
+| DELILLO             |
+| STEINBECK           |
+| FOSTER WALLACE      |
+| FOSTER WALLACE      |
++---------------------+
+16 rows in set (0.01 sec)
+
+mysql> select Concat(Ucase(author_fname),Ucase(author_lname)) from books;
++-------------------------------------------------+
+| Concat(Ucase(author_fname),Ucase(author_lname)) |
++-------------------------------------------------+
+| JHUMPALAHIRI                                    |
+| NEILGAIMAN                                      |
+| NEILGAIMAN                                      |
+| JHUMPALAHIRI                                    |
+| DAVEEGGERS                                      |
+| DAVEEGGERS                                      |
+| MICHAELCHABON                                   |
+| PATTISMITH                                      |
+| DAVEEGGERS                                      |
+| NEILGAIMAN                                      |
+| RAYMONDCARVER                                   |
+| RAYMONDCARVER                                   |
+| DONDELILLO                                      |
+| JOHNSTEINBECK                                   |
+| DAVIDFOSTER WALLACE                             |
+| DAVIDFOSTER WALLACE                             |
++-------------------------------------------------+
+16 rows in set (0.01 sec)
+
+mysql> select Concat(Ucase(author_fname),' ',Ucase(author_lname)) as FullNameCap from books;
++----------------------+
+| FullNameCap          |
++----------------------+
+| JHUMPA LAHIRI        |
+| NEIL GAIMAN          |
+| NEIL GAIMAN          |
+| JHUMPA LAHIRI        |
+| DAVE EGGERS          |
+| DAVE EGGERS          |
+| MICHAEL CHABON       |
+| PATTI SMITH          |
+| DAVE EGGERS          |
+| NEIL GAIMAN          |
+| RAYMOND CARVER       |
+| RAYMOND CARVER       |
+| DON DELILLO          |
+| JOHN STEINBECK       |
+| DAVID FOSTER WALLACE |
+| DAVID FOSTER WALLACE |
++----------------------+
+16 rows in set (0.00 sec)
+
+mysql> select concat('My Favourite Book is',' ',Ucase(title)) from books;
++--------------------------------------------------------------------------+
+| concat('My Favourite Book is',' ',Ucase(title))                          |
++--------------------------------------------------------------------------+
+| My Favourite Book is THE NAMESAKE                                        |
+| My Favourite Book is NORSE MYTHOLOGY                                     |
+| My Favourite Book is AMERICAN GODS                                       |
+| My Favourite Book is INTERPRETER OF MALADIES                             |
+| My Favourite Book is A HOLOGRAM FOR THE KING: A NOVEL                    |
+| My Favourite Book is THE CIRCLE                                          |
+| My Favourite Book is THE AMAZING ADVENTURES OF KAVALIER & CLAY           |
+| My Favourite Book is JUST KIDS                                           |
+| My Favourite Book is A HEARTBREAKING WORK OF STAGGERING GENIUS           |
+| My Favourite Book is CORALINE                                            |
+| My Favourite Book is WHAT WE TALK ABOUT WHEN WE TALK ABOUT LOVE: STORIES |
+| My Favourite Book is WHERE I'M CALLING FROM: SELECTED STORIES            |
+| My Favourite Book is WHITE NOISE                                         |
+| My Favourite Book is CANNERY ROW                                         |
+| My Favourite Book is OBLIVION: STORIES                                   |
+| My Favourite Book is CONSIDER THE LOBSTER                                |
++--------------------------------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select concat('My Favourite Book is',' ',lcase(title)) from books;
++--------------------------------------------------------------------------+
+| concat('My Favourite Book is',' ',lcase(title))                          |
++--------------------------------------------------------------------------+
+| My Favourite Book is the namesake                                        |
+| My Favourite Book is norse mythology                                     |
+| My Favourite Book is american gods                                       |
+| My Favourite Book is interpreter of maladies                             |
+| My Favourite Book is a hologram for the king: a novel                    |
+| My Favourite Book is the circle                                          |
+| My Favourite Book is the amazing adventures of kavalier & clay           |
+| My Favourite Book is just kids                                           |
+| My Favourite Book is a heartbreaking work of staggering genius           |
+| My Favourite Book is coraline                                            |
+| My Favourite Book is what we talk about when we talk about love: stories |
+| My Favourite Book is where i'm calling from: selected stories            |
+| My Favourite Book is white noise                                         |
+| My Favourite Book is cannery row                                         |
+| My Favourite Book is oblivion: stories                                   |
+| My Favourite Book is consider the lobster                                |
++--------------------------------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select replace('Quadratic','uad','wha');
++----------------------------------+
+| replace('Quadratic','uad','wha') |
++----------------------------------+
+| Qwharatic                        |
++----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select insert('Quadratic',3,4,'what');
++--------------------------------+
+| insert('Quadratic',3,4,'what') |
++--------------------------------+
+| Quwhattic                      |
++--------------------------------+
+1 row in set (0.01 sec)
+
+mysql> select left('Footbal',4);
++-------------------+
+| left('Footbal',4) |
++-------------------+
+| Foot              |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select Right('Footbal',4);
++--------------------+
+| Right('Footbal',4) |
++--------------------+
+| tbal               |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select repeat('Radha',100);
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| repeat('Radha',100)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| RadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadhaRadha |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select Repeat('Krishnaradha',3);
++--------------------------------------+
+| Repeat('Krishnaradha',3)             |
++--------------------------------------+
+| KrishnaradhaKrishnaradhaKrishnaradha |
++--------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select Repeat('Krishnaradha',3)as MataPitasiri;
++--------------------------------------+
+| MataPitasiri                         |
++--------------------------------------+
+| KrishnaradhaKrishnaradhaKrishnaradha |
++--------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select Rtrim('BobbyDeol ');
++---------------------+
+| Rtrim('BobbyDeol ') |
++---------------------+
+| BobbyDeol           |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select Ltrim('BobbyDeol ');
++---------------------+
+| Ltrim('BobbyDeol ') |
++---------------------+
+| BobbyDeol           |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select Ltrim('  BobbyDeol ');
++-----------------------+
+| Ltrim('  BobbyDeol ') |
++-----------------------+
+| BobbyDeol             |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select Rtrim('BobbyDeol ');
++---------------------+
+| Rtrim('BobbyDeol ') |
++---------------------+
+| BobbyDeol           |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select trim(' BobbyDeol ');
++---------------------+
+| trim(' BobbyDeol ') |
++---------------------+
+| BobbyDeol           |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select Rtrim('xxxBobbyxxx');
++----------------------+
+| Rtrim('xxxBobbyxxx') |
++----------------------+
+| xxxBobbyxxx          |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select trim(Leading 'x' from 'xxxBobbyxxx');
++--------------------------------------+
+| trim(Leading 'x' from 'xxxBobbyxxx') |
++--------------------------------------+
+| Bobbyxxx                             |
++--------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select trim(Both 'x' from 'xxxBobbyxxx');
++-----------------------------------+
+| trim(Both 'x' from 'xxxBobbyxxx') |
++-----------------------------------+
+| Bobby                             |
++-----------------------------------+
+1 row in set (0.01 sec)
+
+mysql> select trim(trailing 'x' from 'xxxBobbyxxx');
++---------------------------------------+
+| trim(trailing 'x' from 'xxxBobbyxxx') |
++---------------------------------------+
+| xxxBobby                              |
++---------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select Rtrim('x' from 'xxxxBobby');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from 'xxxxBobby')' at line 1
+mysql> select Rtrim('xxxxBobby');
++--------------------+
+| Rtrim('xxxxBobby') |
++--------------------+
+| xxxxBobby          |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select Rtrim('   xxxxBobby');
++-----------------------+
+| Rtrim('   xxxxBobby') |
++-----------------------+
+|    xxxxBobby          |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select Rtrim('xxxxBobby    ');
++------------------------+
+| Rtrim('xxxxBobby    ') |
++------------------------+
+| xxxxBobby              |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> select Ltrim('   xxxxBobby');
++-----------------------+
+| Ltrim('   xxxxBobby') |
++-----------------------+
+| xxxxBobby             |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select trim(Trailing 'x' from 'xxxBobbyxxx');
++---------------------------------------+
+| trim(Trailing 'x' from 'xxxBobbyxxx') |
++---------------------------------------+
+| xxxBobby                              |
++---------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select insert('Hello Bobby',6,0,'There');
++-----------------------------------+
+| insert('Hello Bobby',6,0,'There') |
++-----------------------------------+
+| HelloThere Bobby                  |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select insert('Hello Bobby',6,100,'There');
++-------------------------------------+
+| insert('Hello Bobby',6,100,'There') |
++-------------------------------------+
+| HelloThere                          |
++-------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select insert('Hello Bobby',6,4,'There');
++-----------------------------------+
+| insert('Hello Bobby',6,4,'There') |
++-----------------------------------+
+| HelloThereby                      |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select insert('Hello Bobby',6,0,'There');
++-----------------------------------+
+| insert('Hello Bobby',6,0,'There') |
++-----------------------------------+
+| HelloThere Bobby                  |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select insert('Hello Bobby',6,4,'There');
++-----------------------------------+
+| insert('Hello Bobby',6,4,'There') |
++-----------------------------------+
+| HelloThereby                      |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select trim(' pickle ');
++------------------+
+| trim(' pickle ') |
++------------------+
+| pickle           |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select trim( Leading 'v' from 'vvvpicklevvv');
++----------------------------------------+
+| trim( Leading 'v' from 'vvvpicklevvv') |
++----------------------------------------+
+| picklevvv                              |
++----------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select trim(Trailing 'v' from 'vvvpicklevvv');
++----------------------------------------+
+| trim(Trailing 'v' from 'vvvpicklevvv') |
++----------------------------------------+
+| vvvpickle                              |
++----------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select trim(Both 'v' from 'vvvpicklevvv');
++------------------------------------+
+| trim(Both 'v' from 'vvvpicklevvv') |
++------------------------------------+
+| pickle                             |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select title from books;
++-----------------------------------------------------+
+| title                                               |
++-----------------------------------------------------+
+| The Namesake                                        |
+| Norse Mythology                                     |
+| American Gods                                       |
+| Interpreter of Maladies                             |
+| A Hologram for the King: A Novel                    |
+| The Circle                                          |
+| The Amazing Adventures of Kavalier & Clay           |
+| Just Kids                                           |
+| A Heartbreaking Work of Staggering Genius           |
+| Coraline                                            |
+| What We Talk About When We Talk About Love: Stories |
+| Where I'm Calling From: Selected Stories            |
+| White Noise                                         |
+| Cannery Row                                         |
+| Oblivion: Stories                                   |
+| Consider the Lobster                                |
++-----------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select replace(title,' ',->) from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '->) from books' at line 1
+mysql> select replace(title,' ','->') from books;
++--------------------------------------------------------------+
+| replace(title,' ','->')                                      |
++--------------------------------------------------------------+
+| The->Namesake                                                |
+| Norse->Mythology                                             |
+| American->Gods                                               |
+| Interpreter->of->Maladies                                    |
+| A->Hologram->for->the->King:->A->Novel                       |
+| The->Circle                                                  |
+| The->Amazing->Adventures->of->Kavalier->&->Clay              |
+| Just->Kids                                                   |
+| A->Heartbreaking->Work->of->Staggering->Genius               |
+| Coraline                                                     |
+| What->We->Talk->About->When->We->Talk->About->Love:->Stories |
+| Where->I'm->Calling->From:->Selected->Stories                |
+| White->Noise                                                 |
+| Cannery->Row                                                 |
+| Oblivion:->Stories                                           |
+| Consider->the->Lobster                                       |
++--------------------------------------------------------------+
+16 rows in set (0.01 sec)
+
+mysql> select Replace(
+    -> 'My Name Is','M','Y');
++--------------------------------+
+| Replace(
+'My Name Is','M','Y') |
++--------------------------------+
+| Yy Name Is                     |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select replace(title,' ','->') from books;
++--------------------------------------------------------------+
+| replace(title,' ','->')                                      |
++--------------------------------------------------------------+
+| The->Namesake                                                |
+| Norse->Mythology                                             |
+| American->Gods                                               |
+| Interpreter->of->Maladies                                    |
+| A->Hologram->for->the->King:->A->Novel                       |
+| The->Circle                                                  |
+| The->Amazing->Adventures->of->Kavalier->&->Clay              |
+| Just->Kids                                                   |
+| A->Heartbreaking->Work->of->Staggering->Genius               |
+| Coraline                                                     |
+| What->We->Talk->About->When->We->Talk->About->Love:->Stories |
+| Where->I'm->Calling->From:->Selected->Stories                |
+| White->Noise                                                 |
+| Cannery->Row                                                 |
+| Oblivion:->Stories                                           |
+| Consider->the->Lobster                                       |
++--------------------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select concat('I',' ','Like',' ','cats');
++-----------------------------------+
+| concat('I',' ','Like',' ','cats') |
++-----------------------------------+
+| I Like cats                       |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select Replace(concat('I',' ','Like',' ','cats'),' ','-');
++----------------------------------------------------+
+| Replace(concat('I',' ','Like',' ','cats'),' ','-') |
++----------------------------------------------------+
+| I-Like-cats                                        |
++----------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select author_lname from books;
++----------------+
+| author_lname   |
++----------------+
+| Lahiri         |
+| Gaiman         |
+| Gaiman         |
+| Lahiri         |
+| Eggers         |
+| Eggers         |
+| Chabon         |
+| Smith          |
+| Eggers         |
+| Gaiman         |
+| Carver         |
+| Carver         |
+| DeLillo        |
+| Steinbeck      |
+| Foster Wallace |
+| Foster Wallace |
++----------------+
+16 rows in set (0.00 sec)
+
+mysql> select reverse(author_lname) from books;
++-----------------------+
+| reverse(author_lname) |
++-----------------------+
+| irihaL                |
+| namiaG                |
+| namiaG                |
+| irihaL                |
+| sreggE                |
+| sreggE                |
+| nobahC                |
+| htimS                 |
+| sreggE                |
+| namiaG                |
+| revraC                |
+| revraC                |
+| olliLeD               |
+| kcebnietS             |
+| ecallaW retsoF        |
+| ecallaW retsoF        |
++-----------------------+
+16 rows in set (0.00 sec)
+
+mysql> select author_lname as forward from books;
++----------------+
+| forward        |
++----------------+
+| Lahiri         |
+| Gaiman         |
+| Gaiman         |
+| Lahiri         |
+| Eggers         |
+| Eggers         |
+| Chabon         |
+| Smith          |
+| Eggers         |
+| Gaiman         |
+| Carver         |
+| Carver         |
+| DeLillo        |
+| Steinbeck      |
+| Foster Wallace |
+| Foster Wallace |
++----------------+
+16 rows in set (0.00 sec)
+
+mysql> select author_lname,Reverse(author_lname) as forward,backward from books;
+ERROR 1054 (42S22): Unknown column 'backward' in 'field list'
+mysql> select author_lname,Reverse(author_lname) as forward from books;
++----------------+----------------+
+| author_lname   | forward        |
++----------------+----------------+
+| Lahiri         | irihaL         |
+| Gaiman         | namiaG         |
+| Gaiman         | namiaG         |
+| Lahiri         | irihaL         |
+| Eggers         | sreggE         |
+| Eggers         | sreggE         |
+| Chabon         | nobahC         |
+| Smith          | htimS          |
+| Eggers         | sreggE         |
+| Gaiman         | namiaG         |
+| Carver         | revraC         |
+| Carver         | revraC         |
+| DeLillo        | olliLeD        |
+| Steinbeck      | kcebnietS      |
+| Foster Wallace | ecallaW retsoF |
+| Foster Wallace | ecallaW retsoF |
++----------------+----------------+
+16 rows in set (0.00 sec)
+
+mysql> select author_lname as forward,Reverse(author_lname) as backward from books;
++----------------+----------------+
+| forward        | backward       |
++----------------+----------------+
+| Lahiri         | irihaL         |
+| Gaiman         | namiaG         |
+| Gaiman         | namiaG         |
+| Lahiri         | irihaL         |
+| Eggers         | sreggE         |
+| Eggers         | sreggE         |
+| Chabon         | nobahC         |
+| Smith          | htimS          |
+| Eggers         | sreggE         |
+| Gaiman         | namiaG         |
+| Carver         | revraC         |
+| Carver         | revraC         |
+| DeLillo        | olliLeD        |
+| Steinbeck      | kcebnietS      |
+| Foster Wallace | ecallaW retsoF |
+| Foster Wallace | ecallaW retsoF |
++----------------+----------------+
+16 rows in set (0.00 sec)
+
+mysql> select author_lname as forwards,Reverse(author_lname) as backward from books;
++----------------+----------------+
+| forwards       | backward       |
++----------------+----------------+
+| Lahiri         | irihaL         |
+| Gaiman         | namiaG         |
+| Gaiman         | namiaG         |
+| Lahiri         | irihaL         |
+| Eggers         | sreggE         |
+| Eggers         | sreggE         |
+| Chabon         | nobahC         |
+| Smith          | htimS          |
+| Eggers         | sreggE         |
+| Gaiman         | namiaG         |
+| Carver         | revraC         |
+| Carver         | revraC         |
+| DeLillo        | olliLeD        |
+| Steinbeck      | kcebnietS      |
+| Foster Wallace | ecallaW retsoF |
+| Foster Wallace | ecallaW retsoF |
++----------------+----------------+
+16 rows in set (0.00 sec)
+
+mysql> select author_lname as forwards,Reverse(author_lname) as backwards from books;
++----------------+----------------+
+| forwards       | backwards      |
++----------------+----------------+
+| Lahiri         | irihaL         |
+| Gaiman         | namiaG         |
+| Gaiman         | namiaG         |
+| Lahiri         | irihaL         |
+| Eggers         | sreggE         |
+| Eggers         | sreggE         |
+| Chabon         | nobahC         |
+| Smith          | htimS          |
+| Eggers         | sreggE         |
+| Gaiman         | namiaG         |
+| Carver         | revraC         |
+| Carver         | revraC         |
+| DeLillo        | olliLeD        |
+| Steinbeck      | kcebnietS      |
+| Foster Wallace | ecallaW retsoF |
+| Foster Wallace | ecallaW retsoF |
++----------------+----------------+
+16 rows in set (0.00 sec)
+
+mysql> descbooks;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'descbooks' at line 1
+mysql> desc books;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| book_id        | int          | NO   | PRI | NULL    | auto_increment |
+| title          | varchar(100) | YES  |     | NULL    |                |
+| author_fname   | varchar(100) | YES  |     | NULL    |                |
+| author_lname   | varchar(100) | YES  |     | NULL    |                |
+| released_year  | int          | YES  |     | NULL    |                |
+| stock_quantity | int          | YES  |     | NULL    |                |
+| pages          | int          | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.01 sec)
+
+mysql> select Upper(Concat(author_fname,author_lname)) as full name in caps from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name in caps from books' at line 1
+mysql> select Ucase(Concat(author_fname,' 'author_lname)) as full name in caps from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name in caps from books' at line 1
+mysql> select Ucase(Concat(author_fname,' 'author_lname)) as full from books;
+ERROR 1583 (42000): Incorrect parameters in the call to native function 'concat'
+mysql> select Ucase(Concat(author_fname,' 'author_lname)) as full name in Caps from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name in Caps from books' at line 1
+mysql> select Ucase('abhishek');
++-------------------+
+| Ucase('abhishek') |
++-------------------+
+| ABHISHEK          |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select Ucase(Concat(author_fname,' ',author_lname)) as full name in Caps from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name in Caps from books' at line 1
+mysql> select Ucase(Concat(author_fname,' ',author_lname)) as full name in Caps from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name in Caps from books' at line 1
+mysql> select concat(author_fname,author_lname)as full name in caps from books
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name in caps from books' at line 1
+mysql> select Ucase(Concat(author_fname,' ',author_lname)) as full name in Caps from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name in Caps from books' at line 1
+mysql> select concat(author_fname,author_lname) from books;
++-----------------------------------+
+| concat(author_fname,author_lname) |
++-----------------------------------+
+| JhumpaLahiri                      |
+| NeilGaiman                        |
+| NeilGaiman                        |
+| JhumpaLahiri                      |
+| DaveEggers                        |
+| DaveEggers                        |
+| MichaelChabon                     |
+| PattiSmith                        |
+| DaveEggers                        |
+| NeilGaiman                        |
+| RaymondCarver                     |
+| RaymondCarver                     |
+| DonDeLillo                        |
+| JohnSteinbeck                     |
+| DavidFoster Wallace               |
+| DavidFoster Wallace               |
++-----------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select Ucase(Concat(author_fname,' ',author_lname)) as full name in Caps from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name in Caps from books' at line 1
+mysql> select Ucase(concat(author_fname,' ',author_lname)) as full name in Caps from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name in Caps from books' at line 1
+mysql> select Upper(concat(author_fname,' ',author_lname)) as full name in Caps from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name in Caps from books' at line 1
+mysql> select title from books;
++-----------------------------------------------------+
+| title                                               |
++-----------------------------------------------------+
+| The Namesake                                        |
+| Norse Mythology                                     |
+| American Gods                                       |
+| Interpreter of Maladies                             |
+| A Hologram for the King: A Novel                    |
+| The Circle                                          |
+| The Amazing Adventures of Kavalier & Clay           |
+| Just Kids                                           |
+| A Heartbreaking Work of Staggering Genius           |
+| Coraline                                            |
+| What We Talk About When We Talk About Love: Stories |
+| Where I'm Calling From: Selected Stories            |
+| White Noise                                         |
+| Cannery Row                                         |
+| Oblivion: Stories                                   |
+| Consider the Lobster                                |
++-----------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> desc books;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| book_id        | int          | NO   | PRI | NULL    | auto_increment |
+| title          | varchar(100) | YES  |     | NULL    |                |
+| author_fname   | varchar(100) | YES  |     | NULL    |                |
+| author_lname   | varchar(100) | YES  |     | NULL    |                |
+| released_year  | int          | YES  |     | NULL    |                |
+| stock_quantity | int          | YES  |     | NULL    |                |
+| pages          | int          | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> select concat(title,'was released in',released_year) as blurb from books;
++------------------------------------------------------------------------+
+| blurb                                                                  |
++------------------------------------------------------------------------+
+| The Namesakewas released in2003                                        |
+| Norse Mythologywas released in2016                                     |
+| American Godswas released in2001                                       |
+| Interpreter of Maladieswas released in1996                             |
+| A Hologram for the King: A Novelwas released in2012                    |
+| The Circlewas released in2013                                          |
+| The Amazing Adventures of Kavalier & Claywas released in2000           |
+| Just Kidswas released in2010                                           |
+| A Heartbreaking Work of Staggering Geniuswas released in2001           |
+| Coralinewas released in2003                                            |
+| What We Talk About When We Talk About Love: Storieswas released in1981 |
+| Where I'm Calling From: Selected Storieswas released in1989            |
+| White Noisewas released in1985                                         |
+| Cannery Rowwas released in1945                                         |
+| Oblivion: Storieswas released in2004                                   |
+| Consider the Lobsterwas released in2005                                |
++------------------------------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select concat(title,' ','was released in',' ',released_year) as blurb from books;
++--------------------------------------------------------------------------+
+| blurb                                                                    |
++--------------------------------------------------------------------------+
+| The Namesake was released in 2003                                        |
+| Norse Mythology was released in 2016                                     |
+| American Gods was released in 2001                                       |
+| Interpreter of Maladies was released in 1996                             |
+| A Hologram for the King: A Novel was released in 2012                    |
+| The Circle was released in 2013                                          |
+| The Amazing Adventures of Kavalier & Clay was released in 2000           |
+| Just Kids was released in 2010                                           |
+| A Heartbreaking Work of Staggering Genius was released in 2001           |
+| Coraline was released in 2003                                            |
+| What We Talk About When We Talk About Love: Stories was released in 1981 |
+| Where I'm Calling From: Selected Stories was released in 1989            |
+| White Noise was released in 1985                                         |
+| Cannery Row was released in 1945                                         |
+| Oblivion: Stories was released in 2004                                   |
+| Consider the Lobster was released in 2005                                |
++--------------------------------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select Upper(concat(author_fname,' ',author_lname)) as full name in Caps from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name in Caps from books' at line 1
+mysql> select concat(author_fname,author_lname) from books;
++-----------------------------------+
+| concat(author_fname,author_lname) |
++-----------------------------------+
+| JhumpaLahiri                      |
+| NeilGaiman                        |
+| NeilGaiman                        |
+| JhumpaLahiri                      |
+| DaveEggers                        |
+| DaveEggers                        |
+| MichaelChabon                     |
+| PattiSmith                        |
+| DaveEggers                        |
+| NeilGaiman                        |
+| RaymondCarver                     |
+| RaymondCarver                     |
+| DonDeLillo                        |
+| JohnSteinbeck                     |
+| DavidFoster Wallace               |
+| DavidFoster Wallace               |
++-----------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select concat(author_fname,' ',author_lname) as full name in caps from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name in caps from books' at line 1
+mysql> select concat(author_fname,' ',author_lname) as full from books;
++----------------------+
+| full                 |
++----------------------+
+| Jhumpa Lahiri        |
+| Neil Gaiman          |
+| Neil Gaiman          |
+| Jhumpa Lahiri        |
+| Dave Eggers          |
+| Dave Eggers          |
+| Michael Chabon       |
+| Patti Smith          |
+| Dave Eggers          |
+| Neil Gaiman          |
+| Raymond Carver       |
+| Raymond Carver       |
+| Don DeLillo          |
+| John Steinbeck       |
+| David Foster Wallace |
+| David Foster Wallace |
++----------------------+
+16 rows in set (0.00 sec)
+
+mysql> select concat(author_fname,' ',author_lname) as full name  from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name  from books' at line 1
+mysql> select concat(author_fname,' ',author_lname) as ' full name'  from books;
++----------------------+
+| full name            |
++----------------------+
+| Jhumpa Lahiri        |
+| Neil Gaiman          |
+| Neil Gaiman          |
+| Jhumpa Lahiri        |
+| Dave Eggers          |
+| Dave Eggers          |
+| Michael Chabon       |
+| Patti Smith          |
+| Dave Eggers          |
+| Neil Gaiman          |
+| Raymond Carver       |
+| Raymond Carver       |
+| Don DeLillo          |
+| John Steinbeck       |
+| David Foster Wallace |
+| David Foster Wallace |
++----------------------+
+16 rows in set, 1 warning (0.00 sec)
+
+mysql> select concat(author_fname,' ',author_lname) as ' full name in caps'  from books;
++----------------------+
+| full name in caps    |
++----------------------+
+| Jhumpa Lahiri        |
+| Neil Gaiman          |
+| Neil Gaiman          |
+| Jhumpa Lahiri        |
+| Dave Eggers          |
+| Dave Eggers          |
+| Michael Chabon       |
+| Patti Smith          |
+| Dave Eggers          |
+| Neil Gaiman          |
+| Raymond Carver       |
+| Raymond Carver       |
+| Don DeLillo          |
+| John Steinbeck       |
+| David Foster Wallace |
+| David Foster Wallace |
++----------------------+
+16 rows in set, 1 warning (0.00 sec)
+
+mysql> select Ucase(concat(author_fname,' ',author_lname)) as ' full name in caps'  from books;
++----------------------+
+| full name in caps    |
++----------------------+
+| JHUMPA LAHIRI        |
+| NEIL GAIMAN          |
+| NEIL GAIMAN          |
+| JHUMPA LAHIRI        |
+| DAVE EGGERS          |
+| DAVE EGGERS          |
+| MICHAEL CHABON       |
+| PATTI SMITH          |
+| DAVE EGGERS          |
+| NEIL GAIMAN          |
+| RAYMOND CARVER       |
+| RAYMOND CARVER       |
+| DON DELILLO          |
+| JOHN STEINBECK       |
+| DAVID FOSTER WALLACE |
+| DAVID FOSTER WALLACE |
++----------------------+
+16 rows in set, 1 warning (0.00 sec)
+
+mysql> select title as title,char_Length(title) as character count from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'character count from books' at line 1
+mysql> select title as title,char_Length(title) as 'character count' from books;
++-----------------------------------------------------+-----------------+
+| title                                               | character count |
++-----------------------------------------------------+-----------------+
+| The Namesake                                        |              12 |
+| Norse Mythology                                     |              15 |
+| American Gods                                       |              13 |
+| Interpreter of Maladies                             |              23 |
+| A Hologram for the King: A Novel                    |              32 |
+| The Circle                                          |              10 |
+| The Amazing Adventures of Kavalier & Clay           |              41 |
+| Just Kids                                           |               9 |
+| A Heartbreaking Work of Staggering Genius           |              41 |
+| Coraline                                            |               8 |
+| What We Talk About When We Talk About Love: Stories |              51 |
+| Where I'm Calling From: Selected Stories            |              40 |
+| White Noise                                         |              11 |
+| Cannery Row                                         |              11 |
+| Oblivion: Stories                                   |              17 |
+| Consider the Lobster                                |              20 |
++-----------------------------------------------------+-----------------+
+16 rows in set (0.00 sec)
+
+mysql> select title form books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'books' at line 1
+mysql> 
+mysql> select title from books;
++-----------------------------------------------------+
+| title                                               |
++-----------------------------------------------------+
+| The Namesake                                        |
+| Norse Mythology                                     |
+| American Gods                                       |
+| Interpreter of Maladies                             |
+| A Hologram for the King: A Novel                    |
+| The Circle                                          |
+| The Amazing Adventures of Kavalier & Clay           |
+| Just Kids                                           |
+| A Heartbreaking Work of Staggering Genius           |
+| Coraline                                            |
+| What We Talk About When We Talk About Love: Stories |
+| Where I'm Calling From: Selected Stories            |
+| White Noise                                         |
+| Cannery Row                                         |
+| Oblivion: Stories                                   |
+| Consider the Lobster                                |
++-----------------------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select * from books;'
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+16 rows in set (0.00 sec)
+
+    '> ;
+    '> ^C
+mysql> select * from books;
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+| book_id | title                                               | author_fname | author_lname   | released_year | stock_quantity | pages |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+|       1 | The Namesake                                        | Jhumpa       | Lahiri         |          2003 |             32 |   291 |
+|       2 | Norse Mythology                                     | Neil         | Gaiman         |          2016 |             43 |   304 |
+|       3 | American Gods                                       | Neil         | Gaiman         |          2001 |             12 |   465 |
+|       4 | Interpreter of Maladies                             | Jhumpa       | Lahiri         |          1996 |             97 |   198 |
+|       5 | A Hologram for the King: A Novel                    | Dave         | Eggers         |          2012 |            154 |   352 |
+|       6 | The Circle                                          | Dave         | Eggers         |          2013 |             26 |   504 |
+|       7 | The Amazing Adventures of Kavalier & Clay           | Michael      | Chabon         |          2000 |             68 |   634 |
+|       8 | Just Kids                                           | Patti        | Smith          |          2010 |             55 |   304 |
+|       9 | A Heartbreaking Work of Staggering Genius           | Dave         | Eggers         |          2001 |            104 |   437 |
+|      10 | Coraline                                            | Neil         | Gaiman         |          2003 |            100 |   208 |
+|      11 | What We Talk About When We Talk About Love: Stories | Raymond      | Carver         |          1981 |             23 |   176 |
+|      12 | Where I'm Calling From: Selected Stories            | Raymond      | Carver         |          1989 |             12 |   526 |
+|      13 | White Noise                                         | Don          | DeLillo        |          1985 |             49 |   320 |
+|      14 | Cannery Row                                         | John         | Steinbeck      |          1945 |             95 |   181 |
+|      15 | Oblivion: Stories                                   | David        | Foster Wallace |          2004 |            172 |   329 |
+|      16 | Consider the Lobster                                | David        | Foster Wallace |          2005 |             92 |   343 |
++---------+-----------------------------------------------------+--------------+----------------+---------------+----------------+-------+
+16 rows in set (0.00 sec)
+
+mysql> select title substring(title,1,10) as 'short title' from books;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'substring(title,1,10) as 'short title' from books' at line 1
+mysql> select  substring(title,1,10) as 'short title' from books;
++-------------+
+| short title |
++-------------+
+| The Namesa  |
+| Norse Myth  |
+| American G  |
+| Interprete  |
+| A Hologram  |
+| The Circle  |
+| The Amazin  |
+| Just Kids   |
+| A Heartbre  |
+| Coraline    |
+| What We Ta  |
+| Where I'm   |
+| White Nois  |
+| Cannery Ro  |
+| Oblivion:   |
+| Consider t  |
++-------------+
+16 rows in set (0.00 sec)
+
+mysql> select  concat(substring(title,1,10),'...') as 'short title' from books;
++---------------+
+| short title   |
++---------------+
+| The Namesa... |
+| Norse Myth... |
+| American G... |
+| Interprete... |
+| A Hologram... |
+| The Circle... |
+| The Amazin... |
+| Just Kids...  |
+| A Heartbre... |
+| Coraline...   |
+| What We Ta... |
+| Where I'm ... |
+| White Nois... |
+| Cannery Ro... |
+| Oblivion: ... |
+| Consider t... |
++---------------+
+16 rows in set (0.00 sec)
+
+mysql> select concat(author_lname,',','author_fname)
+    '> ;
+    '> //;
+    '> ^C
+mysql> select concat(author_lname,',',author_fname) from books;
++---------------------------------------+
+| concat(author_lname,',',author_fname) |
++---------------------------------------+
+| Lahiri,Jhumpa                         |
+| Gaiman,Neil                           |
+| Gaiman,Neil                           |
+| Lahiri,Jhumpa                         |
+| Eggers,Dave                           |
+| Eggers,Dave                           |
+| Chabon,Michael                        |
+| Smith,Patti                           |
+| Eggers,Dave                           |
+| Gaiman,Neil                           |
+| Carver,Raymond                        |
+| Carver,Raymond                        |
+| DeLillo,Don                           |
+| Steinbeck,John                        |
+| Foster Wallace,David                  |
+| Foster Wallace,David                  |
++---------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> desc books;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| book_id        | int          | NO   | PRI | NULL    | auto_increment |
+| title          | varchar(100) | YES  |     | NULL    |                |
+| author_fname   | varchar(100) | YES  |     | NULL    |                |
+| author_lname   | varchar(100) | YES  |     | NULL    |                |
+| released_year  | int          | YES  |     | NULL    |                |
+| stock_quantity | int          | YES  |     | NULL    |                |
+| pages          | int          | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> select concat(released_year,'in stock') from books;
++----------------------------------+
+| concat(released_year,'in stock') |
++----------------------------------+
+| 2003in stock                     |
+| 2016in stock                     |
+| 2001in stock                     |
+| 1996in stock                     |
+| 2012in stock                     |
+| 2013in stock                     |
+| 2000in stock                     |
+| 2010in stock                     |
+| 2001in stock                     |
+| 2003in stock                     |
+| 1981in stock                     |
+| 1989in stock                     |
+| 1985in stock                     |
+| 1945in stock                     |
+| 2004in stock                     |
+| 2005in stock                     |
++----------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> desc books;
++----------------+--------------+------+-----+---------+----------------+
+| Field          | Type         | Null | Key | Default | Extra          |
++----------------+--------------+------+-----+---------+----------------+
+| book_id        | int          | NO   | PRI | NULL    | auto_increment |
+| title          | varchar(100) | YES  |     | NULL    |                |
+| author_fname   | varchar(100) | YES  |     | NULL    |                |
+| author_lname   | varchar(100) | YES  |     | NULL    |                |
+| released_year  | int          | YES  |     | NULL    |                |
+| stock_quantity | int          | YES  |     | NULL    |                |
+| pages          | int          | YES  |     | NULL    |                |
++----------------+--------------+------+-----+---------+----------------+
+7 rows in set (0.01 sec)
+
+mysql> select concat(stock_quantity,'in stock') from books;
++-----------------------------------+
+| concat(stock_quantity,'in stock') |
++-----------------------------------+
+| 32in stock                        |
+| 43in stock                        |
+| 12in stock                        |
+| 97in stock                        |
+| 154in stock                       |
+| 26in stock                        |
+| 68in stock                        |
+| 55in stock                        |
+| 104in stock                       |
+| 100in stock                       |
+| 23in stock                        |
+| 12in stock                        |
+| 49in stock                        |
+| 95in stock                        |
+| 172in stock                       |
+| 92in stock                        |
++-----------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select concat(stock_quantity,' ','in stock') from books;
++---------------------------------------+
+| concat(stock_quantity,' ','in stock') |
++---------------------------------------+
+| 32 in stock                           |
+| 43 in stock                           |
+| 12 in stock                           |
+| 97 in stock                           |
+| 154 in stock                          |
+| 26 in stock                           |
+| 68 in stock                           |
+| 55 in stock                           |
+| 104 in stock                          |
+| 100 in stock                          |
+| 23 in stock                           |
+| 12 in stock                           |
+| 49 in stock                           |
+| 95 in stock                           |
+| 172 in stock                          |
+| 92 in stock                           |
++---------------------------------------+
+16 rows in set (0.00 sec)
+
+mysql> select concat(substring(title,1,10),'...') as 'short title', concat(author_lname,',',author_fname) as author,concat(stock_quantity,' ','in stock') as quantity from books;
++---------------+----------------------+--------------+
+| short title   | author               | quantity     |
++---------------+----------------------+--------------+
+| The Namesa... | Lahiri,Jhumpa        | 32 in stock  |
+| Norse Myth... | Gaiman,Neil          | 43 in stock  |
+| American G... | Gaiman,Neil          | 12 in stock  |
+| Interprete... | Lahiri,Jhumpa        | 97 in stock  |
+| A Hologram... | Eggers,Dave          | 154 in stock |
+| The Circle... | Eggers,Dave          | 26 in stock  |
+| The Amazin... | Chabon,Michael       | 68 in stock  |
+| Just Kids...  | Smith,Patti          | 55 in stock  |
+| A Heartbre... | Eggers,Dave          | 104 in stock |
+| Coraline...   | Gaiman,Neil          | 100 in stock |
+| What We Ta... | Carver,Raymond       | 23 in stock  |
+| Where I'm ... | Carver,Raymond       | 12 in stock  |
+| White Nois... | DeLillo,Don          | 49 in stock  |
+| Cannery Ro... | Steinbeck,John       | 95 in stock  |
+| Oblivion: ... | Foster Wallace,David | 172 in stock |
+| Consider t... | Foster Wallace,David | 92 in stock  |
++---------------+----------------------+--------------+
+16 rows in set (0.00 sec)
+
+mysql> 

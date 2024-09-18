@@ -1,0 +1,983 @@
+Last login: Tue Aug  6 16:03:25 on ttys000
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % pwd
+/Users/abhishektyagi_1
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 20
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| ABES                 |
+| bankmanagementsystem |
+| Books                |
+| BookShop             |
+| DBMS                 |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| Practice             |
+| RadheKrishna         |
+| Shirt                |
+| sys                  |
+| Triggers             |
+| View                 |
++----------------------+
+14 rows in set (0.01 sec)
+
+mysql> create database constraints;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show schemas;
++----------------------+
+| Database             |
++----------------------+
+| ABES                 |
+| bankmanagementsystem |
+| Books                |
+| BookShop             |
+| constraints          |
+| DBMS                 |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| Practice             |
+| RadheKrishna         |
+| Shirt                |
+| sys                  |
+| Triggers             |
+| View                 |
++----------------------+
+15 rows in set (0.01 sec)
+
+mysql> connect constraints;
+Connection id:    21
+Current database: constraints
+
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table Person(
+    -> Id int not null,
+    -> LastName varchar(19) Not null,
+    -> FirstName varchar(12) Not null,
+    -> Age int
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc person;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Id        | int         | NO   |     | NULL    |       |
+| LastName  | varchar(19) | NO   |     | NULL    |       |
+| FirstName | varchar(12) | NO   |     | NULL    |       |
+| Age       | int         | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> -- Practice the Not null constraints in Mysql 
+mysql> Alter table person modify Age int not null;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc person;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Id        | int         | NO   |     | NULL    |       |
+| LastName  | varchar(19) | NO   |     | NULL    |       |
+| FirstName | varchar(12) | NO   |     | NULL    |       |
+| Age       | int         | NO   |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into person valkues(1,"Tyagi","Abhishek",23);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'valkues(1,"Tyagi","Abhishek",23)' at line 1
+mysql> insert into person values(1,"Tyagi","Abhishek",23);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from person;
++----+----------+-----------+-----+
+| Id | LastName | FirstName | Age |
++----+----------+-----------+-----+
+|  1 | Tyagi    | Abhishek  |  23 |
++----+----------+-----------+-----+
+1 row in set (0.00 sec)
+
+mysql> insert into person values(1,"Tyagi","",23);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from person;
++----+----------+-----------+-----+
+| Id | LastName | FirstName | Age |
++----+----------+-----------+-----+
+|  1 | Tyagi    | Abhishek  |  23 |
+|  1 | Tyagi    |           |  23 |
++----+----------+-----------+-----+
+2 rows in set (0.00 sec)
+
+mysql> insert into person values(1,"Tyagi",,23);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',23)' at line 1
+mysql> insert into person values(1,"Tyagi",23);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into person(Id,Lastname,Age) values(1,"Tyagi",23);
+ERROR 1364 (HY000): Field 'FirstName' doesn't have a default value
+mysql> Alter table person modify Firstname varchar(12) default "Radha";
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into person(Id,Lastname,Age) values(1,"Tyagi",23);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from person;
++----+----------+-----------+-----+
+| Id | LastName | Firstname | Age |
++----+----------+-----------+-----+
+|  1 | Tyagi    | Abhishek  |  23 |
+|  1 | Tyagi    |           |  23 |
+|  1 | Tyagi    | Radha     |  23 |
++----+----------+-----------+-----+
+3 rows in set (0.00 sec)
+
+mysql> create table Men
+    -> (
+    -> Name varchar(12) not null,
+    -> Age int not null,
+    -> Salary float default "12000.32"
+    -> );
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into Men(Name,Age) values("Abhishek",23);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Men;
++----------+-----+---------+
+| Name     | Age | Salary  |
++----------+-----+---------+
+| Abhishek |  23 | 12000.3 |
++----------+-----+---------+
+1 row in set (0.00 sec)
+
+mysql> Alter table person modify Salary double;
+ERROR 1054 (42S22): Unknown column 'Salary' in 'person'
+mysql> Alter table men  modify Salary double;
+Query OK, 1 row affected (0.02 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> desc men;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Name   | varchar(12) | NO   |     | NULL    |       |
+| Age    | int         | NO   |     | NULL    |       |
+| Salary | double      | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into Men(Name,Age) values("Abhi",24);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from Men;
++----------+-----+---------------+
+| Name     | Age | Salary        |
++----------+-----+---------------+
+| Abhishek |  23 | 12000.3203125 |
+| Abhi     |  24 |          NULL |
++----------+-----+---------------+
+2 rows in set (0.00 sec)
+
+mysql> desc men;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Name   | varchar(12) | NO   |     | NULL    |       |
+| Age    | int         | NO   |     | NULL    |       |
+| Salary | double      | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> Alter table men modify Salary double default "15000.432";
+Query OK, 0 rows affected (0.00 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc men;
++--------+-------------+------+-----+-----------+-------+
+| Field  | Type        | Null | Key | Default   | Extra |
++--------+-------------+------+-----+-----------+-------+
+| Name   | varchar(12) | NO   |     | NULL      |       |
+| Age    | int         | NO   |     | NULL      |       |
+| Salary | double      | YES  |     | 15000.432 |       |
++--------+-------------+------+-----+-----------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into Men(Name,Age) values("Lavii",25);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from Men;
++----------+-----+---------------+
+| Name     | Age | Salary        |
++----------+-----+---------------+
+| Abhishek |  23 | 12000.3203125 |
+| Abhi     |  24 |          NULL |
+| Lavii    |  25 |     15000.432 |
++----------+-----+---------------+
+3 rows in set (0.00 sec)
+
+mysql> update men set salary=1300000.32 where Age=24;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Men;
++----------+-----+---------------+
+| Name     | Age | Salary        |
++----------+-----+---------------+
+| Abhishek |  23 | 12000.3203125 |
+| Abhi     |  24 |    1300000.32 |
+| Lavii    |  25 |     15000.432 |
++----------+-----+---------------+
+3 rows in set (0.00 sec)
+
+mysql> create table Women
+    -> (
+    -> Age int not null,
+    -> Name varchar(15) not null,
+    -> Salary float 
+    -> unique(age)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(age)
+)' at line 6
+mysql> create table Women ( Age int not null, Name varchar(15) not null, Salary float, unique(age) );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc women ;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Age    | int         | NO   | PRI | NULL    |       |
+| Name   | varchar(15) | NO   |     | NULL    |       |
+| Salary | float       | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> insert into women values(23,"SONAM",1287.34);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into women values(25,"SONAM",1287.34);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from  women;
++-----+-------+---------+
+| Age | Name  | Salary  |
++-----+-------+---------+
+|  23 | SONAM | 1287.34 |
+|  25 | SONAM | 1287.34 |
++-----+-------+---------+
+2 rows in set (0.00 sec)
+
+mysql> -- Alter use to uodate the structure of tables
+mysql> Alter table women add unique(Name);
+ERROR 1062 (23000): Duplicate entry 'SONAM' for key 'women.Name'
+mysql> Alter table women add unique(Name);
+ERROR 1062 (23000): Duplicate entry 'SONAM' for key 'women.Name'
+mysql> delete from women where AGE=25;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> Alter table women add unique(Name);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from  women;
++-----+-------+---------+
+| Age | Name  | Salary  |
++-----+-------+---------+
+|  23 | SONAM | 1287.34 |
++-----+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> insert into women values(24,"Sonam",1243.43);
+ERROR 1062 (23000): Duplicate entry 'Sonam' for key 'women.Name'
+mysql> insert into women values(24,"Sonali",1243.43);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from  women;
++-----+--------+---------+
+| Age | Name   | Salary  |
++-----+--------+---------+
+|  23 | SONAM  | 1287.34 |
+|  24 | Sonali | 1243.43 |
++-----+--------+---------+
+2 rows in set (0.00 sec)
+
+mysql> create table Record
+    -> (
+    -> Rollno int,
+    -> Name varchar(12) not null default "Abhishek Tyagi",
+    -> Age int,
+    -> constraints r unique(Rollno,Age)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'r unique(Rollno,Age)
+)' at line 6
+mysql> create table Record ( Rollno int,  Name varchar(12) not null default "Abhishek Tyagi", Age int, constraint r unique(Rollno,Age) );
+ERROR 1067 (42000): Invalid default value for 'Name'
+mysql> create table Record ( Rollno int,  Name varchar(12) not null default "Abhishek_Tyagi", Age int, constraint r unique(Rollno,Age) );
+ERROR 1067 (42000): Invalid default value for 'Name'
+mysql> create table Record ( Rollno int,  Name varchar(12) not null default "Abhishek", Age int, constraint r unique(Rollno,Age) );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc record;
++--------+-------------+------+-----+----------+-------+
+| Field  | Type        | Null | Key | Default  | Extra |
++--------+-------------+------+-----+----------+-------+
+| Rollno | int         | YES  | MUL | NULL     |       |
+| Name   | varchar(12) | NO   |     | Abhishek |       |
+| Age    | int         | YES  |     | NULL     |       |
++--------+-------------+------+-----+----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> show create table record;
++--------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table  | Create Table                                                                                                                                                                                                                          |
++--------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| record | CREATE TABLE `record` (
+  `Rollno` int DEFAULT NULL,
+  `Name` varchar(12) NOT NULL DEFAULT 'Abhishek',
+  `Age` int DEFAULT NULL,
+  UNIQUE KEY `r` (`Rollno`,`Age`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++--------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into record values(1,"RADHIKHA",12),(2,"Krishna",11),(3,"Abhishek",23);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from record;
++--------+----------+------+
+| Rollno | Name     | Age  |
++--------+----------+------+
+|      1 | RADHIKHA |   12 |
+|      2 | Krishna  |   11 |
+|      3 | Abhishek |   23 |
++--------+----------+------+
+3 rows in set (0.00 sec)
+
+mysql> drop constraint r from record;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'constraint r from record' at line 1
+mysql> Alter table record drop constraint r;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc record;
++--------+-------------+------+-----+----------+-------+
+| Field  | Type        | Null | Key | Default  | Extra |
++--------+-------------+------+-----+----------+-------+
+| Rollno | int         | YES  |     | NULL     |       |
+| Name   | varchar(12) | NO   |     | Abhishek |       |
+| Age    | int         | YES  |     | NULL     |       |
++--------+-------------+------+-----+----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> show create table record;
++--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table  | Create Table                                                                                                                                                                                       |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| record | CREATE TABLE `record` (
+  `Rollno` int DEFAULT NULL,
+  `Name` varchar(12) NOT NULL DEFAULT 'Abhishek',
+  `Age` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++--------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_constraints |
++-----------------------+
+| men                   |
+| person                |
+| record                |
+| women                 |
++-----------------------+
+4 rows in set (0.01 sec)
+
+mysql> create table pri
+    -> (
+    -> Name varchar(25) not null,
+    -> RollNo int primary key,
+    -> Age int,
+    -> Unique(Age)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc pri;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Name   | varchar(25) | NO   |     | NULL    |       |
+| RollNo | int         | NO   | PRI | NULL    |       |
+| Age    | int         | YES  | UNI | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into pri values("Abhishek",12,23);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from pri;
++----------+--------+------+
+| Name     | RollNo | Age  |
++----------+--------+------+
+| Abhishek |     12 |   23 |
++----------+--------+------+
+1 row in set (0.00 sec)
+
+mysql> Alter table pri drop primary constraint;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'constraint' at line 1
+mysql> Alter table pri drop primary key;
+Query OK, 1 row affected (0.01 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> desc pri ;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Name   | varchar(25) | NO   |     | NULL    |       |
+| RollNo | int         | NO   |     | NULL    |       |
+| Age    | int         | YES  | UNI | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> show create table pri;
++-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                         |
++-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| pri   | CREATE TABLE `pri` (
+  `Name` varchar(25) NOT NULL,
+  `RollNo` int NOT NULL,
+  `Age` int DEFAULT NULL,
+  UNIQUE KEY `Age` (`Age`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> Alter table pri add constraints p primary key(Name,Age);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'p primary key(Name,Age)' at line 1
+mysql> Alter table pri add constraint p primary key(Name,Age);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc pri ;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Name   | varchar(25) | NO   | PRI | NULL    |       |
+| RollNo | int         | NO   |     | NULL    |       |
+| Age    | int         | NO   | PRI | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> show create table pri;
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                   |
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| pri   | CREATE TABLE `pri` (
+  `Name` varchar(25) NOT NULL,
+  `RollNo` int NOT NULL,
+  `Age` int NOT NULL,
+  PRIMARY KEY (`Name`,`Age`),
+  UNIQUE KEY `Age` (`Age`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> Alter table pri drop constraint p;
+ERROR 3940 (HY000): Constraint 'p' does not exist.
+mysql> Alter table pri drop primary key;
+Query OK, 1 row affected (0.02 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> desc pri ;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| Name   | varchar(25) | NO   |     | NULL    |       |
+| RollNo | int         | NO   |     | NULL    |       |
+| Age    | int         | NO   | PRI | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> show create table pri;
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                     |
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| pri   | CREATE TABLE `pri` (
+  `Name` varchar(25) NOT NULL,
+  `RollNo` int NOT NULL,
+  `Age` int NOT NULL,
+  UNIQUE KEY `Age` (`Age`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_constraints |
++-----------------------+
+| men                   |
+| person                |
+| pri                   |
+| record                |
+| women                 |
++-----------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table Users
+    -> (
+    -> user_id int primary key,
+    -> UserName varchar(20) not null,
+    -> Email varchar(100) default "abhishek.mca20@gmail.com",
+    -> OrderName varchar(20) not null unique
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc users;
++-----------+--------------+------+-----+--------------------------+-------+
+| Field     | Type         | Null | Key | Default                  | Extra |
++-----------+--------------+------+-----+--------------------------+-------+
+| user_id   | int          | NO   | PRI | NULL                     |       |
+| UserName  | varchar(20)  | NO   |     | NULL                     |       |
+| Email     | varchar(100) | YES  |     | abhishek.mca20@gmail.com |       |
+| OrderName | varchar(20)  | NO   | UNI | NULL                     |       |
++-----------+--------------+------+-----+--------------------------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into users(user_id,Username,OrderName) values(1,"Abhishek","Pizzas"),(2,"Radha","Arvi");
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from users;
++---------+----------+--------------------------+-----------+
+| user_id | UserName | Email                    | OrderName |
++---------+----------+--------------------------+-----------+
+|       1 | Abhishek | abhishek.mca20@gmail.com | Pizzas    |
+|       2 | Radha    | abhishek.mca20@gmail.com | Arvi      |
++---------+----------+--------------------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> -- Practice the foreign key constraint
+mysql> create table Order
+    -> (
+    -> Order_id int not null unique,
+    -> user_id int not null,
+    -> orderdt  datetime not null
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Order
+(
+Order_id int not null unique,
+user_id int not null,
+orderdt  datetime no' at line 1
+mysql> create table Order ( Order_id int not null, user_id int not null, orderdt  datetime not null );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Order ( Order_id int not null, user_id int not null, orderdt  datetime not null ' at line 1
+mysql> create table Order ( Order_id int not null, user_id int not null, orderdt  datetime );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Order ( Order_id int not null, user_id int not null, orderdt  datetime )' at line 1
+mysql> create table Order
+    -> (
+    -> order_id int primary key,
+    -> user_id int,
+    -> orderdt datetime
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Order
+(
+order_id int primary key,
+user_id int,
+orderdt datetime
+)' at line 1
+mysql> create table Order(order_id int primary key, user_id int, orderdt datetime );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Order(order_id int primary key, user_id int, orderdt datetime )' at line 1
+mysql> show tables;
++-----------------------+
+| Tables_in_constraints |
++-----------------------+
+| men                   |
+| person                |
+| pri                   |
+| record                |
+| Users                 |
+| women                 |
++-----------------------+
+6 rows in set (0.00 sec)
+
+mysql> create table Ordr( Order_id int not null unique, user_id int not null, orderdt  datetime not null );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc order;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order' at line 1
+mysql> desc ordr;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| Order_id | int      | NO   | PRI | NULL    |       |
+| user_id  | int      | NO   |     | NULL    |       |
+| orderdt  | datetime | NO   |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> Alter table ordr add foreign key(user_id) references users(user_id);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select create from ordr;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'create from ordr' at line 1
+mysql> select create  ordr;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'create  ordr' at line 1
+mysql> select create table ordr;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'create table ordr' at line 1
+mysql> desc ordr;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| Order_id | int      | NO   | PRI | NULL    |       |
+| user_id  | int      | NO   | MUL | NULL    |       |
+| orderdt  | datetime | NO   |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> show create table ordr;
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                                                      |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ordr  | CREATE TABLE `ordr` (
+  `Order_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `orderdt` datetime NOT NULL,
+  UNIQUE KEY `Order_id` (`Order_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `ordr_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from users;
++---------+----------+--------------------------+-----------+
+| user_id | UserName | Email                    | OrderName |
++---------+----------+--------------------------+-----------+
+|       1 | Abhishek | abhishek.mca20@gmail.com | Pizzas    |
+|       2 | Radha    | abhishek.mca20@gmail.com | Arvi      |
++---------+----------+--------------------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select * from ordr;
+Empty set (0.00 sec)
+
+mysql> insert into ordr values(1,1,'2024-08-06 18:35:42');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from ordr;
++----------+---------+---------------------+
+| Order_id | user_id | orderdt             |
++----------+---------+---------------------+
+|        1 |       1 | 2024-08-06 18:35:42 |
++----------+---------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into ordr values(2,2,'2024-08-06 18:37:42');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from ordr;
++----------+---------+---------------------+
+| Order_id | user_id | orderdt             |
++----------+---------+---------------------+
+|        1 |       1 | 2024-08-06 18:35:42 |
+|        2 |       2 | 2024-08-06 18:37:42 |
++----------+---------+---------------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into ordr values(3,3,'2024-08-06 18:97:42');
+ERROR 1292 (22007): Incorrect datetime value: '2024-08-06 18:97:42' for column 'orderdt' at row 1
+mysql> insert into ordr values(3,3,'2024-08-06 18:39:42');
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`constraints`.`ordr`, CONSTRAINT `ordr_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`))
+mysql> desc users;
++-----------+--------------+------+-----+--------------------------+-------+
+| Field     | Type         | Null | Key | Default                  | Extra |
++-----------+--------------+------+-----+--------------------------+-------+
+| user_id   | int          | NO   | PRI | NULL                     |       |
+| UserName  | varchar(20)  | NO   |     | NULL                     |       |
+| Email     | varchar(100) | YES  |     | abhishek.mca20@gmail.com |       |
+| OrderName | varchar(20)  | NO   | UNI | NULL                     |       |
++-----------+--------------+------+-----+--------------------------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select *from users;
++---------+----------+--------------------------+-----------+
+| user_id | UserName | Email                    | OrderName |
++---------+----------+--------------------------+-----------+
+|       1 | Abhishek | abhishek.mca20@gmail.com | Pizzas    |
+|       2 | Radha    | abhishek.mca20@gmail.com | Arvi      |
++---------+----------+--------------------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> insert into users values(3,"Krishna","krishna.mca20@gmail.com","Makan");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from users;
++---------+----------+--------------------------+-----------+
+| user_id | UserName | Email                    | OrderName |
++---------+----------+--------------------------+-----------+
+|       1 | Abhishek | abhishek.mca20@gmail.com | Pizzas    |
+|       2 | Radha    | abhishek.mca20@gmail.com | Arvi      |
+|       3 | Krishna  | krishna.mca20@gmail.com  | Makan     |
++---------+----------+--------------------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> insert into ordr values(3,3,'2024-08-06 18:39:42');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select *from ordr;
++----------+---------+---------------------+
+| Order_id | user_id | orderdt             |
++----------+---------+---------------------+
+|        1 |       1 | 2024-08-06 18:35:42 |
+|        2 |       2 | 2024-08-06 18:37:42 |
+|        3 |       3 | 2024-08-06 18:39:42 |
++----------+---------+---------------------+
+3 rows in set (0.00 sec)
+
+mysql> - Check consraints in mYSQL 
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '- Check consraints in mYSQL' at line 1
+mysql> -- Check constraints in mYsql .
+mysql> create table use
+    -> (
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'use
+(' at line 1
+mysql> create table Voting 
+    -> (
+    -> Name varchar(20) default "Abhishek" 
+    -> Address varchar(100) not null,
+    -> Age int check(age>18)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Address varchar(100) not null,
+Age int check(age>18)
+)' at line 4
+mysql> create table Voting Name varchar(20) default "Abhishek", Address varchar(100) not null, Age int check(age>18) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Name varchar(20) default "Abhishek", Address varchar(100) not null, Age int chec' at line 1
+mysql> create table Voting (Name varchar(20) default "Abhishek", Address varchar(100) not null, Age int check(age>18) );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc voting;
++---------+--------------+------+-----+----------+-------+
+| Field   | Type         | Null | Key | Default  | Extra |
++---------+--------------+------+-----+----------+-------+
+| Name    | varchar(20)  | YES  |     | Abhishek |       |
+| Address | varchar(100) | NO   |     | NULL     |       |
+| Age     | int          | YES  |     | NULL     |       |
++---------+--------------+------+-----+----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into voting values("Sonali","Ghaziabad",12);
+ERROR 3819 (HY000): Check constraint 'voting_chk_1' is violated.
+mysql> insert into voting values("Sonali","Ghaziabad",22);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from voting;
++--------+-----------+------+
+| Name   | Address   | Age  |
++--------+-----------+------+
+| Sonali | Ghaziabad |   22 |
++--------+-----------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into voting values("Aastha","Noida",24);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from voting;
++--------+-----------+------+
+| Name   | Address   | Age  |
++--------+-----------+------+
+| Sonali | Ghaziabad |   22 |
+| Aastha | Noida     |   24 |
++--------+-----------+------+
+2 rows in set (0.00 sec)
+
+mysql> create table Palind
+    -> (
+    -> Word varchar(100) check(reverse(word)=word)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into palind values("Abhishek");
+ERROR 3819 (HY000): Check constraint 'palind_chk_1' is violated.
+mysql> insert into palind values("carrace");
+ERROR 3819 (HY000): Check constraint 'palind_chk_1' is violated.
+mysql> insert into palind values("Racecar");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into palind values("Madam");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from palind;
++---------+
+| Word    |
++---------+
+| Racecar |
+| Madam   |
++---------+
+2 rows in set (0.00 sec)
+
+mysql> create table House
+    -> (
+    -> Sal_p int not null,
+    -> Pur_p int not null,
+    -> constraints ch check(sal_p>pur_p)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ch check(sal_p>pur_p)
+)' at line 5
+mysql> create table House ( Sal_p int not null, Pur_p int not null, constraint ch check(sal_p>pur_p) );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show create table house;
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                            |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| house | CREATE TABLE `house` (
+  `Sal_p` int NOT NULL,
+  `Pur_p` int NOT NULL,
+  CONSTRAINT `ch` CHECK ((`sal_p` > `pur_p`))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into house values(12,13);
+ERROR 3819 (HY000): Check constraint 'ch' is violated.
+mysql> insert into house values(18,13);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from house;
++-------+-------+
+| Sal_p | Pur_p |
++-------+-------+
+|    18 |    13 |
++-------+-------+
+1 row in set (0.00 sec)
+
+mysql> Alter table house drop constraint ch;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show create table house;
++-------+------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                             |
++-------+------------------------------------------------------------------------------------------------------------------------------------------+
+| house | CREATE TABLE `house` (
+  `Sal_p` int NOT NULL,
+  `Pur_p` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> create table Student
+    -> (
+    -> StudentId int primary key,
+    -> Name varchar(20) not null,
+    -> Course varchar(12),
+    -> Grade decimal(5,2)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| StudentId | int          | NO   | PRI | NULL    |       |
+| Name      | varchar(20)  | NO   |     | NULL    |       |
+| Course    | varchar(12)  | YES  |     | NULL    |       |
+| Grade     | decimal(5,2) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> create index si on student(Name,Course,Grade);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
+Empty set (0.00 sec)
+
+mysql> insert into student values(1,"Abhi","MCA",8.07);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++-----------+------+--------+-------+
+| StudentId | Name | Course | Grade |
++-----------+------+--------+-------+
+|         1 | Abhi | MCA    |  8.07 |
++-----------+------+--------+-------+
+1 row in set (0.00 sec)
+
+mysql> SHOW INDEX FROM STUDENT;
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table   | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| student |          0 | PRIMARY  |            1 | StudentId   | A         |           1 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| student |          1 | si       |            1 | Name        | A         |           1 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| student |          1 | si       |            2 | Course      | A         |           1 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
+| student |          1 | si       |            3 | Grade       | A         |           1 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+4 rows in set (0.01 sec)
+
+mysql> desc student;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| StudentId | int          | NO   | PRI | NULL    |       |
+| Name      | varchar(20)  | NO   | MUL | NULL    |       |
+| Course    | varchar(12)  | YES  |     | NULL    |       |
+| Grade     | decimal(5,2) | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into student values(1,"Abhishek","MCA",9.09);
+ERROR 1062 (23000): Duplicate entry '1' for key 'student.PRIMARY'
+mysql> select * from student;
++-----------+------+--------+-------+
+| StudentId | Name | Course | Grade |
++-----------+------+--------+-------+
+|         1 | Abhi | MCA    |  8.07 |
++-----------+------+--------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into student values(2,"Abhi","MBA",9.09);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++-----------+------+--------+-------+
+| StudentId | Name | Course | Grade |
++-----------+------+--------+-------+
+|         2 | Abhi | MBA    |  9.09 |
+|         1 | Abhi | MCA    |  8.07 |
++-----------+------+--------+-------+
+2 rows in set (0.01 sec)
+
+mysql> SHOW INDEX FROM STUDENT;
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table   | Non_unique | Key_name | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| student |          0 | PRIMARY  |            1 | StudentId   | A         |           1 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| student |          1 | si       |            1 | Name        | A         |           1 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+| student |          1 | si       |            2 | Course      | A         |           1 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
+| student |          1 | si       |            3 | Grade       | A         |           1 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
++---------+------------+----------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> 

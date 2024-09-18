@@ -1,0 +1,1484 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % clear;
+
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| ABES                 |
+| Aggregate            |
+| bankmanagementsystem |
+| Books                |
+| BookShop             |
+| constraints          |
+| DBMS                 |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| Practice             |
+| RadheKrishna         |
+| Shirt                |
+| sys                  |
+| Triggers             |
+| View                 |
++----------------------+
+16 rows in set (0.01 sec)
+
+mysql> connect Aggregate;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Connection id:    10
+Current database: Aggregate
+
+mysql> show tables;
++---------------------+
+| Tables_in_aggregate |
++---------------------+
+| captions            |
+| Employee            |
+| Money               |
+| People              |
++---------------------+
+4 rows in set (0.00 sec)
+
+mysql> create table Customer 
+    -> (
+    -> Cust_Id tinyint primary key auto_increment,
+    -> First_Name varchar(20) not null,
+    -> Last_Name varchar(12) not null,
+    -> Email varchar(40) not null
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc customer;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| Cust_Id    | tinyint     | NO   | PRI | NULL    | auto_increment |
+| First_Name | varchar(20) | NO   |     | NULL    |                |
+| Last_Name  | varchar(12) | NO   |     | NULL    |                |
+| Email      | varchar(40) | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> insert into customer(Cust_id,First_Name,Last_Name,Email)values(1,'Abhishek','Tyagi','abhishek.mca20@gmail.com);
+    '> ^C
+mysql> insert into customer(Cust_id,First_Name,Last_Name,Email)values(1,'Abhishek','Tyagi','abhishek.mca20@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from customer;
++---------+------------+-----------+--------------------------+
+| Cust_Id | First_Name | Last_Name | Email                    |
++---------+------------+-----------+--------------------------+
+|       1 | Abhishek   | Tyagi     | abhishek.mca20@gmail.com |
++---------+------------+-----------+--------------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into customer(First_Name,Last_Name,Email)values('Aastha','Rai','aatha.mca@gmail.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into customer(First_Name,Last_Name,Email)values('Abhinav','Sharma','abhinav.mca@gmail.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from customer;
++---------+------------+-----------+--------------------------+
+| Cust_Id | First_Name | Last_Name | Email                    |
++---------+------------+-----------+--------------------------+
+|       1 | Abhishek   | Tyagi     | abhishek.mca20@gmail.com |
+|       2 | Aastha     | Rai       | aatha.mca@gmail.com      |
+|       3 | Abhinav    | Sharma    | abhinav.mca@gmail.com    |
++---------+------------+-----------+--------------------------+
+3 rows in set (0.00 sec)
+
+mysql> Create table Order
+    -> (
+    -> Ord_id tinyint primary key auto_increment,
+    -> Ord_Date Date not null,
+    -> Ord_Amount Decimal(8,2) not null,
+    -> Cust_id tinyint foreign key(Cust_id) references Customer(Cust_id)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Order
+(
+Ord_id tinyint primary key auto_increment,
+Ord_Date Date not null,
+Ord_A' at line 1
+mysql> Create table Order ( Ord_id tinyint primary key auto_increment, Ord_Date Date not null, Ord_Amount Decimal(8,2) not null, Cust_id tinyint, foreign key(Cust_id) references Customer(Cust_id) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Order ( Ord_id tinyint primary key auto_increment, Ord_Date Date not null, Ord_A' at line 1
+mysql> Create table Order ( Ord_id tinyint primary key auto_increment, Ord_Date Date not null, Ord_Amount Decimal(8,2) not null, Cust_id tinyint, foreign key(Cust_id) references Customer(Cust_id) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Order ( Ord_id tinyint primary key auto_increment, Ord_Date Date not null, Ord_A' at line 1
+mysql> Create table Order(Ord_id tinyint primary key auto_increment,Ord_Date Date not null, Ord_Amount Decimal(8,2) not null, Cust_id tinyint, foreign key(Cust_id) reference Customer(Cust_id) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Order(Ord_id tinyint primary key auto_increment,Ord_Date Date not null, Ord_Amou' at line 1
+mysql> 
+mysql> Create table Order(Ord_id tinyint primary key auto_increment,Ord_Date Date not null, Ord_Amount Decimal(8,2) not null, Cust_id tinyint, foreign key(Cust_id) reference Customer(Cust_id) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Order(Ord_id tinyint primary key auto_increment,Ord_Date Date not null, Ord_Amou' at line 1
+mysql> desc customer;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| Cust_Id    | tinyint     | NO   | PRI | NULL    | auto_increment |
+| First_Name | varchar(20) | NO   |     | NULL    |                |
+| Last_Name  | varchar(12) | NO   |     | NULL    |                |
+| Email      | varchar(40) | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_aggregate |
++---------------------+
+| captions            |
+| Customer            |
+| Employee            |
+| Money               |
+| People              |
++---------------------+
+5 rows in set (0.01 sec)
+
+mysql> desc customer;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| Cust_Id    | tinyint     | NO   | PRI | NULL    | auto_increment |
+| First_Name | varchar(20) | NO   |     | NULL    |                |
+| Last_Name  | varchar(12) | NO   |     | NULL    |                |
+| Email      | varchar(40) | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> create table Order
+    -> (
+    -> Ord_id tinyint primary key auto_increment,
+    -> Ord_Date Date not null,
+    -> Ord_Amount Decimal(8,2) not null,
+    -> Cust_Id tinyint foreign key(Cust_id) references Customer(Cust_id)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Order
+(
+Ord_id tinyint primary key auto_increment,
+Ord_Date Date not null,
+Ord_A' at line 1
+mysql> create table Orde1 ( Ord_id tinyint primary key auto_increment, Ord_Date Date not null, Ord_Amount Decimal(8,2) not null, Cust_Id tinyint foreign key(Cust_id) references Customer(Cust_id)  );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key(Cust_id) references Customer(Cust_id)  )' at line 1
+mysql> create table Orde1 ( Ord_id tinyint primary key auto_increment, Ord_Date Date not null, Ord_Amount Decimal(8,2) not null, Cust_Id tinyint foreign key(Cust_id) references Customer(Cust_id)  );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key(Cust_id) references Customer(Cust_id)  )' at line 1
+mysql> create table Orde1 ( Ord_id tinyint primary key auto_increment, Ord_Date Date not null, Ord_Amount Decimal(8,2) not null, Cust_Id tinyint foreign key(Cust_id) references Customer(Cust_id)  );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key(Cust_id) references Customer(Cust_id)  )' at line 1
+mysql> show tables;
++---------------------+
+| Tables_in_aggregate |
++---------------------+
+| captions            |
+| Customer            |
+| Employee            |
+| Money               |
+| People              |
++---------------------+
+5 rows in set (0.00 sec)
+
+mysql> desc customer;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| Cust_Id    | tinyint     | NO   | PRI | NULL    | auto_increment |
+| First_Name | varchar(20) | NO   |     | NULL    |                |
+| Last_Name  | varchar(12) | NO   |     | NULL    |                |
+| Email      | varchar(40) | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from customer;
++---------+------------+-----------+--------------------------+
+| Cust_Id | First_Name | Last_Name | Email                    |
++---------+------------+-----------+--------------------------+
+|       1 | Abhishek   | Tyagi     | abhishek.mca20@gmail.com |
+|       2 | Aastha     | Rai       | aatha.mca@gmail.com      |
+|       3 | Abhinav    | Sharma    | abhinav.mca@gmail.com    |
++---------+------------+-----------+--------------------------+
+3 rows in set (0.00 sec)
+
+mysql> create table Arrange
+    -> (
+    -> Id tinyint,
+    -> Date date not null,
+    -> Amount Decimal(8,2) not null,
+    -> Cust_Id tinyint,
+    -> primary key(Id),
+    -> Constraint Fk foreign key(Cust_id) references customer(Cust_id)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> Create table Arr2
+    -> (
+    -> Id tinyint primary key auto_increment,
+    -> Arr_Date Date not null,
+    -> Amount decimal(8,2) not null,
+    -> Cust_id tinyint foreign key(cust_id) references Customer(Cust_Id)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key(cust_id) references Customer(Cust_Id)
+)' at line 6
+mysql> Create table Arr2(Id tinyint primary key auto_increment, Arr_Date Date not null, Amount decimal(8,2) not null,Cust_id tinyint foreign key(cust_id) references Customer(Cust_Id) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key(cust_id) references Customer(Cust_Id) )' at line 1
+mysql> drop fk;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'fk' at line 1
+mysql> Create table Ordering(Od_id tinyint primary key auto_increment,Od_Date Date not null, Od_Amount Decimal(8,2) not null, Cust_id tinyint foreign key references Customer(Cust_id) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key references Customer(Cust_id) )' at line 1
+mysql> Create table Arr2(Id tinyint primary key auto_increment, Arr_Date Date not null, Amount decimal(8,2) not null,Cust_id tinyint foreign key references Customer(Cust_Id) );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key references Customer(Cust_Id) )' at line 1
+mysql> Create table Arr2(Id tinyint primary key auto_increment, Arr_Date Date not null, Amount decimal(8,2) not null,Cust_id tinyint, foreign key(Cust_id) references Customer(Cust_Id) );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_aggregate |
++---------------------+
+| Arr2                |
+| Arrange             |
+| captions            |
+| Customer            |
+| Employee            |
+| Money               |
+| People              |
++---------------------+
+7 rows in set (0.00 sec)
+
+mysql> show create table Arr2;
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                                                                                             |
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Arr2  | CREATE TABLE `Arr2` (
+  `Id` tinyint NOT NULL AUTO_INCREMENT,
+  `Arr_Date` date NOT NULL,
+  `Amount` decimal(8,2) NOT NULL,
+  `Cust_id` tinyint DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `Cust_id` (`Cust_id`),
+  CONSTRAINT `arr2_ibfk_1` FOREIGN KEY (`Cust_id`) REFERENCES `Customer` (`Cust_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> Alter table Arr2 drop foreign key;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> Alter table Arr2 drop foreign key cust_id;
+ERROR 1091 (42000): Can't DROP 'cust_id'; check that column/key exists
+mysql> Alter table Arr2 drop foreign key custshow create table _id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'create table _id' at line 1
+mysql> show create table Arrange;
++---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table                                                                                                                                                                                                                                                                                                                               |
++---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Arrange | CREATE TABLE `Arrange` (
+  `Id` tinyint NOT NULL,
+  `Date` date NOT NULL,
+  `Amount` decimal(8,2) NOT NULL,
+  `Cust_Id` tinyint DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `Fk` (`Cust_Id`),
+  CONSTRAINT `Fk` FOREIGN KEY (`Cust_Id`) REFERENCES `customer` (`Cust_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> aLTER TABLE Arrange drop foreign key fk;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show create table Arrange;
++---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table                                                                                                                                                                                                                                                  |
++---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Arrange | CREATE TABLE `Arrange` (
+  `Id` tinyint NOT NULL,
+  `Date` date NOT NULL,
+  `Amount` decimal(8,2) NOT NULL,
+  `Cust_Id` tinyint DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `Fk` (`Cust_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> show create table Arr2;
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                                                                                             |
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Arr2  | CREATE TABLE `Arr2` (
+  `Id` tinyint NOT NULL AUTO_INCREMENT,
+  `Arr_Date` date NOT NULL,
+  `Amount` decimal(8,2) NOT NULL,
+  `Cust_id` tinyint DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `Cust_id` (`Cust_id`),
+  CONSTRAINT `arr2_ibfk_1` FOREIGN KEY (`Cust_id`) REFERENCES `Customer` (`Cust_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> drop table Arr2;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_aggregate |
++---------------------+
+| Arrange             |
+| captions            |
+| Customer            |
+| Employee            |
+| Money               |
+| People              |
++---------------------+
+6 rows in set (0.00 sec)
+
+mysql> Desc Arrange;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| Id      | tinyint      | NO   | PRI | NULL    |       |
+| Date    | date         | NO   |     | NULL    |       |
+| Amount  | decimal(8,2) | NO   |     | NULL    |       |
+| Cust_Id | tinyint      | YES  | MUL | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc customer;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| Cust_Id    | tinyint     | NO   | PRI | NULL    | auto_increment |
+| First_Name | varchar(20) | NO   |     | NULL    |                |
+| Last_Name  | varchar(12) | NO   |     | NULL    |                |
+| Email      | varchar(40) | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> Alter table Arrange add constraint Fh foreign key(Cust_id) references customer(cust_id);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show create table Arrange;
++---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table                                                                                                                                                                                                                                                                                                                               |
++---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Arrange | CREATE TABLE `Arrange` (
+  `Id` tinyint NOT NULL,
+  `Date` date NOT NULL,
+  `Amount` decimal(8,2) NOT NULL,
+  `Cust_Id` tinyint DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `Fh` (`Cust_Id`),
+  CONSTRAINT `Fh` FOREIGN KEY (`Cust_Id`) REFERENCES `customer` (`Cust_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> desc Arrangfe;
+ERROR 1146 (42S02): Table 'aggregate.arrangfe' doesn't exist
+mysql> desc Arrange;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| Id      | tinyint      | NO   | PRI | NULL    |       |
+| Date    | date         | NO   |     | NULL    |       |
+| Amount  | decimal(8,2) | NO   |     | NULL    |       |
+| Cust_Id | tinyint      | YES  | MUL | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER Table Arrange modify id tinyint primary key auto_increment;
+ERROR 1068 (42000): Multiple primary key defined
+mysql> insert into Arrange values(1,'2024-09-08',1300.50,1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Arrange values(2,'2024-10-08',1400.50,2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from arrange;
++----+------------+---------+---------+
+| Id | Date       | Amount  | Cust_Id |
++----+------------+---------+---------+
+|  1 | 2024-09-08 | 1300.50 |       1 |
+|  2 | 2024-10-08 | 1400.50 |       2 |
++----+------------+---------+---------+
+2 rows in set (0.00 sec)
+
+mysql> insert into Arrange values(3,'2024-11-08',1500.50,5);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`aggregate`.`arrange`, CONSTRAINT `Fh` FOREIGN KEY (`Cust_Id`) REFERENCES `customer` (`Cust_Id`))
+mysql> insert into Arrange values(3,'2024-11-08',1500.50,4);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`aggregate`.`arrange`, CONSTRAINT `Fh` FOREIGN KEY (`Cust_Id`) REFERENCES `customer` (`Cust_Id`))
+mysql> insert into Arrange values(3,'2024-11-08',1500.50,3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from arrange;
++----+------------+---------+---------+
+| Id | Date       | Amount  | Cust_Id |
++----+------------+---------+---------+
+|  1 | 2024-09-08 | 1300.50 |       1 |
+|  2 | 2024-10-08 | 1400.50 |       2 |
+|  3 | 2024-11-08 | 1500.50 |       3 |
++----+------------+---------+---------+
+3 rows in set (0.00 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_aggregate |
++---------------------+
+| Arrange             |
+| captions            |
+| Customer            |
+| Employee            |
+| Money               |
+| People              |
++---------------------+
+6 rows in set (0.01 sec)
+
+mysql> select * from customer;
++---------+------------+-----------+--------------------------+
+| Cust_Id | First_Name | Last_Name | Email                    |
++---------+------------+-----------+--------------------------+
+|       1 | Abhishek   | Tyagi     | abhishek.mca20@gmail.com |
+|       2 | Aastha     | Rai       | aatha.mca@gmail.com      |
+|       3 | Abhinav    | Sharma    | abhinav.mca@gmail.com    |
++---------+------------+-----------+--------------------------+
+3 rows in set (0.00 sec)
+
+mysql> truncate from Customer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from Customer' at line 1
+mysql> truncate table Customer;
+ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constraint (`Aggregate`.`Arrange`, CONSTRAINT `Fh`)
+mysql> truncate Customer;
+ERROR 1701 (42000): Cannot truncate a table referenced in a foreign key constraint (`Aggregate`.`Arrange`, CONSTRAINT `Fh`)
+mysql> delete from cutomer;
+ERROR 1146 (42S02): Table 'aggregate.cutomer' doesn't exist
+mysql> delete from customer;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`aggregate`.`arrange`, CONSTRAINT `Fh` FOREIGN KEY (`Cust_Id`) REFERENCES `customer` (`Cust_Id`))
+mysql> show create table Arrange;
++---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table                                                                                                                                                                                                                                                                                                                               |
++---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Arrange | CREATE TABLE `Arrange` (
+  `Id` tinyint NOT NULL,
+  `Date` date NOT NULL,
+  `Amount` decimal(8,2) NOT NULL,
+  `Cust_Id` tinyint DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `Fh` (`Cust_Id`),
+  CONSTRAINT `Fh` FOREIGN KEY (`Cust_Id`) REFERENCES `customer` (`Cust_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> Alter table Arrange drop fh;
+ERROR 1091 (42000): Can't DROP 'fh'; check that column/key exists
+mysql> Alter table Arrange drop foreign key  fh;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show create table Arrange;
++---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table                                                                                                                                                                                                                                                  |
++---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Arrange | CREATE TABLE `Arrange` (
+  `Id` tinyint NOT NULL,
+  `Date` date NOT NULL,
+  `Amount` decimal(8,2) NOT NULL,
+  `Cust_Id` tinyint DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `Fh` (`Cust_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> desc customer;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| Cust_Id    | tinyint     | NO   | PRI | NULL    | auto_increment |
+| First_Name | varchar(20) | NO   |     | NULL    |                |
+| Last_Name  | varchar(12) | NO   |     | NULL    |                |
+| Email      | varchar(40) | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO customers (first_name, last_name, email) 
+    -> VALUES ('Boy', 'George', 'george@gmail.com'),
+    ->        ('George', 'Michael', 'gm@gmail.com'),
+    ->        ('David', 'Bowie', 'david@gmail.com'),
+    ->        ('Blue', 'Steele', 'blue@gmail.com'),
+    ->        ('Bette', 'Davis', 'bette@aol.com');
+ERROR 1146 (42S02): Table 'aggregate.customers' doesn't exist
+mysql> select * from customer;
++---------+------------+-----------+--------------------------+
+| Cust_Id | First_Name | Last_Name | Email                    |
++---------+------------+-----------+--------------------------+
+|       1 | Abhishek   | Tyagi     | abhishek.mca20@gmail.com |
+|       2 | Aastha     | Rai       | aatha.mca@gmail.com      |
+|       3 | Abhinav    | Sharma    | abhinav.mca@gmail.com    |
+|       4 | Boy        | George    | george@gmail.com         |
+|       5 | George     | Michael   | gm@gmail.com             |
+|       6 | David      | Bowie     | david@gmail.com          |
+|       7 | Blue       | Steele    | blue@gmail.com           |
+|       8 | Bette      | Davis     | bette@aol.com            |
++---------+------------+-----------+--------------------------+
+8 rows in set (0.00 sec)
+
+mysql> delete from customer;
+Query OK, 8 rows affected (0.01 sec)
+
+mysql> select * from customer;
+Empty set (0.00 sec)
+
+mysql> Rooback;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Rooback' at line 1
+mysql> Rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from cUSTOMER;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO customer (first_name, last_name, email) 
+    -> VALUES ('Boy', 'George', 'george@gmail.com'),
+    ->        ('George', 'Michael', 'gm@gmail.com'),
+    ->        ('David', 'Bowie', 'david@gmail.com'),
+    ->        ('Blue', 'Steele', 'blue@gmail.com'),
+    ->        ('Bette', 'Davis', 'bette@aol.com');   
+Query OK, 5 rows affected (0.00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> 
+mysql> select * from customer;
++---------+------------+-----------+------------------+
+| Cust_Id | First_Name | Last_Name | Email            |
++---------+------------+-----------+------------------+
+|       9 | Boy        | George    | george@gmail.com |
+|      10 | George     | Michael   | gm@gmail.com     |
+|      11 | David      | Bowie     | david@gmail.com  |
+|      12 | Blue       | Steele    | blue@gmail.com   |
+|      13 | Bette      | Davis     | bette@aol.com    |
++---------+------------+-----------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> truncate table customer;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from customer;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO customer (first_name, last_name, email) 
+    -> VALUES ('Boy', 'George', 'george@gmail.com'),
+    ->        ('George', 'Michael', 'gm@gmail.com'),
+    ->        ('David', 'Bowie', 'david@gmail.com'),
+    ->        ('Blue', 'Steele', 'blue@gmail.com'),
+    ->        ('Bette', 'Davis', 'bette@aol.com');   
+Query OK, 5 rows affected (0.00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from cusytomer;
+ERROR 1146 (42S02): Table 'aggregate.cusytomer' doesn't exist
+mysql> select * from customer;
++---------+------------+-----------+------------------+
+| Cust_Id | First_Name | Last_Name | Email            |
++---------+------------+-----------+------------------+
+|       1 | Boy        | George    | george@gmail.com |
+|       2 | George     | Michael   | gm@gmail.com     |
+|       3 | David      | Bowie     | david@gmail.com  |
+|       4 | Blue       | Steele    | blue@gmail.com   |
+|       5 | Bette      | Davis     | bette@aol.com    |
++---------+------------+-----------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from customer;
+Query OK, 5 rows affected (0.00 sec)
+
+mysql> select * from customer;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO customer (first_name, last_name, email)  VALUES ('Boy', 'George', 'george@gmail.com'),
+   ('George', 'Michael', 'gm@gmail.com'),        ('David', 'Bowie', 'david@gmail.com'),        ('Blue', 'Steele', 'blue@gmail.com'),        ('Bette', 'Davis', 'bette@aol.com');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from customer;
++---------+------------+-----------+------------------+
+| Cust_Id | First_Name | Last_Name | Email            |
++---------+------------+-----------+------------------+
+|       6 | Boy        | George    | george@gmail.com |
+|       7 | George     | Michael   | gm@gmail.com     |
+|       8 | David      | Bowie     | david@gmail.com  |
+|       9 | Blue       | Steele    | blue@gmail.com   |
+|      10 | Bette      | Davis     | bette@aol.com    |
++---------+------------+-----------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> trucate table Customer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'trucate table Customer' at line 1
+mysql> truncate table Customer;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from customer;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO customer (first_name, last_name, email)  VALUES ('Boy', 'George', 'george@gmail.com'),
+   ('George', 'Michael', 'gm@gmail.com'),        ('David', 'Bowie', 'david@gmail.com'),        ('Blue', 'Steele', 'blue@gmail.com'),        ('Bette', 'Davis', 'bette@aol.com');
+Query OK, 5 rows affected (0.00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from customer;
++---------+------------+-----------+------------------+
+| Cust_Id | First_Name | Last_Name | Email            |
++---------+------------+-----------+------------------+
+|       1 | Boy        | George    | george@gmail.com |
+|       2 | George     | Michael   | gm@gmail.com     |
+|       3 | David      | Bowie     | david@gmail.com  |
+|       4 | Blue       | Steele    | blue@gmail.com   |
+|       5 | Bette      | Davis     | bette@aol.com    |
++---------+------------+-----------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from customer;
+Query OK, 5 rows affected (0.00 sec)
+
+mysql> select * from customer;
++---------+------------+-----------+------------------+
+| Cust_Id | First_Name | Last_Name | Email            |
++---------+------------+-----------+------------------+
+|       6 | Boy        | George    | george@gmail.com |
+|       7 | George     | Michael   | gm@gmail.com     |
+|       8 | David      | Bowie     | david@gmail.com  |
+|       9 | Blue       | Steele    | blue@gmail.com   |
+|      10 | Bette      | Davis     | bette@aol.com    |
++---------+------------+-----------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> truncate table customer;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO customer (first_name, last_name, email)  VALUES ('Boy', 'George', 'george@gmail.com'),
+   ('George', 'Michael', 'gm@gmail.com'),        ('David', 'Bowie', 'david@gmail.com'),        ('Blue', 'Steele', 'blue@gmail.com'),        ('Bette', 'Davis', 'bette@aol.com');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from customer;
++---------+------------+-----------+------------------+
+| Cust_Id | First_Name | Last_Name | Email            |
++---------+------------+-----------+------------------+
+|       1 | Boy        | George    | george@gmail.com |
+|       2 | George     | Michael   | gm@gmail.com     |
+|       3 | David      | Bowie     | david@gmail.com  |
+|       4 | Blue       | Steele    | blue@gmail.com   |
+|       5 | Bette      | Davis     | bette@aol.com    |
++---------+------------+-----------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from Customer where Cust_id iN(1,2,3,4);
+Query OK, 4 rows affected (0.00 sec)
+
+mysql> select * from customer;
++---------+------------+-----------+---------------+
+| Cust_Id | First_Name | Last_Name | Email         |
++---------+------------+-----------+---------------+
+|       5 | Bette      | Davis     | bette@aol.com |
++---------+------------+-----------+---------------+
+1 row in set (0.00 sec)
+
+mysql> delete from customer;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from customer;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO customer (first_name, last_name, email)  VALUES ('Boy', 'George', 'george@gmail.com'),
+   ('George', 'Michael', 'gm@gmail.com'),        ('David', 'Bowie', 'david@gmail.com'),        ('Blue', 'Steele', 'blue@gmail.com'),        ('Bette', 'Davis', 'bette@aol.com');
+Query OK, 5 rows affected (0.00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from customer;
++---------+------------+-----------+------------------+
+| Cust_Id | First_Name | Last_Name | Email            |
++---------+------------+-----------+------------------+
+|       6 | Boy        | George    | george@gmail.com |
+|       7 | George     | Michael   | gm@gmail.com     |
+|       8 | David      | Bowie     | david@gmail.com  |
+|       9 | Blue       | Steele    | blue@gmail.com   |
+|      10 | Bette      | Davis     | bette@aol.com    |
++---------+------------+-----------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> trucate table customer;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'trucate table customer' at line 1
+mysql> truncate table customer;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO customer (first_name, last_name, email)  VALUES ('Boy', 'George', 'george@gmail.com'),
+   ('George', 'Michael', 'gm@gmail.com'),        ('David', 'Bowie', 'david@gmail.com'),        ('Blue', 'Steele', 'blue@gmail.com'),        ('Bette', 'Davis', 'bette@aol.com');
+Query OK, 5 rows affected (0.00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from customer;
++---------+------------+-----------+------------------+
+| Cust_Id | First_Name | Last_Name | Email            |
++---------+------------+-----------+------------------+
+|       1 | Boy        | George    | george@gmail.com |
+|       2 | George     | Michael   | gm@gmail.com     |
+|       3 | David      | Bowie     | david@gmail.com  |
+|       4 | Blue       | Steele    | blue@gmail.com   |
+|       5 | Bette      | Davis     | bette@aol.com    |
++---------+------------+-----------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE orders (
+    ->     id INT PRIMARY KEY AUTO_INCREMENT,
+    ->     order_date DATE,
+    ->     amount DECIMAL(8,2),
+    ->     customer_id INT,
+    ->     FOREIGN KEY (customer_id) REFERENCES customers(id)
+    -> );
+ERROR 1824 (HY000): Failed to open the referenced table 'customers'
+mysql> CREATE TABLE orders (     id INT PRIMARY KEY AUTO_INCREMENT,     order_date DATE,     amount DECIMAL(8,2),     customer_id INT,     FOREIGN KEY (customer_id) REFERENCES customer(id) );
+ERROR 3734 (HY000): Failed to add the foreign key constraint. Missing column 'id' for constraint 'orders_ibfk_1' in the referenced table 'customer'
+mysql> CREATE TABLE orders (     id INT PRIMARY KEY AUTO_INCREMENT,     order_date DATE,     amount DECIMAL(8,2),     customer_id INT,     FOREIGN KEY (customer_id) REFERENCES customer(cus_id) );
+ERROR 3734 (HY000): Failed to add the foreign key constraint. Missing column 'cus_id' for constraint 'orders_ibfk_1' in the referenced table 'customer'
+mysql> desc customer;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| Cust_Id    | tinyint     | NO   | PRI | NULL    | auto_increment |
+| First_Name | varchar(20) | NO   |     | NULL    |                |
+| Last_Name  | varchar(12) | NO   |     | NULL    |                |
+| Email      | varchar(40) | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE orders (     id INT PRIMARY KEY AUTO_INCREMENT,     order_date DATE,     amount DECIMAL(8,2),     customer_id INT,     FOREIGN KEY (customer_id) REFERENCES customer(cust_id) );
+ERROR 3780 (HY000): Referencing column 'customer_id' and referenced column 'cust_id' in foreign key constraint 'orders_ibfk_1' are incompatible.
+mysql> desc customer;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| Cust_Id    | tinyint     | NO   | PRI | NULL    | auto_increment |
+| First_Name | varchar(20) | NO   |     | NULL    |                |
+| Last_Name  | varchar(12) | NO   |     | NULL    |                |
+| Email      | varchar(40) | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> Alter table Customer to customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to customers' at line 1
+mysql> Alter table Customer rename  to customers;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from customers;
++---------+------------+-----------+------------------+
+| Cust_Id | First_Name | Last_Name | Email            |
++---------+------------+-----------+------------------+
+|       1 | Boy        | George    | george@gmail.com |
+|       2 | George     | Michael   | gm@gmail.com     |
+|       3 | David      | Bowie     | david@gmail.com  |
+|       4 | Blue       | Steele    | blue@gmail.com   |
+|       5 | Bette      | Davis     | bette@aol.com    |
++---------+------------+-----------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customer;
+ERROR 1146 (42S02): Table 'aggregate.customer' doesn't exist
+mysql> select * from customers;
++---------+------------+-----------+------------------+
+| Cust_Id | First_Name | Last_Name | Email            |
++---------+------------+-----------+------------------+
+|       1 | Boy        | George    | george@gmail.com |
+|       2 | George     | Michael   | gm@gmail.com     |
+|       3 | David      | Bowie     | david@gmail.com  |
+|       4 | Blue       | Steele    | blue@gmail.com   |
+|       5 | Bette      | Davis     | bette@aol.com    |
++---------+------------+-----------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> desc customers;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| Cust_Id    | tinyint     | NO   | PRI | NULL    | auto_increment |
+| First_Name | varchar(20) | NO   |     | NULL    |                |
+| Last_Name  | varchar(12) | NO   |     | NULL    |                |
+| Email      | varchar(40) | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.01 sec)
+
+mysql> Alter table Customers modify Cust_id int primary key;
+ERROR 1068 (42000): Multiple primary key defined
+mysql> Alter table Customers modify Cust_id int ;
+Query OK, 5 rows affected (0.02 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> desc customers;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| Cust_id    | int         | NO   | PRI | NULL    |       |
+| First_Name | varchar(20) | NO   |     | NULL    |       |
+| Last_Name  | varchar(12) | NO   |     | NULL    |       |
+| Email      | varchar(40) | NO   |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE orders (     id INT PRIMARY KEY AUTO_INCREMENT,     order_date DATE,     amount DECIMAL(8,2),     customer_id INT,     FOREIGN KEY (customer_id) REFERENCES customer(cust_id) );
+ERROR 1824 (HY000): Failed to open the referenced table 'customer'
+mysql> CREATE TABLE orders (     id INT PRIMARY KEY AUTO_INCREMENT,     order_date DATE,     amount DECIMAL(8,2),     customer_id INT,     FOREIGN KEY (customer_id) REFERENCES customers(cust_id) );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_aggregate |
++---------------------+
+| Arrange             |
+| captions            |
+| Customers           |
+| Employee            |
+| Money               |
+| orders              |
+| People              |
++---------------------+
+7 rows in set (0.00 sec)
+
+mysql> show create table Arrange;
++---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table                                                                                                                                                                                                                                                  |
++---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Arrange | CREATE TABLE `Arrange` (
+  `Id` tinyint NOT NULL,
+  `Date` date NOT NULL,
+  `Amount` decimal(8,2) NOT NULL,
+  `Cust_Id` tinyint DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  KEY `Fh` (`Cust_Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> show create table customers;
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table                                                                                                                                                                                                                                               |
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| customers | CREATE TABLE `customers` (
+  `Cust_id` int NOT NULL,
+  `First_Name` varchar(20) NOT NULL,
+  `Last_Name` varchar(12) NOT NULL,
+  `Email` varchar(40) NOT NULL,
+  PRIMARY KEY (`Cust_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> show create table customers;
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table                                                                                                                                                                                                                                               |
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| customers | CREATE TABLE `customers` (
+  `Cust_id` int NOT NULL,
+  `First_Name` varchar(20) NOT NULL,
+  `Last_Name` varchar(12) NOT NULL,
+  `Email` varchar(40) NOT NULL,
+  PRIMARY KEY (`Cust_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_aggregate |
++---------------------+
+| Arrange             |
+| captions            |
+| Customers           |
+| Employee            |
+| Money               |
+| orders              |
+| People              |
++---------------------+
+7 rows in set (0.00 sec)
+
+mysql> desc oprders;
+ERROR 1146 (42S02): Table 'aggregate.oprders' doesn't exist
+mysql> desc orders;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int          | NO   | PRI | NULL    | auto_increment |
+| order_date  | date         | YES  |     | NULL    |                |
+| amount      | decimal(8,2) | YES  |     | NULL    |                |
+| customer_id | int          | YES  | MUL | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> show create table orders;
++--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table  | Create Table                                                                                                                                                                                                                                                                                                                                                                                    |
++--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| orders | CREATE TABLE `orders` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `order_date` date DEFAULT NULL,
+  `amount` decimal(8,2) DEFAULT NULL,
+  `customer_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `customer_id` (`customer_id`),
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`Cust_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++--------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from Customers;
++---------+------------+-----------+------------------+
+| Cust_id | First_Name | Last_Name | Email            |
++---------+------------+-----------+------------------+
+|       1 | Boy        | George    | george@gmail.com |
+|       2 | George     | Michael   | gm@gmail.com     |
+|       3 | David      | Bowie     | david@gmail.com  |
+|       4 | Blue       | Steele    | blue@gmail.com   |
+|       5 | Bette      | Davis     | bette@aol.com    |
++---------+------------+-----------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from orders;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO orders (order_date, amount, customer_id)
+    -> VALUES ('2016-02-10', 99.99, 1),
+    ->        ('2017-11-11', 35.50, 1),
+    ->        ('2014-12-12', 800.67, 2),
+    ->        ('2015-01-03', 12.50, 2),
+    ->        ('1999-04-11', 450.25, 5);
+Query OK, 5 rows affected (0.00 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from orders;
++----+------------+--------+-------------+
+| id | order_date | amount | customer_id |
++----+------------+--------+-------------+
+|  1 | 2016-02-10 |  99.99 |           1 |
+|  2 | 2017-11-11 |  35.50 |           1 |
+|  3 | 2014-12-12 | 800.67 |           2 |
+|  4 | 2015-01-03 |  12.50 |           2 |
+|  5 | 1999-04-11 | 450.25 |           5 |
++----+------------+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_aggregate |
++---------------------+
+| Arrange             |
+| captions            |
+| Customers           |
+| Employee            |
+| Money               |
+| orders              |
+| People              |
++---------------------+
+7 rows in set (0.01 sec)
+
+mysql> select * from customers;
++---------+------------+-----------+------------------+
+| Cust_id | First_Name | Last_Name | Email            |
++---------+------------+-----------+------------------+
+|       1 | Boy        | George    | george@gmail.com |
+|       2 | George     | Michael   | gm@gmail.com     |
+|       3 | David      | Bowie     | david@gmail.com  |
+|       4 | Blue       | Steele    | blue@gmail.com   |
+|       5 | Bette      | Davis     | bette@aol.com    |
++---------+------------+-----------+------------------+
+5 rows in set (0.01 sec)
+
+mysql> select cust_id from customers where Last_Name='George';
++---------+
+| cust_id |
++---------+
+|       1 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select * from orders=(select cust_id from customers where Last_Name='George');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=(select cust_id from customers where Last_Name='George')' at line 1
+mysql> select * from orders where id=(select cust_id from customers where Last_Name='George');
++----+------------+--------+-------------+
+| id | order_date | amount | customer_id |
++----+------------+--------+-------------+
+|  1 | 2016-02-10 |  99.99 |           1 |
++----+------------+--------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select * from orders where customer_id=(select cust_id from customers where Last_Name='George');
++----+------------+--------+-------------+
+| id | order_date | amount | customer_id |
++----+------------+--------+-------------+
+|  1 | 2016-02-10 |  99.99 |           1 |
+|  2 | 2017-11-11 |  35.50 |           1 |
++----+------------+--------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from customers,orders;
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+| Cust_id | First_Name | Last_Name | Email            | id | order_date | amount | customer_id |
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+|       5 | Bette      | Davis     | bette@aol.com    |  1 | 2016-02-10 |  99.99 |           1 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  1 | 2016-02-10 |  99.99 |           1 |
+|       3 | David      | Bowie     | david@gmail.com  |  1 | 2016-02-10 |  99.99 |           1 |
+|       2 | George     | Michael   | gm@gmail.com     |  1 | 2016-02-10 |  99.99 |           1 |
+|       1 | Boy        | George    | george@gmail.com |  1 | 2016-02-10 |  99.99 |           1 |
+|       5 | Bette      | Davis     | bette@aol.com    |  2 | 2017-11-11 |  35.50 |           1 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  2 | 2017-11-11 |  35.50 |           1 |
+|       3 | David      | Bowie     | david@gmail.com  |  2 | 2017-11-11 |  35.50 |           1 |
+|       2 | George     | Michael   | gm@gmail.com     |  2 | 2017-11-11 |  35.50 |           1 |
+|       1 | Boy        | George    | george@gmail.com |  2 | 2017-11-11 |  35.50 |           1 |
+|       5 | Bette      | Davis     | bette@aol.com    |  3 | 2014-12-12 | 800.67 |           2 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  3 | 2014-12-12 | 800.67 |           2 |
+|       3 | David      | Bowie     | david@gmail.com  |  3 | 2014-12-12 | 800.67 |           2 |
+|       2 | George     | Michael   | gm@gmail.com     |  3 | 2014-12-12 | 800.67 |           2 |
+|       1 | Boy        | George    | george@gmail.com |  3 | 2014-12-12 | 800.67 |           2 |
+|       5 | Bette      | Davis     | bette@aol.com    |  4 | 2015-01-03 |  12.50 |           2 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  4 | 2015-01-03 |  12.50 |           2 |
+|       3 | David      | Bowie     | david@gmail.com  |  4 | 2015-01-03 |  12.50 |           2 |
+|       2 | George     | Michael   | gm@gmail.com     |  4 | 2015-01-03 |  12.50 |           2 |
+|       1 | Boy        | George    | george@gmail.com |  4 | 2015-01-03 |  12.50 |           2 |
+|       5 | Bette      | Davis     | bette@aol.com    |  5 | 1999-04-11 | 450.25 |           5 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  5 | 1999-04-11 | 450.25 |           5 |
+|       3 | David      | Bowie     | david@gmail.com  |  5 | 1999-04-11 | 450.25 |           5 |
+|       2 | George     | Michael   | gm@gmail.com     |  5 | 1999-04-11 | 450.25 |           5 |
+|       1 | Boy        | George    | george@gmail.com |  5 | 1999-04-11 | 450.25 |           5 |
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+25 rows in set (0.00 sec)
+
+mysql> -- Cross join 
+mysql> select * from customers,Orders;
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+| Cust_id | First_Name | Last_Name | Email            | id | order_date | amount | customer_id |
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+|       5 | Bette      | Davis     | bette@aol.com    |  1 | 2016-02-10 |  99.99 |           1 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  1 | 2016-02-10 |  99.99 |           1 |
+|       3 | David      | Bowie     | david@gmail.com  |  1 | 2016-02-10 |  99.99 |           1 |
+|       2 | George     | Michael   | gm@gmail.com     |  1 | 2016-02-10 |  99.99 |           1 |
+|       1 | Boy        | George    | george@gmail.com |  1 | 2016-02-10 |  99.99 |           1 |
+|       5 | Bette      | Davis     | bette@aol.com    |  2 | 2017-11-11 |  35.50 |           1 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  2 | 2017-11-11 |  35.50 |           1 |
+|       3 | David      | Bowie     | david@gmail.com  |  2 | 2017-11-11 |  35.50 |           1 |
+|       2 | George     | Michael   | gm@gmail.com     |  2 | 2017-11-11 |  35.50 |           1 |
+|       1 | Boy        | George    | george@gmail.com |  2 | 2017-11-11 |  35.50 |           1 |
+|       5 | Bette      | Davis     | bette@aol.com    |  3 | 2014-12-12 | 800.67 |           2 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  3 | 2014-12-12 | 800.67 |           2 |
+|       3 | David      | Bowie     | david@gmail.com  |  3 | 2014-12-12 | 800.67 |           2 |
+|       2 | George     | Michael   | gm@gmail.com     |  3 | 2014-12-12 | 800.67 |           2 |
+|       1 | Boy        | George    | george@gmail.com |  3 | 2014-12-12 | 800.67 |           2 |
+|       5 | Bette      | Davis     | bette@aol.com    |  4 | 2015-01-03 |  12.50 |           2 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  4 | 2015-01-03 |  12.50 |           2 |
+|       3 | David      | Bowie     | david@gmail.com  |  4 | 2015-01-03 |  12.50 |           2 |
+|       2 | George     | Michael   | gm@gmail.com     |  4 | 2015-01-03 |  12.50 |           2 |
+|       1 | Boy        | George    | george@gmail.com |  4 | 2015-01-03 |  12.50 |           2 |
+|       5 | Bette      | Davis     | bette@aol.com    |  5 | 1999-04-11 | 450.25 |           5 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  5 | 1999-04-11 | 450.25 |           5 |
+|       3 | David      | Bowie     | david@gmail.com  |  5 | 1999-04-11 | 450.25 |           5 |
+|       2 | George     | Michael   | gm@gmail.com     |  5 | 1999-04-11 | 450.25 |           5 |
+|       1 | Boy        | George    | george@gmail.com |  5 | 1999-04-11 | 450.25 |           5 |
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+25 rows in set (0.01 sec)
+
+mysql> select * from orders;
++----+------------+--------+-------------+
+| id | order_date | amount | customer_id |
++----+------------+--------+-------------+
+|  1 | 2016-02-10 |  99.99 |           1 |
+|  2 | 2017-11-11 |  35.50 |           1 |
+|  3 | 2014-12-12 | 800.67 |           2 |
+|  4 | 2015-01-03 |  12.50 |           2 |
+|  5 | 1999-04-11 | 450.25 |           5 |
++----+------------+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customers;
++---------+------------+-----------+------------------+
+| Cust_id | First_Name | Last_Name | Email            |
++---------+------------+-----------+------------------+
+|       1 | Boy        | George    | george@gmail.com |
+|       2 | George     | Michael   | gm@gmail.com     |
+|       3 | David      | Bowie     | david@gmail.com  |
+|       4 | Blue       | Steele    | blue@gmail.com   |
+|       5 | Bette      | Davis     | bette@aol.com    |
++---------+------------+-----------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> -- Inner Join
+mysql> select * from Customers Inner Join Orders On
+    -> Orders.customer_id=customers.cust_id;
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+| Cust_id | First_Name | Last_Name | Email            | id | order_date | amount | customer_id |
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+|       1 | Boy        | George    | george@gmail.com |  1 | 2016-02-10 |  99.99 |           1 |
+|       1 | Boy        | George    | george@gmail.com |  2 | 2017-11-11 |  35.50 |           1 |
+|       2 | George     | Michael   | gm@gmail.com     |  3 | 2014-12-12 | 800.67 |           2 |
+|       2 | George     | Michael   | gm@gmail.com     |  4 | 2015-01-03 |  12.50 |           2 |
+|       5 | Bette      | Davis     | bette@aol.com    |  5 | 1999-04-11 | 450.25 |           5 |
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+5 rows in set (0.01 sec)
+
+mysql> select first_Name,last_Name,Order_date,Amount from customer Inner join Orders On
+    -> Orders.customer_id=customers.cust_id;
+ERROR 1146 (42S02): Table 'aggregate.customer' doesn't exist
+mysql> select first_Name,last_Name,Order_date,Amount from customers Inner join Orders On Orders.customer_id=customers.cust_id;
++------------+-----------+------------+--------+
+| first_Name | last_Name | Order_date | Amount |
++------------+-----------+------------+--------+
+| Boy        | George    | 2016-02-10 |  99.99 |
+| Boy        | George    | 2017-11-11 |  35.50 |
+| George     | Michael   | 2014-12-12 | 800.67 |
+| George     | Michael   | 2015-01-03 |  12.50 |
+| Bette      | Davis     | 1999-04-11 | 450.25 |
++------------+-----------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customers Inner Join Orders On
+    -> orders.customer_id=cutomers.id;
+ERROR 1054 (42S22): Unknown column 'cutomers.id' in 'on clause'
+mysql> select * from customers Inner Join Orders On orders.customer_id=cutomers.cust_id;
+ERROR 1054 (42S22): Unknown column 'cutomers.cust_id' in 'on clause'
+mysql> select * from customers Inner Join Orders On orders.customer_id=customers.cust_id;
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+| Cust_id | First_Name | Last_Name | Email            | id | order_date | amount | customer_id |
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+|       1 | Boy        | George    | george@gmail.com |  1 | 2016-02-10 |  99.99 |           1 |
+|       1 | Boy        | George    | george@gmail.com |  2 | 2017-11-11 |  35.50 |           1 |
+|       2 | George     | Michael   | gm@gmail.com     |  3 | 2014-12-12 | 800.67 |           2 |
+|       2 | George     | Michael   | gm@gmail.com     |  4 | 2015-01-03 |  12.50 |           2 |
+|       5 | Bette      | Davis     | bette@aol.com    |  5 | 1999-04-11 | 450.25 |           5 |
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select First_Name,Last_Name,sum(Amount) from Customers Inner Join Orders On
+    -> orders.customer_id=customers.cust_id
+    -> group by first_Name,Last_Name;
++------------+-----------+-------------+
+| First_Name | Last_Name | sum(Amount) |
++------------+-----------+-------------+
+| Boy        | George    |      135.49 |
+| George     | Michael   |      813.17 |
+| Bette      | Davis     |      450.25 |
++------------+-----------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select First_Name,Last_Name,sum(Amount) from Customers Inner Join Orders On orders.customer_id=customers.cust_id group by first_Name,Last_Name
+    -> ^C
+mysql> select First_Name,Last_Name,sum(Amount) from Customers Inner Join Orders On orders.customer_id=customers.cust_id group by first_Name,Last_Name order by Desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Desc' at line 1
+mysql> select First_Name,Last_Name,sum(Amount) from Customers Inner Join Orders On orders.customer_id=customers.cust_id group by first_Name,Last_Name order by Desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Desc' at line 1
+mysql> select First_Name,Last_Name,sum(Amount) as Total from Customers Inner Join Orders On orders.customer_id=customers.cust_id group by first_Name,Last_Name order by Total Desc;
++------------+-----------+--------+
+| First_Name | Last_Name | Total  |
++------------+-----------+--------+
+| George     | Michael   | 813.17 |
+| Bette      | Davis     | 450.25 |
+| Boy        | George    | 135.49 |
++------------+-----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select First_Name,Last_Name,sum(Amount) as Total from Customers Inner Join Orders On orders.customer_id=customers.cust_id group by first_Name,Last_Name order by Total Desc;
++------------+-----------+--------+
+| First_Name | Last_Name | Total  |
++------------+-----------+--------+
+| George     | Michael   | 813.17 |
+| Bette      | Davis     | 450.25 |
+| Boy        | George    | 135.49 |
++------------+-----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select First_Name,Last_Name,sum(Amount) as Total from Customers Inner Join Orders On orders.customer_id=customers.cust_id group by first_Name,Last_Name order by Total Desc;
++------------+-----------+--------+
+| First_Name | Last_Name | Total  |
++------------+-----------+--------+
+| George     | Michael   | 813.17 |
+| Bette      | Davis     | 450.25 |
+| Boy        | George    | 135.49 |
++------------+-----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from customers;
++---------+------------+-----------+------------------+
+| Cust_id | First_Name | Last_Name | Email            |
++---------+------------+-----------+------------------+
+|       1 | Boy        | George    | george@gmail.com |
+|       2 | George     | Michael   | gm@gmail.com     |
+|       3 | David      | Bowie     | david@gmail.com  |
+|       4 | Blue       | Steele    | blue@gmail.com   |
+|       5 | Bette      | Davis     | bette@aol.com    |
++---------+------------+-----------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from orders;
++----+------------+--------+-------------+
+| id | order_date | amount | customer_id |
++----+------------+--------+-------------+
+|  1 | 2016-02-10 |  99.99 |           1 |
+|  2 | 2017-11-11 |  35.50 |           1 |
+|  3 | 2014-12-12 | 800.67 |           2 |
+|  4 | 2015-01-03 |  12.50 |           2 |
+|  5 | 1999-04-11 | 450.25 |           5 |
++----+------------+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> 
+  [Restored 10 Sep 2024 at 12:48:53 PM]
+Last login: Tue Sep 10 12:48:51 on console
+RadhaPutraAbhishektyagi@Abhisheks-MacBook-Air ~ % mysql -u root -p;
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.31 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show schemas;
++----------------------+
+| Database             |
++----------------------+
+| ABES                 |
+| Aggregate            |
+| bankmanagementsystem |
+| Books                |
+| BookShop             |
+| constraints          |
+| DBMS                 |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| Practice             |
+| RadheKrishna         |
+| Shirt                |
+| sys                  |
+| Triggers             |
+| View                 |
++----------------------+
+16 rows in set (0.01 sec)
+
+mysql> use Aggregates;
+ERROR 1049 (42000): Unknown database 'aggregates'
+mysql> use Aggregate;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_aggregate |
++---------------------+
+| Arrange             |
+| captions            |
+| Customers           |
+| Employee            |
+| Money               |
+| orders              |
+| People              |
++---------------------+
+7 rows in set (0.01 sec)
+
+mysql> select * from customers,orders;
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+| Cust_id | First_Name | Last_Name | Email            | id | order_date | amount | customer_id |
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+|       5 | Bette      | Davis     | bette@aol.com    |  1 | 2016-02-10 |  99.99 |           1 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  1 | 2016-02-10 |  99.99 |           1 |
+|       3 | David      | Bowie     | david@gmail.com  |  1 | 2016-02-10 |  99.99 |           1 |
+|       2 | George     | Michael   | gm@gmail.com     |  1 | 2016-02-10 |  99.99 |           1 |
+|       1 | Boy        | George    | george@gmail.com |  1 | 2016-02-10 |  99.99 |           1 |
+|       5 | Bette      | Davis     | bette@aol.com    |  2 | 2017-11-11 |  35.50 |           1 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  2 | 2017-11-11 |  35.50 |           1 |
+|       3 | David      | Bowie     | david@gmail.com  |  2 | 2017-11-11 |  35.50 |           1 |
+|       2 | George     | Michael   | gm@gmail.com     |  2 | 2017-11-11 |  35.50 |           1 |
+|       1 | Boy        | George    | george@gmail.com |  2 | 2017-11-11 |  35.50 |           1 |
+|       5 | Bette      | Davis     | bette@aol.com    |  3 | 2014-12-12 | 800.67 |           2 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  3 | 2014-12-12 | 800.67 |           2 |
+|       3 | David      | Bowie     | david@gmail.com  |  3 | 2014-12-12 | 800.67 |           2 |
+|       2 | George     | Michael   | gm@gmail.com     |  3 | 2014-12-12 | 800.67 |           2 |
+|       1 | Boy        | George    | george@gmail.com |  3 | 2014-12-12 | 800.67 |           2 |
+|       5 | Bette      | Davis     | bette@aol.com    |  4 | 2015-01-03 |  12.50 |           2 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  4 | 2015-01-03 |  12.50 |           2 |
+|       3 | David      | Bowie     | david@gmail.com  |  4 | 2015-01-03 |  12.50 |           2 |
+|       2 | George     | Michael   | gm@gmail.com     |  4 | 2015-01-03 |  12.50 |           2 |
+|       1 | Boy        | George    | george@gmail.com |  4 | 2015-01-03 |  12.50 |           2 |
+|       5 | Bette      | Davis     | bette@aol.com    |  5 | 1999-04-11 | 450.25 |           5 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  5 | 1999-04-11 | 450.25 |           5 |
+|       3 | David      | Bowie     | david@gmail.com  |  5 | 1999-04-11 | 450.25 |           5 |
+|       2 | George     | Michael   | gm@gmail.com     |  5 | 1999-04-11 | 450.25 |           5 |
+|       1 | Boy        | George    | george@gmail.com |  5 | 1999-04-11 | 450.25 |           5 |
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+25 rows in set (0.00 sec)
+
+mysql> select * from customers;
++---------+------------+-----------+------------------+
+| Cust_id | First_Name | Last_Name | Email            |
++---------+------------+-----------+------------------+
+|       1 | Boy        | George    | george@gmail.com |
+|       2 | George     | Michael   | gm@gmail.com     |
+|       3 | David      | Bowie     | david@gmail.com  |
+|       4 | Blue       | Steele    | blue@gmail.com   |
+|       5 | Bette      | Davis     | bette@aol.com    |
++---------+------------+-----------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from orders;
++----+------------+--------+-------------+
+| id | order_date | amount | customer_id |
++----+------------+--------+-------------+
+|  1 | 2016-02-10 |  99.99 |           1 |
+|  2 | 2017-11-11 |  35.50 |           1 |
+|  3 | 2014-12-12 | 800.67 |           2 |
+|  4 | 2015-01-03 |  12.50 |           2 |
+|  5 | 1999-04-11 | 450.25 |           5 |
++----+------------+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customers,orders;
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+| Cust_id | First_Name | Last_Name | Email            | id | order_date | amount | customer_id |
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+|       5 | Bette      | Davis     | bette@aol.com    |  1 | 2016-02-10 |  99.99 |           1 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  1 | 2016-02-10 |  99.99 |           1 |
+|       3 | David      | Bowie     | david@gmail.com  |  1 | 2016-02-10 |  99.99 |           1 |
+|       2 | George     | Michael   | gm@gmail.com     |  1 | 2016-02-10 |  99.99 |           1 |
+|       1 | Boy        | George    | george@gmail.com |  1 | 2016-02-10 |  99.99 |           1 |
+|       5 | Bette      | Davis     | bette@aol.com    |  2 | 2017-11-11 |  35.50 |           1 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  2 | 2017-11-11 |  35.50 |           1 |
+|       3 | David      | Bowie     | david@gmail.com  |  2 | 2017-11-11 |  35.50 |           1 |
+|       2 | George     | Michael   | gm@gmail.com     |  2 | 2017-11-11 |  35.50 |           1 |
+|       1 | Boy        | George    | george@gmail.com |  2 | 2017-11-11 |  35.50 |           1 |
+|       5 | Bette      | Davis     | bette@aol.com    |  3 | 2014-12-12 | 800.67 |           2 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  3 | 2014-12-12 | 800.67 |           2 |
+|       3 | David      | Bowie     | david@gmail.com  |  3 | 2014-12-12 | 800.67 |           2 |
+|       2 | George     | Michael   | gm@gmail.com     |  3 | 2014-12-12 | 800.67 |           2 |
+|       1 | Boy        | George    | george@gmail.com |  3 | 2014-12-12 | 800.67 |           2 |
+|       5 | Bette      | Davis     | bette@aol.com    |  4 | 2015-01-03 |  12.50 |           2 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  4 | 2015-01-03 |  12.50 |           2 |
+|       3 | David      | Bowie     | david@gmail.com  |  4 | 2015-01-03 |  12.50 |           2 |
+|       2 | George     | Michael   | gm@gmail.com     |  4 | 2015-01-03 |  12.50 |           2 |
+|       1 | Boy        | George    | george@gmail.com |  4 | 2015-01-03 |  12.50 |           2 |
+|       5 | Bette      | Davis     | bette@aol.com    |  5 | 1999-04-11 | 450.25 |           5 |
+|       4 | Blue       | Steele    | blue@gmail.com   |  5 | 1999-04-11 | 450.25 |           5 |
+|       3 | David      | Bowie     | david@gmail.com  |  5 | 1999-04-11 | 450.25 |           5 |
+|       2 | George     | Michael   | gm@gmail.com     |  5 | 1999-04-11 | 450.25 |           5 |
+|       1 | Boy        | George    | george@gmail.com |  5 | 1999-04-11 | 450.25 |           5 |
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+25 rows in set (0.01 sec)
+
+mysql> -- Inner Join 
+mysql> select * from customers inner join orders On
+    -> orders.customer_id=customers.cust_id;
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+| Cust_id | First_Name | Last_Name | Email            | id | order_date | amount | customer_id |
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+|       1 | Boy        | George    | george@gmail.com |  1 | 2016-02-10 |  99.99 |           1 |
+|       1 | Boy        | George    | george@gmail.com |  2 | 2017-11-11 |  35.50 |           1 |
+|       2 | George     | Michael   | gm@gmail.com     |  3 | 2014-12-12 | 800.67 |           2 |
+|       2 | George     | Michael   | gm@gmail.com     |  4 | 2015-01-03 |  12.50 |           2 |
+|       5 | Bette      | Davis     | bette@aol.com    |  5 | 1999-04-11 | 450.25 |           5 |
++---------+------------+-----------+------------------+----+------------+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select First_Name ,Last_Name,Email,Order_date,Amount from customers inner join orders On orders.custome
+r_id=customers.cust_id;
++------------+-----------+------------------+------------+--------+
+| First_Name | Last_Name | Email            | Order_date | Amount |
++------------+-----------+------------------+------------+--------+
+| Boy        | George    | george@gmail.com | 2016-02-10 |  99.99 |
+| Boy        | George    | george@gmail.com | 2017-11-11 |  35.50 |
+| George     | Michael   | gm@gmail.com     | 2014-12-12 | 800.67 |
+| George     | Michael   | gm@gmail.com     | 2015-01-03 |  12.50 |
+| Bette      | Davis     | bette@aol.com    | 1999-04-11 | 450.25 |
++------------+-----------+------------------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select First_Name ,Last_Name,Email,Order_date,Amount from customers inner join orders On orders.customer_id=customers.cust_id group by first_Name,Last_Name
+    -> ^C
+mysql> SELECT 
+    ->     First_Name, Last_Name, count(*) as Num
+    -> FROM
+    ->     customers
+    ->         INNER JOIN
+    ->     orders ON orders.customer_id = customers.cust_id
+    -> GROUP BY first_Name , Last_Name
+    -> order by num desc;
++------------+-----------+-----+
+| First_Name | Last_Name | Num |
++------------+-----------+-----+
+| Boy        | George    |   2 |
+| George     | Michael   |   2 |
+| Bette      | Davis     |   1 |
++------------+-----------+-----+
+3 rows in set (0.00 sec)
+
+mysql> SELECT 
+    ->     First_Name, Last_Name, max(amount) as Highest
+    -> FROM
+    ->     customers
+    ->         INNER JOIN
+    ->     orders ON orders.customer_id = customers.cust_id
+    -> GROUP BY first_Name , Last_Name
+    -> order by Highest desc;
++------------+-----------+---------+
+| First_Name | Last_Name | Highest |
++------------+-----------+---------+
+| George     | Michael   |  800.67 |
+| Bette      | Davis     |  450.25 |
+| Boy        | George    |   99.99 |
++------------+-----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> 
